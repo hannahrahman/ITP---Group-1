@@ -75,25 +75,25 @@ export default class Sidenav extends Component {
 
                 <ul className="navbar-nav mr-auto" >
                     <li className="navbar-item">
-                        <Link to="/" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
+                        <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
                         <hr color="white" />
                     </li>
 
                     <ul />
                     <li className="navbar-item">
-                        <Link to="/create" className="nav-link" onClick={this.m2.bind(this)}>Crime Division</Link>
+                        <Link to="/Crime Division" className="nav-link" onClick={this.m2.bind(this)}>Crime Division</Link>
                         <hr color="white" />
                     </li>
                     <li className="navbar-item">
-                        <Link to="/Appeal" className="nav-link" onClick={this.m3.bind(this)}>Civil Domestic Abuse Affairs</Link>
+                        <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Civil Domestic Abuse Affairs</Link>
                         <hr color="white" />
                     </li>
                     <li className="navbar-item">
-                        <Link to="/user" className="nav-link" onClick={this.m4.bind(this)}>Environmental Affairs</Link>
+                        <Link to="/Environmental Affairs" className="nav-link" onClick={this.m4.bind(this)}>Environmental Affairs</Link>
                         <hr color="white" />
                     </li>
                     <li className="navbar-item">
-                        <Link to="/user" className="nav-link" onClick={this.m5.bind(this)}>Cyber Crime</Link>
+                        <Link to="/Cyber Crime" className="nav-link" onClick={this.m5.bind(this)}>Cyber Crime</Link>
                         <hr color="white" />
                     </li>
                     <li className="navbar-item">
@@ -101,7 +101,7 @@ export default class Sidenav extends Component {
                         <hr color="white" />
                     </li>
                     <li className="navbar-item">
-                        <Link to="/user" className="nav-link">More</Link>
+                        <font color="#00AFF1" ><a to="/user" className="nav-disabled-link">More</a></font>
                     </li>
                     <li className="navbar-item">
                         <Link to="/user" className="nav-link" onClick={this.m7.bind(this)}>Online Fine Payment</Link>
