@@ -29,7 +29,7 @@ function App() {
             <Navbar />
             <Sidenav />
 
-            <div className="container" style={{ marginTop: -67.5 + 'rem' }} >
+            <div className="container" style={{ marginTop: -67 + 'rem' }} >
               <Route exact path="/" exact component={ComplainsList} />
               <Route path="/edit/:id" exact component={EditComplain} />
               <Route path="/create" exact component={CreateComplain} />
