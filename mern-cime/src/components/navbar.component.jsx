@@ -19,7 +19,7 @@ export default class Navbar extends Component {
                             <Link to="/" className="nav-link">Complains</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/create" className="nav-link">Add Complain</Link>
+                            <Link to="/Complain" className="nav-link">Add Complain</Link>
                         </li>
                         <li className="navbar-item">
                             <Link to="/Appeal" className="nav-link">Add Appeal</Link>
@@ -28,7 +28,7 @@ export default class Navbar extends Component {
                             <Link to="/user" className="nav-link">Create User</Link>
                         </li>
                         <li className="navbar-item">
-                            <Link to="/user" className="nav-link">Legal Examination Form</Link>
+                            <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
