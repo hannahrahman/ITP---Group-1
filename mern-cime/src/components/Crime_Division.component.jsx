@@ -21,9 +21,7 @@ export default class MiscellaneousComplaints extends Component {
                 <div style={{ marginTop: -54.3 + 'rem' }}>
                     <div style={{ marginLeft: 17 + 'rem' }} >
                         <CrimeNavbar />
-
                     </div>
-
                     <Route exact path="/ComplainsList" exact component={ComplainsList} />
                     <Route path="/edit/:id" exact component={EditComplain} />
                     <Route path="/Complain" exact component={CreateComplain} />
