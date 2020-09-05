@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from "./crimenavbar.component"
 export default class Sidenav extends Component {
 
     constructor(props) {
@@ -93,18 +92,18 @@ export default class Sidenav extends Component {
                         <hr width="225" color="white" />
                     </li>
                     <li className="navbar-item">
-                        <Link to="/user" className="nav-link" onClick={this.m6.bind(this)}>Missing Persons Affairs</Link>
+                        <Link to="/Missing Persons Affairs" className="nav-link" onClick={this.m6.bind(this)}>Missing Persons Affairs</Link>
                         <hr width="225" color="white" />
                     </li>
                     <li className="navbar-item">
-                        <font color="#00AFF1" ><a to="/user" className="nav-disabled-link">More</a></font>
+                        <font color="#00AFF1" ><a className="nav-disabled-link">More</a></font>
                     </li>
                     <li className="navbar-item">
-                        <Link to="/user" className="nav-link" onClick={this.m7.bind(this)}>Online Fine Payment</Link>
+                        <Link to="/Online Fine Payment" className="nav-link" onClick={this.m7.bind(this)}>Online Fine Payment</Link>
                         <hr width="225" color="white" />
                     </li>
                     <li className="navbar-item">
-                        <Link to="/user" className="nav-link" onClick={this.m8.bind(this)}>Online Driving/NIC Renewal</Link>
+                        <Link to="/Online Driving/NIC Renewal" className="nav-link" onClick={this.m8.bind(this)}>Online Driving/NIC Renewal</Link>
                     </li>
                 </ul>
                 <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>

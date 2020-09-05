@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-export default class CrimeNavbar extends Component {
+export default class MiscellaneousComplaintsNavbar extends Component {
 
     render() {
         return (
@@ -22,9 +22,6 @@ export default class CrimeNavbar extends Component {
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/Appeal" className="nav-link">Add Appeal</Link>
-                        </li>
-                        <li className="navbar-item mr-5">
-                            <Link to="/user" className="nav-link">Create User</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
