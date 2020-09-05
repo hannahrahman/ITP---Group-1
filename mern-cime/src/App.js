@@ -32,7 +32,11 @@ function App() {
             <div className="container" style={{ marginTop: -67 + 'rem' }} >
               <Route exact path="/" exact component={ComplainsList} />
               <Route path="/edit/:id" exact component={EditComplain} />
+<<<<<<< HEAD
               <Route path="/Complain" exact component={CreateComplain} />
+=======
+              <Route path="/complain" exact component={CreateComplain} />
+>>>>>>> 153a6dbeb4d56d1c417d51d132dc327be73beb13
               <Route path="/user" exact component={CreateUser} />
               <Route path="/Appeal" exact component={CreateAppeal} />
 

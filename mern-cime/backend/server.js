@@ -3,7 +3,10 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 //const url = 'mongodb://localhost/complainDBx'
 const url = 'mongodb+srv://miyuruw:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 153a6dbeb4d56d1c417d51d132dc327be73beb13
 require('dotenv').config()//having environment variables in dotenv file
 
 const app = express()//creating express server
