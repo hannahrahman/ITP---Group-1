@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Sidenav from './navbar-vertical.component'
 
 
-export default class Navbar extends Component {
+export default class CrimeNavbar extends Component {
 
     render() {
         return (
@@ -13,21 +12,21 @@ export default class Navbar extends Component {
                 <Link to="/" className="navbar-brand" >
                 </Link>
                 <div className="collpase navbar-collapse">
-                    <ul className="navbar-nav mr-auto" style={{ marginLeft: 12 + 'rem' }}>
+                    <ul className="navbar-nav mr-auto ">
 
-                        <li className="navbar-item">
+                        <li className="navbar-item mr-5">
                             <Link to="/" className="nav-link">Complains</Link>
                         </li>
-                        <li className="navbar-item">
+                        <li className="navbar-item mr-5">
                             <Link to="/Complain" className="nav-link">Add Complain</Link>
                         </li>
-                        <li className="navbar-item">
+                        <li className="navbar-item mr-5">
                             <Link to="/Appeal" className="nav-link">Add Appeal</Link>
                         </li>
-                        <li className="navbar-item">
+                        <li className="navbar-item mr-5">
                             <Link to="/user" className="nav-link">Create User</Link>
                         </li>
-                        <li className="navbar-item">
+                        <li className="navbar-item mr-5">
                             <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
                         </li>
                     </ul>
