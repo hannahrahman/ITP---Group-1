@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-export default class CivilDomesticAbuseAffairsNavbar extends Component {
+export default class NarcoticssandDrugAffairsNavbar extends Component {
 
     render() {
         return (

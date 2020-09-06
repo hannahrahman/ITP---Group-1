@@ -7,6 +7,7 @@ import Sidenav from "./NavBars/navbar-vertical.component.jsx"
 import CivilDomesticAbuseAffairs from "./components/Civil_Domestic_Abuse_Affairs.component.jsx"
 import CrimeDivision from "./components/Crime_Division.component.jsx"
 import CyberCrime from "./components/Cyber_Crime.component.jsx"
+import NarcoticssandDrugAffairs from "./components/Narcotics_and_Drug_Affairs.component.jsx"
 import OnlineDrivingNICRenewal from "./components/Online_DrivingNIC_Renewal.jsx"
 import OnlineFinePayment from "./components/Online_Fine_Payment.component.jsx"
 import MissingPersonsAffairs from "./components/Missing_Persons_Affairs.component.jsx"
@@ -38,7 +39,7 @@ function App() {
             <Route exact path="/Cyber Crime" exact component={CyberCrime} />
             <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
             <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
-
+            <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
           </div>
 
         </Router>
