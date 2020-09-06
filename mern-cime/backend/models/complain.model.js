@@ -17,7 +17,7 @@ const complainSchema = new Schema({
     description: { type: String, required: true },
     weapon: { type: String },
     date: { type: Date, required: true },
-    officer_incharge: { type: String, required: true }
+    officer_incharge: { type: String }
 
 }, {
     timestamps: true,

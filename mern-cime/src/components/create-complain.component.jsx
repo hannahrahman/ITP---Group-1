@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
-import Sidenav from "./navbar-vertical.component.jsx"
+
 
 export default class CreateComplain extends Component {
 
@@ -153,9 +153,9 @@ export default class CreateComplain extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop: -88.5 + 'rem' }}>
+            <div class="container" style={{ marginTop: -93 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 3.5 + 'rem' }} >
+                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 5.5 + 'rem' }} >
                     <div class="card-header"><h3>Add Complain</h3></div>
                     <div class="card-body" >
 
