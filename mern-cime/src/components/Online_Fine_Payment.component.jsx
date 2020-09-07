@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
-import OnlineFinePaymentNavbar from "../NavBars/OnlineFinePaymentNavbar.component"
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import ComplainsList from "./complains-list.component"
-import EditComplain from "./edit-complain.component"
-import CreateComplain from "./create-complain.component"
-import CreateUser from "./create-user.component"
-import CreateAppeal from "./create-appeal.component"
+
 
 
 export default class OnlineFinePayment extends Component {
@@ -13,7 +7,7 @@ export default class OnlineFinePayment extends Component {
         return (
             <Router>
                 <meta name="viewpoint" content="width=device-width , initial-scale=1"></meta>
-                <div style={{ marginTop: -55.1 + 'rem' }}>
+                <div style={{ marginTop: -55.5 + 'rem' }}>
                     <div style={{ marginLeft: 18 + 'rem' }} >
                         <OnlineFinePaymentNavbar />
                     </div>

@@ -15,17 +15,12 @@ export default class OnlineFinePaymentNavbar extends Component {
                     <ul className="navbar-nav mr-auto ">
 
                         <li className="navbar-item mr-5">
-                            <Link to="/" className="nav-link">Complains</Link>
+                            <Link to="/" className="nav-link">List of actve fines</Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Complain" className="nav-link">Add Complain</Link>
+                            <Link to="/Complain" className="nav-link">Create User</Link>
                         </li>
-                        <li className="navbar-item mr-5">
-                            <Link to="/Appeal" className="nav-link">Add Appeal</Link>
-                        </li>
-                        <li className="navbar-item mr-5">
-                            <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
-                        </li>
+                        
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />

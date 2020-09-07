@@ -3,7 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 //const url = 'mongodb://localhost/complainDBx'
 //const url = 'mongodb+srv://davido:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
-const url = 'mongodb+srv://miyuruw:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
+const url = "mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority"
 require('dotenv').config()//having environment variables in dotenv file
 
 const app = express()//creating express server
@@ -21,7 +21,7 @@ con.on('open', () => {
 })
 
 
-const complainsRouter = require('./routes/complains')
+const complainsRouter = require('./routes/onlinePayment')
 
 app.use('/complains', complainsRouter)
 

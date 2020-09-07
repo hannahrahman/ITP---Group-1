@@ -65,23 +65,11 @@ export default class Sidenav extends Component {
     render() {
         return (
 
-<<<<<<< HEAD:mern-cime/src/components/navbar-vertical.component.jsx
-            <nav className="navbar navbar-dark bg-dark" style={{ width: 15 + '%' }} >
-
-                <ul className="navbar-nav mr-auto" >
-                    <font color="#00AFF1" > <li><div className=" navbar-item" style={{ marginTop: -3 + 'rem' }}><b>{this.state.m1}</b></div>
-                    </li></font>
-                </ul>
-
-                <ul className="navbar-nav mr-auto" >
-                    <li className="navbar-item">
-=======
-            <nav className="navbar navbar-dark bg-dark" style={{ width: 19.5 + '%' }} >
+            <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }} >
                 <font> <p ><div className=" navbar-item " class="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
                 </p></font>
                 <ul className="navbar-nav " >
                     <li className="navbar-item" style={{ marginTop: -10 + "rem" }}>
->>>>>>> c4ba464d1dee35b6ac4560902ca3e706e8dc528e:mern-cime/src/NavBars/navbar-vertical.component.jsx
                         <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
                         <hr color="white" />
                     </li>
@@ -89,21 +77,6 @@ export default class Sidenav extends Component {
                     <ul />
                     <li className="navbar-item">
                         <Link to="/Crime Division" className="nav-link" onClick={this.m2.bind(this)}>Crime Division</Link>
-<<<<<<< HEAD:mern-cime/src/components/navbar-vertical.component.jsx
-                        <hr color="white" />
-                    </li>
-                    <li className="navbar-item">
-                        <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Civil Domestic Abuse Affairs</Link>
-                        <hr color="white" />
-                    </li>
-                    <li className="navbar-item">
-                        <Link to="/Environmental Affairs" className="nav-link" onClick={this.m4.bind(this)}>Environmental Affairs</Link>
-                        <hr color="white" />
-                    </li>
-                    <li className="navbar-item">
-                        <Link to="/Cyber Crime" className="nav-link" onClick={this.m5.bind(this)}>Cyber Crime</Link>
-                        <hr color="white" />
-=======
                         <hr width="225" color="white" />
                     </li>
                     <li className="navbar-item">
@@ -117,18 +90,13 @@ export default class Sidenav extends Component {
                     <li className="navbar-item">
                         <Link to="/Cyber Crime" className="nav-link" onClick={this.m5.bind(this)}>Cyber Crime</Link>
                         <hr width="225" color="white" />
->>>>>>> c4ba464d1dee35b6ac4560902ca3e706e8dc528e:mern-cime/src/NavBars/navbar-vertical.component.jsx
                     </li>
                     <li className="navbar-item">
                         <Link to="/Missing Persons Affairs" className="nav-link" onClick={this.m6.bind(this)}>Missing Persons Affairs</Link>
                         <hr width="225" color="white" />
                     </li>
                     <li className="navbar-item">
-<<<<<<< HEAD:mern-cime/src/components/navbar-vertical.component.jsx
-                        <font color="#00AFF1" ><a to="/user" className="nav-disabled-link">More</a></font>
-=======
                         <font color="#00AFF1" ><a className="nav-disabled-link">More</a></font>
->>>>>>> c4ba464d1dee35b6ac4560902ca3e706e8dc528e:mern-cime/src/NavBars/navbar-vertical.component.jsx
                     </li>
                     <li className="navbar-item">
                         <Link to="/Online Fine Payment" className="nav-link" onClick={this.m7.bind(this)}>Online Fine Payment</Link>

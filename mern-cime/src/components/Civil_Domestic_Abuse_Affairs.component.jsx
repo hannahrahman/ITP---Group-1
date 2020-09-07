@@ -15,7 +15,7 @@ export default class CivilDomesticAbuseAffairs extends Component {
         return (
             <Router>
                 <meta name="viewpoint" content="width=device-width , initial-scale=1"></meta>
-                <div style={{ marginTop: -55.1 + 'rem' }}>
+                <div style={{ marginTop: -55.5 + 'rem' }}>
                     <div style={{ marginLeft: 18 + 'rem' }} >
                         <CivilDomesticAbuseAffairsNavbar />
                     </div>

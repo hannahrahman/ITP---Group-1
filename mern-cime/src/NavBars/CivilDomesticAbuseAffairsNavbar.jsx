@@ -17,24 +17,13 @@ export default class CivilDomesticAbuseAffairsNavbar extends Component {
                         <li className="navbar-item mr-5">
                             <Link to="/" className="nav-link">Complains</Link>
                         </li>
-<<<<<<< HEAD:mern-cime/src/components/navbar.component.jsx
-                        <li className="navbar-item">
-=======
                         <li className="navbar-item mr-5">
->>>>>>> c4ba464d1dee35b6ac4560902ca3e706e8dc528e:mern-cime/src/NavBars/CivilDomesticAbuseAffairsNavbar.jsx
                             <Link to="/Complain" className="nav-link">Add Complain</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/Appeal" className="nav-link">Add Appeal</Link>
                         </li>
-<<<<<<< HEAD:mern-cime/src/components/navbar.component.jsx
-                        <li className="navbar-item">
-                            <Link to="/user" className="nav-link">Create User</Link>
-                        </li>
-                        <li className="navbar-item">
-=======
                         <li className="navbar-item mr-5">
->>>>>>> c4ba464d1dee35b6ac4560902ca3e706e8dc528e:mern-cime/src/NavBars/CivilDomesticAbuseAffairsNavbar.jsx
                             <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
                         </li>
                     </ul>
