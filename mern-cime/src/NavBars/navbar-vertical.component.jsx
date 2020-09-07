@@ -69,7 +69,7 @@ export default class Sidenav extends Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }} >
+      <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }}>
         <font> <p ><div className=" navbar-item " class="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
         </p></font>
         <ul className="navbar-nav " >
