@@ -10,16 +10,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default class MissingPersonsAffairs extends Component {
-<<<<<<< HEAD
-    
-    render() {
-        return (
-            <Router>
-                <meta name="viewpoint" content="width=device-width , initial-scale=1"></meta>
-                <div style={{ marginTop: -55.1 + 'rem' }}>
-                    <div style={{ marginLeft: 18 + 'rem' }} >
-                        <MissingPersonsAffairsNavbar />
-=======
   constructor(props) {
     super(props);
 
@@ -272,7 +262,6 @@ export default class MissingPersonsAffairs extends Component {
                         selected={this.state.dateOfBirth}
                         onChange={this.onchangeDateOfBirth}
                       />
->>>>>>> c39ee44600985d0828fa2b93403d6a4f060b6d56
                     </div>
                   </div>
 

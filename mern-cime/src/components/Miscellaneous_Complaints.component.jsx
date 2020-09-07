@@ -103,10 +103,6 @@ export default class MiscellaneousComplaints extends Component {
         window.location = "/";
       }
 
-
-
-
-    
     render() {
         return (
             <Router>
@@ -249,9 +245,6 @@ export default class MiscellaneousComplaints extends Component {
               </div>
             </div>
           </div>
-
-
-
                     <Route exact path="/ComplainsList" exact component={ComplainsList} />
                     <Route path="/edit/:id" exact component={EditComplain} />
                     <Route path="/Complain" exact component={CreateComplain} />
