@@ -22,8 +22,10 @@ con.on('open', () => {
 
 
 const complainsRouter = require('./routes/complains')
+const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
 
 app.use('/complains', complainsRouter)
+app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
 
 
 app.listen(port, () => {

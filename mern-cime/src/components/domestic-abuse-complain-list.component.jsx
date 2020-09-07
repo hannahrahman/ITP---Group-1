@@ -155,7 +155,7 @@ export default class DomesticAbuseComplainList extends Component {
         return (
             <div class="container" style={{ marginTop: 2 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 11 + 'rem' }} >
+                <div class="card text-white  bg-dark  mb-3" style={{ marginLeft: 11 + 'rem' }} >
                     <div class="card-header"><h3>Complains List</h3></div>
                     <div class="card-body" >
                     </div >
@@ -244,7 +244,7 @@ export default class DomesticAbuseComplainList extends Component {
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
 
                                             <input type="radio" id="male" name="gender" value={this.state.sex} onChange={this.onchangeSex} />
-                                            <label><b> Male </b></label>
+                                            <label style={{ marginLeft: 0.3 + 'rem' }}><b> Male </b></label>
                                         </div>
                                     </div>
 
@@ -256,7 +256,7 @@ export default class DomesticAbuseComplainList extends Component {
                                             value={this.state.sex}
 
                                             onChange={this.onchangeSex} />
-                                        <label><b> Female </b></label>
+                                        <label style={{ marginLeft: 0.3 + 'rem' }}><b> Female </b></label>
 
                                     </div>
                                 </div>
