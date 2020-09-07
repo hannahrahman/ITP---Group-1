@@ -3,15 +3,18 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/css/bootstrap-grid.min.css"
 import "bootstrap/dist/css/bootstrap-reboot.min.css"
-import Sidenav from "./components/navbar-vertical.component.jsx"
-import Navbar from "./components/navbar.component.jsx"
-import ComplainsList from "./components/complains-list.component"
-import EditComplain from "./components/edit-complain.component"
-import CreateComplain from "./components/create-complain.component"
-import CreateUser from "./components/create-user.component"
-import CreateAppeal from "./components/create-appeal.component"
+import Sidenav from "./NavBars/navbar-vertical.component.jsx"
+import CivilDomesticAbuseAffairs from "./components/Civil_Domestic_Abuse_Affairs.component.jsx"
+import CrimeDivision from "./components/Crime_Division.component.jsx"
+import CyberCrime from "./components/Cyber_Crime.component.jsx"
+import NarcoticssandDrugAffairs from "./components/Narcotics_and_Drug_Affairs.component.jsx"
+import OnlineDrivingNICRenewal from "./components/Online_DrivingNIC_Renewal.jsx"
+import OnlineFinePayment from "./components/Online_Fine_Payment.component.jsx"
+import MissingPersonsAffairs from "./components/Missing_Persons_Affairs.component.jsx"
+import EnvironmentalAffairs from "./components/Environmental_Affairs.component.jsx"
+import MiscellaneousComplaints from "./components/Miscellaneous_Complaints.component.jsx"
 import { Helmet } from "react-helmet";
-import Police from './police.png'
+import Police from './Images/police.png'
 
 function App() {
   return (
@@ -20,22 +23,26 @@ function App() {
         <meta charSet="UTF-8" />
         <title>Police Station</title>
         <meta name="description" content="Police Station" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="viewport" content="width=device-width, maximum-scale=1" />
         <link rel="shortcut icon" href={Police} />
       </Helmet>
       <div id="content">
         <Router>
-          <div>
-            <Navbar />
-            <Sidenav />
+          <div class="big-banner">
 
-            <div className="container" style={{ marginTop: -67.5 + 'rem' }} >
-              <Route exact path="/" exact component={ComplainsList} />
-              <Route path="/edit/:id" exact component={EditComplain} />
-              <Route path="/create" exact component={CreateComplain} />
-              <Route path="/user" exact component={CreateUser} />
-              <Route path="/Appeal" exact component={CreateAppeal} />
-            </div>
+            <Sidenav />
+            <Route exact path="/Crime Division" exact component={CrimeDivision} />
+            <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
+            <Route exact path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
+            <Route exact path="/Environmental Affairs" exact component={EnvironmentalAffairs} />
+            <Route exact path="/Missing Persons Affairs" exact component={MissingPersonsAffairs} />
+            <Route exact path="/Cyber Crime" exact component={CyberCrime} />
+            <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
+            <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
+<<<<<<< HEAD
+=======
+            <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
+>>>>>>> 72be2d67dbd988b3cb7e6baf3a3bb5cd31762bb2
           </div>
 
         </Router>
