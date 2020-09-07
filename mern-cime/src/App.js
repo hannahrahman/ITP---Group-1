@@ -38,7 +38,6 @@ function App() {
             <Route exact path="/Cyber Crime" exact component={CyberCrime} />
             <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
             <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
-
           </div>
 
         </Router>
