@@ -128,7 +128,6 @@ export default class CreateComplain extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         const complain = {
             refNo: this.state.refNo,
             complainType: this.state.complainType,
@@ -153,10 +152,10 @@ export default class CreateComplain extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop: + 'rem' }}>
+            <div class="container" style={{ marginTop: 1.2 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 5.5 + 'rem' }} >
-                    <div class="card-header"><h3>Add Complain</h3></div>
+                <div class="card text-white  bg-dark mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                    <div class="card-header bg-dark"><h3>Add Complain</h3></div>
                     <div class="card-body" >
 
                     </div >
@@ -168,7 +167,6 @@ export default class CreateComplain extends Component {
 
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
                                 <input
-                                    required
                                     type="text"
                                     required
                                     className="form-control is-invalid"
@@ -240,17 +238,13 @@ export default class CreateComplain extends Component {
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
                                 <div class="input-group">
-
                                     <div class="input-group-prepend">
-
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
-
                                             <input type="radio"
 
                                                 id="male"
                                                 name="gender"
                                                 value={this.state.sex}
-
                                                 onChange={this.onchangeSex} />
                                             <label><b>Male </b></label>
                                         </div>
