@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import MiscellaneousComplaintsNavbar from "../NavBars/MiscellaneousNavbar.component"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
@@ -264,3 +265,4 @@ export default class MiscellaneousComplaints extends Component {
     }
 
 }
+
