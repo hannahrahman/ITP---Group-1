@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 
 export default class CreateDomesticAbuseComplain extends Component {
@@ -145,6 +146,11 @@ export default class CreateDomesticAbuseComplain extends Component {
             date: this.state.date,
             officer_incharge: this.state.officer_incharge,
         }
+
+        axios
+            .post('http://localhost:5000/domestic_abuse_complains/add', complain)
+            .then(res => console.log(res.data));
+
         console.log(complain);
 
         window.location = '/';
