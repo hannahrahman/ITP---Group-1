@@ -4,21 +4,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const complainSchema = new Schema({
-    refNo: { type: Number, required: true },
-    complainType: { type: String, required: true },
-    fname: { type: String, required: true },
-    lname: { type: String, required: true },
-    nic: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
-    religion: { type: String },
-    sex: { type: String, required: true },
-    address: { type: String, require: true },
-    phone: { type: Number, require: true },
-    description: { type: String, required: true },
-    weapon: { type: String },
-    date: { type: Date, required: true },
-    officer_incharge: { type: String }
 
+    
+    refNo: { type: Number, required: true },
+    fullname: { type: String, required: true },
+    phonenumber: { type: Number, required: true },
+    nic: { type: String, required: true },
+    date: { type: Date, required: true },
+    description: { type: String, required: true },
+    dateofincident: { type: Date },
+    personsinvolved: { type: String, required: true },
 }, {
     timestamps: true,
 })

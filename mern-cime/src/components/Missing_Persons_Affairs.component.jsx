@@ -9,6 +9,7 @@ import CreateAppeal from "./create-appeal.component"
 
 
 export default class MissingPersonsAffairs extends Component {
+    
     render() {
         return (
             <Router>

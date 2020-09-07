@@ -9,29 +9,39 @@ router.route('/').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const refNo = req.body.refNo
-    const fullname = req.body.fullname
-    const phonenumber = req.body.phonenumber
+    const complainType = req.body.complainType
+    const fname = req.body.fname
+    const lname = req.body.lname
     const nic = req.body.nic
-    const date = req.body.date
+    const dateOfBirth = req.body.dateOfBirth
+    const religion = req.body.religion
+    const sex = req.body.sex
+    const address = req.body.address
+    const phone = req.body.phone
     const description = req.body.description
-    const dateofincident = req.body.dateofincident
-    const personsinvolved = req.body.personsinvolved
-    
+    const weapon = req.body.weapon
+    const date = Date.parse(req.body.date)
+    const officer_incharge = req.body.officer_incharge
 
     const newComplain = new Complain({
         refNo,
-        fullname,
-        phonenumber,
+        complainType,
+        fname,
+        lname,
         nic,
-        date,
+        dateOfBirth,
+        religion,
+        sex,
+        address,
+        phone,
         description,
-        dateofincident,
-        personsinvolved,
-        
+        weapon,
+        date,
+        officer_incharge,
     })
 
     newComplain.save()
-        .then(() => res.json('Complaint added!'))
+        .then(() => res.json('Complain added!'))
         .catch(err => res.status(400).json('Error :' + err))
 })
 
@@ -42,24 +52,29 @@ router.route('/:id').get((req, res) => {
 })
 router.route('/:id').delete((req, res) => {
     Complain.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Complaint deleted..'))
+        .then(() => res.json('complain deleted..'))
         .catch(err => res.status(400).json('Error: ' + err))
 })
 router.route('/:id').post((req, res) => {
     Complain.findById(req.params.id)
         .then(complain => {
             complain.refNo = req.body.refNo;
-            complain.fullname = req.body.fullname
-            complain.phonenumber = req.body.phonenumber
+            complain.complainType = req.body.complainType
+            complain.fname = req.body.fname
+            complain.lname = req.body.lname
             complain.nic = req.body.nic
-            complain.date = req.body.date
+            complain.dateOfBirth = req.body.dateOfBirth
+            complain.religion = req.body.religion
+            complain.sex = req.body.sex
+            complain.address = req.body.address
+            complain.phone = req.body.phone
             complain.description = req.body.description
-            complain.dateofincident = req.body.dateofincident
-            complain.personsinvolved = req.body.personsinvolved
-            
+            complain.weapon = req.body.weapon
+            complain.date = req.body.date
+            complain.officer_incharge = req.body.officer_incharge
 
             complain.save()
-                .then(() => res.json('Complaint updated..'))
+                .then(() => res.json('Complain updated..'))
                 .catch(err => res.status(400).json('Error: ' + err))
         })
         .catch(err => res.status(400).json('Error: ' + err))
