@@ -3,7 +3,7 @@ import NarcoticssandDrugAffairsNavbar from "../NavBars/NarcoticssandDrugAffairsN
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import ComplainsList from "./complains-list.component"
 import EditComplain from "./edit-complain.component"
-import CreateComplain from "./create-complain.component"
+import CreateDrugComplain from "./Drugs_Complain.component"
 import CreateUser from "./create-user.component"
 import CreateAppeal from "./create-appeal.component"
 
@@ -19,7 +19,7 @@ export default class NarcoticssandDrugAffairs extends Component {
                     </div>
                     <Route exact path="/ComplainsList" exact component={ComplainsList} />
                     <Route path="/edit/:id" exact component={EditComplain} />
-                    <Route path="/Complain" exact component={CreateComplain} />
+                    <Route path="/Drug_Complain" exact component={CreateDrugComplain} />
                     <Route path="/user" exact component={CreateUser} />
                     <Route path="/Appeal" exact component={CreateAppeal} />
                 </div>
