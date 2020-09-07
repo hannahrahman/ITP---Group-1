@@ -9,22 +9,22 @@ export default class CivilDomesticAbuseAffairsNavbar extends Component {
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto ">
             <li className="navbar-item mr-5">
-              <Link to="/" className="nav-link">
+              <Link to="/DomesticAbuseComplainList" className="nav-link">
                 Complains
               </Link>
             </li>
             <li className="navbar-item mr-5">
-              <Link to="/Complain" className="nav-link">
+              <Link to="/DomesticAbuseComplain" className="nav-link">
                 Add Complain
               </Link>
             </li>
             <li className="navbar-item mr-5">
-              <Link to="/Appeal" className="nav-link">
+              <Link to="/DomesticAbuseApeal" className="nav-link">
                 Add Appeal
               </Link>
             </li>
             <li className="navbar-item mr-5">
-              <Link to="/LEF" className="nav-link">
+              <Link to="/DomesticAbuseLegal" className="nav-link">
                 Legal Examination Form
               </Link>
             </li>
