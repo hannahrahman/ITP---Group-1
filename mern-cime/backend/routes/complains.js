@@ -58,7 +58,7 @@ router.route('/:id').delete((req, res) => {
 router.route('/:id').post((req, res) => {
     Complain.findById(req.params.id)
         .then(complain => {
-            complain.refNo = req.body.refNo;
+            complain.refNo = req.body.refNo
             complain.complainType = req.body.complainType
             complain.fname = req.body.fname
             complain.lname = req.body.lname
