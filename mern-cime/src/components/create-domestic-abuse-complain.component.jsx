@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 
 
-export default class CreateComplain extends Component {
+export default class CreateDomesticAbuseComplain extends Component {
 
     constructor(props) {
         super(props);
@@ -153,12 +153,11 @@ export default class CreateComplain extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop: + 'rem' }}>
+            <div class="container" style={{ marginTop: 2 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 5.5 + 'rem' }} >
+                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 11 + 'rem' }} >
                     <div class="card-header"><h3>Add Complain</h3></div>
                     <div class="card-body" >
-
                     </div >
 
                     <div class="container">
@@ -166,7 +165,7 @@ export default class CreateComplain extends Component {
 
                             <div className="form-group" >
 
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Refference No:</b></label>
                                 <input
                                     required
                                     type="text"
@@ -174,7 +173,6 @@ export default class CreateComplain extends Component {
                                     className="form-control is-invalid"
                                     value={this.state.refNo}
                                     onChange={this.onchangeRefno} />
-
                             </div>
 
                             <div className="form-group">
@@ -245,14 +243,8 @@ export default class CreateComplain extends Component {
 
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
 
-                                            <input type="radio"
-
-                                                id="male"
-                                                name="gender"
-                                                value={this.state.sex}
-
-                                                onChange={this.onchangeSex} />
-                                            <label><b>Male </b></label>
+                                            <input type="radio" id="male" name="gender" value={this.state.sex} onChange={this.onchangeSex} />
+                                            <label><b> Male </b></label>
                                         </div>
                                     </div>
 
