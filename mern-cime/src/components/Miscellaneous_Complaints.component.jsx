@@ -221,7 +221,7 @@ export default class MiscellaneousComplaints extends Component {
                            
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Persons Involved in the incident: </b>
+                      <b>Person Involved in the incident (Include Name and NIC): </b>
                     </label>
                     <input
                       type="text"
