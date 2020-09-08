@@ -8,16 +8,16 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/add').post((req, res) => {
-    const refNo = req.body.refNo
+    const refNo = Number(req.body.refNo)
     const complainType = req.body.complainType
     const fname = req.body.fname
     const lname = req.body.lname
     const nic = req.body.nic
-    const dateOfBirth = req.body.dateOfBirth
+    const dateOfBirth = Date.parse(req.body.dateOfBirth)
     const religion = req.body.religion
     const sex = req.body.sex
     const address = req.body.address
-    const phone = req.body.phone
+    const phone = Number(req.body.phone)
     const description = req.body.description
     const weapon = req.body.weapon
     const date = Date.parse(req.body.date)

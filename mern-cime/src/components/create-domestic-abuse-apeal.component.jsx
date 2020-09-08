@@ -161,7 +161,7 @@ export default class CreateDomesticAbuseApeal extends Component {
                     </div >
 
                     <div class="container">
-                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} class=" needs-validation" noValidate='true'>
 
                             <div className="form-group" >
 
