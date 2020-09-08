@@ -160,15 +160,20 @@ export default class MissingPersonsAffairs extends Component {
           name="viewpoint"
           content="width=device-width , initial-scale=1"
         ></meta>
+<<<<<<< HEAD
         <div style={{ marginTop: -59 + "rem" }}>
           <div style={{ marginLeft: 16 + "rem" }}>
+=======
+        <div style={{ marginTop: -58 + "rem" }}>
+          <div style={{ marginLeft: 18 + "rem" }}>
+>>>>>>> 991b5ce73ddd34598a2cc7225f4303c9ac0f3dbc
             <MissingPersonsAffairsNavbar />
           </div>
 
           <div class="container" style={{ marginTop: 1 + "rem" }}>
             <div
               class="card text-danger  bg-dark  mb-3"
-              style={{ marginLeft: 12 + "rem" }}
+              style={{ marginLeft: 5 + "rem" }}
             >
               <div class="card-header">
                 <h3>Missing Person Complaint Form</h3>

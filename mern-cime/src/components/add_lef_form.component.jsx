@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css'
+
+
+
 
 export default class CreateLEF extends Component {
 
@@ -22,16 +27,17 @@ export default class CreateLEF extends Component {
         this.onchangeAddress = this.onchangeAddress.bind(this)//
         this.onchangeReason = this.onchangeReason.bind(this)//
         this.onchangeRank = this.onchangeRank.bind(this)//
-        this.onchangeNatureOfBodilyHarm = this.onchangeNatureOfBodilyHarm.bind(this)
-        this.onchangeWeapon = this.onchangeWeapon.bind(this)
-        this.onchangeCategoryOfHurt = this.onchangeCategoryOfHurt.bind(this)
-        this.onchangeConsumptionOfAlcohol = this.onchangeConsumptionOfAlcohol.bind(this)
+        this.onchangeNatureOfBodilyHarm = this.onchangeNatureOfBodilyHarm.bind(this)//
+        this.onchangeWeapon = this.onchangeWeapon.bind(this)//
+        this.onchangeCategoryOfHurt = this.onchangeCategoryOfHurt.bind(this)//
+        this.onchangeConsumptionOfAlcohol = this.onchangeConsumptionOfAlcohol.bind(this)//
         this.onchangeOther = this.onchangeOther.bind(this)
         this.onchangeRemarks = this.onchangeRemarks.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
 
         this.state = {
-            dateOfIssue: '',//
+            refNo: '',
+            dateOfIssue: new Date(),//
             victimFullName: '',//
             dateOfBirth: new Date(),//
             age: '',//
@@ -39,17 +45,17 @@ export default class CreateLEF extends Component {
             hospital: '',//
             wardNo: '',//
             date: new Date(),//
-            dateOfDischarge: '',//
+            dateOfDischarge: new Date(),//
             registrationNumber: '',//
             nomineeName: '',//
             address: '',//
             reason: '',//
             rank: '',//
-            natureOfBodilyHarm: '',
+            natureOfBodilyHarm: '',//
             weapon: '',//
-            categoryOfHurt: '',
-            consumptionOfAlcohol: '',
-            other: '',
+            categoryOfHurt: '',//
+            consumptionOfAlcohol: '',//
+            other: '',//
             remarks: ''
         }
     }
@@ -60,9 +66,9 @@ export default class CreateLEF extends Component {
         })
     }
 
-    onchangeDateOfIssue(e) {
+    onchangeDateOfIssue(date) {
         this.setState({
-            dateOfIssue: e.target.value//
+            dateOfIssue: date//
         })
     }
 
@@ -102,9 +108,9 @@ export default class CreateLEF extends Component {
         })
     }
 
-    onchangeDateOfDischarge(e) {//
+    onchangeDateOfDischarge(date) {//
         this.setState({
-            dateOfDischarge: e.target.value
+            dateOfDischarge: date
         })
     }
 
@@ -144,29 +150,64 @@ export default class CreateLEF extends Component {
         })
     }
 
-    onchangeRank(e) {
+    onchangeRank(e) {//
         this.setState({
-            registrationNumber: e.target.value
+            rank: e.target.value
         })
     }
-    onSubmit(e) {
-        e.preventDefault();
 
+    onchangeNatureOfBodilyHarm(e) {//
+        this.setState({
+            natureOfBodilyHarm: e.target.value
+        })
+    }
+
+    onchangeCategoryOfHurt(e) {//
+        this.setState({
+            categoryOfHurt: e.target.value
+        })
+    }
+
+    onchangeConsumptionOfAlcohol(e) {//
+        this.setState({
+            consumptionOfAlcohol: e.target.value
+        })
+    }
+
+    onchangeOther(e) {//
+        this.setState({
+            other: e.target.value
+        })
+    }
+
+    onchangeRemarks(e) {//
+        this.setState({
+            remarks: e.target.value
+        })
+    }
+
+    onSubmit(e) {
         const complain = {
-            refNo: this.state.refNo,
-            complainType: this.state.complainType,
-            fname: this.state.fname,
-            lname: this.state.lname,
-            nic: this.state.nic,
-            dateOfBirth: this.state.dateOfBirth,
-            religion: this.state.religion,
-            sex: this.state.sex,
-            address: this.state.address,
-            phone: this.state.phone,
-            description: this.state.description,
-            weapon: this.state.weapon,
-            date: this.state.date,
-            officer_incharge: this.state.officer_incharge,
+            refNo: this.state.refNo,//
+            dateOfIssue: this.state.dateOfIssue,//
+            victimFullName: this.state.victimFullName,//
+            dateOfBirth: this.state.dateOfBirth,//
+            age: this.state.age,//
+            admission: this.state.admission,//
+            hospital: this.state.hospital,//
+            wardNo: this.state.wardNo,//
+            date: this.state.date,//
+            dateOfDischarge: this.state.dateOfDischarge,//
+            registrationNumber: this.state.registrationNumber,//
+            nomineeName: this.state.nomineeName,//
+            address: this.state.address,//
+            rank: this.state.rank,//
+            natureOfBodilyHarm: this.state.natureOfBodilyHarm,//
+            weapon: this.state.weapon,//
+            categoryOfHurt: this.state.categoryOfHurt,//
+            consumptionOfAlcohol: this.state.consumptionOfAlcohol,//
+            other: this.state.other,//
+            remarks: this.state.remarks,//
         }
         console.log(complain);
 
@@ -176,197 +217,602 @@ export default class CreateLEF extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop: -88.5 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 3.5 + 'rem' }} >
-                    <div class="card-header"><h3>Add Complain</h3></div>
-                    <div class="card-body" >
+            <Tabs defaultIndex={1} onSelect={index => console.log(index)}>
+                <TabList >
+                    <div class="tab text-danger">
+                        <Tab style={{ marginLeft: 20 + 'rem' }}><b>Police Station Details</b></Tab>
+                        <Tab style={{ marginLeft: + 'rem' }}><b>Medical Officer Details</b></Tab>
+                        <Tab style={{ marginLeft: + 'rem' }}><b>Examinee Details</b></Tab>
+                        <Tab style={{ marginLeft: + 'rem' }}><b>Examinee Details part 2</b></Tab>
+                    </div>
+                </TabList>
 
-                    </div >
+                <div class="container" style={{ marginTop: 1 + 'rem' }}>
 
-                    <div class="container">
-                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
 
-                            <div className="form-group" >
+                    <div class="card text-danger  bg-white" style={{ marginLeft: 8.5 + 'rem' }} >
+                        <div class="container">
+                            <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                                <TabPanel>
+                                    <div class="card-header bg-white"><h3>Police Station Details</h3></div>
 
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
-                                <input
-                                    required
-                                    type="text"
-                                    required
-                                    className="form-control is-invalid"
-                                    value={this.state.refNo}
-                                    onChange={this.onchangeRefno} />
+                                    <div className="form-group" >
 
-                            </div>
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Reference Number:</b></label>
+                                        <input
+                                            required
+                                            type="text"
+                                            required
+                                            className="form-control is-invalid"
+                                            value={this.state.refNo}
+                                            onChange={this.onchangeRefno} />
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.complainType}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangecomplainType} />
-                            </div>
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.fname}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeFName} />
-                            </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>dateOfIssue: </b></label>
+                                        <div></div>
+                                        <DatePicker
+                                            className="form-control"
+                                            selected={this.state.dateOfIssue}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeDateOfIssue} />
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.lname}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeLName} />
-                            </div>
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.nic}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeNic} />
-                            </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>victim Full Name: </b></label>
+                                        <input type="text"
+                                            required
+                                            value={this.state.victimFullName}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeVictimFullName} />
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth: </b></label>
-                                <div>
-                                    <DatePicker
-                                        className="form-control"
-                                        selected={this.state.dateOfBirth}
-                                        onChange={this.onchangeDateOfBirth} />
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.religion}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeReligion} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <div class="input-group">
-
-                                    <div class="input-group-prepend">
-
-                                        <div style={{ marginLeft: 0.5 + 'rem' }}>
-
-                                            <input type="radio"
-
-                                                id="male"
-                                                name="gender"
-                                                value={this.state.sex}
-
-                                                onChange={this.onchangeSex} />
-                                            <label><b>Male </b></label>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth: </b></label>
+                                        <div>
+                                            <DatePicker
+                                                className="form-control"
+                                                selected={this.state.dateOfBirth}
+                                                onChange={this.onchangeDateOfBirth} />
                                         </div>
                                     </div>
 
-                                    <div style={{ marginLeft: 5 + 'rem' }}>
-                                        <input type="radio"
-                                            aria-label="Radio button for following text input"
-                                            name="gender"
-                                            id="Female"
-                                            value={this.state.sex}
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Age :</b></label>
+                                        <input type="number"
+                                            required
+                                            value={this.state.age}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeAge} />
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
 
-                                            onChange={this.onchangeSex} />
-                                        <label><b> Female </b></label>
+                                    <div class="card-header bg-white"><h3>Medical Officer Details</h3></div>
+
+                                    <div className="form-group" >
+
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Admission:</b></label>
+                                        <input
+                                            required
+                                            type="text"
+                                            className="form-control"
+                                            className="form-control is-invalid"
+                                            value={this.state.admission}
+                                            onChange={this.onchangeAdmission} />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Hospital: </b></label>
+                                        <div></div>
+                                        <input
+                                            required
+                                            type="text"
+                                            className="form-control"
+                                            selected={this.state.dateOfIssue}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeDateOfIssue} />
 
                                     </div>
-                                </div>
-                            </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address:</b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.address}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeAddress} />
-                            </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Ward No: </b></label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.wardNo}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeWardNo} />
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
-                                <input type="number"
-                                    required
-                                    NumberFormat format="### ###-####"
-                                    mask="_"
-                                    className="form-control"
-                                    value={this.state.phone}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangePhone} />
-                            </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date : </b></label>
+                                        <div>
+                                            <DatePicker
+                                                className="form-control"
+                                                selected={this.state.date}
+                                                onChange={this.onchangeDate} />
+                                        </div>
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description: </b></label>
-                                <textarea type="text"
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date of Discharge :</b></label>
+                                        <div>
+                                            <DatePicker
+                                                className="form-control"
+                                                selected={this.state.dateOfDischarge}
+                                                onChange={this.onchangeDateOfDischarge} />
+                                        </div>
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
+                                    <div class="card-header bg-white"><h3>Examinee Details</h3></div>
 
-                                    required
-                                    className="form-control"
-                                    value={this.state.description}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeDescription} />
-                            </div>
+                                    <div className="form-group" >
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon(Optionl)</b></label>
-                                <input type="text"
-                                    className="form-control"
-                                    value={this.state.weapon}
-                                    onChange={this.onchangeWeapon} />
-                            </div>
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Registration Number :</b></label>
+                                        <input
+                                            required
+                                            type="number"
+                                            className="form-control"
+                                            className="form-control is-invalid"
+                                            value={this.state.registrationNumber}
+                                            onChange={this.onchangeRegistrationNumber} />
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date: </b></label>
-                                <div></div>
-                                <DatePicker
-                                    className="form-control"
-                                    selected={this.state.date}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeDate} />
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Nominee’s Name : </b></label>
+                                        <div></div>
+                                        <input
+                                            required
+                                            type="text"
+                                            className="form-control"
+                                            selected={this.state.nomineeName}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeNomineeName} />
 
-                            </div>
+                                    </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Officer Incharge:</b></label>
-                                <input type="text"
-                                    name="offi"
-                                    id="offi"
-                                    required
-                                    className="form-control"
-                                    value={this.state.officer_incharge}
-                                    onChange={this.onchangeOfficerIncharge
-                                    } />
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address: </b></label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.address}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeAddress} />
+                                    </div>
 
-                            </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Reason : </b></label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.reason}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeReason} />
+                                    </div>
 
-                            <div className="form-group">
-                                <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
-                            </div>
-                        </form>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Rank  :</b></label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.rank}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeRank} />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Nature of Bodily Harm :</b></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Abrasion"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Abrasion </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Cut"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Cut </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Bite"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Bite </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Contusion"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Contusion </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Fracture"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Fracture </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Dislocation"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Dislocation </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Laceration"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Laceration </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Firearm Injury"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Firearm Injury </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Explosive Injury"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Explosive Injury </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Stab"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Stab </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Burns"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Burns </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Other"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Other </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="None"
+                                                        name="natureOfBodilyHarm"
+                                                        value={this.state.natureOfBodilyHarm}
+                                                        onChange={this.onchangeNatureOfBodilyHarm} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>None </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </TabPanel>
+
+                                <TabPanel>
+                                    <div class="card-header bg-white"><h3>Examinee Details part 2</h3></div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon :</b></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Blunt"
+                                                        name="Weapon"
+                                                        value={this.state.weapon}
+                                                        onChange={this.onchangeWeapon} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Blunt </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Sharp"
+                                                        name="Weapon"
+                                                        value={this.state.weapon}
+                                                        onChange={this.onchangeWeapon} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Sharp </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Firearm"
+                                                        name="Weapon"
+                                                        value={this.state.weapon}
+                                                        onChange={this.onchangeWeapon} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Firearm </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Explosive device"
+                                                        name="Weapon"
+                                                        value={this.state.weapon}
+                                                        onChange={this.onchangeWeapon} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Explosive device </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Others"
+                                                        name="Weapon"
+                                                        value={this.state.weapon}
+                                                        onChange={this.onchangeWeapon} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Others </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Category Of Hurt :</b></label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Non Grievous"
+                                                        name="hurt"
+                                                        value={this.state.categoryOfHurt}
+                                                        onChange={this.onchangeCategoryOfHurt} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Non Grievous </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Grievous"
+                                                        name="hurt"
+                                                        value={this.state.categoryOfHurt}
+                                                        onChange={this.onchangeCategoryOfHurt} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Grievous </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Fatal"
+                                                        name="hurt"
+                                                        value={this.state.categoryOfHurt}
+                                                        onChange={this.onchangeCategoryOfHurt} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Fatal </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Does It Endanger life?"
+                                                        name="hurt"
+                                                        value={this.state.categoryOfHurt}
+                                                        onChange={this.onchangeCategoryOfHurt} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Does It Endanger life? </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Consumption Of Alcohol:</b></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Breathing / Smelling"
+                                                        name="Alcohol"
+                                                        value={this.state.consumptionOfAlcohol}
+                                                        onChange={this.onchangeConsumptionOfAlcohol} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Breathing / Smelling </b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Under Influence"
+                                                        name="Alcohol"
+                                                        value={this.state.consumptionOfAlcohol}
+                                                        onChange={this.onchangeConsumptionOfAlcohol} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Under Influence</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Negative"
+                                                        name="Alcohol"
+                                                        value={this.state.consumptionOfAlcohol}
+                                                        onChange={this.onchangeConsumptionOfAlcohol} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Negative</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Other:</b></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Signs Of Vaginal/Hymen Penetration Present"
+                                                        name="Other"
+                                                        value={this.state.other}
+                                                        onChange={this.onchangeOther} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Signs Of Vaginal/Hymen Penetration Present</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Signs Of Anal Penetration"
+                                                        name="Other"
+                                                        value={this.state.other}
+                                                        onChange={this.onchangeOther} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Signs Of Anal Penetration</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Signs Consistent With Inter Labial Penetration Present"
+                                                        name="Other"
+                                                        value={this.state.other}
+                                                        onChange={this.onchangeOther} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Signs Consistent With Inter Labial Penetration Present</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Investigations"
+                                                        name="Other"
+                                                        value={this.state.other}
+                                                        onChange={this.onchangeOther} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Investigations</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div style={{ marginLeft: 0.5 + 'rem' }}>
+                                                    <input type="radio"
+                                                        id="Other"
+                                                        name="Other"
+                                                        value={this.state.other}
+                                                        onChange={this.onchangeOther} />
+                                                    <label style={{ marginLeft: 0.3 + 'rem' }} class="text-primary"><b>Other</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div className="form-group">
+                                        <label style={{ marginLeft: 0.5 + 'rem' }}><b>Remarks :</b></label>
+                                        <input type="text"
+                                            required
+                                            className="form-control"
+                                            value={this.state.remarks}
+                                            className="form-control is-invalid"
+                                            onChange={this.onchangeRemarks} />
+                                    </div>
+
+
+                                    <div className="form-group">
+                                        <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
+                                    </div>
+                                </TabPanel>
+
+
+                            </form>
+                        </div >
                     </div >
                 </div >
-            </div >
 
-
+            </Tabs>
         )
 
     }
