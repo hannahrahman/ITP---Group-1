@@ -37,13 +37,13 @@ export default class CreateLEF extends Component {
             dateOfIssue: new Date(),//
             victimFullName: '',//
             dateOfBirth: new Date(),//
-            age: '',//
+            age: 0,
             admission: '',//
             hospital: '',//
             wardNo: '',//
             date: new Date(),//
             dateOfDischarge: new Date(),//
-            registrationNumber: '',//
+            registrationNumber: 0,//
             nomineeName: '',//
             address: '',//
             reason: '',//
@@ -208,7 +208,7 @@ export default class CreateLEF extends Component {
         }
         console.log(complain);
 
-        window.location = '/';
+        window.location = '/Complain';
 
     }
 
@@ -216,7 +216,7 @@ export default class CreateLEF extends Component {
         return (
 
             <Tabs defaultIndex={1} onSelect={index => console.log(index)}>
-                <TabList > 
+                <TabList >
                     <div class="tab text-danger">
                         <Tab style={{ marginLeft: 20 + 'rem' }}><b>Police Station Details</b></Tab>
                         <Tab ><b>Medical Officer Details</b></Tab>
@@ -795,7 +795,7 @@ export default class CreateLEF extends Component {
 
 
                                     <div className="form-group">
-                                        <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
+                                        <input type="submit" onSubmit id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark"/>
                                     </div>
                                 </TabPanel>
 

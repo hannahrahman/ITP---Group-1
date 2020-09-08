@@ -19,8 +19,10 @@ con.on('open', () => {
 })
 
 const complainsRouter = require('./routes/complains')
+const lefsRouter = require('./routes/lef')
 
 app.use('/complains', complainsRouter)
+app.use('/lefs', lefsRouter)
 
 
 app.listen(port, () => {
