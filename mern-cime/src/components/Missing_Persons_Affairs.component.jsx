@@ -160,8 +160,8 @@ export default class MissingPersonsAffairs extends Component {
           name="viewpoint"
           content="width=device-width , initial-scale=1"
         ></meta>
-        <div style={{ marginTop: -96 + "rem" }}>
-          <div style={{ marginLeft: 18 + "rem" }}>
+        <div style={{ marginTop: -59 + "rem" }}>
+          <div style={{ marginLeft: 16 + "rem" }}>
             <MissingPersonsAffairsNavbar />
           </div>
 
@@ -171,7 +171,7 @@ export default class MissingPersonsAffairs extends Component {
               style={{ marginLeft: 12 + "rem" }}
             >
               <div class="card-header">
-                <h3>Add Complain</h3>
+                <h3>Missing Person Complaint Form</h3>
               </div>
               <div class="card-body"></div>
 
@@ -183,233 +183,83 @@ export default class MissingPersonsAffairs extends Component {
                   novalidate="true"
                 >
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>RefNo:</b>
-                    </label>
-                    <input
-                      required
-                      type="text"
-                      required
-                      className="form-control is-invalid"
-                      value={this.state.refNo}
-                      onChange={this.onchangeRefno}
-                    />
+                    <label>Complaint ID: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Complain Type: </b>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.complainType}
-                      className="form-control is-invalid"
-                      onChange={this.onchangecomplainType}
-                    />
+                    <label>Complaint Type: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>First Name: </b>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.fname}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeFName}
-                    />
+                    <label>Police Station Location: </label>
+                    <input type="text" className="form-control" />
                   </div>
 
+                  <hr color="black" />
+
+                  {/* Interviewing Officer's Details */}
+                  <h5>Officer's Details</h5>
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Last Name :</b>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.lname}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeLName}
-                    />
+                    <label>Officer ID: </label>
+                    <input type="number" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>NIC Number :</b>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.nic}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeNic}
-                    />
+                    <label>Officer Name: </label>
+                    <input type="text" className="form-control" />
                   </div>
 
+                  <hr color="black" />
+
+                  {/* Reporte's Details */}
+                  <h5>Reporter's Details</h5>
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Date Of Birth: </b>
-                    </label>
-                    <div>
-                      <DatePicker
-                        className="form-control"
-                        selected={this.state.dateOfBirth}
-                        onChange={this.onchangeDateOfBirth}
-                      />
-                    </div>
+                    <label>Full Name: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Religion: </b>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.religion}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeReligion}
-                    />
+                    <label>NIC: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>SEX: </b>
-                    </label>
-                    <br />
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div style={{ marginLeft: 0.5 + "rem" }}>
-                          <input
-                            type="radio"
-                            id="male"
-                            name="gender"
-                            value={this.state.sex}
-                            onChange={this.onchangeSex}
-                          />
-                          <label>
-                            <b>Male </b>
-                          </label>
-                        </div>
-                      </div>
-
-                      <div style={{ marginLeft: 5 + "rem" }}>
-                        <input
-                          type="radio"
-                          aria-label="Radio button for following text input"
-                          name="gender"
-                          id="Female"
-                          value={this.state.sex}
-                          onChange={this.onchangeSex}
-                        />
-                        <label>
-                          <b> Female </b>
-                        </label>
-                      </div>
-                    </div>
+                    <label>Address: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Address:</b>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.address}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeAddress}
-                    />
+                    <label>Contact Number: </label>
+                    <input type="number" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Phone: </b>
-                    </label>
-                    <input
-                      type="number"
-                      required
-                      NumberFormat
-                      format="### ###-####"
-                      mask="_"
-                      className="form-control"
-                      value={this.state.phone}
-                      className="form-control is-invalid"
-                      onChange={this.onchangePhone}
-                    />
+                    <label>Relationship(s) to Missing Person: </label>
+                    <input type="text" className="form-control" />
                   </div>
 
+                  <hr color="black" />
+
+                  {/* Missing Person's Details */}
+                  <h5>Missing Person's Details</h5>
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Description: </b>
-                    </label>
-                    <textarea
-                      type="text"
-                      required
-                      className="form-control"
-                      value={this.state.description}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeDescription}
-                    />
+                    <label>Full Name: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Weapon(Optionl)</b>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      value={this.state.weapon}
-                      onChange={this.onchangeWeapon}
-                    />
+                    <label>NIC: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Date: </b>
-                    </label>
-                    <div></div>
-                    <DatePicker
-                      className="form-control"
-                      selected={this.state.date}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeDate}
-                    />
+                    <label>Gender: </label>
+                    <input type="text" className="form-control" />
                   </div>
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Officer Incharge:</b>
-                    </label>
-                    <input
-                      type="text"
-                      name="offi"
-                      id="offi"
-                      required
-                      className="form-control"
-                      value={this.state.officer_incharge}
-                      onChange={this.onchangeOfficerIncharge}
-                    />
+                    <label>Contact Number: </label>
+                    <input type="number" className="form-control" />
                   </div>
 
+                  {/* Submit Button */}
                   <div className="form-group">
                     <input
                       type="submit"
-                      id="submit"
-                      style={{ marginLeft: 0.5 + "rem" }}
-                      value="Submit"
-                      class="needs-validationbtn"
-                      className="btn btn-outline-danger btn btn-dark"
-                      class="btndisabled"
+                      value="Submit Complaint"
+                      className="btn btn-primary"
                     />
                   </div>
                 </form>
