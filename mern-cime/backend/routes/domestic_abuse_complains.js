@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/add').post((req, res) => {
-    const refNo = req.body.refNo
+    const refNo = Number(req.body.refNo)
     const complainType = req.body.complainType
     const fname = req.body.fname
     const lname = req.body.lname

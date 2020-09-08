@@ -208,8 +208,6 @@ export default class CreateLEF extends Component {
         }
         console.log(complain);
 
-        window.location = '/Complain';
-
     }
 
     render() {
@@ -230,7 +228,7 @@ export default class CreateLEF extends Component {
 
                     <div class="card text-white bg-dark" style={{ marginLeft: 8.5 + 'rem' }} >
                         <div class="container">
-                            <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                            <form onSubmit={this.onSubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
                                 <TabPanel>
                                     <div class="card-header bg-dark"><h3>Police Station Details</h3></div>
                                     <div className="form-group" >
@@ -795,7 +793,7 @@ export default class CreateLEF extends Component {
 
 
                                     <div className="form-group">
-                                        <input type="submit" onSubmit id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark"/>
+                                        <input type="submit" onSubmit id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" />
                                     </div>
                                 </TabPanel>
 
