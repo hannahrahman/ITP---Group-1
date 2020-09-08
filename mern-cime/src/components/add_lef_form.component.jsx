@@ -4,9 +4,6 @@ import "react-datepicker/dist/react-datepicker.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'
 
-
-
-
 export default class CreateLEF extends Component {
 
     constructor(props) {
@@ -40,13 +37,13 @@ export default class CreateLEF extends Component {
             dateOfIssue: new Date(),//
             victimFullName: '',//
             dateOfBirth: new Date(),//
-            age: '',//
+            age: 0,
             admission: '',//
             hospital: '',//
             wardNo: '',//
             date: new Date(),//
             dateOfDischarge: new Date(),//
-            registrationNumber: '',//
+            registrationNumber: 0,//
             nomineeName: '',//
             address: '',//
             reason: '',//
@@ -211,8 +208,6 @@ export default class CreateLEF extends Component {
         }
         console.log(complain);
 
-        window.location = '/';
-
     }
 
     render() {
@@ -222,23 +217,21 @@ export default class CreateLEF extends Component {
                 <TabList >
                     <div class="tab text-danger">
                         <Tab style={{ marginLeft: 20 + 'rem' }}><b>Police Station Details</b></Tab>
-                        <Tab style={{ marginLeft: + 'rem' }}><b>Medical Officer Details</b></Tab>
-                        <Tab style={{ marginLeft: + 'rem' }}><b>Examinee Details</b></Tab>
-                        <Tab style={{ marginLeft: + 'rem' }}><b>Examinee Details part 2</b></Tab>
+                        <Tab ><b>Medical Officer Details</b></Tab>
+                        <Tab ><b>Examinee Details</b></Tab>
+                        <Tab ><b>Examinee Details part 2</b></Tab>
                     </div>
                 </TabList>
 
                 <div class="container" style={{ marginTop: 1 + 'rem' }}>
 
 
-                    <div class="card text-danger  bg-white" style={{ marginLeft: 8.5 + 'rem' }} >
+                    <div class="card text-white bg-dark" style={{ marginLeft: 8.5 + 'rem' }} >
                         <div class="container">
-                            <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                            <form onSubmit={this.onSubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
                                 <TabPanel>
-                                    <div class="card-header bg-white"><h3>Police Station Details</h3></div>
-
+                                    <div class="card-header bg-dark"><h3>Police Station Details</h3></div>
                                     <div className="form-group" >
-
                                         <label style={{ marginLeft: 0.5 + 'rem' }}><b>Reference Number:</b></label>
                                         <input
                                             required
@@ -247,9 +240,7 @@ export default class CreateLEF extends Component {
                                             className="form-control is-invalid"
                                             value={this.state.refNo}
                                             onChange={this.onchangeRefno} />
-
                                     </div>
-
                                     <div className="form-group">
                                         <label style={{ marginLeft: 0.5 + 'rem' }}><b>dateOfIssue: </b></label>
                                         <div></div>
@@ -291,7 +282,7 @@ export default class CreateLEF extends Component {
                                 </TabPanel>
                                 <TabPanel>
 
-                                    <div class="card-header bg-white"><h3>Medical Officer Details</h3></div>
+                                    <div class="card-header bg-dark"><h3>Medical Officer Details</h3></div>
 
                                     <div className="form-group" >
 
@@ -349,7 +340,7 @@ export default class CreateLEF extends Component {
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <div class="card-header bg-white"><h3>Examinee Details</h3></div>
+                                    <div class="card-header bg-dark"><h3>Examinee Details</h3></div>
 
                                     <div className="form-group" >
 
@@ -568,7 +559,7 @@ export default class CreateLEF extends Component {
                                 </TabPanel>
 
                                 <TabPanel>
-                                    <div class="card-header bg-white"><h3>Examinee Details part 2</h3></div>
+                                    <div class="card-header bg-dark"><h3>Examinee Details part 2</h3></div>
                                     <div className="form-group">
                                         <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon :</b></label>
                                         <div class="input-group">
@@ -802,7 +793,7 @@ export default class CreateLEF extends Component {
 
 
                                     <div className="form-group">
-                                        <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
+                                        <input type="submit" onSubmit id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" />
                                     </div>
                                 </TabPanel>
 
