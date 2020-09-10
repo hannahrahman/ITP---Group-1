@@ -241,7 +241,6 @@ export default class CreateComplain extends Component {
                                     <div className="input-group-prepend">
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
                                             <input type="radio"
-
                                                 id="male"
                                                 name="gender"
                                                 value={this.state.sex}
