@@ -17,17 +17,18 @@ export default class CrimeDivision extends Component {
         <Router>
           <div style={{ marginTop: -99.3 + "rem" }}>
             <div style={{ marginLeft: 18 + "rem" }}>
-            <CrimeNavbar />
+              <CrimeNavbar />
             </div>
             <Route path="/Complains_List" exact component={ComplainsList} />
             <Route path="/EditComplain" exact component={EditComplain} />
             <Route path="/Complain" exact component={CreateComplain} />
             <Route path="/LEF" exact component={CreateLEF} />
-            
             <Route path="/CreateAppeal" exact component={CreateAppeal} />
           </div>
         </Router>
       </div>
     );
+
   }
+
 }

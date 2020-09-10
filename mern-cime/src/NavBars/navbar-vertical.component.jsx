@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-export default class Sidenav extends Component {
+
+export default class Sidenav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,8 +71,8 @@ export default class Sidenav extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }}>
-        <font> <p ><div className=" navbar-item " class="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
-        </p></font>
+        <font> <div className=" navbar-item navbar-brand text-primary "><b>{this.state.m1}</b></div>
+        </font>
         <ul className="navbar-nav mr-auto" >
           <li className="navbar-item" style={{ marginTop: -47 + "rem" }}>
             <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>

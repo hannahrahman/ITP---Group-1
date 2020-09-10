@@ -28,7 +28,7 @@ function App() {
       </Helmet>
       <div>
         <Router>
-          <div class="big-banner">
+          <div className="big-banner">
             
             <Sidenav />
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
