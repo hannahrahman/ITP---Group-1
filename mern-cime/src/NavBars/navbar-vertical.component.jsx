@@ -7,6 +7,7 @@ export default class Sidenav extends React.Component {
     this.state = {
       m1: "Police Managment",
     };
+
   }
   m1() {
     this.setState({
@@ -71,7 +72,11 @@ export default class Sidenav extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }}>
+<<<<<<< HEAD
         <font> <div className=" navbar-item navbar-brand text-primary "><b>{this.state.m1}</b></div>
+=======
+        <font><div className=" navbar-item " className="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
+>>>>>>> 70687be4015a90933f8f9ca549e55bea7c25172f
         </font>
         <ul className="navbar-nav mr-auto" >
           <li className="navbar-item" style={{ marginTop: -47 + "rem" }}>

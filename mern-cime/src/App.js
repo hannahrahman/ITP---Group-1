@@ -29,7 +29,11 @@ function App() {
       <div>
         <Router>
           <div className="big-banner">
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> 70687be4015a90933f8f9ca549e55bea7c25172f
             <Sidenav />
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
             <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
