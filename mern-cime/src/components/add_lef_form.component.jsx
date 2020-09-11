@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'
 import axios from 'axios';
-
+import $ from 'jquery'
 export default class CreateLEF extends Component {
 
     constructor(props) {
@@ -25,7 +25,7 @@ export default class CreateLEF extends Component {
         this.onchangeAddress = this.onchangeAddress.bind(this);
         this.onchangeReason = this.onchangeReason.bind(this);
         this.onchangeRank = this.onchangeRank.bind(this);
-        //  this.onchangeNatureOfBodilyHarm = this.onchangeNatureOfBodilyHarm.bind(this);
+        this.onchangeNatureOfBodilyHarm = this.onchangeNatureOfBodilyHarm.bind(this);
         //this.onchangeWeapon = this.onchangeWeapon.bind(this);
         // this.onchangeCategoryOfHurt = this.onchangeCategoryOfHurt.bind(this);
         // this.onchangeConsumptionOfAlcohol = this.onchangeConsumptionOfAlcohol.bind(this);
@@ -49,14 +49,16 @@ export default class CreateLEF extends Component {
             address: '',
             reason: '',
             rank: '',
-            // natureOfBodilyHarm: '',
+            natureOfBodilyHarm: '',
             //  weapon: '',
             // categoryOfHurt: '',
             // consumptionOfAlcohol: '',
             //  other: '',
             remarks: ''
         }
+
     }
+
 
     onchangeRefno(e) {
         this.setState({
@@ -111,7 +113,7 @@ export default class CreateLEF extends Component {
             dateOfDischarge: date
         });
     }
-////
+    ////
     /* onchangeWeapon(e) {
          this.setState({
              weapon: e.target.value
@@ -154,13 +156,13 @@ export default class CreateLEF extends Component {
         });
     }
 
-    /* onchangeNatureOfBodilyHarm(e) {
-         this.setState({
-             natureOfBodilyHarm: e.target.value
-         })
-     }
- 
-     onchangeCategoryOfHurt(e) {
+    onchangeNatureOfBodilyHarm(e) {
+        this.setState({
+            natureOfBodilyHarm: e.target.value
+        })
+    }
+
+    /* onchangeCategoryOfHurt(e) {
          this.setState({
              categoryOfHurt: e.target.value
          })
@@ -201,7 +203,7 @@ export default class CreateLEF extends Component {
             nomineeName: this.state.nomineeName,
             address: this.state.address,
             rank: this.state.rank,
-            //  natureOfBodilyHarm: this.state.natureOfBodilyHarm,
+            natureOfBodilyHarm: this.state.natureOfBodilyHarm,
             // weapon: this.state.weapon,
             // categoryOfHurt: this.state.categoryOfHurt,
             //  consumptionOfAlcohol: this.state.consumptionOfAlcohol,
@@ -227,7 +229,7 @@ export default class CreateLEF extends Component {
             address: '',
             reason: '',
             rank: '',
-            //natureOfBodilyHarm: '',
+            natureOfBodilyHarm: '',
             // weapon: '',
             //categoryOfHurt: '',
             //consumptionOfAlcohol: '',
@@ -415,6 +417,30 @@ export default class CreateLEF extends Component {
                                     </div>
 
                                     <div className="form-group">
+
+                                        <select
+                                            onClick = {this.handle}
+                                            className="mdb-select md-form colorful-select dropdown-danger"
+                                            value={this.state.natureOfBodilyHarm}
+                                            onChange={this.onchangeNatureOfBodilyHarm}
+                                        >
+                                            <option>Abrasion</option>
+                                            <option>Cut</option>
+                                            <option>Bite</option>
+                                            <option>Contusion</option>
+                                            <option>Fractured</option>
+                                            <option>Dislocation</option>
+                                            <option>Laceration</option>
+                                            <option>Firearm Injury</option>
+                                            <option>Explosive Injury</option>
+                                            <option>Stab</option>
+                                            <option>Burns</option>
+                                            <option>Other</option>
+                                            <option>None</option>
+
+                                        </select>
+
+
                                         {/*<label style={{ marginLeft: 0.5 + 'rem' }}><b>Nature of Bodily Harm :</b></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -820,8 +846,18 @@ export default class CreateLEF extends Component {
                 </div >
 
             </Tabs>
+
+
         )
 
-    }
 
+    }
+   /* handle = () => {
+        $(document).ready(function () {
+            $('.mdb-select').materialSelect();
+        })
+    };*/
 }
+
+
+

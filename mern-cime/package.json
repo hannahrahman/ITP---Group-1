@@ -12,6 +12,7 @@
     "form-control": "^1.0.0",
     "gulp-rev-all": "https://github.com/Amitesh/gulp-rev-all/tarball/master",
     "helmet": "^4.1.0",
+    "jquery": "^3.5.1",
     "npm": "^6.14.8",
     "react": "^16.13.1",
     "react-datepicker": "^3.1.3",
