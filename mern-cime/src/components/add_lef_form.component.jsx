@@ -111,7 +111,7 @@ export default class CreateLEF extends Component {
             dateOfDischarge: date
         });
     }
-
+//sxsx
     /* onchangeWeapon(e) {
          this.setState({
              weapon: e.target.value
