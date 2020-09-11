@@ -1,83 +1,74 @@
-const router = require('express').Router()
+
+const express = require('express');
+const domesticRoutes = express.Router();
 let DomesticAbuseComplain = require('../models/domestic_abuse_complain.model')
 
-router.route('/').get((req, res) => {
-    DomesticAbuseComplain.find()
-        .then(domestic_abuse_complains => res.json(domestic_abuse_complains))
-        .catch(err => res.status(400), json('error: ' + err))
-})
-
-router.route('/add').post((req, res) => {
-    const refNo = Number(req.body.refNo)
-    const complainType = req.body.complainType
-    const fname = req.body.fname
-    const lname = req.body.lname
-    const nic = req.body.nic
-    const dateOfBirth = Date.parse(req.body.dateOfBirth)
-    const religion = req.body.religion
-    const sex = req.body.sex
-    const address = req.body.address
-    const phone = Number(req.body.phone)
-    const description = req.body.description
-    const weapon = req.body.weapon
-    const date = Date.parse(req.body.date)
-    const officer_incharge = req.body.officer_incharge
-
-    const newComplain = new DomesticAbuseComplain({
-        refNo,
-        complainType,
-        fname,
-        lname,
-        nic,
-        dateOfBirth,
-        religion,
-        sex,
-        address,
-        phone,
-        description,
-        weapon,
-        date,
-        officer_incharge,
-    })
-
-    newComplain.save()
-        .then(() => res.json('Complain added!'))
-        .catch(err => res.status(400).json('Error :' + err))
-})
-
-router.route('/:id').get((req, res) => {
-    DomesticAbuseComplain.findById(req.params.id)
-        .then(domestic_abuse_complain => res.json(domestic_abuse_complain))
-        .catch(err => res.status(400).json('Error: ' + err))
-})
-router.route('/:id').delete((req, res) => {
-    DomesticAbuseComplain.findByIdAndDelete(req.params.id)
-        .then(() => res.json('complain deleted..'))
-        .catch(err => res.status(400).json('Error: ' + err))
-})
-router.route('/:id').post((req, res) => {
-    DomesticAbuseComplain.findById(req.params.id)
-        .then(domestic_abuse_complain => {
-            domestic_abuse_complain.refNo = req.body.refNo
-            domestic_abuse_complain.complainType = req.body.complainType
-            domestic_abuse_complain.fname = req.body.fname
-            domestic_abuse_complain.lname = req.body.lname
-            domestic_abuse_complain.nic = req.body.nic
-            domestic_abuse_complain.dateOfBirth = req.body.dateOfBirth
-            domestic_abuse_complain.religion = req.body.religion
-            domestic_abuse_complain.sex = req.body.sex
-            domestic_abuse_complain.address = req.body.address
-            domestic_abuse_complain.phone = req.body.phone
-            domestic_abuse_complain.description = req.body.description
-            domestic_abuse_complain.weapon = req.body.weapon
-            domestic_abuse_complain.date = req.body.date
-            domestic_abuse_complain.officer_incharge = req.body.officer_incharge
-
-            domestic_abuse_complain.save()
-                .then(() => res.json('Complain updated..'))
-                .catch(err => res.status(400).json('Error: ' + err))
+domesticRoutes.route('/add').post(function (req, res) {
+    let domesticAbuseComplain = new DomesticAbuseComplain(req.body);
+    domesticAbuseComplain.save()
+        .then(domesticAbuseComplain => {
+            res.status(200).json({ 'domesticAbuseComplain': 'Complain added successfully' });
         })
-        .catch(err => res.status(400).json('Error: ' + err))
-})
+        .catch(err => {
+            res.status(400).send("unable to save to database");
+        });
+});
 
-module.exports = router;
+domesticRoutes.route('/').get(function (req, res) {
+    DomesticAbuseComplain.find(function (err, domesticAbuseComplain) {
+        if (err)
+            console.log(err);
+        else {
+            res.json(domesticAbuseComplain);
+        }
+    });
+});
+
+domesticRoutes.route('/edit/:id').get(function (req, res) {
+    let id = req.params.id;
+    DomesticAbuseComplain.findById(id, function (err, domesticAbuseComplain) {
+        res.json(domesticAbuseComplain);
+    });
+});
+
+domesticRoutes.route('/update/:id').post(function (req, res) {
+    DomesticAbuseComplain.findById(req.params.id, function (err, domesticAbuseComplain) {
+        if (!domesticAbuseComplain)
+            res.status(404).send("data is not found");
+        else {
+            domesticAbuseComplain.refNo = req.body.refNo
+            domesticAbuseComplain.complainType = req.body.complainType
+            domesticAbuseComplain.fname =  req.body.fname
+            domesticAbuseComplain.lname = req.body.lname  
+            domesticAbuseComplain.nic = req.body.nic
+            domesticAbuseComplain.dateOfBirth = Date.parse(req.body.dateOfBirth)
+            domesticAbuseComplain.religion = req.body.religion
+            domesticAbuseComplain.sex = req.body.sex   
+            domesticAbuseComplain.address = req.body.address
+            domesticAbuseComplain.phone = Number(req.body.phone)
+            domesticAbuseComplain.description = req.body.description
+            domesticAbuseComplain.weapon = req.body.weapon   
+            domesticAbuseComplain.date = Date.parse(req.body.date)
+            domesticAbuseComplain.officer_incharge = req.body.officer_incharge
+
+            domesticAbuseComplain.save().then(domesticAbuseComplain => {
+                res.json('Successfully Updated.');
+            })
+                .catch(err => {
+                    res.status(400).send("Unable to update record.");
+                });
+        }
+    });
+});
+
+domesticRoutes.route('/delete/:id').get(function (req, res) {
+    DomesticAbuseComplain.findByIdAndRemove({ _id: req.params.id }, function (err, domesticAbuseComplain) {
+        if (err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
+
+module.exports = domesticRoutes;
+
+
+
