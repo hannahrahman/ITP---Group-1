@@ -29,7 +29,6 @@ function App() {
       <div>
         <Router>
           <div className="big-banner">
-
             <Sidenav />
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
             <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
