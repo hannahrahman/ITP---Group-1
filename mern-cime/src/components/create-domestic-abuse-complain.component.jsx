@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 
 export default class CreateDomesticAbuseComplain extends Component {
@@ -145,6 +146,11 @@ export default class CreateDomesticAbuseComplain extends Component {
             date: this.state.date,
             officer_incharge: this.state.officer_incharge,
         }
+
+        axios
+            .post('http://localhost:5000/domestic_abuse_complains/add', complain)
+            .then(res => console.log(res.data));
+
         console.log(complain);
 
         window.location = '/';
@@ -153,15 +159,15 @@ export default class CreateDomesticAbuseComplain extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop: 2 + 'rem' }}>
+            <div className="container" style={{ marginTop: 2 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 11 + 'rem' }} >
-                    <div class="card-header"><h3>Add Complain</h3></div>
-                    <div class="card-body" >
+                <div className="card text-white  bg-dark  mb-3" style={{ marginLeft: 11 + 'rem' }} >
+                    <div className="card-header"><h3>Add Complain</h3></div>
+                    <div className="card-body" >
                     </div >
 
-                    <div class="container">
-                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                    <div className="container">
+                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} className=" needs-validation" noValidate={true}>
 
                             <div className="form-group" >
 
@@ -237,14 +243,14 @@ export default class CreateDomesticAbuseComplain extends Component {
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <div class="input-group">
+                                <div className="input-group">
 
-                                    <div class="input-group-prepend">
+                                    <div className="input-group-prepend">
 
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
 
                                             <input type="radio" id="male" name="gender" value={this.state.sex} onChange={this.onchangeSex} />
-                                            <label><b> Male </b></label>
+                                            <label style={{ marginLeft: 0.3 + 'rem' }}><b> Male </b></label>
                                         </div>
                                     </div>
 
@@ -256,7 +262,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                                             value={this.state.sex}
 
                                             onChange={this.onchangeSex} />
-                                        <label><b> Female </b></label>
+                                        <label style={{ marginLeft: 0.3 + 'rem' }}><b> Female </b></label>
 
                                     </div>
                                 </div>
@@ -276,7 +282,8 @@ export default class CreateDomesticAbuseComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
                                 <input type="number"
                                     required
-                                    NumberFormat format="### ###-####"
+                                    numberformat="true"
+                                    format="### ###-####"
                                     mask="_"
                                     className="form-control"
                                     value={this.state.phone}
@@ -328,7 +335,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
+                                <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" className='btndisabled' />
                             </div>
                         </form>
                     </div >
