@@ -18,7 +18,7 @@ export default class CrimeNavbar extends Component {
                             <Link to="/Complains List" className="nav-link">Complains List</Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Complains" className="nav-link">Add Complain</Link>
+                            <Link to="/Complain" className="nav-link">Add Complain</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/AddAppeal" className="nav-link">Add Appeal</Link>
