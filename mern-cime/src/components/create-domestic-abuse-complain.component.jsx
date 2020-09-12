@@ -144,7 +144,6 @@ export default class CreateDomesticAbuseComplain extends Component {
             date: this.state.date,
             officer_incharge: this.state.officer_incharge,
         };
-
         console.log(complain)
         axios
             .post('http://localhost:5000/domestic_abuse_complains/add', complain)
