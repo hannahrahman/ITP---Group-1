@@ -15,7 +15,7 @@ export default class OnlineFinePayment extends Component {
           name="viewpoint"
           content="width=device-width , initial-scale=1"
         ></meta>
-        <div style={{ marginTop: -55.5 + "rem" }}>
+        <div style={{ marginTop: -75.5 + "rem" }}>
           <div style={{ marginLeft: 18 + "rem" }}>
             <OnlineFinePaymentNavbar />
           </div>

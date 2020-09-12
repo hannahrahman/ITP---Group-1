@@ -117,18 +117,7 @@ export default class Sidenav extends React.Component {
         </ul>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
-<<<<<<< HEAD
-            <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }} >
-                <font> <p ><div className=" navbar-item " class="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
-                </p></font>
-                <ul className="navbar-nav " >
-                    <li className="navbar-item" style={{ marginTop: -10 + "rem" }}>
-                        <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
-                        <hr color="white" />
-                    </li>
-=======
       </nav>
->>>>>>> 78443929a5b783dfffae6a4d6923460feb6de974
 
     );
   }
