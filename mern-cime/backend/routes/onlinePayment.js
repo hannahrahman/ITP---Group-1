@@ -1,84 +1,167 @@
-const router = require('express').Router();
-let online_Payment = require('../models/onlinePayment.model');
-
-router.route('/').get((req, res) => {
-    online_Payment.find()
-        .then(online_Payment => res.json(online_Payment))
-        .catch(err => res.status(400), json('error: ' + err));
-});
-
-router.route('/add').post((req, res) => {
-    const name = req.body.name
-    const password = req.body.password
-    const fullName = req.body.fullName
-    const address = req.body.address
-    const mobileNum = Number(req.body.mobileNum)
-    const emailId = req.body.emailId
-    const fineType = req.body.fineType
-    const incidentArea = req.body.incidentArea
-    const policeStation = req.body.policeStation
-    const fineRefslpNo = req.body.fineRefslpNo
-    const policeOfficerNo = req.body.policeOfficerNo
-    const amountOFfine = req.body.issueDate
-    const issueDate = Date.parse(req.body.date)
-    
 
 
-    const newOnlinePayment = new OnlinePayment({
-        name,
-        password,
-        fullName,
-        address,
-        mobileNum,
-        emailId,
-        fineType,
-        incidentArea,
-        policeStation,
-        fineRefslpNo,
-        policeOfficerNo,
-        amountOFfine,
-        issueDate,
-        
-    });
+const express = require('express');
+const onlineRoutes = express.Router();
+let OnlinePayment = require('../models/onlinePayment')
 
-    newOnlinePayment.save()
-        .then(() => res.json('Fine added!'))
-        .catch(err => res.status(400).json('Error :' + err))
-});
-
-router.route('/:id').get((req, res) => {
-    online_Payment.findById(req.params.id)
-        .then(online_Payment => res.json(online_Payment))
-        .catch(err => res.status(400).json('Error: ' + err))
-});
-router.route('/:id').delete((req, res) => {
-    online_Payment.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Fine deleted..'))
-        .catch(err => res.status(400).json('Error: ' + err))
-});
-router.route('/:id').post((req, res) => {
-    online_Payment.findById(req.params.id)
-        .then(online_Payment => {
-            online_Payment.name = req.body.name;
-            online_Payment.password = req.body.password
-            online_Payment.fullName = req.body.fullName
-            online_Payment.address = req.body.address
-            online_Payment.mobileNum = Number(req.body.mobileNum)
-            online_Payment.emailId = req.body.emailId
-            online_Payment.fineType = req.body.fineType
-            online_Payment.incidentArea = req.body.incidentArea
-            online_Payment.policeStation = req.body.policeStation
-            online_Payment.fineRefslpNo = req.body.fineRefslpNo
-            online_Payment.policeOfficerNo = req.body.policeOfficerNo
-            online_Payment.amountOFfine = req.body.amountOFfine
-            online_Payment.issueDate = Date.parse(req.body.issueDate)
-            
-
-            newOnlinePayment.save()
-                .then(() => res.json('Fine updated..'))
-                .catch(err => res.status(400).json('Error: ' + err))
+onlineRoutes.route('/add').post(function (req, res) {
+    let onlinepayment = new OnlinePayment(req.body);
+    onlinepayment.save()
+        .then(onlinepayment => {
+            res.status(200).json({ 'onlinepayment': 'onlinepayment is added successfully' });
         })
-        .catch(err => res.status(400).json('Error: ' + err))
+        .catch(err => {
+            res.status(400).send("unable to save to database");
+        });
 });
 
-module.exports = router;
+onlineRoutes.route('/').get(function (req, res) {
+    OnlinePayment.find(function (err, onlinepayment) {
+        if (err)
+            console.log(err);
+        else {
+            res.json(onlinepayment);
+        }
+    });
+});
+
+onlineRoutes.route('/edit/:id').get(function (req, res) {
+    let id = req.params.id;
+    OnlinePayment.findById(id, function (err, onlinepayment) {
+        res.json(onlinepayment);
+    });
+});
+
+onlineRoutes.route('/update/:id').post(function (req, res) {
+    OnlinePayment.findById(req.params.id, function (err, onlinepayment) {
+        if (!onlinepayment)
+            res.status(404).send("data is not found");
+        else {
+            onlinePayment.name = req.body.name
+            onlinePayment.password = req.body.password
+            onlinePayment.fullName = req.body.fullName
+            onlinePayment.address = req.body.address
+            onlinePayment.mobileNum = Number(req.body.mobileNum)
+            onlinePayment.emailId = req.body.emailId
+            onlinePayment.fineType = req.body.fineType
+            onlinePayment.incidentArea = req.body.incidentArea
+            onlinePayment.policeStation = req.body.policeStation
+            onlinePayment.fineRefslpNo = req.body.fineRefslpNo
+            onlinePayment.policeOfficerNo = req.body.policeOfficerNo
+            onlinePayment.amountOFfine = req.body.amountOFfine
+            onlinePayment.issueDate = Date.parse(req.body.issueDate)
+
+            onlinepayment.save().then(onlinepayment => {
+                res.json('Update Complete');
+            })
+                .catch(err => {
+                    res.status(400).send("unable to update database");
+                });
+        }
+    });
+});
+
+onlineRoutes.route('/delete/:id').get(function (req, res) {
+    OnlinePayment.findByIdAndRemove({ _id: req.params.id }, function (err, onlinepayment) {
+        if (err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
+
+module.exports = onlineRoutes;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* express = require('express');
+const onlinePaymentRoutes = express.Router();
+let OnlinePayment = require('../models/onlinePayment')
+
+
+onlinePaymentRoutes.route('/add').post(function (req, res) {
+    let onlinePayment = new OnlinePayment(req.body);
+    onlinePayment.save()
+        .then(onlinePayment => {
+            res.status(200).json({ 'onlinePayment': 'onlinePayment is added successfully' });
+        })
+        .catch(err => {
+            res.status(400).send("unable to save to database");
+        });
+});
+
+onlinePaymentRoutes.route('/').get(function (req, res) {
+    OnlinePayment.find(function (err, onlinePayment) {
+        if (err)
+            console.log(err);
+        else {
+            res.json(onlinePayment);
+        }
+    });
+});
+
+onlinePaymentRoutes.route('/edit/:id').get(function (req, res) {
+    let id = req.params.id;
+    OnlinePayment.findById(id, function (err, onlinePayment) {
+        res.json(onlinePayment);
+    });
+});
+
+onlinePaymentRoutes.route('/update/:id').post(function (req, res) {
+    OnlinePayment.findById(req.params.id, function (err, onlinePayment) {
+        if (!onlinePayment)
+            res.status(404).send("data is not found");
+        else {
+            onlinePayment.name = req.body.name;
+            onlinePayment.password = req.body.password
+            onlinePayment.fullName = req.body.fullName
+            onlinePayment.address = req.body.address
+            onlinePayment.mobileNum = Number(req.body.mobileNum)
+            onlinePayment.emailId = req.body.emailId
+            onlinePayment.fineType = req.body.fineType
+            onlinePayment.incidentArea = req.body.incidentArea
+            onlinePayment.policeStation = req.body.policeStation
+            onlinePayment.fineRefslpNo = req.body.fineRefslpNo
+            onlinePayment.policeOfficerNo = req.body.policeOfficerNo
+            onlinePayment.amountOFfine = req.body.amountOFfine
+            onlinePayment.issueDate = Date.parse(req.body.issueDate)
+
+            onlinePayment.save().then(onlinePayment => {
+                res.json('Update Complete');
+            })
+                .catch(err => {
+                    res.status(400).send("unable to update database");
+                });
+        }
+    });
+});
+
+onlinePaymentRoutes.route('/delete/:id').get(function (req, res) {
+    OnlinePayment.findByIdAndRemove({ _id: req.params.id }, function (err, onlinePayment) {
+        if (err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
+
+module.exports = onlinePaymentRoutes;
+
+*/

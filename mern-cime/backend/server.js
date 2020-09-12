@@ -10,7 +10,7 @@ const port = process.env.PORT || 5000 // the port the server will be on
 const LefRoute = require('./routes/lef');
 const complainsRouter = require('./routes/complains')
 const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
-
+const onlinePayment = require('./routes/onlinePayment')
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
@@ -18,12 +18,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
     err => { console.log('cannot connect to the DataBase' + err) }
 );
 
-con.on('open', () => {
-    console.log('Connected to the Database server....');
-})
-
-
-const complainsRouter = require('./routes/complains');
+//const complainsRouter = require('./routes/complains');
 const onlinePaymentRouter = require('./routes/onlinePayment');
 
 app.use('/complains', complainsRouter);
@@ -39,7 +34,7 @@ app.use(bodyParser.json());
 app.use('/complains', complainsRouter)
 app.use('/lef', LefRoute);
 app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
-
+app.use('/onlinePayment', onlinePayment);
 
 
 app.listen(port, () => {
