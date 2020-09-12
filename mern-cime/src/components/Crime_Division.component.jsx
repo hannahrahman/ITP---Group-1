@@ -11,29 +11,6 @@ import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
 
 export default class CrimeDivision extends Component {
-<<<<<<< HEAD
-    render() {
-        return (
-            <Router>
-                <meta name="viewpoint" content="width=device-width , initial-scale=1"></meta>
-                <div style={{ marginTop: -55.5 + 'rem' }}>
-                    <div style={{ marginLeft: 18 + 'rem' }} >
-                        <CrimeNavbar />
-                    </div>
-                    <Route exact path="/ComplainsList" exact component={ComplainsList} />
-                    <Route path="/edit/:id" exact component={EditComplain} />
-                    <Route path="/Crime Division/create" exact component={CreateComplain} />
-                    <Route path="/user" exact component={CreateUser} />
-                    <Route path="/Appeal" exact component={CreateAppeal} />
-                </div>
-
-            </Router>
-
-        )
-    }
-
-}
-=======
   render() {
     return (
       <div>
@@ -54,4 +31,3 @@ export default class CrimeDivision extends Component {
     );
   }
 }
->>>>>>> 78443929a5b783dfffae6a4d6923460feb6de974
