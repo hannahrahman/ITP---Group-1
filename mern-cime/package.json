@@ -11,6 +11,8 @@
     "button": "^1.1.1",
     "form": "^0.2.4",
     "form-control": "^1.0.0",
+    "formik": "^2.1.5",
+    "formsy-react": "^2.2.1",
     "gulp-rev-all": "https://github.com/Amitesh/gulp-rev-all/tarball/master",
     "helmet": "^4.1.0",
     "jquery": "^3.5.1",
@@ -23,7 +25,8 @@
     "react-helmet": "^6.1.0",
     "react-scripts": "^3.4.3",
     "react-tabs": "^3.1.1",
-    "semantic-ui-react": "^1.1.1"
+    "semantic-ui-react": "^1.1.1",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
