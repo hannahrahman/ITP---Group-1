@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const complainPaymentSchema = new Schema({
     
     name:{type:String,require:true},
-    password:{type:password,required:true},
+    password:{type:String,required:true},
     fullName: {type:String, required: true },
     address: { type:String, required: true },
     mobileNum: { type:Number, required: true },
@@ -17,12 +17,10 @@ const complainPaymentSchema = new Schema({
     fineRefslpNo: { type:String, required: true },
     policeOfficerNo: { type:Number, required: true },
     amountOFfine: { type:Number, required: true },
-    issueDate: { type:date, required: true },
+    issueDate: { type: Date, required: true },
 
 }, {
-    timestamps: true,
+    collection: 'online',
 })
 
-const online_Payment = mongoose.model('Complain', complainPaymentSchema)
-
-module.exports = online_Payment
+module.exports = mongoose.model('online_Payment', complainPaymentSchema)

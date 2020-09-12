@@ -1,18 +1,18 @@
-const router = require('express').Router()
-let Complain = require('../models/complain.model')
+const router = require('express').Router();
+let online_Payment = require('../models/onlinePayment.model');
 
 router.route('/').get((req, res) => {
-    Complain.find()
-        .then(complains => res.json(complains))
-        .catch(err => res.status(400), json('error: ' + err))
-})
+    online_Payment.find()
+        .then(online_Payment => res.json(online_Payment))
+        .catch(err => res.status(400), json('error: ' + err));
+});
 
 router.route('/add').post((req, res) => {
     const name = req.body.name
     const password = req.body.password
     const fullName = req.body.fullName
     const address = req.body.address
-    const mobileNum = req.body.mobileNum
+    const mobileNum = Number(req.body.mobileNum)
     const emailId = req.body.emailId
     const fineType = req.body.fineType
     const incidentArea = req.body.incidentArea
@@ -21,9 +21,10 @@ router.route('/add').post((req, res) => {
     const policeOfficerNo = req.body.policeOfficerNo
     const amountOFfine = req.body.issueDate
     const issueDate = Date.parse(req.body.date)
-    const officer_incharge = req.body.officer_incharge
+    
 
-    const newComplain = new Complain({
+
+    const newOnlinePayment = new OnlinePayment({
         name,
         password,
         fullName,
@@ -38,46 +39,46 @@ router.route('/add').post((req, res) => {
         amountOFfine,
         issueDate,
         
-    })
+    });
 
-    newComplain.save()
-        .then(() => res.json('Complain added!'))
+    newOnlinePayment.save()
+        .then(() => res.json('Fine added!'))
         .catch(err => res.status(400).json('Error :' + err))
-})
+});
 
 router.route('/:id').get((req, res) => {
-    Complain.findById(req.params.id)
-        .then(complain => res.json(complain))
+    online_Payment.findById(req.params.id)
+        .then(online_Payment => res.json(online_Payment))
         .catch(err => res.status(400).json('Error: ' + err))
-})
+});
 router.route('/:id').delete((req, res) => {
-    Complain.findByIdAndDelete(req.params.id)
-        .then(() => res.json('complain deleted..'))
+    online_Payment.findByIdAndDelete(req.params.id)
+        .then(() => res.json('Fine deleted..'))
         .catch(err => res.status(400).json('Error: ' + err))
-})
+});
 router.route('/:id').post((req, res) => {
-    Complain.findById(req.params.id)
-        .then(complain => {
-            complain.name = req.body.name;
-            complain.password = req.body.password
-            complain.fullName = req.body.fullName
-            complain.address = req.body.address
-            complain.mobileNum = req.body.mobileNum
-            complain.emailId = req.body.emailId
-            complain.fineType = req.body.fineType
-            complain.incidentArea = req.body.incidentArea
-            complain.policeStation = req.body.policeStation
-            complain.fineRefslpNo = req.body.fineRefslpNo
-            complain.policeOfficerNo = req.body.policeOfficerNo
-            complain.amountOFfine = req.body.amountOFfine
-            complain.issueDate = req.body.issueDate
+    online_Payment.findById(req.params.id)
+        .then(online_Payment => {
+            online_Payment.name = req.body.name;
+            online_Payment.password = req.body.password
+            online_Payment.fullName = req.body.fullName
+            online_Payment.address = req.body.address
+            online_Payment.mobileNum = Number(req.body.mobileNum)
+            online_Payment.emailId = req.body.emailId
+            online_Payment.fineType = req.body.fineType
+            online_Payment.incidentArea = req.body.incidentArea
+            online_Payment.policeStation = req.body.policeStation
+            online_Payment.fineRefslpNo = req.body.fineRefslpNo
+            online_Payment.policeOfficerNo = req.body.policeOfficerNo
+            online_Payment.amountOFfine = req.body.amountOFfine
+            online_Payment.issueDate = Date.parse(req.body.issueDate)
             
 
-            complain.save()
-                .then(() => res.json('Complain updated..'))
+            newOnlinePayment.save()
+                .then(() => res.json('Fine updated..'))
                 .catch(err => res.status(400).json('Error: ' + err))
         })
         .catch(err => res.status(400).json('Error: ' + err))
-})
+});
 
 module.exports = router;
