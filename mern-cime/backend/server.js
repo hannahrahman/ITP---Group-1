@@ -14,11 +14,15 @@ const ComplainRoute = require('./routes/complains');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
-    () => { console.log('Connected to the Database server....') },
-    err => { console.log('cannot connect to the DataBase' + err) }
+  () => {
+    console.log("Connected to the Database server....");
+  },
+  (err) => {
+    console.log("cannot connect to the DataBase" + err);
+  }
 );
 
-app.use(cors());// cors middleware
+app.use(cors()); // cors middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 /*con.on('open', () => {
@@ -34,7 +38,5 @@ app.use('/Addcomplain', ComplainRoute);
 
 
 app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`)
-
-})
-
+  console.log(`Server is running on port: ${port}`);
+});
