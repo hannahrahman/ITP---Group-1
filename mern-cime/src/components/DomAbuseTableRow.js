@@ -12,14 +12,17 @@ export default class DomAbuseTableRow extends Component{
                 <td>{this.props.obj.refNo}</td>
                 <td>{this.props.obj.complainType}</td>
                 <td>{this.props.obj.date}</td>
+                <td>{this.props.obj.status}</td>
 
                 <td>
-                    <Button size="sm" variant="danger">
-                    <Link className="edit-link" to={"/edit" + this.props.obj._id}>Edit</Link>
+                    <Button size="sm" variant="info">
+                        <Link className="edit-link" to={"/edit/" + this.props.obj._id} style={{ textDecoration: 'none', color: 'white' }}>View</Link>
                     </Button>
                 </td>
                 <td>
-                    <Button size="sm" variant="danger">Delete</Button>
+                    <Button size="sm" variant="danger">
+                        <Link className="edit-link" to={"/delete/" + this.props.obj._id} style={{ textDecoration: 'none', color: 'white' }}>Delete</Link>
+                    </Button>
                 </td>
             </tr>
         )

@@ -50,6 +50,7 @@ domesticRoutes.route('/update/:id').post(function (req, res) {
             domesticAbuseComplain.weapon = req.body.weapon   
             domesticAbuseComplain.date = Date.parse(req.body.date)
             domesticAbuseComplain.officer_incharge = req.body.officer_incharge
+            domesticAbuseComplain.relationType = req.body.relationType
 
             domesticAbuseComplain.save().then(domesticAbuseComplain => {
                 res.json('Successfully Updated.');

@@ -22,6 +22,7 @@ export default class CreateDomesticAbuseComplain extends Component {
         this.onchangeWeapon = this.onchangeWeapon.bind(this)
         this.onchangeDate = this.onchangeDate.bind(this)
         this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this)
+        this.onchangeRelationType = this.onchangeRelationType.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
 
         this.state = {
@@ -38,7 +39,8 @@ export default class CreateDomesticAbuseComplain extends Component {
             description: '',
             weapon: '',
             date: new Date(),
-            officer_incharge: ''
+            officer_incharge: '',
+            relationType: ''
         }
     }
 
@@ -126,6 +128,12 @@ export default class CreateDomesticAbuseComplain extends Component {
         });
     }
 
+    onchangeRelationType(e) {
+        this.setState({
+            relationType: e.target.value
+        });
+    }
+
     onSubmit(e) {
         e.preventDefault();
         const complain = {
@@ -143,6 +151,7 @@ export default class CreateDomesticAbuseComplain extends Component {
             weapon: this.state.weapon,
             date: this.state.date,
             officer_incharge: this.state.officer_incharge,
+            relationType: this.state.relationType
         };
         console.log(complain)
         axios
@@ -163,9 +172,10 @@ export default class CreateDomesticAbuseComplain extends Component {
             description: '',
             weapon: '',
             date: new Date(),
-            officer_incharge: ''
+            officer_incharge: '',
+            relationType: ''
         })    
-
+        this.props.history.push('/DomesticAbuseComplainList')  //redirect to complains list page after submit
     }
 
     render() {
@@ -182,9 +192,10 @@ export default class CreateDomesticAbuseComplain extends Component {
 
                             <div className="form-group" >
 
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Refference No:</b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Refference No :</b></label>
                                 <input
                                     type="text"
+                                    placeholder="Add Refference Number"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.refNo}
@@ -192,19 +203,32 @@ export default class CreateDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type: </b></label>
-                                <input
-                                    type="text"
-                                    required
-                                    className="form-control is-invalid"
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type : </b></label><br />
+                                <select 
+                                    style={{ marginLeft: 0 + 'rem' }}
+                                    id="dropdown-item-button"
+                                    className="btn btn-outline-dark btn btn-secondary text-light"
+                                    name="complainType"
                                     value={this.state.complainType}
-                                    onChange={this.onchangeComplainType} />
+                                    onChange={this.onchangeComplainType}>
+                                        
+                                    <option>Select Complain Type</option>
+                                    <option value="Physical Abuse">Physical Abuse</option>
+                                    <option value="Verbal Abuse">Verbal Abuse</option>
+                                    <option value="Emotional Abuse">Emotional Abuse</option>
+                                    <option value="Mental Abuse">Mental Abuse</option>
+                                    <option value="Sexual Abuse">Sexual Abuse</option>
+                                    <option value="Damage to Property">Damage to Property</option>
+                                    <option value="Financial Abuse">Financial Abuse</option>
+                                    <option value="Threatening">Threatening</option>
+                                </select>
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name: </b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name : </b></label>
                                 <input 
                                     type="text"
+                                    placeholder="Add First Name"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.fname}
@@ -215,6 +239,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
                                 <input 
                                     type="text"
+                                    placeholder="Add Last Name"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.lname}
@@ -225,6 +250,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
                                 <input 
                                     type="text"
+                                    placeholder="Add NIC Number"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.nic}
@@ -232,7 +258,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth: </b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth : </b></label>
                                 <div>
                                     <DatePicker
                                         className="form-control is-invalid"
@@ -242,16 +268,44 @@ export default class CreateDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control is-invalid"
-                                    value={this.state.religion}
-                                    onChange={this.onchangeReligion} />
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Relation Type : </b></label><br />
+                                <select 
+                                    style={{ marginLeft: 0 + 'rem' }}
+                                    id="dropdown-item-button"
+                                    className="btn btn-outline-dark btn btn-secondary text-light"
+                                    name="relationType"
+                                    value={this.state.relationType}
+                                    onChange={this.onchangeRelationType}>
+
+                                    <option>Select Relation Type</option>
+                                    <option value="Spousal">Spousal</option>
+                                    <option value="Intimate Personal">Intimate Personal</option>
+                                    <option value="Family">Family</option>
+                                    <option value="Informal Care">Informal Care</option>
+                                </select>
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion : </b></label><br />
+                                <select 
+                                    style={{ marginLeft: 0 + 'rem' }}
+                                    id="dropdown-item-button"
+                                    className="btn btn-outline-dark btn btn-secondary text-light"
+                                    name="religion"
+                                    value={this.state.religion}
+                                    onChange={this.onchangeReligion}
+                                >
+                                    <option>Select Religion</option>
+                                    <option value="Theravada Buddhist">Theravada Buddhist</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Muslim">Muslim</option>
+                                    <option value="Roman Catholic">Roman Catholic</option>
+                                    <option value="Christian">Christian</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Gender : </b></label><br />
                                 <select 
                                     style={{ marginLeft: 0 + 'rem' }}
                                     id="dropdown-item-button"
@@ -260,16 +314,17 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     value={this.state.sex}
                                     onChange={this.onchangeSex}
                                 >
-                                    <option>Select a field</option>
+                                    <option>Select Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
                             </div>    
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address:</b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address :</b></label>
                                 <input 
                                     type="text"
+                                    placeholder="Add Address"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.address}
@@ -277,9 +332,10 @@ export default class CreateDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone : </b></label>
                                 <input 
                                     type="number"
+                                    placeholder="Add Phone Number"
                                     required
                                     numberformat="true"
                                     format="### ###-####"
@@ -290,47 +346,51 @@ export default class CreateDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description: </b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description : </b></label>
                                 <textarea 
                                     type="text"
+                                    placeholder="Add Description"
                                     required
-                                    className="form-control is-invalid"
+                                    className="form-control is-valid"
                                     value={this.state.description}
                                     onChange={this.onchangeDescription} />
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon(Optionl)</b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Used Weapon(s) :</b></label>
                                 <input 
                                     type="text"
-                                    className="form-control is-invalid"
+                                    placeholder="Add Weapon(s)"
+                                    className="form-control is-valid"
                                     value={this.state.weapon}
                                     onChange={this.onchangeWeapon} />
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date: </b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date : </b></label>
                                 <div></div>
                                 <DatePicker
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     selected={this.state.date}
                                     onChange={this.onchangeDate} />
 
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Officer Incharge:</b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Officer Incharge :</b></label>
                                 <input 
                                     type="text"
+                                    placeholder="Add Officer Incharge"
                                     required
-                                    className="form-control"
+                                    className="form-control is-valid"
                                     value={this.state.officer_incharge}
                                     onChange={this.onchangeOfficerIncharge} />
 
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
+                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-success btn btn-dark" />
+                                <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" />
                             </div>
                         </form>
                     </div >
