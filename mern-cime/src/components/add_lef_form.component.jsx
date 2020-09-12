@@ -220,7 +220,7 @@ export default class CreateLEF extends Component {
 
             <Tabs defaultIndex={1} onSelect={index => console.log(index)}>
                 <TabList >
-                    <div class="tab text-danger">
+                    <div className="tab text-danger">
                         <Tab style={{ marginLeft: 20 + 'rem' }}><b>Police Station Details</b></Tab>
                         <Tab style={{ marginLeft: + 'rem' }}><b>Medical Officer Details</b></Tab>
                         <Tab style={{ marginLeft: + 'rem' }}><b>Examinee Details</b></Tab>
@@ -228,14 +228,14 @@ export default class CreateLEF extends Component {
                     </div>
                 </TabList>
 
-                <div class="container" style={{ marginTop: 1 + 'rem' }}>
+                <div className="container" style={{ marginTop: 1 + 'rem' }}>
 
 
-                    <div class="card text-danger  bg-white" style={{ marginLeft: 8.5 + 'rem' }} >
-                        <div class="container">
-                            <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                    <div className="card text-danger  bg-white" style={{ marginLeft: 8.5 + 'rem' }} >
+                        <div className="container">
+                            <form onsubmit={this.onsubmit} style={{ margin: "auto" }} className=" needs-validation" novalidate='true'>
                                 <TabPanel>
-                                    <div class="card-header bg-white"><h3>Police Station Details</h3></div>
+                                    <div className="card-header bg-white"><h3>Police Station Details</h3></div>
 
                                     <div className="form-group" >
 
@@ -349,7 +349,7 @@ export default class CreateLEF extends Component {
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <div class="card-header bg-white"><h3>Examinee Details</h3></div>
+                                    <div className="card-header bg-white"><h3>Examinee Details</h3></div>
 
                                     <div className="form-group" >
 
@@ -408,8 +408,8 @@ export default class CreateLEF extends Component {
 
                                     <div className="form-group">
                                         <label style={{ marginLeft: 0.5 + 'rem' }}><b>Nature of Bodily Harm :</b></label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
+                                        <div className="input-group">
+                                            <div className="input-group-prepend">
                                                 <div style={{ marginLeft: 0.5 + 'rem' }}>
                                                     <input type="radio"
                                                         id="Abrasion"
