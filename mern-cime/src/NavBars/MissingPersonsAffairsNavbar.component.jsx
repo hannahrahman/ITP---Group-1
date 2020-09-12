@@ -2,51 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 export default class MissingPersonsAffairsNavbar extends Component {
-<<<<<<< HEAD
-  render() {
-    return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand"></Link>
-        <div className="collpase navbar-collapse">
-          <ul className="navbar-nav mr-auto ">
-            <li className="navbar-item mr-5">
-              <Link to="/MissingPersonComplaintForm" className="nav-link">
-                Nav1
-              </Link>
-            </li>
-            <li className="navbar-item mr-5">
-              <Link to="/Complain" className="nav-link">
-                Nav2
-              </Link>
-            </li>
-            <li className="navbar-item mr-5">
-              <Link to="/Appeal" className="nav-link">
-                Nav3
-              </Link>
-            </li>
-            <li className="navbar-item mr-5">
-              <Link to="/LEF" className="nav-link">
-                Nav4
-              </Link>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </nav>
-    );
-  }
-}
-=======
 
     render() {
         return (
@@ -84,4 +39,3 @@ export default class MissingPersonsAffairsNavbar extends Component {
     }
 
 }
->>>>>>> a5a00a2178a83dd1c6b132d6a55f465aa3e89ee3
