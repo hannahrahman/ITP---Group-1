@@ -15,11 +15,10 @@ export default class CrimeDivision extends Component {
     return (
       <div>
         <Router>
-          <div style={{ marginTop: -55.5 + "rem" }}>
+          <div style={{ marginTop: -99.3 + "rem" }}>
             <div style={{ marginLeft: 18 + "rem" }}>
               <CrimeNavbar />
             </div>
-            {/*<CreateComplain />*/}
             <Route path="/Complains_List" exact component={ComplainsList} />
             <Route path="/EditComplain" exact component={EditComplain} />
             <Route path="/Complain" exact component={CreateComplain} />
@@ -29,5 +28,7 @@ export default class CrimeDivision extends Component {
         </Router>
       </div>
     );
+
   }
+
 }

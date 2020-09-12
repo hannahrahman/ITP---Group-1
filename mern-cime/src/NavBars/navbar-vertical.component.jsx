@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-export default class Sidenav extends Component {
+
+export default class Sidenav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       m1: "Police Managment",
     };
+
   }
   m1() {
     this.setState({
@@ -22,7 +24,7 @@ export default class Sidenav extends Component {
 
   m3() {
     this.setState({
-      m1: "Civil Domestic Abuse Affairs",
+      m1: "Domestic Abuse Affairs",
     });
     console.log(this);
   }
@@ -70,10 +72,10 @@ export default class Sidenav extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }}>
-        <font> <p ><div className=" navbar-item " class="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
-        </p></font>
+        <font> <div className=" navbar-item navbar-brand text-primary "><b>{this.state.m1}</b></div>
+        </font>
         <ul className="navbar-nav mr-auto" >
-          <li className="navbar-item" style={{ marginTop: -10 + "rem" }}>
+          <li className="navbar-item" style={{ marginTop: -47 + "rem" }}>
             <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
             <hr color="white" />
           </li>
@@ -83,7 +85,7 @@ export default class Sidenav extends Component {
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Civil Domestic Abuse Affairs</Link>
+            <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Domestic Abuse Affairs</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
@@ -113,7 +115,7 @@ export default class Sidenav extends Component {
             <Link to="/Online Driving/NIC Renewal" className="nav-link" onClick={this.m8.bind(this)}>Online Driving/NIC Renewal</Link>
           </li>
         </ul>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
 
 <<<<<<< HEAD
             <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }} >

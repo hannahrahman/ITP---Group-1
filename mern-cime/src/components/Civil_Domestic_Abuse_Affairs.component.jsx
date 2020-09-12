@@ -42,7 +42,7 @@ export default class CivilDomesticAbuseAffairs extends Component {
           name="viewpoint"
           content="width=device-width , initial-scale=1"
         ></meta>
-        <div style={{ marginTop: -58.5 + "rem" }}>
+        <div style={{ marginTop: -98.5 + "rem" }}>
           <div style={{ marginLeft: 16.5 + "rem" }}>
             <CivilDomesticAbuseAffairsNavbar />
           </div>

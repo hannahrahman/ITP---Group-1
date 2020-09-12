@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "axios": "^0.20.0",
+>>>>>>> 57fe35ef97c91d75e5a577d385096e2a44a64b4b
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
