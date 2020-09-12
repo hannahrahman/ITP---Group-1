@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'
 import axios from 'axios';
-import $ from 'jquery'
 
 export default class CreateLEF extends Component {
 
@@ -212,6 +211,7 @@ export default class CreateLEF extends Component {
             other: this.state.other,
             remarks: this.state.remarks,
         };
+        window.location("/")
         console.log(obj)
         axios.post('http://localhost:5000/lef/add', obj).then(res => console.log(res.data));
 
@@ -547,9 +547,7 @@ export default class CreateLEF extends Component {
 
 
         )
-        $(document).ready(function () {
-            $('.mdb-select').materialSelect();
-        });
+
 
     }
 

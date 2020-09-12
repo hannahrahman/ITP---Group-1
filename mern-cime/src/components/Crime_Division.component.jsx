@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CrimeNavbar from "../NavBars/CrimeNavbar.component";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import ComplainsList from "./complains-list.component";
+import CrimeComplainList from "./complains-list.component";
 import EditComplain from "./edit-complain.component";
 import CreateComplain from "./create-complain.component";
 import CreateLEF from "./add_lef_form.component";
@@ -19,7 +19,7 @@ export default class CrimeDivision extends Component {
             <div style={{ marginLeft: 18 + "rem" }}>
               <CrimeNavbar />
             </div>
-            <Route path="/Complains_List" exact component={ComplainsList} />
+            <Route path="/Complains_List" exact component={CrimeComplainList} />
             <Route path="/EditComplain" exact component={EditComplain} />
             <Route path="/Complain" exact component={CreateComplain} />
             <Route path="/LEF" exact component={CreateLEF} />

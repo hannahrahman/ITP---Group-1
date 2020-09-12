@@ -15,7 +15,7 @@ export default class CrimeNavbar extends Component {
                     <ul className="navbar-nav mr-auto ">
 
                         <li className="navbar-item mr-5">
-                            <Link to="/Complains List" className="nav-link">Complains List</Link>
+                            <Link to="/Complains_List" className="nav-link">Complains List</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/Complain" className="nav-link">Add Complain</Link>
@@ -27,9 +27,9 @@ export default class CrimeNavbar extends Component {
                             <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></form>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></form>
 
                 </div>
 

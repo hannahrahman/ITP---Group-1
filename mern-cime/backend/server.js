@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000 // the port the server will be on
 const LefRoute = require('./routes/lef');
 const complainsRouter = require('./routes/complains')
 const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
+const ComplainRoute = require('./routes/complains');
 
 
 mongoose.Promise = global.Promise;
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 app.use('/complains', complainsRouter)
 app.use('/lef', LefRoute);
 app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
+app.use('/Addcomplain', ComplainRoute);
 
 
 

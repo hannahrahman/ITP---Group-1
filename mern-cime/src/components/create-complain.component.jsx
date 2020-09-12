@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
-
+import axios from 'axios'
 
 export default class CreateComplain extends Component {
 
@@ -25,7 +25,7 @@ export default class CreateComplain extends Component {
         this.onSubmit = this.onSubmit.bind(this)
 
         this.state = {
-            refNo: '',
+            refNo: new Number(),
             complainType: '',
             fname: '',
             lname: '',
@@ -34,11 +34,16 @@ export default class CreateComplain extends Component {
             religion: '',
             sex: '',
             address: '',
-            phone: '',
+            phone: new Number(),
             description: '',
             weapon: '',
             date: new Date(),
-            officer_incharge: ''
+            officer_incharge: '',
+            errors: {
+                refNo: '',
+                complainType: '',
+                fname: '',
+            }
         }
     }
 
@@ -125,11 +130,54 @@ export default class CreateComplain extends Component {
             officer_incharge: e.target.value
         })
     }
+    // Validation---------------------------------------------------------
+
+    handleValidation() {
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        //Name
+        if (!fields["complainType"]) {
+            formIsValid = false;
+            errors["complainType"] = "Cannot be empty";
+        }
+        else {
+            formIsValid = true;
+        }
+
+        if (typeof fields["complainType"] !== "undefined") {
+            if (!fields["complainType"].match(/^[a-zA-Z]+$/)) {
+                formIsValid = false;
+                errors["complainType"] = "Only letters";
+            }
+        }
+
+        //Email
+        if (!fields["email"]) {
+            formIsValid = false;
+            errors["email"] = "Cannot be empty";
+        }
+
+        if (typeof fields["email"] !== "undefined") {
+            let lastAtPos = fields["email"].lastIndexOf('@');
+            let lastDotPos = fields["email"].lastIndexOf('.');
+
+            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+                formIsValid = false;
+                errors["email"] = "Email is not valid";
+            }
+        }
+
+        this.setState({ errors: errors });
+        return formIsValid;
+    }
+    // Validation -------------------------------------------------------
 
     onSubmit(e) {
         e.preventDefault();
         const complain = {
-            refNo: this.state.refNo,
+            refNo: Number(this.state.refNo),
             complainType: this.state.complainType,
             fname: this.state.fname,
             lname: this.state.lname,
@@ -138,16 +186,37 @@ export default class CreateComplain extends Component {
             religion: this.state.religion,
             sex: this.state.sex,
             address: this.state.address,
-            phone: this.state.phone,
+            phone: Number(this.state.phone),
             description: this.state.description,
             weapon: this.state.weapon,
             date: this.state.date,
             officer_incharge: this.state.officer_incharge,
         }
-        console.log(complain);
+        if (this.handleValidation()) {
+            alert("Form submitted");
+        } else {
+            alert("Form has errors.")
 
-        // window.location = '/';
-
+            console.log(complain);
+            // window.location = '/';
+            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
+        }
+        this.setState({
+            refNo: new Number(),
+            complainType: '',
+            fname: '',
+            lname: '',
+            nic: '',
+            dateOfBirth: new Date(),
+            religion: '',
+            sex: '',
+            address: '',
+            phone: new Number(),
+            description: '',
+            weapon: '',
+            date: new Date(),
+            officer_incharge: ''
+        })
     }
 
     render() {
@@ -168,6 +237,7 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
                                 <input
                                     type="text"
+                                    name="refNo"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.refNo}
@@ -179,7 +249,7 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
+                                    ref="complainType"
                                     value={this.state.complainType}
                                     className="form-control is-invalid"
                                     onChange={this.onchangecomplainType} />
@@ -189,7 +259,6 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.fname}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeFName} />
@@ -199,7 +268,6 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.lname}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeLName} />
@@ -209,7 +277,6 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.nic}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeNic} />
@@ -229,7 +296,6 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.religion}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeReligion} />
@@ -237,37 +303,25 @@ export default class CreateComplain extends Component {
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <div className="input-group">
-                                    <div className="input-group-prepend">
-                                        <div style={{ marginLeft: 0.5 + 'rem' }}>
-                                            <input type="radio"
-                                                id="male"
-                                                name="gender"
-                                                value={this.state.sex}
-                                                onChange={this.onchangeSex} />
-                                            <label><b>Male </b></label>
-                                        </div>
-                                    </div>
+                                <select
+                                    style={{ marginLeft: 0.5 + 'rem' }}
+                                    id="dropdown-item-button"
+                                    className="btn btn-outline-dark btn btn-secondary text-light"
+                                    name="sex"
+                                    value={this.state.sex}
+                                    onChange={this.onchangeSex}
+                                >
+                                    <option >Select a field</option >
+                                    <option value="Male">Male</option >
+                                    <option value="Female">Female</option  >
 
-                                    <div style={{ marginLeft: 5 + 'rem' }}>
-                                        <input type="radio"
-                                            aria-label="Radio button for following text input"
-                                            name="gender"
-                                            id="Female"
-                                            value={this.state.sex}
-
-                                            onChange={this.onchangeSex} />
-                                        <label><b> Female </b></label>
-
-                                    </div>
-                                </div>
+                                </select>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address:</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.address}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeAddress} />
@@ -280,7 +334,6 @@ export default class CreateComplain extends Component {
                                     numberformat="true"
                                     format="### ###-####"
                                     mask="_"
-                                    className="form-control"
                                     value={this.state.phone}
                                     className="form-control is-invalid"
                                     onChange={this.onchangePhone} />
@@ -291,7 +344,6 @@ export default class CreateComplain extends Component {
                                 <textarea type="text"
 
                                     required
-                                    className="form-control"
                                     value={this.state.description}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeDescription} />
@@ -309,9 +361,8 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date: </b></label>
                                 <div></div>
                                 <DatePicker
-                                    className="form-control"
                                     selected={this.state.date}
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     onChange={this.onchangeDate} />
 
                             </div>
@@ -322,7 +373,7 @@ export default class CreateComplain extends Component {
                                     name="offi"
                                     id="offi"
                                     required
-                                    className="form-control"
+                                    className="form-control is-invalid"
                                     value={this.state.officer_incharge}
                                     onChange={this.onchangeOfficerIncharge
                                     } />
@@ -330,7 +381,7 @@ export default class CreateComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
+                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                             </div>
                         </form>
                     </div >
