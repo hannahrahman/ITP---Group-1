@@ -3,12 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import axios from "axios";
 
 export default class MissingPersonComplaintForm extends Component {
   constructor(props) {
     super(props);
 
-    //MP - Missing Person
+    //Missing Person
     this.onchangeMPersonFullName = this.onchangeMPersonFullName.bind(this);
     this.onchangeMPersonNickname = this.onchangeMPersonNickname.bind(this);
     this.onchangeMPAddress = this.onchangeMPAddress.bind(this);
@@ -53,10 +54,28 @@ export default class MissingPersonComplaintForm extends Component {
     this.onchangeMPAdditionalInformation = this.onchangeMPAdditionalInformation.bind(
       this
     );
+    this.onchangeMPReasonToGoMissing = this.onchangeMPReasonToGoMissing.bind(this);
+
+
+    //Reporter
+    this.onchangeRepFullName = this.onchangeRepFullName.bind(this);
+    this.onchangeRepNIC = this.onchangeRepNIC.bind(this);
+    this.onchangeRepAddress = this.onchangeRepAddress.bind(this);
+    this.onchangeRepDOB = this.onchangeRepDOB.bind(this);
+    this.onchangeRepContactNumber = this.onchangeRepContactNumber.bind(this);
+    this.onchangeRepRelationship = this.onchangeRepRelationship.bind(this);
+
+
+    //Officer
+    this.onchangeOfficerID = this.onchangeOfficerID.bind(this);
+    this.onchangeOfficerName = this.onchangeOfficerName.bind(this);
+    this.onchangeOfficerPoliceStation = this.onchangeOfficerPoliceStation.bind(this);
+
 
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
+      //Missing Person
       mp_fullname: "",
       mp_nickname: "",
       mp_address: "",
@@ -91,8 +110,28 @@ export default class MissingPersonComplaintForm extends Component {
       mp_pets: "",
       mp_missing_before: "",
       mp_additional_info: "",
+      mp_missing_reason: "",
+
+      //Reporter
+      rep_fullname: "",
+      rep_nic: "",
+      rep_address: "",
+      rep_DOB: "",
+      rep_contact_number: "",
+      rep_relationship: "",
+
+
+      //Officer
+      officer_fullname: "",
+      officer_id: "",
+      officer_police_station: "",
+      
+
     };
   }
+
+
+  //Missig Person
   onchangeMPersonFullName(e) {
     this.setState({
       mp_fullname: e.target.value,
@@ -267,12 +306,6 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
-  onchangeMPAdditionalInformation(e) {
-    this.setState({
-      mp_additional_info: e.target.value,
-    });
-  }
-
   onchangeMPBankDetails(e) {
     this.setState({
       mp_bank_details: e.target.value,
@@ -303,10 +336,78 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
+  onchangeMPReasonToGoMissing(e) {
+    this.setState({
+      mp_missing_reason: e.target.value,
+    });
+  }
+
+
+
+
+  //Reporter
+  onchangeRepFullName(e) {
+    this.setState({
+      rep_fullname: e.target.value,
+    });
+  }
+
+  onchangeRepNIC(e) {
+    this.setState({
+      rep_nic: e.target.value,
+    });
+  }
+
+  onchangeRepAddress(e) {
+    this.setState({
+      rep_address: e.target.value,
+    });
+  }
+
+  onchangeRepDOB(e) {
+    this.setState({
+      rep_DOB: e.target.value,
+    });
+  }
+
+  onchangeRepContactNumber(e) {
+    this.setState({
+      rep_contact_number: e.target.value,
+    });
+  }
+
+  onchangeRepRelationship(e) {
+    this.setState({
+      rep_relationship: e.target.value,
+    });
+  }
+
+
+
+  //Officer
+  onchangeOfficerID(e) {
+    this.setState({
+      officer_id: e.target.value,
+    });
+  }
+
+  onchangeOfficerName(e) {
+    this.setState({
+      officer_fullname: e.target.value,
+    });
+  }
+
+  onchangeOfficerPoliceStation(e) {
+    this.setState({
+      officer_police_station: e.target.value,
+    });
+  }
+
+
   onSubmit(e) {
     e.preventDefault();
 
-    const complain = {
+    const obj = {
       refNo: this.state.refNo,
       complainType: this.state.complainType,
       fname: this.state.fname,
@@ -322,7 +423,36 @@ export default class MissingPersonComplaintForm extends Component {
       date: this.state.date,
       officer_incharge: this.state.officer_incharge,
     };
-    console.log(complain);
+    // axios
+    //   .post("http://localhost:4000/business/add", obj)
+    //   .then((res) => console.log(res.data));
+
+      console.log(obj)
+        axios.post('http://localhost:5000/missingPersonAffairs/add', obj).then(res => console.log(res.data));
+
+        this.setState({
+            refNo: '',
+            dateOfIssue: new Date(),
+            victimFullName: '',
+            dateOfBirth: new Date(),
+            age: new Number(),
+            admission: '',
+            hospital: '',
+            wardNo: '',
+            date: new Date(),
+            dateOfDischarge: new Date(),
+            registrationNumber: new Number(),
+            nomineeName: '',
+            address: '',
+            reason: '',
+            rank: '',
+            natureOfBodilyHarm: '',
+            weapon: '',
+            categoryOfHurt: '',
+            consumptionOfAlcohol: '',
+            other: '',
+            remarks: ''
+        })
 
     window.location = "/";
   }
@@ -333,20 +463,17 @@ export default class MissingPersonComplaintForm extends Component {
         <TabList>
           <div class="tab text-danger">
             <Tab style={{ marginLeft: 20 + "rem" }}>
-              <b>Police Station Details</b>
+              <b>Police Officer Details</b>
+            </Tab>
+            <Tab>
+              <b>Reporter Details</b>
             </Tab>
             <Tab>
               <b>Missing Person's Details</b>
             </Tab>
-            <Tab>
-              <b>Examinee Details</b>
-            </Tab>
-            <Tab>
-              <b>Examinee Details part 2</b>
-            </Tab>
           </div>
-        </TabList>
 
+        </TabList>
         <div className="container" style={{ marginTop: 1 + "rem" }}>
           <div
             className="card text-white bg-dark"
@@ -359,13 +486,12 @@ export default class MissingPersonComplaintForm extends Component {
                 className=" needs-validation"
                 noValidate={true}
               >
+                {/* Officer Details */}
                 <TabPanel>
-                  <div className="card-header bg-dark">
-                    <h3>Police Station Details</h3>
-                  </div>
+                  <div className="card-header bg-dark"></div>
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Reference Number:</b>
+                      <b>Officer ID:</b>
                     </label>
                     <input
                       required
@@ -377,56 +503,119 @@ export default class MissingPersonComplaintForm extends Component {
                   </div>
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>dateOfIssue: </b>
+                      <b>Officer Name:</b>
                     </label>
-                    <div></div>
-                    <DatePicker
+                    <input
+                      required
+                      type="text"
                       className="form-control is-invalid"
-                      selected={this.state.dateOfIssue}
-                      onChange={this.onchangeDateOfIssue}
+                      value={this.state.refNo}
+                      onChange={this.onchangeRefno}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                      <b>Police Station:</b>
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      className="form-control is-invalid"
+                      value={this.state.refNo}
+                      onChange={this.onchangeRefno}
+                    />
+                  </div>
+                </TabPanel>
+
+                {/* Reporter Details Tab */}
+                <TabPanel>
+                  <div className="card-header bg-dark"></div>
+
+                  <div className="form-group">
+                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                      <b>Reporter's Full Name :</b>
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      className="form-control is-invalid"
+                      value={this.state.rep_fullname}
+                      onChange={this.onchangeRepFullName}
                     />
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>victim Full Name: </b>
+                      <b>Reporter's NIC: </b>
                     </label>
                     <input
                       type="text"
                       required
                       className="form-control is-invalid"
-                      value={this.state.victimFullName}
-                      onChange={this.onchangeVictimFullName}
+                      value={this.state.rep_nic}
+                      onChange={this.onchangeRepNIC}
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                      <b>Reporter's Address : </b>
+                    </label>
+                    <div></div>
+                    <input
+                      required
+                      type="text"
+                      className="form-control is-invalid"
+                      value={this.state.rep_address}
+                      onChange={this.onchangeRepAddress}
+                    />
+                  </div>
+
+
+                  <div className="form-group">
+                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                      <b>Reporter's Date of Birth : </b>
+                    </label>
+                    <div></div>
+                    <input
+                      required
+                      type="text"
+                      className="form-control is-invalid"
+                      value={this.state.rep_DOB}
+                      onChange={this.onchangeRepDOB}
                     />
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Date Of Birth: </b>
+                      <b>Reporter's Contact Number : </b>
                     </label>
-                    <div>
-                      <DatePicker
-                        className="form-control"
-                        selected={this.state.dateOfBirth}
-                        onChange={this.onchangeDateOfBirth}
-                      />
-                    </div>
+                    <div></div>
+                    <input
+                      required
+                      type="text"
+                      className="form-control is-invalid"
+                      value={this.state.rep_contact_number}
+                      onChange={this.onchangeRepContactNumber}
+                    />
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Age :</b>
+                      <b>Reporter's relationship to missing person : </b>
                     </label>
+                    <div></div>
                     <input
-                      type="number"
                       required
-                      value={this.state.age}
+                      type="text"
                       className="form-control is-invalid"
-                      onChange={this.onchangeAge}
+                      value={this.state.rep_relationship}
+                      onChange={this.onchangeRepRelationship}
                     />
                   </div>
                 </TabPanel>
 
+                {/* Missig Person Details */}
                 <TabPanel>
                   <div className="card-header bg-dark">
                     <h3>General Information</h3>
@@ -525,16 +714,18 @@ export default class MissingPersonComplaintForm extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Gender :</b>
-                    </label>
-                    <input
-                      required
-                      type="number"
-                      className="form-control is-invalid"
-                      value={this.state.mp_gender}
-                      onChange={this.onchangeMPGender}
-                    />
+                    <label style={{ marginLeft: 0.5 + "rem" }}>Gender :</label>
+                    <select
+                      style={{ marginLeft: 0.5 + "rem" }}
+                      id="dropdown-item-button"
+                      className="btn btn-outline-dark btn btn-secondary text-light"
+                      name="natureOfBodilyHarm"
+                      value={this.state.mp_spectacle_user}
+                      onChange={this.onchangeMPSpectacleUser}
+                    >
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
                   </div>
 
                   <div className="form-group">
@@ -779,7 +970,7 @@ export default class MissingPersonComplaintForm extends Component {
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>DNA Ites :</b>
+                      <b>DNA Item :</b>
                     </label>
                     <input
                       type="text"
@@ -791,20 +982,7 @@ export default class MissingPersonComplaintForm extends Component {
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>DNA Ites :</b>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control is-invalid"
-                      value={this.state.mp_dna_items}
-                      onChange={this.onchangeMPDNAItems}
-                    />
-                  </div>
-
-
-                  <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>When was he/she last seen?  :</b>
+                      <b>When was he/she last seen? :</b>
                     </label>
                     <div>
                       <DatePicker
@@ -815,245 +993,80 @@ export default class MissingPersonComplaintForm extends Component {
                     </div>
                   </div>
 
-                
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </TabPanel>
-                <TabPanel>
-                  <div className="card-header bg-dark">
-                    <h3>Examinee Details</h3>
-                  </div>
-
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Registration Number :</b>
-                    </label>
-                    <input
-                      required
-                      type="number"
-                      className="form-control is-invalid"
-                      value={this.state.registrationNumber}
-                      onChange={this.onchangeRegistrationNumber}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Nominee’s Name : </b>
-                    </label>
-                    <div></div>
-                    <input
-                      required
-                      type="text"
-                      className="form-control is-invalid"
-                      value={this.state.nomineeName}
-                      onChange={this.onchangeNomineeName}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Address: </b>
+                      <b>When was he/she last seen? :</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control is-invalid"
-                      value={this.state.address}
-                      onChange={this.onchangeAddress}
+                      value={this.state.mp_where_last_seen}
+                      onChange={this.onchangeMPWhereLastSeen}
                     />
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Reason : </b>
+                      <b>Last Person to See Him/Her:</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control is-invalid"
-                      value={this.state.reason}
-                      onChange={this.onchangeReason}
+                      value={this.state.mp_last_person_to_see}
+                      onChange={this.onchangeMPLastPersonToSee}
                     />
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Rank :</b>
+                      <b>Pets where Taken/ Left behind:</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control is-invalid"
-                      value={this.state.rank}
-                      onChange={this.onchangeRank}
+                      value={this.state.mp_pets}
+                      onChange={this.onchangeMPPets}
                     />
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      Nature Of Bodily Harm
+                      Has gone missing before? :
                     </label>
                     <select
                       style={{ marginLeft: 0.5 + "rem" }}
                       id="dropdown-item-button"
                       className="btn btn-outline-dark btn btn-secondary text-light"
                       name="natureOfBodilyHarm"
-                      value={this.state.natureOfBodilyHarm}
-                      onChange={this.onchangeNatureOfBodilyHarm}
+                      value={this.state.mp_missing_before}
+                      onChange={this.onchangeMPMissingBefore}
                     >
-                      <option>Select a field</option>
-                      <option value="Abrasion">Abrasion</option>
-                      <option value="Cut">Cut</option>
-                      <option value="Bite">Bite</option>
-                      <option value="Contusion">Contusion</option>
-                      <option value="Fractured">Fractured</option>
-                      <option value="Dislocation">Dislocation</option>
-                      <option value="Laceration">Laceration</option>
-                      <option value="Firearm Injury">Firearm Injury</option>
-                      <option value="Explosive Injury">Explosive Injury</option>
-                      <option value="Stab">Stab</option>
-                      <option value="Burns">Burns</option>
-                      <option value="Other">Other</option>
-                      <option value="None">None</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
                     </select>
                   </div>
-                </TabPanel>
 
-                <TabPanel>
-                  <div className="card-header bg-dark">
-                    <h3>Examinee Details part 2</h3>
-                  </div>
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Weapon :</b>
-                    </label>
-                    <select
-                      style={{ marginLeft: 0.5 + "rem" }}
-                      id="dropdown-item-button"
-                      className="btn btn-outline-dark btn btn-secondary text-light"
-                      name="weapon"
-                      value={this.state.weapon}
-                      onChange={this.onchangeWeapon}
-                    >
-                      <option>Select a field</option>
-                      <option value="Blunt">Blunt</option>
-                      <option value="Sharp">Sharp</option>
-                      <option value="Firearm">Firearm</option>
-                      <option value="Explosive device">Explosive device</option>
-                      <option value="Others">Others</option>
-                    </select>
-
-                    <div className="form-group">
-                      <label style={{ marginLeft: 0.5 + "rem" }}>
-                        <b>Category Of Hurt :</b>
-                      </label>
-                      <select
-                        style={{ marginLeft: 0.5 + "rem" }}
-                        id="dropdown-item-button"
-                        className="btn btn-outline-dark btn btn-secondary text-light"
-                        name="categoryOfHurt"
-                        value={this.state.categoryOfHurt}
-                        onChange={this.onchangeCategoryOfHurt}
-                      >
-                        <option>Select a field</option>
-                        <option value="Non Grievous">Non Grievous</option>
-                        <option value="Grievous">Grievous</option>
-                        <option value="Fatal">Fatal</option>
-                        <option value="Does It Endanger life?">
-                          Does It Endanger life?
-                        </option>
-                      </select>
-                      <div className="form-group">
-                        <label style={{ marginLeft: 0.5 + "rem" }}>
-                          <b>Consumption Of Alcohol:</b>
-                        </label>
-                        <select
-                          style={{ marginLeft: 0.5 + "rem" }}
-                          id="dropdown-item-button"
-                          className="btn btn-outline-dark btn btn-secondary text-light"
-                          name="consumptionOfAlcohol"
-                          value={this.state.consumptionOfAlcohol}
-                          onChange={this.onchangeConsumptionOfAlcohol}
-                        >
-                          <option>Select a field</option>
-                          <option value="Breathing / Smelling">
-                            Breathing / Smelling
-                          </option>
-                          <option value="Under Influence">
-                            Under Influence
-                          </option>
-                          <option value="Negative">Negative</option>
-                        </select>
-                      </div>
-                      <div className="form-group">
-                        <label style={{ marginLeft: 0.5 + "rem" }}>
-                          <b>Other:</b>
-                        </label>
-                        <select
-                          style={{ marginLeft: 0.5 + "rem" }}
-                          id="dropdown-item-button"
-                          className="btn btn-outline-dark btn btn-secondary text-light"
-                          name="other"
-                          value={this.state.other}
-                          onChange={this.onchangeOther}
-                        >
-                          <option className="container">Select a field</option>
-                          <option value="Signs Of Vaginal/Hymen Penetration Present">
-                            Signs Of Vaginal/Hymen Penetration Present
-                          </option>
-                          <option value="Signs Of Anal Penetration">
-                            Signs Of Anal Penetration
-                          </option>
-                          <option value="Signs Consistent With Inter Labial Penetration Present">
-                            Signs Consistent With Inter Labial Penetration
-                            Present
-                          </option>
-                          <option value="Investigations">Investigations</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Remarks :</b>
+                      <b>Additional Information:</b>
                     </label>
                     <input
-                      type="text"
-                      required
+                      type="textArea"
                       className="form-control is-invalid"
-                      value={this.state.remarks}
-                      onChange={this.onchangeRemarks}
+                      value={this.state.mp_missing_reason}
+                      onChange={this.onchangeMPReasonToGoMissing}
                     />
                   </div>
 
                   <div className="form-group">
-                    <input
-                      type="submit"
-                      style={{ marginLeft: 0.5 + "rem" }}
-                      value="Submit"
-                      className="btn btn-outline-danger btn btn-dark"
-                    />
+                  <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                   </div>
+
                 </TabPanel>
+
+                
+
+                
               </form>
             </div>
           </div>
