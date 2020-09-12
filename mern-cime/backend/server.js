@@ -1,8 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-//const url = 'mongodb://localhost/complainDBx'
-//const url = 'mongodb+srv://davido:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
+
 const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
 require('dotenv').config()//having environment variables in dotenv file
 
@@ -20,11 +19,11 @@ con.on('open', () => {
     console.log('Connected to the Database server....')
 })
 
-
 const complainsRouter = require('./routes/complains')
+const drugComplainRouter = require('./routes/Drug_Complains')
 
 app.use('/complains', complainsRouter)
-
+app.use('/Drug_Complains', drugComplainRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)

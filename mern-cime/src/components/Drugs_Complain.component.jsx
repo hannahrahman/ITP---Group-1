@@ -9,12 +9,13 @@ export default class CreateDrugComplain extends Component {
         super(props);
 
         this.onchangeRefno = this.onchangeRefno.bind(this)
-        this.onchangecomplainType = this.onchangecomplainType.bind(this)
+        this.onchangeComplainType = this.onchangeComplainType.bind(this)
         this.onchangeFName = this.onchangeFName.bind(this)
         this.onchangeLName = this.onchangeLName.bind(this)
         this.onchangeNic = this.onchangeNic.bind(this)
         this.onchangeDateOfBirth = this.onchangeDateOfBirth.bind(this)
         this.onchangeReligion = this.onchangeReligion.bind(this)
+        this.onchangePhone = this.onchangePhone.bind(this)
         this.onchangeSex = this.onchangeSex.bind(this)
         this.onchangeLocation = this.onchangeLocation.bind(this)
         this.onchangeKindOfDrug = this.onchangeKindOfDrug.bind(this)
@@ -22,6 +23,7 @@ export default class CreateDrugComplain extends Component {
         this.onchangeDrugActivity = this.onchangeDrugActivity.bind(this)
         this.onchangeHW = this.onchangeHW.bind(this)
         this.onchangeEH = this.onchangeEH.bind(this)
+        this.onchangeDSex = this.onchangeDSex.bind(this)
         this.onchangeDescription = this.onchangeDescription.bind(this)
         this.onchangeWeapon = this.onchangeWeapon.bind(this)
         this.onchangeDate = this.onchangeDate.bind(this)
@@ -29,72 +31,81 @@ export default class CreateDrugComplain extends Component {
         this.onSubmit = this.onSubmit.bind(this)
 
         this.state = {
-            refNo: '',
-            complainType: '',
-            fname: '',
-            lname: '',
-            nic: '',
-            dateOfBirth: new Date(),
-            religion: '',
-            sex: '',
+            RefNo: '',
+            ComplainType: '',
+            Fname: '',
+            Lname: '',
+            Nic: '',
+            DateOfBirth: new Date(),
+            Religion: '',
+            Phone: '',
+            Sex: '',
             Location: '',
-            KindOfDrug:'',
+            KindOfDrug: '',
             VehiclePlate: '',
-            DrugActivity:'',
+            DrugActivity: '',
             HW: '',
             EH: '',
-            description: '',
-            weapon: '',
+            DSex: '',
+            Description: '',
+            Weapon: '',
             date: new Date(),
-            officer_incharge: ''
+            OfficerIncharge: ''
         }
     }
 
     onchangeRefno(e) {
         this.setState({
-            refNo: e.target.value
+            RefNo: e.target.value
         })
     }
 
-    onchangecomplainType(e) {
+    onchangeComplainType(e) {
         this.setState({
-            complainType: e.target.value
+            ComplainType: e.target.value
         })
     }
 
     onchangeFName(e) {
         this.setState({
-            fname: e.target.value
+            FName: e.target.value
         })
     }
 
     onchangeLName(e) {
         this.setState({
-            lname: e.target.value //target is the text box and the value is the value in the text box that is assigned to the name attribute
+            LName: e.target.value //target is the text box and the value is the value in the text box that is assigned to the name attribute
         })
     }
 
     onchangeNic(e) {
         this.setState({
-            nic: e.target.value
+            Nic: e.target.value
         })
     }
 
     onchangeDateOfBirth(date) {
         this.setState({
-            dateOfBirth: date
+            DateOfBirth: date
         })
     }
 
     onchangeReligion(e) {
         this.setState({
-            religion: e.target.value
+            Religion: e.target.value
         })
     }
 
+    onchangePhone(e) {
+        this.setState({
+            Phone: e.target.value
+        })
+    }
+
+
     onchangeSex(e) {
         this.setState({
-            sex: e.target.value
+            Sex: e.target.value
         })
     }
 
@@ -136,15 +147,21 @@ export default class CreateDrugComplain extends Component {
         })
     }
 
+    onchangeDSex(e) {
+        this.setState({
+            Dsex: e.target.value
+        })
+    }
+
     onchangeDescription(e) {
         this.setState({
-            description: e.target.value
+            Description: e.target.value
         })
     }
 
     onchangeWeapon(e) {
         this.setState({
-            weapon: e.target.value
+            Weapon: e.target.value
         })
     }
 
@@ -156,34 +173,36 @@ export default class CreateDrugComplain extends Component {
 
     onchangeOfficerIncharge(e) {
         this.setState({
-            officer_incharge: e.target.value
+            OfficerIncharge: e.target.value
         })
     }
 
     onSubmit(e) {
         e.preventDefault();
 
-        const complain = {
-            refNo: this.state.refNo,
-            complainType: this.state.complainType,
-            fname: this.state.fname,
-            lname: this.state.lname,
-            nic: this.state.nic,
-            dateOfBirth: this.state.dateOfBirth,
-            religion: this.state.religion,
-            sex: this.state.sex,
+        const Drugcomplain = {
+            RefNo: this.state.RefNo,
+            ComplainType: this.state.ComplainType,
+            FName: this.state.FName,
+            LName: this.state.LName,
+            Nic: this.state.Nic,
+            DateOfBirth: this.state.DateOfBirth,
+            Religion: this.state.Religion,
+            Phone: this.state.Phone,
+            Sex: this.state.Sex,
             Location: this.state.Location,
             KindOfDrug: this.state.KindOfDrug,
             VehiclePlate: this.state.VehiclePlate,
             DrugActivity: this.state.DrugActivity,
             HW: this.state.HW,
             EH: this.state.EH,
-            description: this.state.description,
-            weapon: this.state.weapon,
+            Dsex: this.state.Dsex,
+            Description: this.state.Description,
+            Weapon: this.state.Weapon,
             date: this.state.date,
-            officer_incharge: this.state.officer_incharge,
+            OfficerIncharge: this.state.OfficerIncharge,
         }
-        console.log(complain);
+        console.log(Drugcomplain);
 
         window.location = '/';
 
@@ -191,17 +210,17 @@ export default class CreateDrugComplain extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop:  + 'rem' }}>
+            <div className="container" style={{ marginTop: + 'rem' }}>
 
-                <div class="card text-danger  bg-white  mb-3" style={{ marginLeft: 5.5 + 'rem' }} >
-                    <div class="card-header"><h3>Add Complain</h3></div>
-                    <div class="card-body" >
+                <div className="card text-dark  bg-white  mb-3" style={{ marginLeft: 7.5 + 'rem' }} >
+                    <div className="card-header"><h3>Add Complain</h3></div>
+                    <div className="card-body" >
 
                     </div >
 
-                    <div class="container">
-                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
-
+                    <div className="container">
+                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} className=" needs-validation" novalidate='true'>
+                            <h2>Complainant: Your Infromation will remain confidential</h2>
                             <div className="form-group" >
 
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
@@ -210,7 +229,7 @@ export default class CreateDrugComplain extends Component {
                                     type="text"
                                     required
                                     className="form-control is-invalid"
-                                    value={this.state.refNo}
+                                    value={this.state.RefNo}
                                     onChange={this.onchangeRefno} />
 
                             </div>
@@ -219,18 +238,16 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
-                                    value={this.state.complainType}
+                                    value={this.state.ComplainType}
                                     className="form-control is-invalid"
-                                    onChange={this.onchangecomplainType} />
+                                    onChange={this.onchangeComplainType} />
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
-                                    value={this.state.fname}
+                                    value={this.state.FName}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeFName} />
                             </div>
@@ -239,8 +256,7 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
-                                    value={this.state.lname}
+                                    value={this.state.LName}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeLName} />
                             </div>
@@ -249,8 +265,7 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
-                                    value={this.state.nic}
+                                    value={this.state.Nic}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeNic} />
                             </div>
@@ -260,7 +275,7 @@ export default class CreateDrugComplain extends Component {
                                 <div>
                                     <DatePicker
                                         className="form-control"
-                                        selected={this.state.dateOfBirth}
+                                        selected={this.state.DateOfBirth}
                                         onChange={this.onchangeDateOfBirth} />
                                 </div>
                             </div>
@@ -269,17 +284,28 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
-                                    value={this.state.religion}
+                                    value={this.state.Religion}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeReligion} />
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <div class="input-group">
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
+                                <input type="number"
+                                    required
+                                    NumberFormat format="### ###-####"
+                                    mask="_"
+                                    value={this.state.Phone}
+                                    className="form-control is-invalid"
+                                    onChange={this.onchangePhone} />
+                            </div>
 
-                                    <div class="input-group-prepend">
+
+                            <div className="form-group">
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
+                                <div className="input-group">
+
+                                    <div className="input-group-prepend">
 
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
 
@@ -287,7 +313,7 @@ export default class CreateDrugComplain extends Component {
 
                                                 id="male"
                                                 name="gender"
-                                                value={this.state.sex}
+                                                value={this.state.Sex}
 
                                                 onChange={this.onchangeSex} />
                                             <label><b>Male </b></label>
@@ -299,7 +325,7 @@ export default class CreateDrugComplain extends Component {
                                             aria-label="Radio button for following text input"
                                             name="gender"
                                             id="Female"
-                                            value={this.state.sex}
+                                            value={this.state.Sex}
 
                                             onChange={this.onchangeSex} />
                                         <label><b> Female </b></label>
@@ -312,18 +338,16 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Location:</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.Location}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeLocation} />
                             </div>
-                            
+
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Kind of drug:</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.KindOfDrug}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeKindOfDrug} />
@@ -334,7 +358,6 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Vehicle Plate :</b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.VehiclePlate}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeVehiclePlate} />
@@ -344,7 +367,6 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Please Discribe Drug Activity:</b></label>
                                 <textarea type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.DrugActivity}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeDrugActivity} />
@@ -356,29 +378,61 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Height and Weight: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.HW}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeHW} />
                             </div>
 
                             <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Eye and Hair color </b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Eye and Hair color: </b></label>
                                 <input type="text"
                                     required
-                                    className="form-control"
                                     value={this.state.EH}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeEH} />
                             </div>
-                            
+
+                            <div className="form-group">
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
+                                <div className="input-group">
+
+                                    <div className="input-group-prepend">
+
+                                        <div style={{ marginLeft: 0.5 + 'rem' }}>
+
+                                            <input type="radio"
+
+                                                id="male"
+                                                name="gender"
+                                                value={this.state.DSex}
+
+                                                onChange={this.onchangeDSex} />
+                                            <label><b>Male </b></label>
+                                        </div>
+                                    </div>
+
+                                    <div style={{ marginLeft: 5 + 'rem' }}>
+                                        <input type="radio"
+                                            aria-label="Radio button for following text input"
+                                            name="gender"
+                                            id="Female"
+                                            value={this.state.DSex}
+
+                                            onChange={this.onchangeDSex} />
+                                        <label><b> Female </b></label>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description: </b></label>
                                 <textarea type="text"
 
                                     required
-                                    className="form-control"
-                                    value={this.state.description}
+                                    value={this.state.Description}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeDescription} />
                             </div>
@@ -387,7 +441,7 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon(Optionl)</b></label>
                                 <input type="text"
                                     className="form-control"
-                                    value={this.state.weapon}
+                                    value={this.state.Weapon}
                                     onChange={this.onchangeWeapon} />
                             </div>
 
@@ -395,7 +449,6 @@ export default class CreateDrugComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date: </b></label>
                                 <div></div>
                                 <DatePicker
-                                    className="form-control"
                                     selected={this.state.date}
                                     className="form-control is-invalid"
                                     onChange={this.onchangeDate} />
@@ -409,14 +462,13 @@ export default class CreateDrugComplain extends Component {
                                     id="offi"
                                     required
                                     className="form-control"
-                                    value={this.state.officer_incharge}
-                                    onChange={this.onchangeOfficerIncharge
-                                    } />
+                                    value={this.state.OfficerIncharge}
+                                    onChange={this.onchangeOfficerIncharge} />
 
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
+                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-white needs-validationbtn" />
                             </div>
                         </form>
                     </div >
