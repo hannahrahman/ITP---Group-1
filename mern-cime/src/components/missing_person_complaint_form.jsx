@@ -423,11 +423,8 @@ export default class MissingPersonComplaintForm extends Component {
       date: this.state.date,
       officer_incharge: this.state.officer_incharge,
     };
-    // axios
-    //   .post("http://localhost:4000/business/add", obj)
-    //   .then((res) => console.log(res.data));
 
-      console.log(obj)
+        console.log(obj)
         axios.post('http://localhost:5000/missingPersonAffairs/add', obj).then(res => console.log(res.data));
 
         this.setState({
@@ -454,7 +451,6 @@ export default class MissingPersonComplaintForm extends Component {
             remarks: ''
         })
 
-    window.location = "/";
   }
 
   render() {
