@@ -444,9 +444,7 @@ export default class CreateLEF extends Component {
                                             <option value="None">None</option  >
                                         </select>
                                     </div>
-
                                 </TabPanel>
-
                                 <TabPanel>
                                     <div className="card-header bg-dark"><h3>Examinee Details part 2</h3></div>
                                     <div className="form-group">

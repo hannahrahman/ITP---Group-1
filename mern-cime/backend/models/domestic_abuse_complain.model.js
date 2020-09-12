@@ -4,25 +4,24 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const domesticAbuseComplainSchema = new Schema({
-    refNo: { type: Number, required: true },
+    refNo: { type: String, required: true },
     complainType: { type: String, required: true },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
     nic: { type: String, required: true },
     dateOfBirth: { type: Date, required: true },
-    religion: { type: String },
-    sex: { type: String, required: true },
-    address: { type: String, require: true },
-    phone: { type: Number, require: true },
-    description: { type: String, required: true },
+    religion: { type: String, required: true },
+    sex: { type: String },
+    address: { type: String, required: true },
+    phone: { type: Number, required: true },
+    description: { type: String },
     weapon: { type: String },
     date: { type: Date, required: true },
     officer_incharge: { type: String }
 
 }, {
-    timestamps: true,
+    collection: 'domesticAbuseComplain',
 })
 
-const DomesticAbuseComplain = mongoose.model('DomesticAbuseComplain', domesticAbuseComplainSchema)
+module.exports = mongoose.model('DomesticAbuseComplain', domesticAbuseComplainSchema);
 
-module.exports = DomesticAbuseComplain
