@@ -24,7 +24,7 @@ export default class Sidenav extends React.Component {
 
   m3() {
     this.setState({
-      m1: "Civil Domestic Abuse Affairs",
+      m1: "Domestic Abuse Affairs",
     });
     console.log(this);
   }
@@ -85,7 +85,7 @@ export default class Sidenav extends React.Component {
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Civil Domestic Abuse Affairs</Link>
+            <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Domestic Abuse Affairs</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
