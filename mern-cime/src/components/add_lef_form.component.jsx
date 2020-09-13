@@ -211,7 +211,7 @@ export default class CreateLEF extends Component {
             other: this.state.other,
             remarks: this.state.remarks,
         };
-        window.location("/")
+        //window.location("/")
         console.log(obj)
         axios.post('http://localhost:5000/lef/add', obj).then(res => console.log(res.data));
 

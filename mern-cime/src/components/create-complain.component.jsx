@@ -39,11 +39,7 @@ export default class CreateComplain extends Component {
             weapon: '',
             date: new Date(),
             officer_incharge: '',
-            errors: {
-                refNo: '',
-                complainType: '',
-                fname: '',
-            }
+
         }
     }
 
@@ -130,49 +126,7 @@ export default class CreateComplain extends Component {
             officer_incharge: e.target.value
         })
     }
-    // Validation---------------------------------------------------------
 
-    handleValidation() {
-        let fields = this.state.fields;
-        let errors = {};
-        let formIsValid = true;
-
-        //Name
-        if (!fields["complainType"]) {
-            formIsValid = false;
-            errors["complainType"] = "Cannot be empty";
-        }
-        else {
-            formIsValid = true;
-        }
-
-        if (typeof fields["complainType"] !== "undefined") {
-            if (!fields["complainType"].match(/^[a-zA-Z]+$/)) {
-                formIsValid = false;
-                errors["complainType"] = "Only letters";
-            }
-        }
-
-        //Email
-        if (!fields["email"]) {
-            formIsValid = false;
-            errors["email"] = "Cannot be empty";
-        }
-
-        if (typeof fields["email"] !== "undefined") {
-            let lastAtPos = fields["email"].lastIndexOf('@');
-            let lastDotPos = fields["email"].lastIndexOf('.');
-
-            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') == -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
-                formIsValid = false;
-                errors["email"] = "Email is not valid";
-            }
-        }
-
-        this.setState({ errors: errors });
-        return formIsValid;
-    }
-    // Validation -------------------------------------------------------
 
     onSubmit(e) {
         e.preventDefault();
@@ -192,15 +146,10 @@ export default class CreateComplain extends Component {
             date: this.state.date,
             officer_incharge: this.state.officer_incharge,
         }
-        if (this.handleValidation()) {
-            alert("Form submitted");
-        } else {
-            alert("Form has errors.")
+        console.log(complain);
+        // window.location = '/';
+        axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
 
-            console.log(complain);
-            // window.location = '/';
-            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
-        }
         this.setState({
             refNo: new Number(),
             complainType: '',
