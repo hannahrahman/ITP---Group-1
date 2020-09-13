@@ -10,6 +10,7 @@ import CreateDomesticAbuseLegal from "./create-domestic-abuse-legal-form.compone
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
+import EditDomesticAbuseComplain from "./edit-domestic-abuse-complain.component";
 
 export default class CivilDomesticAbuseAffairs extends Component {
   render() {
@@ -28,7 +29,8 @@ export default class CivilDomesticAbuseAffairs extends Component {
           <Route path="/DomesticAbuseComplain" exact component={CreateDomesticAbuseComplain} />
           <Route path="/user" exact component={CreateUser} />
           <Route path="/DomesticAbuseApeal" exact component={CreateDomesticAbuseApeal} />
-          <Route path="/DomesticAbuseLegal" exact component={CreateDomesticAbuseLegal} />  
+          <Route path="/DomesticAbuseLegal" exact component={CreateDomesticAbuseLegal} />
+          <Route path="/EditDomesticAbuseComplain/:id" exact component={EditDomesticAbuseComplain} />
         </div>
       </Router>
     );
