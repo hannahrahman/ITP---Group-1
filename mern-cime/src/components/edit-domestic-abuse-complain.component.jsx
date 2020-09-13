@@ -3,27 +3,27 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
-export default class CreateDomesticAbuseComplain extends Component {
+export default class EditDomesticAbuseComplain extends Component {
 
     constructor(props) {
         super(props);
 
-        this.onchangeRefno = this.onchangeRefno.bind(this)
-        this.onchangeComplainType = this.onchangeComplainType.bind(this)
-        this.onchangeFName = this.onchangeFName.bind(this)
-        this.onchangeLName = this.onchangeLName.bind(this)
-        this.onchangeNic = this.onchangeNic.bind(this)
-        this.onchangeDateOfBirth = this.onchangeDateOfBirth.bind(this)
-        this.onchangeReligion = this.onchangeReligion.bind(this)
-        this.onchangeSex = this.onchangeSex.bind(this)
-        this.onchangeAddress = this.onchangeAddress.bind(this)
-        this.onchangePhone = this.onchangePhone.bind(this)
-        this.onchangeDescription = this.onchangeDescription.bind(this)
-        this.onchangeWeapon = this.onchangeWeapon.bind(this)
-        this.onchangeDate = this.onchangeDate.bind(this)
-        this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this)
-        this.onchangeRelationType = this.onchangeRelationType.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+        this.onchangeRefno = this.onchangeRefno.bind(this);
+        this.onchangeComplainType = this.onchangeComplainType.bind(this);
+        this.onchangeFName = this.onchangeFName.bind(this);
+        this.onchangeLName = this.onchangeLName.bind(this);
+        this.onchangeNic = this.onchangeNic.bind(this);
+        this.onchangeDateOfBirth = this.onchangeDateOfBirth.bind(this);
+        this.onchangeReligion = this.onchangeReligion.bind(this);
+        this.onchangeSex = this.onchangeSex.bind(this);
+        this.onchangeAddress = this.onchangeAddress.bind(this);
+        this.onchangePhone = this.onchangePhone.bind(this);
+        this.onchangeDescription = this.onchangeDescription.bind(this);
+        this.onchangeWeapon = this.onchangeWeapon.bind(this);
+        this.onchangeDate = this.onchangeDate.bind(this);
+        this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this);
+        this.onchangeRelationType = this.onchangeRelationType.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
             refNo: '',
@@ -42,6 +42,32 @@ export default class CreateDomesticAbuseComplain extends Component {
             officer_incharge: '',
             relationType: ''
         }
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:5000/domestic_abuse_complains/edit/'+this.props.match.params.id)
+        .then(res => {
+            this.setState({
+                refNo: res.data.refNo,
+                complainType: res.data.complainType,
+                fname: res.data.fname,
+                lname: res.data.lname,
+                nic: res.data.nic,
+                dateOfBirth: Date.parse(res.data.dateOfBirth),
+                religion: res.data.religion,
+                sex: res.data.sex,
+                address: res.data.address,
+                phone: res.data.phone,
+                description: res.data.description,
+                weapon: res.data.weapon,
+                date: Date.parse(res.data.date),
+                officer_incharge: res.data.officer_incharge,
+                relationType: res.data.relationType
+            });
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
     onchangeRefno(e) {
@@ -142,39 +168,22 @@ export default class CreateDomesticAbuseComplain extends Component {
             fname: this.state.fname,
             lname: this.state.lname,
             nic: this.state.nic,
-            dateOfBirth: this.state.dateOfBirth,
+            dateOfBirth: Date(this.state.dateOfBirth),
             religion: this.state.religion,
             sex: this.state.sex,
             address: this.state.address,
             phone: Number(this.state.phone),
             description: this.state.description,
             weapon: this.state.weapon,
-            date: this.state.date,
+            date: Date(this.state.date),
             officer_incharge: this.state.officer_incharge,
             relationType: this.state.relationType
         };
         console.log(complain)
         axios
-            .post('http://localhost:5000/domestic_abuse_complains/add', complain)
+            .post('http://localhost:5000/domestic_abuse_complains/update/'+this.props.match.params.id, complain)
             .then(res => console.log(res.data));
-
-        this.setState({
-            refNo: '',
-            complainType: '',
-            fname: '',
-            lname: '',
-            nic: '',
-            dateOfBirth: new Date(),
-            religion: '',
-            sex: '',
-            address: '',
-            phone: new Number(),
-            description: '',
-            weapon: '',
-            date: new Date(),
-            officer_incharge: '',
-            relationType: ''
-        })    
+    
         this.props.history.push('/DomesticAbuseComplainList')  //redirect to complains list page after submit
     }
     
@@ -183,21 +192,21 @@ export default class CreateDomesticAbuseComplain extends Component {
     handleReset = () => {
         Array.from(document.querySelectorAll('input'));
         this.setState({
-            refNo: '',
-            complainType: '',
-            fname: '',
-            lname: '',
-            nic: '',
-            dateOfBirth: new Date(),
-            religion: '',
-            sex: '',
-            address: '',
-            phone: new Number(),
-            description: '',
-            weapon: '',
-            date: new Date(),
-            officer_incharge: '',
-            relationType: ''
+            refNo: this.state.refNo,
+            complainType: this.state.complainType,
+            fname: this.state.fname,
+            lname: this.state.lname,
+            nic: this.state.nic,
+            dateOfBirth: Date.parse(this.state.dateOfBirth),
+            religion: this.state.religion,
+            sex: this.state.sex,
+            address: this.state.address,
+            phone: Number(this.state.phone),
+            description: this.state.description,
+            weapon: this.state.weapon,
+            date: Date.parse(this.state.date),
+            officer_incharge: this.state.officer_incharge,
+            relationType: this.state.relationType
         });
     };
 

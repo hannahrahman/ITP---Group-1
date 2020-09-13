@@ -44,9 +44,10 @@ export default class DomesticAbuseComplainList extends Component {
                             <Table striped border hover>
                                 <thead>
                                     <tr>
-                                        <th>Ref No</th>
+                                        <th>Refference No</th>
                                         <th>Complain Type</th>
-                                        <th>Date</th>
+                                        <th>Created Date</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
