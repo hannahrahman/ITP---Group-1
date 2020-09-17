@@ -15,13 +15,13 @@ export default class CrimeNavbar extends Component {
                     <ul className="navbar-nav mr-auto ">
 
                         <li className="navbar-item mr-5">
-                            <Link to="/" className="nav-link">Complains</Link>
+                            <Link to="/Complains List" className="nav-link">Complains List</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/Complain" className="nav-link">Add Complain</Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Appeal" className="nav-link">Add Appeal</Link>
+                            <Link to="/AddAppeal" className="nav-link">Add Appeal</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/LEF" className="nav-link">Legal Examination Form</Link>

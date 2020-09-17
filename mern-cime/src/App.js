@@ -26,10 +26,9 @@ function App() {
         <meta name="viewport" content="width=device-width, maximum-scale=1" />
         <link rel="shortcut icon" href={Police} />
       </Helmet>
-      <div id="content">
+      <div>
         <Router>
-          <div class="big-banner">
-
+          <div className="big-banner">
             <Sidenav />
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
             <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />

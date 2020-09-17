@@ -9,34 +9,34 @@ export default class CivilDomesticAbuseAffairsNavbar extends Component {
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto ">
             <li className="navbar-item mr-5">
-              <Link to="/" className="nav-link">
+              <Link to="/DomesticAbuseComplainList" className="nav-link">
                 Complains
               </Link>
             </li>
             <li className="navbar-item mr-5">
-              <Link to="/Complain" className="nav-link">
+              <Link to="/DomesticAbuseComplain" className="nav-link">
                 Add Complain
               </Link>
             </li>
             <li className="navbar-item mr-5">
-              <Link to="/Appeal" className="nav-link">
+              <Link to="/DomesticAbuseApeal" className="nav-link">
                 Add Appeal
               </Link>
             </li>
             <li className="navbar-item mr-5">
-              <Link to="/LEF" className="nav-link">
+              <Link to="/DomesticAbuseLegal" className="nav-link">
                 Legal Examination Form
               </Link>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+          <form className="form-inline my-2 my-lg-0">
             <input
-              class="form-control mr-sm-2"
+              className="form-control mr-sm-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
               Search
             </button>
           </form>

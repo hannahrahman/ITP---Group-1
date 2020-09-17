@@ -128,7 +128,6 @@ export default class CreateComplain extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         const complain = {
             refNo: this.state.refNo,
             complainType: this.state.complainType,
@@ -147,28 +146,27 @@ export default class CreateComplain extends Component {
         }
         console.log(complain);
 
-        window.location = '/';
+        // window.location = '/';
 
     }
 
     render() {
         return (
-            <div class="container" style={{ marginTop: -93 + 'rem' }}>
+            <div className="container" style={{ marginTop: 1.2 + 'rem' }}>
 
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 5.5 + 'rem' }} >
-                    <div class="card-header"><h3>Add Complain</h3></div>
-                    <div class="card-body" >
+                <div className="card text-white  bg-dark mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                    <div className="card-header bg-dark"><h3>Add Complain</h3></div>
+                    <div className="card-body" >
 
                     </div >
 
-                    <div class="container">
-                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
+                    <div className="container">
+                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} className=" needs-validation">
 
                             <div className="form-group" >
 
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
                                 <input
-                                    required
                                     type="text"
                                     required
                                     className="form-control is-invalid"
@@ -239,18 +237,13 @@ export default class CreateComplain extends Component {
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <div class="input-group">
-
-                                    <div class="input-group-prepend">
-
+                                <div className="input-group">
+                                    <div className="input-group-prepend">
                                         <div style={{ marginLeft: 0.5 + 'rem' }}>
-
                                             <input type="radio"
-
                                                 id="male"
                                                 name="gender"
                                                 value={this.state.sex}
-
                                                 onChange={this.onchangeSex} />
                                             <label><b>Male </b></label>
                                         </div>
@@ -284,7 +277,8 @@ export default class CreateComplain extends Component {
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
                                 <input type="number"
                                     required
-                                    NumberFormat format="### ###-####"
+                                    numberformat="true"
+                                    format="### ###-####"
                                     mask="_"
                                     className="form-control"
                                     value={this.state.phone}
