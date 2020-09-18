@@ -54,8 +54,9 @@ export default class MissingPersonComplaintForm extends Component {
     this.onchangeMPAdditionalInformation = this.onchangeMPAdditionalInformation.bind(
       this
     );
-    this.onchangeMPReasonToGoMissing = this.onchangeMPReasonToGoMissing.bind(this);
-
+    this.onchangeMPReasonToGoMissing = this.onchangeMPReasonToGoMissing.bind(
+      this
+    );
 
     //Reporter
     this.onchangeRepFullName = this.onchangeRepFullName.bind(this);
@@ -65,12 +66,12 @@ export default class MissingPersonComplaintForm extends Component {
     this.onchangeRepContactNumber = this.onchangeRepContactNumber.bind(this);
     this.onchangeRepRelationship = this.onchangeRepRelationship.bind(this);
 
-
     //Officer
     this.onchangeOfficerID = this.onchangeOfficerID.bind(this);
     this.onchangeOfficerName = this.onchangeOfficerName.bind(this);
-    this.onchangeOfficerPoliceStation = this.onchangeOfficerPoliceStation.bind(this);
-
+    this.onchangeOfficerPoliceStation = this.onchangeOfficerPoliceStation.bind(
+      this
+    );
 
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -105,7 +106,7 @@ export default class MissingPersonComplaintForm extends Component {
       mp_history_of_surgery: "",
       mp_dna_items: "",
       mp_where_last_seen: "",
-      mp_when_last_seen: "",
+      mp_when_last_seen: new Date(),
       mp_last_person_to_see: "",
       mp_pets: "",
       mp_missing_before: "",
@@ -116,20 +117,16 @@ export default class MissingPersonComplaintForm extends Component {
       rep_fullname: "",
       rep_nic: "",
       rep_address: "",
-      rep_DOB: "",
+      rep_DOB: new Date(),
       rep_contact_number: "",
       rep_relationship: "",
-
 
       //Officer
       officer_fullname: "",
       officer_id: "",
       officer_police_station: "",
-      
-
     };
   }
-
 
   //Missig Person
   onchangeMPersonFullName(e) {
@@ -204,9 +201,9 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
-  onchangeMPFeatures(date) {
+  onchangeMPFeatures(e) {
     this.setState({
-      mp_features: date,
+      mp_features: e.target.value,
     });
   }
 
@@ -288,9 +285,9 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
-  onchangeMPWhenLastSeen(e) {
+  onchangeMPWhenLastSeen(date) {
     this.setState({
-      mp_when_last_seen: e.target.value,
+      mp_when_last_seen: date,
     });
   }
 
@@ -342,9 +339,6 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
-
-
-
   //Reporter
   onchangeRepFullName(e) {
     this.setState({
@@ -364,9 +358,9 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
-  onchangeRepDOB(e) {
+  onchangeRepDOB(date) {
     this.setState({
-      rep_DOB: e.target.value,
+      rep_DOB: date,
     });
   }
 
@@ -381,8 +375,6 @@ export default class MissingPersonComplaintForm extends Component {
       rep_relationship: e.target.value,
     });
   }
-
-
 
   //Officer
   onchangeOfficerID(e) {
@@ -403,54 +395,117 @@ export default class MissingPersonComplaintForm extends Component {
     });
   }
 
-
   onSubmit(e) {
     e.preventDefault();
 
     const obj = {
-      refNo: this.state.refNo,
-      complainType: this.state.complainType,
-      fname: this.state.fname,
-      lname: this.state.lname,
-      nic: this.state.nic,
-      dateOfBirth: this.state.dateOfBirth,
-      religion: this.state.religion,
-      sex: this.state.sex,
-      address: this.state.address,
-      phone: this.state.phone,
-      description: this.state.description,
-      weapon: this.state.weapon,
-      date: this.state.date,
-      officer_incharge: this.state.officer_incharge,
+      //Missing Person
+      mp_fullname: this.state.mp_fullname,
+      mp_nickname: this.state.mp_nickname,
+      mp_address: this.state.mp_address,
+      mp_contact_number: Number(this.state.mp_contact_number),
+      mp_nic: this.state.mp_nic,
+      mp_DOB: this.state.mp_DOB,
+      mp_age: Number(this.state.mp_age),
+      mp_gender: this.state.mp_gender,
+      mp_height: Number(this.state.mp_height),
+      mp_weight: Number(this.state.mp_weight),
+      mp_hair_color: this.state.mp_hair_color,
+      mp_eye_color: this.state.mp_eye_color,
+      mp_spectacle_user: this.state.mp_spectacle_user,
+      mp_features: this.state.mp_features,
+      mp_communication_skills: this.state.mp_communication_skills,
+      mp_head_wear: this.state.mp_head_wear,
+      mp_foot_wear: this.state.mp_foot_wear,
+      mp_jewellery: this.state.mp_jewellery,
+      mp_bank_details: this.state.mp_bank_details,
+      mp_passport_details: this.state.mp_passport_details,
+      mp_vehicle_details: this.state.mp_vehicle_details,
+      mp_social_details: this.state.mp_social_details,
+      mp_health_conditions: this.state.mp_health_conditions,
+      mp_school_workplace: this.state.mp_school_workplace,
+      mp_allergies: this.state.mp_allergies,
+      mp_medications: this.state.mp_medications,
+      mp_history_of_surgery: this.state.mp_history_of_surgery,
+      mp_dna_items: this.state.mp_dna_items,
+      mp_where_last_seen: this.state.mp_where_last_seen,
+      mp_when_last_seen: this.state.mp_when_last_seen,
+      mp_last_person_to_see: this.state.mp_last_person_to_see,
+      mp_pets: this.state.mp_pets,
+      mp_missing_before: this.state.mp_missing_before,
+      mp_additional_info: this.state.mp_additional_info,
+      mp_missing_reason: this.state.mp_missing_reason,
+
+      //Reporter
+      rep_fullname: this.state.rep_fullname,
+      rep_nic: this.state.rep_nic,
+      rep_address: this.state.rep_address,
+      rep_DOB: this.state.rep_DOB,
+      rep_contact_number: Number(this.state.rep_contact_number),
+      rep_relationship: this.state.rep_relationship,
+
+      //Officer
+      officer_fullname: this.state.officer_fullname,
+      officer_id: this.state.officer_id,
+      officer_police_station: this.state.officer_police_station,
     };
 
-        console.log(obj)
-        axios.post('http://localhost:5000/missingPersonAffairs/add', obj).then(res => console.log(res.data));
+    console.log(obj);
+    axios
+      .post("http://localhost:5000/missingPersonAffairs/add", obj)
+      .then((res) => console.log(res.data));
 
-        this.setState({
-            refNo: '',
-            dateOfIssue: new Date(),
-            victimFullName: '',
-            dateOfBirth: new Date(),
-            age: new Number(),
-            admission: '',
-            hospital: '',
-            wardNo: '',
-            date: new Date(),
-            dateOfDischarge: new Date(),
-            registrationNumber: new Number(),
-            nomineeName: '',
-            address: '',
-            reason: '',
-            rank: '',
-            natureOfBodilyHarm: '',
-            weapon: '',
-            categoryOfHurt: '',
-            consumptionOfAlcohol: '',
-            other: '',
-            remarks: ''
-        })
+    this.setState({
+      //Missing Person
+      mp_fullname: "",
+      mp_nickname: "",
+      mp_address: "",
+      mp_contact_number: "",
+      mp_nic: "",
+      mp_DOB: new Date(),
+      mp_age: "",
+      mp_gender: "",
+      mp_height: "",
+      mp_weight: "",
+      mp_hair_color: "",
+      mp_eye_color: "",
+      mp_spectacle_user: new Date(),
+      mp_features: "",
+      mp_communication_skills: "",
+      mp_head_wear: "",
+      mp_foot_wear: "",
+      mp_jewellery: "",
+      mp_bank_details: "",
+      mp_passport_details: "",
+      mp_vehicle_details: "",
+      mp_social_details: "",
+      mp_health_conditions: "",
+      mp_school_workplace: "",
+      mp_allergies: "",
+      mp_medications: "",
+      mp_history_of_surgery: "",
+      mp_dna_items: "",
+      mp_where_last_seen: "",
+      mp_when_last_seen: new Date(),
+      mp_last_person_to_see: "",
+      mp_pets: "",
+      mp_missing_before: "",
+      mp_additional_info: "",
+      mp_missing_reason: "",
 
+      //Reporter
+      rep_fullname: "",
+      rep_nic: "",
+      rep_address: "",
+      rep_DOB: new Date(),
+      rep_contact_number: "",
+      rep_relationship: "",
+
+      //Officer
+      officer_fullname: "",
+      officer_id: "",
+      officer_police_station: "",
+    });
   }
 
   render() {
@@ -468,7 +523,6 @@ export default class MissingPersonComplaintForm extends Component {
               <b>Missing Person's Details</b>
             </Tab>
           </div>
-
         </TabList>
         <div className="container" style={{ marginTop: 1 + "rem" }}>
           <div
@@ -480,7 +534,6 @@ export default class MissingPersonComplaintForm extends Component {
                 onSubmit={this.onSubmit}
                 style={{ margin: "auto" }}
                 className=" needs-validation"
-                noValidate={true}
               >
                 {/* Officer Details */}
                 <TabPanel>
@@ -493,8 +546,8 @@ export default class MissingPersonComplaintForm extends Component {
                       required
                       type="text"
                       className="form-control is-invalid"
-                      value={this.state.refNo}
-                      onChange={this.onchangeRefno}
+                      value={this.state.officer_id}
+                      onChange={this.onchangeOfficerID}
                     />
                   </div>
                   <div className="form-group">
@@ -505,8 +558,8 @@ export default class MissingPersonComplaintForm extends Component {
                       required
                       type="text"
                       className="form-control is-invalid"
-                      value={this.state.refNo}
-                      onChange={this.onchangeRefno}
+                      value={this.state.officer_fullname}
+                      onChange={this.onchangeOfficerName}
                     />
                   </div>
                   <div className="form-group">
@@ -517,8 +570,8 @@ export default class MissingPersonComplaintForm extends Component {
                       required
                       type="text"
                       className="form-control is-invalid"
-                      value={this.state.refNo}
-                      onChange={this.onchangeRefno}
+                      value={this.state.officer_police_station}
+                      onChange={this.onchangeOfficerPoliceStation}
                     />
                   </div>
                 </TabPanel>
@@ -552,7 +605,7 @@ export default class MissingPersonComplaintForm extends Component {
                       onChange={this.onchangeRepNIC}
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
                       <b>Reporter's Address : </b>
@@ -567,19 +620,18 @@ export default class MissingPersonComplaintForm extends Component {
                     />
                   </div>
 
-
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
                       <b>Reporter's Date of Birth : </b>
                     </label>
                     <div></div>
-                    <input
-                      required
-                      type="text"
-                      className="form-control is-invalid"
-                      value={this.state.rep_DOB}
-                      onChange={this.onchangeRepDOB}
-                    />
+                    <div>
+                      <DatePicker
+                        className="form-control"
+                        selected={this.state.rep_DOB}
+                        onChange={this.onchangeRepDOB}
+                      />
+                    </div>
                   </div>
 
                   <div className="form-group">
@@ -589,7 +641,7 @@ export default class MissingPersonComplaintForm extends Component {
                     <div></div>
                     <input
                       required
-                      type="text"
+                      type="number"
                       className="form-control is-invalid"
                       value={this.state.rep_contact_number}
                       onChange={this.onchangeRepContactNumber}
@@ -716,8 +768,8 @@ export default class MissingPersonComplaintForm extends Component {
                       id="dropdown-item-button"
                       className="btn btn-outline-dark btn btn-secondary text-light"
                       name="natureOfBodilyHarm"
-                      value={this.state.mp_spectacle_user}
-                      onChange={this.onchangeMPSpectacleUser}
+                      value={this.state.mp_gender}
+                      onChange={this.onchangeMPGender}
                     >
                       <option value="Male">Male</option>
                       <option value="Female">Female</option>
@@ -726,7 +778,7 @@ export default class MissingPersonComplaintForm extends Component {
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Height :</b>
+                      <b>Height (Feet):</b>
                     </label>
                     <input
                       type="number"
@@ -738,7 +790,7 @@ export default class MissingPersonComplaintForm extends Component {
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Weight :</b>
+                      <b>Weight (Kilograms):</b>
                     </label>
                     <input
                       type="number"
@@ -911,8 +963,8 @@ export default class MissingPersonComplaintForm extends Component {
                     <input
                       type="text"
                       className="form-control is-invalid"
-                      value={this.state.mp_social_details}
-                      onChange={this.onchangeMPSocialMediaDetails}
+                      value={this.state.mp_school_workplace}
+                      onChange={this.onchangeMPSchoolWorkplace}
                     />
                   </div>
 
@@ -983,15 +1035,15 @@ export default class MissingPersonComplaintForm extends Component {
                     <div>
                       <DatePicker
                         className="form-control"
-                        selected={this.state.mp_DOB}
-                        onChange={this.onchangeMPDOB}
+                        selected={this.state.mp_when_last_seen}
+                        onChange={this.onchangeMPWhenLastSeen}
                       />
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>When was he/she last seen? :</b>
+                      <b>Where was he/she last seen? :</b>
                     </label>
                     <input
                       type="text"
@@ -1044,7 +1096,7 @@ export default class MissingPersonComplaintForm extends Component {
 
                   <div className="form-group">
                     <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Additional Information:</b>
+                      <b>Reason to go missing:</b>
                     </label>
                     <input
                       type="textArea"
@@ -1055,14 +1107,26 @@ export default class MissingPersonComplaintForm extends Component {
                   </div>
 
                   <div className="form-group">
-                  <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
+                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                      <b>Additional Information:</b>
+                    </label>
+                    <input
+                      type="textArea"
+                      className="form-control is-invalid"
+                      value={this.state.mp_additional_info}
+                      onChange={this.onchangeMPAdditionalInformation}
+                    />
                   </div>
 
+                  <div className="form-group">
+                    <input
+                      type="submit"
+                      style={{ marginLeft: 0.5 + "rem" }}
+                      value="Submit"
+                      className="btn btn-outline-danger btn btn-dark"
+                    />
+                  </div>
                 </TabPanel>
-
-                
-
-                
               </form>
             </div>
           </div>

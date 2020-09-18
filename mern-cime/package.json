@@ -14,7 +14,7 @@
     "formik": "^2.1.5",
     "formsy-react": "^2.2.1",
     "gulp-rev-all": "https://github.com/Amitesh/gulp-rev-all/tarball/master",
-    "helmet": "^4.1.0",
+    "helmet": "^4.1.1",
     "jquery": "^3.5.1",
     "npm": "^6.14.8",
     "react": "^16.13.1",
@@ -25,7 +25,7 @@
     "react-helmet": "^6.1.0",
     "react-scripts": "^3.4.3",
     "react-tabs": "^3.1.1",
-    "semantic-ui-react": "^1.1.1",
+    "semantic-ui-react": "^1.2.1",
     "yup": "^0.29.3"
   },
   "scripts": {

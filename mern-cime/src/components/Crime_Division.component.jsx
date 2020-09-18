@@ -22,7 +22,7 @@ export default class CrimeDivision extends Component {
             <Route path="/Complains_List" exact component={ComplainsList} />
             <Route path="/EditComplain" exact component={EditComplain} />
             <Route path="/Complain" exact component={CreateComplain} />
-            <Route path="/LEF" exact component={CreateLEF} />
+            <div style={{ marginLeft: 18 + "rem" }}><Route path="/LEF" exact component={CreateLEF} /></div>
             <Route path="/CreateAppeal" exact component={CreateAppeal} />
           </div>
         </Router>
