@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import axios from 'axios'
-
+import { TextField } from '@material-ui/core'
 export default class CreateComplain extends Component {
 
     constructor(props) {
@@ -25,7 +25,7 @@ export default class CreateComplain extends Component {
         this.onSubmit = this.onSubmit.bind(this)
 
         this.state = {
-            refNo: new Number(),
+            refNo: '',
             complainType: '',
             fname: '',
             lname: '',
@@ -128,6 +128,7 @@ export default class CreateComplain extends Component {
     }
 
 
+
     onSubmit(e) {
         e.preventDefault();
         const complain = {
@@ -151,7 +152,7 @@ export default class CreateComplain extends Component {
         axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
 
         this.setState({
-            refNo: new Number(),
+            refNo: '',
             complainType: '',
             fname: '',
             lname: '',
@@ -160,7 +161,7 @@ export default class CreateComplain extends Component {
             religion: '',
             sex: '',
             address: '',
-            phone: new Number(),
+            phone: '',
             description: '',
             weapon: '',
             date: new Date(),
@@ -172,62 +173,72 @@ export default class CreateComplain extends Component {
         return (
             <div className="container" style={{ marginTop: 1.2 + 'rem' }}>
 
-                <div className="card text-white  bg-dark mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                <div className="card text-white  bg-light mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
                     <div className="card-header bg-dark"><h3>Add Complain</h3></div>
                     <div className="card-body" >
 
                     </div >
 
                     <div className="container">
-                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} className=" needs-validation">
+                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} noValidate="true">
+                            <div className="row">
+                                <div className="col form-group" >
+                                    <TextField
+                                        label="Refno"
+                                        required
+                                        color="secondary"
+                                        type="number"
+                                        variant="outlined"
+                                        value={this.state.refNo}
+                                        onChange={this.onchangeRefno}
+                                    />
+                                </div>
 
-                            <div className="form-group" >
 
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>RefNo:</b></label>
-                                <input
-                                    type="text"
-                                    name="refNo"
-                                    required
-                                    className="form-control is-invalid"
-                                    value={this.state.refNo}
-                                    onChange={this.onchangeRefno} />
-
+                                <div className="col" style={{ marginLeft: -17 + 'rem' }}>
+                                    <div className="form-group">
+                                        <TextField
+                                            type="text"
+                                            label="Complain Type"
+                                            variant="outlined"
+                                            color="secondary"
+                                            required
+                                            value={this.state.complainType}
+                                            onChange={this.onchangecomplainType} />
+                                    </div>
+                                </div>
                             </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type: </b></label>
-                                <input type="text"
-                                    required
-                                    ref="complainType"
-                                    value={this.state.complainType}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangecomplainType} />
+                            <div className="row first-Name">
+                                <div className="col form-group" >
+                                    <TextField
+                                        type="text"
+                                        required
+                                        variant="outlined"
+                                        fullWidth
+                                        color="secondary"
+                                        label="First Name"
+                                        value={this.state.fname}
+                                        onChange={this.onchangeFName} />
+                                </div>
+                                <div className="col form-group">
+                                    <TextField
+                                        type="text"
+                                        required
+                                        fullWidth
+                                        variant="outlined"
+                                        color="secondary"
+                                        label="Last Name"
+                                        value={this.state.lname}
+                                        onChange={this.onchangeLName} />
+                                </div>
                             </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name: </b></label>
-                                <input type="text"
-                                    required
-                                    value={this.state.fname}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeFName} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
-                                <input type="text"
-                                    required
-                                    value={this.state.lname}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeLName} />
-                            </div>
-
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
                                 <input type="text"
                                     required
                                     value={this.state.nic}
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     onChange={this.onchangeNic} />
                             </div>
 
@@ -246,7 +257,7 @@ export default class CreateComplain extends Component {
                                 <input type="text"
                                     required
                                     value={this.state.religion}
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     onChange={this.onchangeReligion} />
                             </div>
 
@@ -272,7 +283,7 @@ export default class CreateComplain extends Component {
                                 <input type="text"
                                     required
                                     value={this.state.address}
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     onChange={this.onchangeAddress} />
                             </div>
 
@@ -284,7 +295,7 @@ export default class CreateComplain extends Component {
                                     format="### ###-####"
                                     mask="_"
                                     value={this.state.phone}
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     onChange={this.onchangePhone} />
                             </div>
 
@@ -294,7 +305,7 @@ export default class CreateComplain extends Component {
 
                                     required
                                     value={this.state.description}
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     onChange={this.onchangeDescription} />
                             </div>
 
@@ -322,7 +333,7 @@ export default class CreateComplain extends Component {
                                     name="offi"
                                     id="offi"
                                     required
-                                    className="form-control is-invalid"
+                                    className="form-control"
                                     value={this.state.officer_incharge}
                                     onChange={this.onchangeOfficerIncharge
                                     } />
@@ -330,16 +341,18 @@ export default class CreateComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
+                                <input type="submit" name="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                             </div>
                         </form>
                     </div >
+
                 </div >
             </div >
 
-
         )
 
+
     }
+
 
 }
