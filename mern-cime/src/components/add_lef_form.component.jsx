@@ -247,7 +247,7 @@ export default class CreateLEF extends Component {
 
             <Tabs defaultIndex={0} onSelect={index => console.log(index)}>
                 <TabList >
-                    <div class="tab text-danger">
+                    <div className="tab text-danger">
                         <Tab style={{ marginLeft: 20 + 'rem' }}><b>Police Station Details</b></Tab>
                         <Tab ><b>Medical Officer Details</b></Tab>
                         <Tab ><b>Examinee Details</b></Tab>

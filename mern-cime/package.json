@@ -16,7 +16,7 @@
     "formik": "^2.1.5",
     "formsy-react": "^2.2.1",
     "gulp-rev-all": "https://github.com/Amitesh/gulp-rev-all/tarball/master",
-    "helmet": "^4.1.0",
+    "helmet": "^4.1.1",
     "jquery": "^3.5.1",
     "npm": "^6.14.8",
     "react": "^16.13.1",
@@ -28,9 +28,13 @@
     "react-script-tag": "^1.1.2",
     "react-scripts": "^3.4.3",
     "react-tabs": "^3.1.1",
+<<<<<<< HEAD
     "script": "^0.1.4",
     "semantic-ui-react": "^1.1.1",
     "textfield": "^1.0.4",
+=======
+    "semantic-ui-react": "^1.2.1",
+>>>>>>> 5a301f52ceedb7ccd45a2c0ec28fa01de67317ce
     "yup": "^0.29.3"
   },
   "scripts": {
