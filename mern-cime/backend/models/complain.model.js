@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const complainSchema = new Schema({
-
-    
+ 
     refNo: { type: Number, required: true },
     fullname: { type: String, required: true },
     phonenumber: { type: Number, required: true },
@@ -15,9 +14,8 @@ const complainSchema = new Schema({
     dateofincident: { type: Date },
     personsinvolved: { type: String, required: true },
 }, {
-    timestamps: true,
-})
+    collection: 'complains',
+});
 
-const Complain = mongoose.model('Complain', complainSchema)
+module.exports = mongoose.model('Complain', complainSchema);
 
-module.exports = Complain

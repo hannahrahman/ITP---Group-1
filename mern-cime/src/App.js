@@ -16,6 +16,7 @@ import MiscellaneousComplaints from "./components/Miscellaneous_Complaints.compo
 import { Helmet } from "react-helmet";
 import Police from './Images/police.png'
 
+
 function App() {
   return (
     <div>
@@ -42,10 +43,14 @@ function App() {
             <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
 
           </div>
+          
+            
 
         </Router>
       </div>
     </div>
+
+    
   );
 }
 

@@ -4,7 +4,7 @@ export default class Sidenav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      m1: "Police Managment",
+      m1: "Police Management",
     };
   }
   m1() {
@@ -70,7 +70,7 @@ export default class Sidenav extends Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }} >
-        <font> <p ><div className=" navbar-item " class="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
+        <font> <p ><div className=" navbar-item " className="navbar-brand text-primary" ><b>{this.state.m1}</b></div>
         </p></font>
         <ul className="navbar-nav " >
           <li className="navbar-item" style={{ marginTop: -10 + "rem" }}>
