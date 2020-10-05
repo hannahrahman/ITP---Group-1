@@ -138,13 +138,12 @@ export default class EditOnlineDriving extends Component {
   render() {
     return (
 
-        <div style={{ marginTop: -7 + "rem" }}>
+        <div>
 
-<OnlineDrivingNICRenewalNavbar />
+		<OnlineDrivingNICRenewalNavbar />
 
-
-          <div class="container" style={{ marginTop: 1 + "rem" }}>
-            <div class="card text-danger  bg-dark  mb-3">
+          <div class="container">
+            <div class="card text-danger bg-dark">
               <div class="card-header">
                 <h3>Driving License Lost</h3>
               </div>
@@ -157,7 +156,7 @@ export default class EditOnlineDriving extends Component {
                   onSubmit={this.onSubmit}
                 >
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>RefNo:</b>
                     </label>
                     <input
@@ -170,7 +169,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Name: </b>
                     </label>
                     <input
@@ -183,7 +182,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>NIC Number :</b>
                     </label>
                     <input
@@ -196,7 +195,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Address:</b>
                     </label>
                     <input
@@ -209,7 +208,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Phone: </b>
                     </label>
                     <input
@@ -221,7 +220,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Description: </b>
                     </label>
                     <textarea
@@ -233,7 +232,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   {/* <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Date: </b>
                     </label>
                     <div></div>
@@ -246,7 +245,7 @@ export default class EditOnlineDriving extends Component {
                   </div> */}
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Officer Incharge:</b>
                     </label>
                     <input
@@ -258,7 +257,7 @@ export default class EditOnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Grama Niladhari Division:</b>
                     </label>
                     <input
@@ -273,7 +272,6 @@ export default class EditOnlineDriving extends Component {
                     <input
                       type="submit"
                       onSubmit={this.onsubmit}
-                      style={{ marginLeft: 0.5 + "rem" }}
                       value="Submit"
                       className="btn btn-outline-danger btn btn-dark"
                     />

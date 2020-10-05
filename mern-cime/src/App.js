@@ -19,20 +19,24 @@ import Police from './Images/police.png'
 import ViewLost from "./components/license_nic/viewLost"
 import EditLicense from "./components/license_nic/Edit_Driving_License"
 
+import {Container, Row, Col} from 'react-bootstrap'
+
 function App() {
   return (
-    <div>
-      <Helmet>
-        <meta charSet="UTF-8" />
-        <title>Police Station</title>
-        <meta name="description" content="Police Station" />
-        <meta name="viewport" content="width=device-width, maximum-scale=1" />
-        <link rel="shortcut icon" href={Police} />
-      </Helmet>
-      <div>
-        <Router>
-          <div className="big-banner">
-            <Sidenav />
+
+<Container fluid>
+
+<Router>
+
+  <Row noGutters>
+
+    	<Col lg={3} sm>
+       		<Sidenav />
+    	</Col>
+
+
+    	<Col sm>
+
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
             <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
             <Route exact path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
@@ -42,13 +46,46 @@ function App() {
             <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
             <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
             <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
-          </div>
-                <Route exact path="/ViewLost" exact component={ViewLost} />
-                <Route path="/edit/:id" component={EditLicense} />
-        </Router>
-      </div>
-    </div>
-  );
+            <Route exact path="/ViewLost" exact component={ViewLost} />
+            <Route path="/edit/:id" component={EditLicense} />
+
+   	</Col>
+
+  </Row>
+
+</Router>
+
+</Container>
+
+//<div>
+//      <Helmet>
+//        <meta charSet="UTF-8" />
+//        <title>Police Station</title>
+//        <meta name="description" content="Police Station" />
+//        <meta name="viewport" content="width=device-width, maximum-scale=1" />
+//        <link rel="shortcut icon" href={Police} />
+//      </Helmet>
+//      <div>
+//        <Router>
+//          <div className="big-banner">
+//            <Sidenav />
+//            <Route exact path="/Crime Division" exact component={CrimeDivision} />
+//            <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
+//            <Route exact path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
+//            <Route exact path="/Environmental Affairs" exact component={EnvironmentalAffairs} />
+//            <Route exact path="/Missing Persons Affairs" exact component={MissingPersonsAffairs} />
+//            <Route exact path="/Cyber Crime" exact component={CyberCrime} />
+//            <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
+//            <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
+//           <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
+//          </div>
+//                <Route exact path="/ViewLost" exact component={ViewLost} />
+//                <Route path="/edit/:id" component={EditLicense} />
+//       </Router>
+//      </div>
+//    </div>
+  
+);
 }
 
 export default App;

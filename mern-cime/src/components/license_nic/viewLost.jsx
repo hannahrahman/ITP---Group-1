@@ -65,9 +65,10 @@ export default class viewLost extends Component {
     }
 
     render() {
+
         return (
   
-        <div class="container" style={{ marginTop: -7 + "rem" }}>
+        <div>
 
         <OnlineDrivingNICRenewalNavbar />
 
