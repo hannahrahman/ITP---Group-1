@@ -3,6 +3,14 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import axios from 'axios'
 import { TextField } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from "@material-ui/core/NativeSelect";
+
 export default class CreateComplain extends Component {
 
     constructor(props) {
@@ -23,6 +31,8 @@ export default class CreateComplain extends Component {
         this.onchangeDate = this.onchangeDate.bind(this)
         this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+
+
 
         this.state = {
             refNo: '',
@@ -195,7 +205,7 @@ export default class CreateComplain extends Component {
                                 </div>
 
 
-                                <div className="col" style={{ marginLeft: -17 + 'rem' }}>
+                                <div className="col" >
                                     <div className="form-group">
                                         <TextField
                                             type="text"
@@ -233,82 +243,97 @@ export default class CreateComplain extends Component {
                                         onChange={this.onchangeLName} />
                                 </div>
                             </div>
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
-                                <input type="text"
-                                    required
-                                    value={this.state.nic}
-                                    className="form-control"
-                                    onChange={this.onchangeNic} />
-                            </div>
+                            <div className="row first-Name">
+                                <div className="col form-group">
+                                    <TextField
+                                        type="text"
+                                        required
+                                        fullWidth
+                                        variant="outlined"
+                                        color="secondary"
+                                        label="NIC Number"
+                                        value={this.state.nic}
+                                        onChange={this.onchangeNic} />
+                                </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth: </b></label>
-                                <div>
-                                    <DatePicker
-                                        className="form-control"
-                                        selected={this.state.dateOfBirth}
-                                        onChange={this.onchangeDateOfBirth} />
+                                <div className="col form-group">
+                                    <TextField
+                                        type="text"
+                                        required
+                                        fullWidth
+                                        variant="outlined"
+                                        color="secondary"
+                                        label="Religion"
+                                        value={this.state.religion}
+                                        onChange={this.onchangeReligion} />
+                                </div>
+                                <div className="col form-group">
+                                    <select
+                                        style={{ marginLeft: 0.5 + 'rem', height: 3.3 + 'rem' }}
+                                        id="dropdown-item-button"
+                                        className="btn btn-outline-secondary btn btn-secondary text-light"
+                                        name="sex"
+                                        value={this.state.sex}
+                                        onChange={this.onchangeSex}
+                                    >
+                                        <option >Sex</option >
+                                        <option value="Male">Male</option >
+                                        <option value="Female">Female</option  >
+
+                                    </select>
                                 </div>
                             </div>
+                            <div className="row first-Name">
+                                <div className="col form-group">
+                                    <label className="text-dark" style={{ marginLeft: 0.5 + 'rem' }}>Date Of Birth:
+                                    <div>
+                                            <TextField
+                                                required
+                                                variant="outlined"
+                                                type="date"
+                                                color="secondary"
+                                                selected={this.state.dateOfBirth}
+                                                onChange={this.onchangeDateOfBirth} />
+                                        </div>
+                                    </label>
+                                </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion: </b></label>
-                                <input type="text"
-                                    required
-                                    value={this.state.religion}
-                                    className="form-control"
-                                    onChange={this.onchangeReligion} />
+                                <div className="col form-group" style={{ margin: 'auto', marginLeft: -30 + 'rem' }}>
+
+                                    <TextField
+                                        type="text"
+                                        required
+                                        fullWidth
+                                        label="Address"
+                                        variant="outlined"
+                                        color="secondary"
+                                        value={this.state.address}
+                                        onChange={this.onchangeAddress} />
+                                </div>
                             </div>
+                            <div className="row first-Name">
+                                <div className="col form-group">
+                                    <TextField
+                                        type="number"
+                                        required
+                                        label="Phone "
+                                        variant="outlined"
+                                        color="secondary"
+                                        value={this.state.phone}
+                                        onChange={this.onchangePhone} />
+                                </div>
 
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <select
-                                    style={{ marginLeft: 0.5 + 'rem' }}
-                                    id="dropdown-item-button"
-                                    className="btn btn-outline-dark btn btn-secondary text-light"
-                                    name="sex"
-                                    value={this.state.sex}
-                                    onChange={this.onchangeSex}
-                                >
-                                    <option >Select a field</option >
-                                    <option value="Male">Male</option >
-                                    <option value="Female">Female</option  >
-
-                                </select>
+                                <div className="col form-group " , marginLeft: -30 + 'rem' }}>
+                                    <label className="text-dark" style={{ marginLeft: 0.5 + 'rem' }}>Date Of Birth:
+                                    <textarea type="text"
+                                            required
+                                            value={this.state.description}
+                                            className="form-control bg-light"
+                                            variant="outlined"
+                                            onChange={this.onchangeDescription} />
+                                    </label>
+                                </div>
                             </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address:</b></label>
-                                <input type="text"
-                                    required
-                                    value={this.state.address}
-                                    className="form-control"
-                                    onChange={this.onchangeAddress} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
-                                <input type="number"
-                                    required
-                                    numberformat="true"
-                                    format="### ###-####"
-                                    mask="_"
-                                    value={this.state.phone}
-                                    className="form-control"
-                                    onChange={this.onchangePhone} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description: </b></label>
-                                <textarea type="text"
-
-                                    required
-                                    value={this.state.description}
-                                    className="form-control"
-                                    onChange={this.onchangeDescription} />
-                            </div>
-
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon(Optionl)</b></label>
                                 <input type="text"
