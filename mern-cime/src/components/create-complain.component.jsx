@@ -285,7 +285,7 @@ export default class CreateComplain extends Component {
                             </div>
                             <div className="row first-Name">
                                 <div className="col form-group">
-                                    <label className="text-dark" style={{ marginLeft: 0.5 + 'rem' }}>Date Of Birth:
+                                    <label className="text-dark">Date Of Birth:
                                     <div>
                                             <TextField
                                                 required
@@ -298,7 +298,7 @@ export default class CreateComplain extends Component {
                                     </label>
                                 </div>
 
-                                <div className="col form-group" style={{ margin: 'auto', marginLeft: -30 + 'rem' }}>
+                                <div className="col form-group" style={{ margin: 'auto', marginLeft: -9 + 'rem' }}>
 
                                     <TextField
                                         type="text"
@@ -310,9 +310,8 @@ export default class CreateComplain extends Component {
                                         value={this.state.address}
                                         onChange={this.onchangeAddress} />
                                 </div>
-                            </div>
-                            <div className="row first-Name">
-                                <div className="col form-group">
+
+                                <div className="col form-group" style={{ margin: 'auto', marginLeft: + 'rem' }}>
                                     <TextField
                                         type="number"
                                         required
@@ -322,49 +321,59 @@ export default class CreateComplain extends Component {
                                         value={this.state.phone}
                                         onChange={this.onchangePhone} />
                                 </div>
-
-                                <div className="col form-group " , marginLeft: -30 + 'rem' }}>
-                                    <label className="text-dark" style={{ marginLeft: 0.5 + 'rem' }}>Date Of Birth:
+                            </div>
+                            <div className="row first-Name">
+                                <div className="col form-group ">
+                                    <label className="text-dark" >Description:
                                     <textarea type="text"
                                             required
+                                            fullWidth
                                             value={this.state.description}
                                             className="form-control bg-light"
                                             variant="outlined"
                                             onChange={this.onchangeDescription} />
                                     </label>
                                 </div>
+
+                                <div className="col form-group " style={{ margin: 'auto' }}>
+                                    <TextField
+                                        required
+                                        type="text"
+                                        fullWidth
+                                        label="Weapon(Optionl)"
+                                        variant="outlined"
+                                        color="secondary"
+                                        value={this.state.weapon}
+                                        onChange={this.onchangeWeapon} />
+                                </div>
+
+                                <div className="col form-group " style={{ marginTop: 0.2 + 'rem' }}>
+                                    <label className="text-dark">Date:
+                                        <TextField
+                                            required
+                                            fullWidth
+                                            variant="outlined"
+                                            type="date"
+                                            color="secondary"
+                                            selected={this.state.date}
+                                            onChange={this.onchangeDate} />
+                                    </label>
+                                </div>
+
+                                <div className="col form-group " style={{ margin: 'auto' }}>
+                                    <TextField
+                                        label="Officer Incharge"
+                                        type="text"
+                                        fullWidth
+                                        variant="outlined"
+                                        required
+                                        color="secondary"
+                                        value={this.state.officer_incharge}
+                                        onChange={this.onchangeOfficerIncharge
+                                        } />
+
+                                </div>
                             </div>
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon(Optionl)</b></label>
-                                <input type="text"
-                                    className="form-control"
-                                    value={this.state.weapon}
-                                    onChange={this.onchangeWeapon} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date: </b></label>
-                                <div></div>
-                                <DatePicker
-                                    selected={this.state.date}
-                                    className="form-control"
-                                    onChange={this.onchangeDate} />
-
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Officer Incharge:</b></label>
-                                <input type="text"
-                                    name="offi"
-                                    id="offi"
-                                    required
-                                    className="form-control"
-                                    value={this.state.officer_incharge}
-                                    onChange={this.onchangeOfficerIncharge
-                                    } />
-
-                            </div>
-
                             <div className="form-group">
                                 <input type="submit" name="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                             </div>

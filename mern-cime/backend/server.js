@@ -10,6 +10,7 @@ const LefRoute = require('./routes/lef');
 const complainsRouter = require('./routes/complains')
 const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
 const ComplainRoute = require('./routes/complains');
+const missingRoute = require('./routes/missingPersonAffairs.route')
 
 
 mongoose.Promise = global.Promise;
@@ -34,7 +35,7 @@ app.use('/complains', complainsRouter)
 app.use('/lef', LefRoute);
 app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
 app.use('/Addcomplain', ComplainRoute);
-
+app.use('/missingPersonAffairs',missingRoute);
 
 
 app.listen(port, () => {
