@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import DatePicker from "react-datepicker";
+import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
-
-export default class MiscellaneousComplaintForm extends Component {
+export default class EditMiscellaneousComplain extends Component{
 
     constructor(props) {
         super(props);
-    
+
         this.onchangeRefno = this.onchangeRefno.bind(this);
         this.onchangefullname = this.onchangefullname.bind(this);
         this.onchangephonenumber = this.onchangephonenumber.bind(this);
@@ -17,26 +17,41 @@ export default class MiscellaneousComplaintForm extends Component {
         this.onchangedateofincident = this.onchangedateofincident.bind(this);
         this.onchangepersonsinvolved = this.onchangepersonsinvolved.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-    
+
         this.state = {
-          refNo: new Number(),
-          fullname: '',
-          phonenumber: new Number(),
-          nic: '',
-          date: new Date(),
-          description: '',
-          dateofincident: new Date(),
-          personsinvolved: '',
-        
-        }
-      
+            refNo: new Number(),
+            fullname: '',
+            phonenumber: new Number(),
+            nic: '',
+            date: new Date(),
+            description: '',
+            dateofincident: new Date(),
+            personsinvolved: '',
+          
+          }
+    }
 
-      }
+    componentDidMount(){
+        axios.get('http://localhost:5000/miscellaneous_complains/edit/'+this.props.match.params.id)
+        .then(res => {
+            this.setState({
+                refno: new Number(),
+                fullname: '',
+                phonenumber: new Number(),
+                nic: '',
+                date: new Date(),
+                description: '',
+                dateofincident: new Date(),
+                personsinvolved: ''
+              
+              })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
-    
-      
-
-      onchangeRefno(e) {
+    onchangeRefno(e) {
         this.setState({
           refNo: e.target.value,
         });
@@ -85,11 +100,10 @@ export default class MiscellaneousComplaintForm extends Component {
         });
       }
 
-      onSubmit(e) {
+    onSubmit(e) {
         e.preventDefault();
-    
         const complain = {
-          refNo: Number(this.state.refNo),
+            refNo: Number(this.state.refNo),
           fullname: this.state.fullname,
           phonenumber: Number(this.state.phonenumber),
           nic: this.state.nic,
@@ -97,33 +111,33 @@ export default class MiscellaneousComplaintForm extends Component {
           description: this.state.description,
           dateofincident: this.state.dateofincident,
           personsinvolved: this.state.personsinvolved,
-          
-        }
-        console.log(complain);
-        axios.post('http://localhost:5000/complains/add', complain).then(res => console.log(res.data));
-
-        this.setState({
-          refno: new Number(),
-          fullname: '',
-          phonenumber: new Number(),
-          nic: '',
-          date: new Date(),
-          description: '',
-          dateofincident: new Date(),
-          personsinvolved: ''
-        
-        })
-
-        this.props.history.push('/MiscellaneousComplainList')
+        };
+        console.log(complain)
+        axios
+            .post('http://localhost:5000/miscellaneous_complains/update/'+this.props.match.params.id, complain)
+            .then(res => console.log(res.data));
     
-        
-      }
+        this.props.history.push('/MiscellaneousComplainList')  //redirect to complains list page after submit
+    }
+    
+    //reset button
 
-
-
+    handleReset = () => {
+        Array.from(document.querySelectorAll('input'));
+        this.setState({
+            refNo: Number(this.state.refNo),
+            fullname: this.state.fullname,
+            phonenumber: Number(this.state.fname),
+            nic: this.state.nic,
+            date: Date.parse(this.state.date),
+            description: this.state.description,
+            dateofincident: Date.parse(this.state.dateofincident),
+            personsinvolved: this.state.personsinvolved
+        });
+    };
 render(){
     return(
-        <div>
+<div>
         <div style={{ marginLeft: 21 + 'rem' }} >
               <div class="card-header">
                 <h3>Add a Miscellaneous Complaint</h3>
@@ -259,16 +273,22 @@ render(){
                       class="needs-validationbtn"
                       class="btndisabled"
                     />
+                     <input 
+                      type="reset" 
+                      style={{ marginLeft: 0.5 + 'rem' }} 
+                      value="Reset" 
+                      className="btn btn-outline-warning btn btn-dark" 
+                      onClick={this.handleReset} />
                   </div>
                   </div>
                 </form>
               </div>
               </div>
 
-
-              
     )
 
+
 }
+
+
 }
-            

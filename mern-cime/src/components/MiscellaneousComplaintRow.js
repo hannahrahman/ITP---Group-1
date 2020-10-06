@@ -16,7 +16,7 @@ export default class DomAbuseTableRow extends Component{
 
                 <td>
                     <Button size="sm" variant="danger">
-                    <Link className="edit-link" to={"/edit" + this.props.obj._id}>Edit</Link>
+                    <Link className="edit-link" to={"/EditMiscellaneousComplain" + this.props.obj._id}>Edit</Link>
                     </Button>
                 </td>
                 <td>
