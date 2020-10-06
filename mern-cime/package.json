@@ -13,7 +13,7 @@
     "button": "^1.1.1",
     "form": "^0.2.4",
     "form-control": "^1.0.0",
-    "formik": "^2.1.5",
+    "formik": "^2.1.7",
     "formsy-react": "^2.2.1",
     "gulp-rev-all": "https://github.com/Amitesh/gulp-rev-all/tarball/master",
     "helmet": "^4.1.1",

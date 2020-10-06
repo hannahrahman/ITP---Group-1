@@ -4,12 +4,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import axios from 'axios'
 import { TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from "@material-ui/core/NativeSelect";
 
 export default class CreateComplain extends Component {
 
@@ -36,20 +31,32 @@ export default class CreateComplain extends Component {
 
         this.state = {
             refNo: '',
+            refNoError: '',
             complainType: '',
+            complainTypeError: '',
             fname: '',
+            fnameError: '',
             lname: '',
+            lnameError: '',
             nic: '',
+            nicError: '',
             dateOfBirth: new Date(),
+            dateOfBirthError: '',
             religion: '',
+            religionError: '',
             sex: '',
+            sexError: '',
             address: '',
+            addressError: '',
             phone: new Number(),
+            phoneError: '',
             description: '',
+            descriptionError: '',
             weapon: '',
             date: new Date(),
+            dateError: '',
             officer_incharge: '',
-
+            officer_inchargeError: '',
         }
     }
 
@@ -137,48 +144,155 @@ export default class CreateComplain extends Component {
         })
     }
 
+    validate = () => {
+        let isError = false;
+        const errors = {
+            refNoError: '',
+            complainTypeError: '',
+            fnameError: '',
+            lnameError: '',
+            nicError: '',
+            dateOfBirthError: new Date(),
+            religionError: '',
+            sexError: '',
+            addressError: '',
+            phoneError: new Number(),
+            descriptionError: '',
+            dateError: new Date(),
+            officer_inchargeError: '',
+        };
+        if (this.state.refNo.length <= 0) {
+            isError = true;
+            errors.refNoError = "Reference Number can not be blank"
+            this.state.error1 = true
+        }
+        else
+            this.state.error1 = false;
 
+        if (!this.state.complainType) {
+            isError = true;
+            errors.complainTypeError = "Complain type can not be blank"
+            this.state.error2 = true
+        } else
+            this.state.error2 = false;
+
+        if (!this.state.fname) {
+            isError = true;
+            errors.fnameError = "First Name can not be blank"
+            this.state.error3 = true
+        } else
+            this.state.error3 = false;
+
+        if (!this.state.lname) {
+            isError = true;
+            errors.lnameError = "Last Name can not be blank"
+            this.state.error4 = true
+        } else
+            this.state.error4 = false;
+
+        if (!this.state.nic) {
+            this.state.error5 = true
+            errors.nicError = "NIC number can not be blank"
+
+        } else
+            this.state.error5 = false
+
+        if (!this.state.religion) {
+            isError = true;
+            errors.religionError = "Religion can not be blank"
+            this.state.error6 = true
+        } else
+            this.state.error6 = false;
+
+        if (!this.state.sex) {
+            isError = true;
+            errors.sexError = "This Field can not be blank"
+            this.state.error7 = true
+        } else
+            this.state.error = false;
+
+        if (!this.state.address) {
+            isError = true;
+            errors.addressError = "Address can not be blank"
+            this.state.error8 = true
+        } else
+            this.state.error8 = false;
+
+        if (this.state.phone.length > 10) {
+            isError = true;
+            errors.phoneError = "Enter your Phone number"
+            this.state.error9 = true
+        } else
+            this.state.error9 = false;
+
+        if (!this.state.description) {
+            isError = true;
+            errors.descriptionError = "Description can not be blank"
+            this.state.error10 = true
+        } else
+            this.state.error10 = false;
+
+        if (!this.state.officer_incharge) {
+            isError = true;
+            errors.officer_inchargeError = "Please enter the officer name"
+            this.state.error11 = true
+        } else
+            this.state.error11 = false;
+
+        /* if (!this.state.dateOfBirth.indexOf("mm/dd/yyyy") === -1) {
+             isError = true;
+             errors.dateOfBirthError = "Select a valid Date Of Birth"
+         }*/
+        this.setState({
+            ...this.state,
+            ...errors
+        });
+
+        return isError;
+    };
 
     onSubmit(e) {
         e.preventDefault();
-        const complain = {
-            refNo: Number(this.state.refNo),
-            complainType: this.state.complainType,
-            fname: this.state.fname,
-            lname: this.state.lname,
-            nic: this.state.nic,
-            dateOfBirth: this.state.dateOfBirth,
-            religion: this.state.religion,
-            sex: this.state.sex,
-            address: this.state.address,
-            phone: Number(this.state.phone),
-            description: this.state.description,
-            weapon: this.state.weapon,
-            date: this.state.date,
-            officer_incharge: this.state.officer_incharge,
+        const err = this.validate();
+        if (!err) {
+            const complain = {
+                refNo: Number(this.state.refNo),
+                complainType: this.state.complainType,
+                fname: this.state.fname,
+                lname: this.state.lname,
+                nic: this.state.nic,
+                dateOfBirth: this.state.dateOfBirth,
+                religion: this.state.religion,
+                sex: this.state.sex,
+                address: this.state.address,
+                phone: Number(this.state.phone),
+                description: this.state.description,
+                weapon: this.state.weapon,
+                date: this.state.date,
+                officer_incharge: this.state.officer_incharge,
+            }
+            console.log(complain);
+            // window.location = '/';
+            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
+
+            this.setState({
+                refNo: '',
+                complainType: '',
+                fname: '',
+                lname: '',
+                nic: '',
+                dateOfBirth: new Date(),
+                religion: '',
+                sex: '',
+                address: '',
+                phone: '',
+                description: '',
+                weapon: '',
+                date: new Date(),
+                officer_incharge: ''
+            })
         }
-        console.log(complain);
-        // window.location = '/';
-        axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
-
-        this.setState({
-            refNo: '',
-            complainType: '',
-            fname: '',
-            lname: '',
-            nic: '',
-            dateOfBirth: new Date(),
-            religion: '',
-            sex: '',
-            address: '',
-            phone: '',
-            description: '',
-            weapon: '',
-            date: new Date(),
-            officer_incharge: ''
-        })
     }
-
     render() {
         return (
             <div className="container" style={{ marginTop: 1.2 + 'rem' }}>
@@ -190,7 +304,7 @@ export default class CreateComplain extends Component {
                     </div >
 
                     <div className="container">
-                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} noValidate="true">
+                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} noValidate='true'>
                             <div className="row">
                                 <div className="col form-group" >
                                     <TextField
@@ -199,9 +313,12 @@ export default class CreateComplain extends Component {
                                         color="secondary"
                                         type="number"
                                         variant="outlined"
+                                        error={this.state.error1}
                                         value={this.state.refNo}
                                         onChange={this.onchangeRefno}
                                     />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.refNoError}</span>
                                 </div>
 
 
@@ -213,8 +330,11 @@ export default class CreateComplain extends Component {
                                             variant="outlined"
                                             color="secondary"
                                             required
+                                            error={this.state.error2}
                                             value={this.state.complainType}
                                             onChange={this.onchangecomplainType} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.complainTypeError}</span>
                                     </div>
                                 </div>
                             </div>
@@ -223,13 +343,17 @@ export default class CreateComplain extends Component {
                                 <div className="col form-group" >
                                     <TextField
                                         type="text"
-                                        required
                                         variant="outlined"
+                                        required
                                         fullWidth
                                         color="secondary"
                                         label="First Name"
                                         value={this.state.fname}
-                                        onChange={this.onchangeFName} />
+                                        onChange={this.onchangeFName}
+                                        error={this.state.error3} />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.fnameError}</span>
+
                                 </div>
                                 <div className="col form-group">
                                     <TextField
@@ -240,7 +364,10 @@ export default class CreateComplain extends Component {
                                         color="secondary"
                                         label="Last Name"
                                         value={this.state.lname}
+                                        error={this.state.error4}
                                         onChange={this.onchangeLName} />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.lnameError}</span>
                                 </div>
                             </div>
                             <div className="row first-Name">
@@ -253,7 +380,10 @@ export default class CreateComplain extends Component {
                                         color="secondary"
                                         label="NIC Number"
                                         value={this.state.nic}
+                                        error={this.state.error5}
                                         onChange={this.onchangeNic} />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.nicError}</span>
                                 </div>
 
                                 <div className="col form-group">
@@ -262,43 +392,57 @@ export default class CreateComplain extends Component {
                                         required
                                         fullWidth
                                         variant="outlined"
+                                        style={{ margin: 'auto' }}
                                         color="secondary"
                                         label="Religion"
                                         value={this.state.religion}
+                                        error={this.state.error6}
                                         onChange={this.onchangeReligion} />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.religionError}</span>
                                 </div>
                                 <div className="col form-group">
-                                    <select
-                                        style={{ marginLeft: 0.5 + 'rem', height: 3.3 + 'rem' }}
-                                        id="dropdown-item-button"
-                                        className="btn btn-outline-secondary btn btn-secondary text-light"
+                                    <TextField
+                                        style={{ width: 10 + 'rem' }}
+                                        select
                                         name="sex"
                                         value={this.state.sex}
+                                        error={this.state.error7}
                                         onChange={this.onchangeSex}
-                                    >
-                                        <option >Sex</option >
+                                        color="secondary"
+
+                                        label="Sex"
+                                        id="outlined-select"
+                                        variant="outlined">
+
                                         <option value="Male">Male</option >
                                         <option value="Female">Female</option  >
+                                    </TextField>
 
-                                    </select>
+                                    <br></br>
+                                    <span className="text-danger">{this.state.sexError}</span>
                                 </div>
                             </div>
                             <div className="row first-Name">
-                                <div className="col form-group">
-                                    <label className="text-dark">Date Of Birth:
+                                <div className="col form-group" >
+                                    <label className="text-dark">Date Of Birth: </label>
                                     <div>
-                                            <TextField
-                                                required
-                                                variant="outlined"
-                                                type="date"
-                                                color="secondary"
-                                                selected={this.state.dateOfBirth}
-                                                onChange={this.onchangeDateOfBirth} />
-                                        </div>
-                                    </label>
+                                        <TextField
+                                            required
+                                            style={{ margin: 'auto' }}
+                                            variant="outlined"
+                                            type="date"
+                                            color="secondary"
+                                            selected={this.state.dateOfBirth}
+                                            onChange={this.onchangeDateOfBirth} />
+
+
+                                    </div>
+
+
                                 </div>
 
-                                <div className="col form-group" style={{ margin: 'auto', marginLeft: -9 + 'rem' }}>
+                                <div className="col form-group" style={{ marginLeft: -9 + 'rem', marginTop: 2 + 'rem' }}>
 
                                     <TextField
                                         type="text"
@@ -307,37 +451,50 @@ export default class CreateComplain extends Component {
                                         label="Address"
                                         variant="outlined"
                                         color="secondary"
+                                        error={this.state.error8}
                                         value={this.state.address}
                                         onChange={this.onchangeAddress} />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.addressError}</span>
                                 </div>
 
-                                <div className="col form-group" style={{ margin: 'auto', marginLeft: + 'rem' }}>
+                                <div className="col form-group" style={{ marginTop: 2 + 'rem' }}>
                                     <TextField
                                         type="number"
                                         required
+
                                         label="Phone "
                                         variant="outlined"
                                         color="secondary"
+                                        error={this.state.error9}
                                         value={this.state.phone}
                                         onChange={this.onchangePhone} />
+
                                 </div>
                             </div>
-                            <div className="row first-Name">
-                                <div className="col form-group ">
-                                    <label className="text-dark" >Description:
-                                    <textarea type="text"
-                                            required
-                                            fullWidth
-                                            value={this.state.description}
-                                            className="form-control bg-light"
-                                            variant="outlined"
-                                            onChange={this.onchangeDescription} />
-                                    </label>
+                            <div className="row first-Name" >
+                                <div className="col form-group " style={{ marginTop: 2 + 'rem' }} >
+                                    <TextField
+
+                                        id="outlined-textarea"
+                                        label="Description"
+                                        multiline
+                                        color="secondary"
+                                        value={this.state.description}
+                                        onChange={this.onchangeDescription}
+                                        error={this.state.error10}
+                                        variant="outlined"
+                                        fullWidth
+                                        required
+                                    />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.descriptionError}</span>
                                 </div>
 
-                                <div className="col form-group " style={{ margin: 'auto' }}>
+                                <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
                                     <TextField
                                         required
+
                                         type="text"
                                         fullWidth
                                         label="Weapon(Optionl)"
@@ -347,35 +504,43 @@ export default class CreateComplain extends Component {
                                         onChange={this.onchangeWeapon} />
                                 </div>
 
-                                <div className="col form-group " style={{ marginTop: 0.2 + 'rem' }}>
+                                <div className="col form-group " style={{ marginTop: 0.6 + 'rem' }}>
                                     <label className="text-dark">Date:
                                         <TextField
+
                                             required
                                             fullWidth
                                             variant="outlined"
                                             type="date"
+                                            error={this.state.error}
                                             color="secondary"
                                             selected={this.state.date}
                                             onChange={this.onchangeDate} />
+
+
                                     </label>
                                 </div>
 
-                                <div className="col form-group " style={{ margin: 'auto' }}>
+                                <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
                                     <TextField
                                         label="Officer Incharge"
+
                                         type="text"
                                         fullWidth
                                         variant="outlined"
                                         required
                                         color="secondary"
                                         value={this.state.officer_incharge}
+                                        error={this.state.error11}
                                         onChange={this.onchangeOfficerIncharge
                                         } />
+                                    <br></br>
+                                    <span className="text-danger">{this.state.officer_inchargeError}</span>
 
                                 </div>
                             </div>
                             <div className="form-group">
-                                <input type="submit" name="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
+                                <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                             </div>
                         </form>
                     </div >
@@ -384,9 +549,5 @@ export default class CreateComplain extends Component {
             </div >
 
         )
-
-
     }
-
-
 }
