@@ -5,8 +5,16 @@ import axios from 'axios'
 import { TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+toast.success("Welcome GOBBAYA", {
+    position: toast.POSITION.TOP_CENTER,
+    draggable: true,
+    transition: Flip,
+    autoClose: 5000
+});
 export default class CreateComplain extends Component {
+
 
     constructor(props) {
         super(props);
@@ -144,6 +152,8 @@ export default class CreateComplain extends Component {
         })
     }
 
+
+
     validate = () => {
         let isError = false;
         const errors = {
@@ -165,6 +175,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.refNoError = "Reference Number can not be blank"
             this.state.error1 = true
+            toast.error("Ref No : Methana Error ekakk oiii penadda oiii magula", {
+                transition: Flip
+            });
         }
         else
             this.state.error1 = false;
@@ -173,6 +186,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.complainTypeError = "Complain type can not be blank"
             this.state.error2 = true
+            toast.error("Complain Type Error", {
+                transition: Flip
+            });;
         } else
             this.state.error2 = false;
 
@@ -180,6 +196,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.fnameError = "First Name can not be blank"
             this.state.error3 = true
+            toast.error("First Name is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error3 = false;
 
@@ -187,12 +206,18 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.lnameError = "Last Name can not be blank"
             this.state.error4 = true
+            toast.error("Last Name is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error4 = false;
 
         if (!this.state.nic) {
             this.state.error5 = true
             errors.nicError = "NIC number can not be blank"
+            toast.error("NIC is empty", {
+                transition: Flip
+            });;
 
         } else
             this.state.error5 = false
@@ -201,6 +226,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.religionError = "Religion can not be blank"
             this.state.error6 = true
+            toast.error("Religion is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error6 = false;
 
@@ -208,6 +236,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.sexError = "This Field can not be blank"
             this.state.error7 = true
+            toast.error("Sex is not selected lajja nathi wada karanna epa oii", {
+                transition: Flip
+            });;
         } else
             this.state.error = false;
 
@@ -215,6 +246,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.addressError = "Address can not be blank"
             this.state.error8 = true
+            toast.error("Address is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error8 = false;
 
@@ -222,6 +256,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.phoneError = "Enter your Phone number"
             this.state.error9 = true
+            toast.error("Phone is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error9 = false;
 
@@ -229,6 +266,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.descriptionError = "Description can not be blank"
             this.state.error10 = true
+            toast.error("Description is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error10 = false;
 
@@ -236,6 +276,9 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.officer_inchargeError = "Please enter the officer name"
             this.state.error11 = true
+            toast.error("Officer Incharge is empty", {
+                transition: Flip
+            });;
         } else
             this.state.error11 = false;
 
@@ -272,7 +315,7 @@ export default class CreateComplain extends Component {
                 officer_incharge: this.state.officer_incharge,
             }
             console.log(complain);
-            // window.location = '/';
+            window.location = '#';
             axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
 
             this.setState({
@@ -293,10 +336,27 @@ export default class CreateComplain extends Component {
             })
         }
     }
-    render() {
-        return (
-            <div className="container" style={{ marginTop: 1.2 + 'rem' }}>
 
+    render() {
+        /*const successToast = () => {
+            toast("success custom Toast", {
+                className: "custom-toast",
+                draggable: true,
+                position: toast.POSITION.TOP_CENTER
+            })
+        }*/
+
+        /* toast.success("success");
+         toast.info("you have been dannnnaaaaa");
+         toast.warn("you have been warned buhahahaha....");*/
+
+        return (
+
+            <div className="container" style={{ marginTop: 1.2 + 'rem' }}>
+                <>
+
+                    <ToastContainer draggable={false} transition={Zoom} autoClose={8000} newestOnTop />
+                </>
                 <div className="card text-white  bg-light mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
                     <div className="card-header bg-dark"><h3>Add Complain</h3></div>
                     <div className="card-body" >

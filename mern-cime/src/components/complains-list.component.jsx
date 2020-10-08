@@ -3,7 +3,6 @@ import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import CrimeTableRow from './CrimeTableRow';
 
-
 export default class CrimeComplainList extends Component {
 
     constructor(props) {
