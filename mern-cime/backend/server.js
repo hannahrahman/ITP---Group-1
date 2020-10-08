@@ -1,28 +1,20 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-
 const bodyParser = require('body-parser')
 const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
 const app = express()//creating express server
 const port = process.env.PORT || 5000 // the port the server will be on
 
-const LefRoute = require('./routes/lef');
-const complainsRouter = require('./routes/complains')
-const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
-const onlinePayment = require('./routes/onlinePayment')
+
+const onlinePaymentRoutes = require('./routes/onlinePayment')
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
     () => { console.log('Connected to the Database server....') },
-    err => { console.log('cannot connect to the DataBase' + err) }
+    err => { console.log('Cannot connect to the DataBase' + err) }
 );
 
-//const complainsRouter = require('./routes/complains');
-const onlinePaymentRouter = require('./routes/onlinePayment');
-
-app.use('/complains', complainsRouter);
-app.use('/onlinePayment', onlinePaymentRouter);
 app.use(cors());// cors middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -30,15 +22,9 @@ app.use(bodyParser.json());
     console.log('Connected to the Database server....')
 })*/
 
-
-app.use('/complains', complainsRouter)
-app.use('/lef', LefRoute);
-app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
-app.use('/onlinePayment', onlinePayment);
-
+app.use('/onlinePayment', onlinePaymentRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 
-});
-
+})

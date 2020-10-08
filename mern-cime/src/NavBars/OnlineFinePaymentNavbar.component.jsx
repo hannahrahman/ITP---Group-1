@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
+
 export default class OnlineFinePaymentNavbar extends Component {
 
     render() {
@@ -15,12 +16,12 @@ export default class OnlineFinePaymentNavbar extends Component {
                     <ul className="navbar-nav mr-auto ">
 
                         <li className="navbar-item mr-5">
-                            <Link to="/" className="nav-link">List of actve fines</Link>
+                            <Link to="/OnlineFineDetailList" className="nav-link">List of Active fines</Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Complain" className="nav-link">Create User</Link>
+                            <Link to="/onlinefineDetailsForm" className="nav-link">Add Fine</Link>
                         </li>
-                        
+
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />

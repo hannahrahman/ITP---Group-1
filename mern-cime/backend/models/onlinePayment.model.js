@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-let complainPaymentSchema = new Schema({
+const complainPaymentSchema = new Schema({
 
-    name: { type: String, require: true },
+    name: { type: String, required: true },
     password: { type: String, required: true },
     fullName: { type: String, required: true },
     address: { type: String, required: true },
@@ -20,7 +20,9 @@ let complainPaymentSchema = new Schema({
     issueDate: { type: Date, required: true }
 
 }, {
-    collection: 'online',
+    collection: 'onlinepayment',
 });
 
 module.exports = mongoose.model('online_Payment', complainPaymentSchema);
+
+
