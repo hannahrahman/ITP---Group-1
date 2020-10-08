@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import axios from 'axios';
 
 
+
 export default class MiscellaneousComplaintForm extends Component {
 
     constructor(props) {
@@ -32,6 +33,7 @@ export default class MiscellaneousComplaintForm extends Component {
       
 
       }
+      
 
     
       
@@ -119,9 +121,14 @@ export default class MiscellaneousComplaintForm extends Component {
         
       }
 
+     
+
 
 
 render(){
+
+  
+  
     return(
         <div>
         <div style={{ marginLeft: 21 + 'rem' }} >
@@ -129,18 +136,14 @@ render(){
                 <h3>Add a Miscellaneous Complaint</h3>
                 <h4>Your Confidentiality will be ensured.</h4>
               </div>
-
         </div>
 
               <div class="container">
-
-
                 <form
                   onSubmit={this.onSubmit}
                   style={{ margin: "auto" }}
                   class=" needs-validation"
-                  noValidate={true}
-                >
+                  noValidate={true}>
 
                 <div style={{ marginLeft: 21 + 'rem' }} >
                   <div className="form-group">
@@ -153,6 +156,7 @@ render(){
                       className="form-control is-invalid"
                       value={this.state.refNo}
                       onChange={this.onchangeRefno}
+                      
                     />
                   </div>
 

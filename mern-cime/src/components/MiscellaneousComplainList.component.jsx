@@ -44,9 +44,9 @@ export default class MiscellaneousComplainList extends Component {
                             <Table striped border hover>
                                 <thead>
                                     <tr>
-                                        <th>Ref No</th>
+                                        <th>Ref. No</th>
                                         <th>Full Name</th>
-                                        <th>NIC:</th>
+                                        <th>NIC</th>
                                         <th>Date</th>
                                     </tr>
                                 </thead>
