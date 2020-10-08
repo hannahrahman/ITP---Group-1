@@ -74,9 +74,9 @@ export default class Sidenav extends React.Component {
 
       <nav className="navbar navbar-dark bg-dark">
 
-        <div className="navbar-item text-primary"><b>{this.state.m1}</b></div>
-
         <ul className="navbar-nav" >
+
+        <div className="navbar-item text-primary"><b>{this.state.m1}</b></div>
 
           <li className="navbar-item">
             <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
