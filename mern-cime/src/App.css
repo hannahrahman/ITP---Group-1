@@ -1,7 +1,37 @@
-.App {
+body{
+    background-image: url('./Images/swat.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.nv{
+  background-color: #2f373a;
+  position:fixed;
+   max-height:100%;
+   overflow-y:auto;
+   top:0;
+   bottom:0;
+   left:0;
+   opacity: 0.9;
+   
+}
+.nav-link{
+  text-decoration: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-weight: bold;
+}
+.nav-link:hover{
+  color: #5fb7ff;
+}
+.header{
+  background-image: url('./Images/swat2.jpg');
+}
+/*.App {
   text-align: center;
 }
-
+.banner{
+  background-size:cover;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -38,3 +68,4 @@ width:60px;
     transform: rotate(360deg);
   }
 }
+*/

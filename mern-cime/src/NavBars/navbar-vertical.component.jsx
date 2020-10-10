@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import '../App.css'
 export default class Sidenav extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +11,7 @@ export default class Sidenav extends React.Component {
   }
   m1() {
     this.setState({
-      m1: "Miscellaneous Complaints",
+      m1: `Miscellaneous Complaints`,
     });
     console.log(this);
   }
@@ -71,53 +71,53 @@ export default class Sidenav extends React.Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark" style={{ width: 20 + '%' }}>
-        <font> <div className=" navbar-item navbar-brand text-primary "><b>{this.state.m1}</b></div>
+      <nav className="nv" style={{ width: 18 + '%' }}>
+        <font> <div className=" navbar-item navbar-brand text-primary " style={{ marginLeft: 1 + 'rem' }} ><b>{this.state.m1}</b></div>
         </font>
+
         <ul className="navbar-nav mr-auto" >
-          <li className="navbar-item" style={{ marginTop: -112 + "rem" }}>
+          <br></br>
+          <li className="navbar-item">
             <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
             <hr color="white" />
           </li>
 
           <li className="navbar-item">
             <Link to="/Crime Division" className="nav-link" onClick={this.m2.bind(this)}>Crime Division</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
           <li className="navbar-item">
             <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Domestic Abuse Affairs</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
           <li className="navbar-item">
             <Link to="/Environmental Affairs" className="nav-link" onClick={this.m4.bind(this)}>Environmental Affairs</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
           <li className="navbar-item">
             <Link to="/Cyber Crime" className="nav-link" onClick={this.m5.bind(this)}>Cyber Crime</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
           <li className="navbar-item">
             <Link to="/Missing Persons Affairs" className="nav-link" onClick={this.m6.bind(this)}>Missing Persons Affairs</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
           <li className="navbar-item">
             <Link to="/Narcotics and Drug Affairs" className="nav-link" onClick={this.m9.bind(this)}>Narcoticss and Drug Affairs</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
-          <li className="navbar-item">
-            <font color="#00AFF1" ><a className="nav-disabled-link">More</a></font>
-          </li>
+
           <li className="navbar-item">
             <Link to="/Online Fine Payment" className="nav-link" onClick={this.m7.bind(this)}>Online Fine Payment</Link>
-            <hr width="225" color="white" />
+            <hr color="white" />
           </li>
           <li className="navbar-item">
             <Link to="/Online Driving/NIC Renewal" className="nav-link" onClick={this.m8.bind(this)}>Online Driving/NIC Renewal</Link>
           </li>
         </ul>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
       </nav>
+
 
     );
   }

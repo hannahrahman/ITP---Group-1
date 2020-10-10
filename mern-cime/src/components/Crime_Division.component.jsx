@@ -15,8 +15,8 @@ export default class CrimeDivision extends Component {
     return (
       <div>
         <Router>
-          <div style={{ marginTop: -234 + "rem" }}>
-            <div style={{ marginLeft: 18 + "rem" }}>
+          <div >
+            <div style={{ marginLeft: 17 + "rem" }}>
               <CrimeNavbar />
 
             </div>

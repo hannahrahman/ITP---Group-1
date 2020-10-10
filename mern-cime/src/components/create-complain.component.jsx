@@ -3,11 +3,10 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import axios from 'axios'
 import { TextField } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-toast.success("Welcome GOBBAYA", {
+import emailjs from 'emailjs-com'
+toast.success("Welcome Sir.", {
     position: toast.POSITION.TOP_CENTER,
     draggable: true,
     transition: Flip,
@@ -298,6 +297,7 @@ export default class CreateComplain extends Component {
         e.preventDefault();
         const err = this.validate();
         if (!err) {
+
             const complain = {
                 refNo: Number(this.state.refNo),
                 complainType: this.state.complainType,
@@ -317,6 +317,14 @@ export default class CreateComplain extends Component {
             console.log(complain);
             window.location = '#';
             axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
+
+
+            emailjs.sendForm('gmail', 'template_q0v9cyz', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                });
 
             this.setState({
                 refNo: '',
@@ -364,8 +372,11 @@ export default class CreateComplain extends Component {
                     </div >
 
                     <div className="container">
-                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} noValidate='true'>
+                        <form onSubmit={this.onSubmit} method="POST" action="/Complain" style={{ margin: "auto" }} noValidate='true'>
                             <div className="row">
+                                <div className="contact">
+
+                                </div>
                                 <div className="col form-group" >
                                     <TextField
                                         label="Refno"
@@ -375,8 +386,10 @@ export default class CreateComplain extends Component {
                                         variant="outlined"
                                         error={this.state.error1}
                                         value={this.state.refNo}
+                                        name="refNo"
                                         onChange={this.onchangeRefno}
                                     />
+
                                     <br></br>
                                     <span className="text-danger">{this.state.refNoError}</span>
                                 </div>
@@ -390,6 +403,7 @@ export default class CreateComplain extends Component {
                                             variant="outlined"
                                             color="secondary"
                                             required
+                                            name="complainType"
                                             error={this.state.error2}
                                             value={this.state.complainType}
                                             onChange={this.onchangecomplainType} />
@@ -406,6 +420,7 @@ export default class CreateComplain extends Component {
                                         variant="outlined"
                                         required
                                         fullWidth
+                                        name="fname"
                                         color="secondary"
                                         label="First Name"
                                         value={this.state.fname}
@@ -420,6 +435,7 @@ export default class CreateComplain extends Component {
                                         type="text"
                                         required
                                         fullWidth
+                                        name="lname"
                                         variant="outlined"
                                         color="secondary"
                                         label="Last Name"
@@ -436,6 +452,7 @@ export default class CreateComplain extends Component {
                                         type="text"
                                         required
                                         fullWidth
+                                        name="nic"
                                         variant="outlined"
                                         color="secondary"
                                         label="NIC Number"
@@ -451,6 +468,7 @@ export default class CreateComplain extends Component {
                                         type="text"
                                         required
                                         fullWidth
+                                        name="religion"
                                         variant="outlined"
                                         style={{ margin: 'auto' }}
                                         color="secondary"
@@ -487,16 +505,10 @@ export default class CreateComplain extends Component {
                                 <div className="col form-group" >
                                     <label className="text-dark">Date Of Birth: </label>
                                     <div>
-                                        <TextField
-                                            required
-                                            style={{ margin: 'auto' }}
-                                            variant="outlined"
-                                            type="date"
-                                            color="secondary"
+                                        <DatePicker
+                                            className="form-control"
                                             selected={this.state.dateOfBirth}
                                             onChange={this.onchangeDateOfBirth} />
-
-
                                     </div>
 
 
@@ -511,6 +523,7 @@ export default class CreateComplain extends Component {
                                         label="Address"
                                         variant="outlined"
                                         color="secondary"
+                                        name="address"
                                         error={this.state.error8}
                                         value={this.state.address}
                                         onChange={this.onchangeAddress} />
@@ -526,6 +539,7 @@ export default class CreateComplain extends Component {
                                         label="Phone "
                                         variant="outlined"
                                         color="secondary"
+                                        name="phone"
                                         error={this.state.error9}
                                         value={this.state.phone}
                                         onChange={this.onchangePhone} />
@@ -539,6 +553,7 @@ export default class CreateComplain extends Component {
                                         id="outlined-textarea"
                                         label="Description"
                                         multiline
+                                        name="description"
                                         color="secondary"
                                         value={this.state.description}
                                         onChange={this.onchangeDescription}
@@ -560,24 +575,17 @@ export default class CreateComplain extends Component {
                                         label="Weapon(Optionl)"
                                         variant="outlined"
                                         color="secondary"
+                                        name="weapon"
                                         value={this.state.weapon}
                                         onChange={this.onchangeWeapon} />
                                 </div>
 
                                 <div className="col form-group " style={{ marginTop: 0.6 + 'rem' }}>
                                     <label className="text-dark">Date:
-                                        <TextField
-
-                                            required
-                                            fullWidth
-                                            variant="outlined"
-                                            type="date"
-                                            error={this.state.error}
-                                            color="secondary"
+                                    <DatePicker
+                                            className="form-control"
                                             selected={this.state.date}
                                             onChange={this.onchangeDate} />
-
-
                                     </label>
                                 </div>
 
@@ -590,6 +598,7 @@ export default class CreateComplain extends Component {
                                         variant="outlined"
                                         required
                                         color="secondary"
+                                        name="officer_incharge"
                                         value={this.state.officer_incharge}
                                         error={this.state.error11}
                                         onChange={this.onchangeOfficerIncharge
