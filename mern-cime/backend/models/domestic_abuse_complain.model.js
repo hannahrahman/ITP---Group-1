@@ -17,7 +17,9 @@ const domesticAbuseComplainSchema = new Schema({
     description: { type: String },
     weapon: { type: String },
     date: { type: Date, required: true },
-    officer_incharge: { type: String }
+    officer_incharge: { type: String },
+    status: { type: String, default: "CREATED" },
+    relationType: { type: String, required: true }
 
 }, {
     collection: 'domesticAbuseComplain',

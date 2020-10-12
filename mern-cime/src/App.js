@@ -8,7 +8,7 @@ import CivilDomesticAbuseAffairs from "./components/Civil_Domestic_Abuse_Affairs
 import CrimeDivision from "./components/Crime_Division.component.jsx"
 import CyberCrime from "./components/Cyber_Crime.component.jsx"
 import NarcoticssandDrugAffairs from "./components/Narcotics_and_Drug_Affairs.component.jsx"
-import OnlineDrivingNICRenewal from "./components/Online_DrivingNIC_Renewal.jsx"
+import OnlineDrivingNICRenewal from "./components/license_nic/Online_DrivingNIC_Renewal.jsx"
 import OnlineFinePayment from "./components/Online_Fine_Payment.component.jsx"
 import MissingPersonsAffairs from "./components/Missing_Persons_Affairs.component.jsx"
 import EnvironmentalAffairs from "./components/Environmental_Affairs.component.jsx"
@@ -17,6 +17,9 @@ import { Helmet } from "react-helmet"
 import Police from './Images/police.png'
 import './App.css';
 import styled from "styled-components"
+
+import ViewLost from "./components/license_nic/viewLost"
+import EditLicense from "./components/license_nic/Edit_Driving_License"
 
 function App() {
   return (
@@ -49,7 +52,8 @@ function App() {
             <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
 
           </div>
-
+                <Route exact path="/ViewLost" exact component={ViewLost} />
+                <Route path="/edit/:id" component={EditLicense} />
         </Router>
       </div>
 
