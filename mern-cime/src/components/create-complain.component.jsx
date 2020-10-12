@@ -6,6 +6,7 @@ import { TextField } from '@material-ui/core'
 import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
+import '../App.css';
 toast.success("Welcome Sir.", {
     position: toast.POSITION.TOP_CENTER,
     draggable: true,
@@ -360,14 +361,14 @@ export default class CreateComplain extends Component {
 
         return (
 
-            <div className="container" style={{ marginTop: 1.2 + 'rem' }}>
+            <div className="complain">
                 <>
 
                     <ToastContainer draggable={false} transition={Zoom} autoClose={8000} newestOnTop />
                 </>
-                <div className="card text-white  bg-light mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                <div className="card text-white  bg-light mb-3 " style={{ marginLeft: 8.5 + 'rem' }} >
                     <div className="card-header bg-dark"><h3>Add Complain</h3></div>
-                    <div className="card-body" >
+                    <div className="card-body " >
 
                     </div >
 
@@ -613,7 +614,7 @@ export default class CreateComplain extends Component {
                             </div>
                         </form>
                     </div >
-
+                    <br></br>
                 </div >
             </div >
 
