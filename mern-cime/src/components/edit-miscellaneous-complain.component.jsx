@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
+
 export default class EditMiscellaneousComplain extends Component{
 
     constructor(props) {
@@ -35,16 +36,16 @@ export default class EditMiscellaneousComplain extends Component{
         axios.get('http://localhost:5000/miscellaneous_complains/edit/'+this.props.match.params.id)
         .then(res => {
             this.setState({
-                refno: new Number(),
-                fullname: '',
-                phonenumber: new Number(),
-                nic: '',
-                date: new Date(),
-                description: '',
-                dateofincident: new Date(),
-                personsinvolved: ''
+                refno: res.data.refNo,
+                fullname: res.data.fullname,
+                phonenumber: res.data.phonenumber,
+                nic: res.data.nic,
+                date: Date.parse(res.data.date),
+                description: res.data.description,
+                dateofincident: Date.parse(res.data.dateofincident),
+                personsinvolved: res.data.personsinvolved
               
-              })
+              });
         })
         .catch((error) => {
             console.log(error);
@@ -103,13 +104,13 @@ export default class EditMiscellaneousComplain extends Component{
     onSubmit(e) {
         e.preventDefault();
         const complain = {
-            refNo: Number(this.state.refNo),
+          refNo: Number(this.state.refNo),
           fullname: this.state.fullname,
           phonenumber: Number(this.state.phonenumber),
           nic: this.state.nic,
-          date: this.state.date,
+          date: Date(this.state.date),
           description: this.state.description,
-          dateofincident: this.state.dateofincident,
+          dateofincident:Date(this.state.dateofincident) ,
           personsinvolved: this.state.personsinvolved,
         };
         console.log(complain)
@@ -120,105 +121,105 @@ export default class EditMiscellaneousComplain extends Component{
         this.props.history.push('/MiscellaneousComplainList')  //redirect to complains list page after submit
     }
     
-    //reset button
+   
 
-    handleReset = () => {
-        Array.from(document.querySelectorAll('input'));
-        this.setState({
-            refNo: Number(this.state.refNo),
-            fullname: this.state.fullname,
-            phonenumber: Number(this.state.fname),
-            nic: this.state.nic,
-            date: Date.parse(this.state.date),
-            description: this.state.description,
-            dateofincident: Date.parse(this.state.dateofincident),
-            personsinvolved: this.state.personsinvolved
-        });
-    };
+
 render(){
+
+
+  const mystyle = {
+    color: "black",
+    padding: "5px",
+    fontFamily: "Arial"
+  };
+
     return(
 <div>
+          <div className="container" style={{ marginTop: 1.5 + 'rem' }}></div>
         <div style={{ marginLeft: 21 + 'rem' }} >
               <div class="card-header">
-                <h3>Add a Miscellaneous Complaint</h3>
+                <h3 style={mystyle}>Add a Miscellaneous Complaint</h3>
                 <h4>Your Confidentiality will be ensured.</h4>
               </div>
-
         </div>
 
               <div class="container">
-
-
                 <form
                   onSubmit={this.onSubmit}
                   style={{ margin: "auto" }}
                   class=" needs-validation"
                   noValidate={true}
-                >
-
-                <div style={{ marginLeft: 21 + 'rem' }} >
+                  >
+              
+                <div style={{ marginLeft: 10 + 'rem' }} >
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Reference Number:</b>
-                    </label>
-                    <input
-                      type="text"
+                    <label style={{ marginLeft: 1.5 + "rem" }}></label>
+                    <br></br>
+
+                    <TextField
+                      type="number"
                       required
-                      className="form-control is-invalid"
+                      //className="form-control is-invalid"
+                      label="Reference Number"
+                      variant="outlined"
+                      color="secondary"
                       value={this.state.refNo}
                       onChange={this.onchangeRefno}
                     />
                   </div>
-
+                      
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Full Name: </b>
-                    </label>
-                    <input
+                  
+                    <TextField
                       type="text"
                       required
                       className="form-control"
+                      label="Full Name of Complainee"
+                      variant="outlined"
+                      color="secondary"
                       value={this.state.fullname}
                       onChange={this.onchangefullname}
                     />
+                   
                   </div>
-
+                      <br></br>
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Phone Number: </b>
-                    </label>
-                    <input
+                    
+                    <TextField
                       type="number"
                       required
-                      numberformat = "true"
+                      numberformat="true"
                       format="### ###-####"
                       mask="_"
-                      className="form-control"
+                      label="Phone Number"
+                      variant="outlined"
+                      color="secondary"
                       value={this.state.phonenumber}
                       onChange={this.onchangephonenumber}
                     />
                   </div>
-
+                      
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>National Identity Card Number: </b>
-                    </label>
-                    <input
+                    <TextField
                       type="text"
                       required
                       className="form-control"
+                      label="National Identity Card Number"
+                      variant="outlined"
+                      color="secondary"
                       value={this.state.nic}
                       onChange={this.onchangenic}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Date:  </b>
-                    </label>
+                    <br></br>
                     <div>
                       <DatePicker
-                        className="form-control"
+                        type="date"
+                        required
+                        variant="outlined"
+                        color="secondary"
                         selected={this.state.date}
                         onChange={this.onchangedate}
                       />
@@ -226,64 +227,67 @@ render(){
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Please describe nature of incident/complaint:</b>
-                    </label>
-                    <input
+                    <TextField
                       type="text"
                       required
                       className="form-control"
+                      label="Description of Incident"
+                      variant="outlined"
+                      color="secondary"
                       value={this.state.description}
                       onChange={this.onchangedescription}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Date of incident:  </b>
-                    </label>
+                   
                     <div>
-                      <DatePicker
-                        className="form-control"
-                        selected={this.state.dateofincident}
-                        onChange={this.onchangedateofincident}
-                      />
+                   <br></br>
+                  <label className="text-dark">Date of Incident:</label>
+                  <br></br>
+                    <DatePicker
+                      required
+                      fullWidth
+                      variant="outlined"
+                      type="date"
+                      color="secondary"
+                      selected={this.state.dateofincident}
+                      onChange={this.onchangedateofincident} />
+                    
                     </div>
                   </div>
                            
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Person/s Involved in the incident (Include Name and NIC): </b>
-                    </label>
-                    <input
+                    
+                    <TextField
                       type="text"
                       required
                       className="form-control"
+                      label="Persons Involved"
+                      variant="outlined"
+                      color="secondary"
                       value={this.state.personsinvolved}
                       onChange={this.onchangepersonsinvolved}
                     />
                   </div>
-
+                  <br></br>
                   <div className="form-group">
                     <input
                       type="submit"
+                      name="submit"
                       id="submit"
                       style={{ marginLeft: 0.5 + "rem" }}
                       value="Submit"
-                      class="needs-validationbtn"
-                      class="btndisabled"
-                    />
-                     <input 
-                      type="reset" 
-                      style={{ marginLeft: 0.5 + 'rem' }} 
-                      value="Reset" 
+                      class="needs-validation btn"
                       className="btn btn-outline-warning btn btn-dark" 
-                      onClick={this.handleReset} />
-                  </div>
+                    />
+
+
+                    </div>
                   </div>
                 </form>
               </div>
-              </div>
+            </div>
 
     )
 

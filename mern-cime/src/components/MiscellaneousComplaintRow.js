@@ -20,7 +20,7 @@ export default class DomAbuseTableRow extends Component{
                     </Button>
                 </td>
                 <td>
-                    <Button size="sm" variant="danger">Delete</Button>
+                <Link className="btn btn-danger" to={"/delete/" + this.props.obj._id}>Delete</Link>
                 </td>
             </tr>
         )
