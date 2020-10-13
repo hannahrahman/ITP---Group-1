@@ -7,6 +7,7 @@ import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
 import '../App.css';
+import { saveAs } from 'file-saver'
 toast.success("Welcome Sir.", {
     position: toast.POSITION.TOP_CENTER,
     draggable: true,
@@ -48,7 +49,7 @@ export default class CreateComplain extends Component {
             lnameError: '',
             nic: '',
             nicError: '',
-            dateOfBirth: new Date(),
+            dateOfBirth: '',
             dateOfBirthError: '',
             religion: '',
             religionError: '',
@@ -61,7 +62,7 @@ export default class CreateComplain extends Component {
             description: '',
             descriptionError: '',
             weapon: '',
-            date: new Date(),
+            date: '',
             dateError: '',
             officer_incharge: '',
             officer_inchargeError: '',
@@ -101,6 +102,7 @@ export default class CreateComplain extends Component {
     onchangeDateOfBirth(date) {
         this.setState({
             dateOfBirth: date
+
         })
     }
 
@@ -162,13 +164,13 @@ export default class CreateComplain extends Component {
             fnameError: '',
             lnameError: '',
             nicError: '',
-            dateOfBirthError: new Date(),
+            dateOfBirthError: '',
             religionError: '',
             sexError: '',
             addressError: '',
             phoneError: new Number(),
             descriptionError: '',
-            dateError: new Date(),
+            dateError: '',
             officer_inchargeError: '',
         };
         if (this.state.refNo.length <= 0) {
@@ -294,11 +296,64 @@ export default class CreateComplain extends Component {
         return isError;
     };
 
+    /*createPDF = () => {
+        axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data))
+            .then(() => axios.get('fpdf', { responseType: 'blob' }))
+            .then((res) => {
+                const pdfBlob = new Blob([res.data], { type: 'application/pdf' })
+                saveAs(pdfBlob, 'newPdf.pdf');
+
+            })
+    }*/
+
+    handleReset = () => {
+        Array.from(document.querySelectorAll('input'));
+        this.setState({
+            refNo: '',
+            complainType: '',
+            fname: '',
+            lname: '',
+            nic: '',
+            dateOfBirth: '',
+            religion: '',
+            sex: '',
+            address: '',
+            phone: new Number(),
+            description: '',
+            weapon: '',
+            date: '',
+            officer_incharge: '',
+        });
+    };
+    handleDemo = () => {
+        Array.from(document.querySelectorAll('input'));
+        this.setState({
+            refNo: '123',
+            complainType: 'Crime',
+            fname: 'Julien',
+            lname: 'Angelo',
+            nic: '992413414V',
+            dateOfBirth: '',
+            religion: 'Christian',
+            sex: 'male',
+            address: 'Colombo',
+            phone: new Number(778899568),
+            description: 'Killing',
+            weapon: 'Knife',
+            date: '',
+            officer_incharge: 'Danannjay',
+        });
+    }
     onSubmit(e) {
         e.preventDefault();
         const err = this.validate();
         if (!err) {
-
+            emailjs.sendForm('gmail', 'template_q0v9cyz', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                });
             const complain = {
                 refNo: Number(this.state.refNo),
                 complainType: this.state.complainType,
@@ -317,15 +372,12 @@ export default class CreateComplain extends Component {
             }
             console.log(complain);
             window.location = '#';
-            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
+            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data).then(() => axios.get('http://localhost:5000/Addcomplain/fpdf', { responseType: 'blob' }))
+                .then((res) => {
+                    const pdfBlob = new Blob([res.data], { type: 'application/pdf' })
+                    saveAs(pdfBlob, 'newPdf.pdf');
 
-
-            emailjs.sendForm('gmail', 'template_q0v9cyz', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
-                .then((result) => {
-                    console.log(result.text);
-                }, (error) => {
-                    console.log(error.text);
-                });
+                }))
 
             this.setState({
                 refNo: '',
@@ -333,7 +385,7 @@ export default class CreateComplain extends Component {
                 fname: '',
                 lname: '',
                 nic: '',
-                dateOfBirth: new Date(),
+                dateOfBirth: '',
                 religion: '',
                 sex: '',
                 address: '',
@@ -611,6 +663,9 @@ export default class CreateComplain extends Component {
                             </div>
                             <div className="form-group">
                                 <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
+                                <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
+                                <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.handleDemo}>Demo</button>
+                                <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.createPDF}>Genertate PDF</button>
                             </div>
                         </form>
                     </div >

@@ -52,8 +52,8 @@ function App() {
             <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
 
           </div>
-                <Route exact path="/ViewLost" exact component={ViewLost} />
-                <Route path="/edit/:id" component={EditLicense} />
+          <Route exact path="/ViewLost" exact component={ViewLost} />
+          <Route path="/edit/:id" component={EditLicense} />
         </Router>
       </div>
 

@@ -1,4 +1,8 @@
+body{
+  background-image: url('./Images/back6.png');
 
+
+}
 
 .nv{
   background-color: #2f373a;
@@ -47,7 +51,8 @@
 }
 .header{
   background-image: url('./Images/swat7.png');
-    left:10;
+  background-size: cover;
+      left:10;
       padding: 60px;
       text-align: center;
       color: white;
@@ -59,7 +64,7 @@
    top:0;
    padding-top: 1%;
    margin-left: 10%;
-   padding-right: 10%;
+   padding-right: 20%;
    padding-bottom: 0%;
    width: 100rem;
 }
