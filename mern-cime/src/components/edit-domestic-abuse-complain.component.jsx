@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import { ToastContainer, Zoom } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import '../App.css';
 
 export default class EditDomesticAbuseComplain extends Component {
 
@@ -427,9 +425,9 @@ export default class EditDomesticAbuseComplain extends Component {
 
     render() {
         return (
-            <div className="container" style={{ marginTop: 2 + 'rem' }}>
-                <div className="card text-white  bg-dark  mb-3" style={{ marginLeft: 10 + 'rem' }} >
-                    <div className="card-header"><h3>Add Complain</h3></div>
+            <div className="complain">
+                <div className="card text-white  bg-dark  mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                    <div className="card-header"><h3>View Complain</h3></div>
                     <div className="card-body" >
                     </div >
 
@@ -656,6 +654,7 @@ export default class EditDomesticAbuseComplain extends Component {
                             <div className="form-group">
                                 <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-success btn btn-dark" />
                                 <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
+                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Print" className="btn btn-outline-info btn btn-dark" />
                             </div>
                         </form>
                     </div >

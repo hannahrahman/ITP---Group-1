@@ -5,6 +5,7 @@ import {InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward, faListAlt} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import '../App.css';
 
 export default class DomesticAbuseComplainList extends Component {
 
@@ -94,7 +95,7 @@ export default class DomesticAbuseComplainList extends Component {
                                 midElm = newRow.refNo.slice(index, index+item.length);
                                 endElm = newRow.refNo.slice(index+item.length);
                             }
-                            newRow.refNo = <p>{startElm}<span style={{backgroundColor:"yellow"}}>{midElm}</span>{endElm}</p>
+                            newRow.refNo = <p>{startElm}<span style={{backgroundColor:"#17A2B8"}}>{midElm}</span>{endElm}</p>
                             itemArray.push(newRow);    
                         }
                     }
@@ -169,8 +170,8 @@ export default class DomesticAbuseComplainList extends Component {
         };
 
         return (
-            <div class="container" style={{ marginTop: 2 + 'rem' }}>
-                <div class="card text-dark  bg-white  mb-3" style={{ marginLeft: 11 + 'rem' }} >
+            <div className="complain">
+                <div class="card text-white  bg-dark  mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
                     <div class="card-header">
                         <h3><FontAwesomeIcon icon={faListAlt} /> Complains List</h3>
                         <div style={{"float":"right"}}>
@@ -179,7 +180,7 @@ export default class DomesticAbuseComplainList extends Component {
                     </div>
                     <div class="card-body" >
                         <div className="table-wrapper">
-                            <Table striped border hover>
+                            <Table striped border hover variant="dark">
                                 <thead>
                                     <tr>
                                         <th>Refference No</th>

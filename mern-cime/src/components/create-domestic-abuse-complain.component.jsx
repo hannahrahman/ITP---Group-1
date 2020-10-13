@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
+import '../App.css';
 
 export default class CreateDomesticAbuseComplain extends Component {
 
@@ -418,8 +419,8 @@ export default class CreateDomesticAbuseComplain extends Component {
 
     render() {
         return (
-            <div className="container" style={{ marginTop: 2 + 'rem' }}>
-                <div className="card text-white  bg-dark  mb-3" style={{ marginLeft: 10 + 'rem' }} >
+            <div className="complain">
+                <div className="card text-white  bg-dark  mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
                     <div className="card-header"><h3>Add Complain</h3></div>
                     <div className="card-body" >
                     </div >
