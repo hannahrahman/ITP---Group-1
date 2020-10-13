@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faListAlt, faTree, faHouseDamage, faGlobeAmericas, faUserNinja, faUser, faCannabis, faCarAlt, faCreditCard, faMoneyBillAlt} from '@fortawesome/free-solid-svg-icons';
 
 export default class Sidenav extends React.Component {
   constructor(props) {
@@ -76,43 +78,43 @@ export default class Sidenav extends React.Component {
         </font>
         <ul className="navbar-nav mr-auto" >
           <li className="navbar-item" style={{ marginTop: -47 + "rem" }}>
-            <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}>Miscellaneous Complaints</Link>
+            <Link to="/Miscellaneous Complaints" className="nav-link" onClick={this.m1.bind(this)}><FontAwesomeIcon icon={faListAlt} /> Miscellaneous Complaints</Link>
             <hr color="white" />
           </li>
 
           <li className="navbar-item">
-            <Link to="/Crime Division" className="nav-link" onClick={this.m2.bind(this)}>Crime Division</Link>
+            <Link to="/Crime Division" className="nav-link" onClick={this.m2.bind(this)}><FontAwesomeIcon icon={faUserNinja} /> Crime Division</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}>Domestic Abuse Affairs</Link>
+          <Link to="/Civil Domestic Abuse Affairs" className="nav-link" onClick={this.m3.bind(this)}><FontAwesomeIcon icon={faHouseDamage} /> Domestic Abuse Affairs</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Environmental Affairs" className="nav-link" onClick={this.m4.bind(this)}>Environmental Affairs</Link>
+            <Link to="/Environmental Affairs" className="nav-link" onClick={this.m4.bind(this)}><FontAwesomeIcon icon={faTree} /> Environmental Affairs</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Cyber Crime" className="nav-link" onClick={this.m5.bind(this)}>Cyber Crime</Link>
+            <Link to="/Cyber Crime" className="nav-link" onClick={this.m5.bind(this)}><FontAwesomeIcon icon={faGlobeAmericas} /> Cyber Crime</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Missing Persons Affairs" className="nav-link" onClick={this.m6.bind(this)}>Missing Persons Affairs</Link>
+            <Link to="/Missing Persons Affairs" className="nav-link" onClick={this.m6.bind(this)}><FontAwesomeIcon icon={faUser} /> Missing Persons Affairs</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Narcotics and Drug Affairs" className="nav-link" onClick={this.m9.bind(this)}>Narcoticss and Drug Affairs</Link>
+            <Link to="/Narcotics and Drug Affairs" className="nav-link" onClick={this.m9.bind(this)}><FontAwesomeIcon icon={faCannabis} /> Narcoticss and Drug Affairs</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
             <font color="#00AFF1" ><a className="nav-disabled-link">More</a></font>
           </li>
           <li className="navbar-item">
-            <Link to="/Online Fine Payment" className="nav-link" onClick={this.m7.bind(this)}>Online Fine Payment</Link>
+            <Link to="/Online Fine Payment" className="nav-link" onClick={this.m7.bind(this)}><FontAwesomeIcon icon={faMoneyBillAlt} /> Online Fine Payment</Link>
             <hr width="225" color="white" />
           </li>
           <li className="navbar-item">
-            <Link to="/Online Driving/NIC Renewal" className="nav-link" onClick={this.m8.bind(this)}>Online Driving/NIC Renewal</Link>
+            <Link to="/Online Driving/NIC Renewal" className="nav-link" onClick={this.m8.bind(this)}><FontAwesomeIcon icon={faCarAlt} /> Online Driving/NIC Renewal</Link>
           </li>
         </ul>
         <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
