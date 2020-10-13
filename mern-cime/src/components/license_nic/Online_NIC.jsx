@@ -15,7 +15,6 @@ export default class OnlineNic extends Component {
     this.onchangeAddress = this.onchangeAddress.bind(this);
     this.onchangePhone = this.onchangePhone.bind(this);
     this.onchangeDescription = this.onchangeDescription.bind(this);
-    this.onchangeDate = this.onchangeDate.bind(this);
     this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this);
     this.onchangeGramaNiladhari = this.onchangeGramaNiladhari.bind(this);
     
@@ -28,7 +27,6 @@ export default class OnlineNic extends Component {
       address: "",
       phone: "",
       description: "",
-      date: "",
       officer_incharge: "",
       grama_niladhari: "",
     };
@@ -70,12 +68,6 @@ export default class OnlineNic extends Component {
     });
   }
 
-  onchangeDate(e) {
-    this.setState({
-      date: e.target.value,
-    });
-  }
-
   onchangeOfficerIncharge(e) {
     this.setState({
       officer_incharge: e.target.value,
@@ -98,7 +90,6 @@ export default class OnlineNic extends Component {
       address: this.state.address,
       phone: this.state.phone,
       description: this.state.description,
-      date: this.state.date,
       officer_incharge: this.state.officer_incharge,
       grama_niladhari: this.state.grama_niladhari,
     };
@@ -113,21 +104,21 @@ export default class OnlineNic extends Component {
       address: "",
       phone: "",
       description: "",
-      date: "",
       officer_incharge: "",
       grama_niladhari: "",
     })
 
     console.log(complain);
+    
   }
 
   render() {
     return (
 
-        <div style={{ marginTop: -35 + "rem" }}>
+        <div>
 
-          <div class="container" style={{ marginTop: 1 + "rem" }}>
-            <div class="card text-danger  bg-dark  mb-3" style={{ marginTop: 1 + "rem", marginLeft: 5 +"rem" }}>
+          <div class="container">
+            <div class="card text-danger  bg-dark">
               <div class="card-header">
                 <h3>NIC Lost</h3>
               </div>
@@ -136,16 +127,14 @@ export default class OnlineNic extends Component {
               <div class="container">
 
               <form
-                  style={{ margin: "auto" }}
                   onSubmit={this.onSubmit}
                 >
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>RefNo:</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.refNo}
                       onChange={this.onchangeRefno}
@@ -153,12 +142,11 @@ export default class OnlineNic extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Name: </b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.name}
                       onChange={this.onchangeName}
@@ -166,12 +154,11 @@ export default class OnlineNic extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>NIC Number :</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.nic}
                       onChange={this.onchangeNic}
@@ -179,12 +166,11 @@ export default class OnlineNic extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Address:</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.address}
                       onChange={this.onchangeAddress}
@@ -192,12 +178,11 @@ export default class OnlineNic extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Phone: </b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.phone}
                       onChange={this.onchangePhone}
@@ -205,38 +190,23 @@ export default class OnlineNic extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Description: </b>
                     </label>
                     <textarea
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.description}
                       onChange={this.onchangeDescription}
                     />
                   </div>
 
-                  {/* <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
-                      <b>Date: </b>
-                    </label>
-                    <div></div>
-                    <DatePicker
-                      className="form-control"
-                      selected={this.state.date}
-                      className="form-control is-invalid"
-                      onChange={this.onchangeDate}
-                    />
-                  </div> */}
-
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Officer Incharge:</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.officer_incharge}
                       onChange={this.onchangeOfficerIncharge}
@@ -244,12 +214,11 @@ export default class OnlineNic extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Grame Niladhari Division:</b>
                     </label>
                     <input
                       type="text"
-                      required
                       className="form-control"
                       value={this.state.grama_niladhari}
                       onChange={this.onchangeGramaNiladhari}
@@ -260,7 +229,6 @@ export default class OnlineNic extends Component {
                     <input
                       type="submit"
                       onSubmit={this.onsubmit}
-                      style={{ marginLeft: 0.5 + "rem" }}
                       value="Submit"
                       className="btn btn-outline-danger btn btn-dark"
                     />

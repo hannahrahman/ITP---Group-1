@@ -14,9 +14,8 @@ router.route('/add').post((req, res) => {
     const address = req.body.address
     const phone = req.body.phone
     const description = req.body.description
-    const date = req.body.date
     const officer_incharge = req.body.officer_incharge
-    const grama_niladhari_division = req.body.grama_niladhari_division
+    const grama_niladhari_division = req.body.grama_niladhari
 
     const newComplain = new Complain({
         refNo,
@@ -25,7 +24,6 @@ router.route('/add').post((req, res) => {
         address,
         phone,
         description,
-        date,
         officer_incharge,
         grama_niladhari_division,
     })
@@ -56,9 +54,8 @@ router.route('/update/:id').post((req, res) => {
             complain.address = req.body.address
             complain.phone = req.body.phone
             complain.description = req.body.description
-            complain.date = req.body.date
             complain.officer_incharge = req.body.officer_incharge
-	        complain.grama_niladhari_division = req.body.grama_niladhari_division
+	        complain.grama_niladhari_division = req.body.grama_niladhari
 
             complain.save()
                 .then(() => res.json('Complain updated..'))

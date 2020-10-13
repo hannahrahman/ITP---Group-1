@@ -4,7 +4,7 @@ import OnlineDrivingNICRenewalNavbar from "../../NavBars/OnlineDrivingNICRenewal
 
 import axios from 'axios';
 
-export default class EditOnlineDriving extends Component {
+export default class EditOnlineNic extends Component {
 
   constructor(props) {
     super(props);
@@ -33,7 +33,7 @@ export default class EditOnlineDriving extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/license/'+this.props.match.params.id)
+    axios.get('http://localhost:5000/nic/'+this.props.match.params.id)
       .then(response => {
         this.setState({
           refNo: response.data.refNo,
@@ -114,12 +114,12 @@ export default class EditOnlineDriving extends Component {
       grama_niladhari: this.state.grama_niladhari,
     };
 
-    axios.post('http://localhost:5000/license/update/' + this.props.match.params.id, complain)
+    axios.post('http://localhost:5000/nic/update/' + this.props.match.params.id, complain)
     .then(res => console.log(res.data));
 
     console.log(complain);
 
-    window.location = '/viewlostLicenseDetails'
+    window.location = '/viewlostNicDetails'
 
   }
 
@@ -135,7 +135,7 @@ export default class EditOnlineDriving extends Component {
           <div class="container">
             <div class="card text-danger bg-dark">
               <div class="card-header">
-                <h3>Driving License Lost</h3>
+                <h3>NIC Lost</h3>
               </div>
               <div class="card-body"></div>
 

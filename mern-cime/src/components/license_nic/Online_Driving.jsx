@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-// import DatePicker from "react-datepicker";
-
 import axios from 'axios';
 
 export default class OnlineDriving extends Component {
@@ -124,10 +122,10 @@ export default class OnlineDriving extends Component {
   render() {
     return (
 
-        <div style={{ marginTop: -35 + "rem" }}>
+        <div>
 
-          <div class="container" style={{ marginTop: 1 + "rem" }}>
-            <div class="card text-danger  bg-dark  mb-3">
+          <div class="container">
+            <div class="card text-danger  bg-dark">
               <div class="card-header">
                 <h3>Driving License Lost</h3>
               </div>
@@ -136,11 +134,10 @@ export default class OnlineDriving extends Component {
               <div class="container">
 
               <form
-                  style={{ margin: "auto" }}
                   onSubmit={this.onSubmit}
                 >
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>RefNo:</b>
                     </label>
                     <input
@@ -153,7 +150,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Name: </b>
                     </label>
                     <input
@@ -166,7 +163,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>NIC Number :</b>
                     </label>
                     <input
@@ -179,7 +176,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Address:</b>
                     </label>
                     <input
@@ -192,7 +189,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Phone: </b>
                     </label>
                     <input
@@ -204,7 +201,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Description: </b>
                     </label>
                     <textarea
@@ -216,7 +213,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   {/* <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Date: </b>
                     </label>
                     <div></div>
@@ -229,7 +226,7 @@ export default class OnlineDriving extends Component {
                   </div> */}
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Officer Incharge:</b>
                     </label>
                     <input
@@ -241,7 +238,7 @@ export default class OnlineDriving extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label style={{ marginLeft: 0.5 + "rem" }}>
+                    <label>
                       <b>Grama Niladhari Division:</b>
                     </label>
                     <input
@@ -256,7 +253,6 @@ export default class OnlineDriving extends Component {
                     <input
                       type="submit"
                       onSubmit={this.onsubmit}
-                      style={{ marginLeft: 0.5 + "rem" }}
                       value="Submit"
                       className="btn btn-outline-danger btn btn-dark"
                     />

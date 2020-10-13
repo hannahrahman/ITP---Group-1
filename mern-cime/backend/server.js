@@ -3,8 +3,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
-const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
-const app = express()//creating express server
+//const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
+var url = 'mongodb://localhost:27017/myproject';
+const app = express()
 const port = process.env.PORT || 5000 // the port the server will be on
 
 const LefRoute = require('./routes/lef');

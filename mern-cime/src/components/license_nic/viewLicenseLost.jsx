@@ -1,31 +1,22 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-import PDFDesign from "./pdf1"
-
-import { PDFViewer } from '@react-pdf/renderer';
-
 import OnlineDrivingNICRenewalNavbar from "../../NavBars/OnlineDrivingNICRenewalNavbar.component";
 import { Button } from 'semantic-ui-react';
 
 const License = props => (
     <tr>
-      <td>{props.exercise.name}</td>
-      <td>{props.exercise.description}</td>
-      <td>{props.exercise.nic}</td>
-      <td>
-        <Link to={"/edit/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => props.delete(props.exercise._id) }>delete</a> | 
-    
-    <PDFViewer>
-        <PDFDesign name={props.exercise.name} gs={props.exercise.grama_niladhari_division} nic={props.exercise.nic} /> 
-   </PDFViewer>
-   
-      </td>
+    <td>{props.exercise.name}</td>
+    <td>{props.exercise.description}</td>
+    <td>{props.exercise.nic}</td>
+    <td>
+        <Link to={"/editlostLicense/"+props.exercise._id}>edit</Link> | <a href="#" onClick={() => props.delete(props.exercise._id) }>delete</a> | 
+    </td>
+    <td><Link to={"/viewlostLicense/"+props.exercise._id}>View PDF</Link></td>
     </tr>
   )
 
-export default class viewLost extends Component {
+export default class viewLostLicense extends Component {
 
     constructor(props) {
 
@@ -84,7 +75,8 @@ export default class viewLost extends Component {
                         <th>Name</th>
                         <th>Description</th>
                         <th>Nic</th>
-                        <th>PDF Preview</th>
+                        <th>Actions</th>
+                        <th>View PDF</th>
                     </tr>
                         
                 </thead>

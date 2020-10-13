@@ -3,13 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const nicSchema = new Schema({
-    refNo: { type: Number, required: true },
-    name: { type: String, required: true },
-    nic: { type: String, required: true },
-    address: { type: String, require: true },
-    phone: { type: Number, require: true },
-    description: { type: String, required: true },
-    date: { type: Date, required: true },
+    refNo: { type: String},
+    name: { type: String},
+    nic: { type: String},
+    address: { type: String},
+    phone: { type: String},
+    description: { type: String },
     officer_incharge: { type: String },
     grama_niladhari_division: { type: String}
 }, {
