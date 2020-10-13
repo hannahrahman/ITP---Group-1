@@ -12,7 +12,7 @@ const port = process.env.PORT || 5000 // the port the server will be on
 
 
 
-const cmpRoutes = require('./routes/complains')
+const cmpRoutes = require('./routes/miscComplains')
 const userRouter = require('./routes/userRouter')
 
 mongoose.Promise = global.Promise;
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
     console.log('Connected to the Database server....')
 })*/
 
-app.use('/complains', cmpRoutes)
+app.use('/miscComplains', cmpRoutes)
 app.use("/users", userRouter)
 
 app.listen(port, () => {

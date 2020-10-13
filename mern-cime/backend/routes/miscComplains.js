@@ -1,6 +1,6 @@
 const express = require('express');
 const cmpRoutes = express.Router();
-let Complain = require('../models/complain.model')
+let Complain = require('../models/miscComplain.model')
 
 
 cmpRoutes.route('/add').post(function (req, res) {
@@ -10,7 +10,7 @@ cmpRoutes.route('/add').post(function (req, res) {
             res.status(200).json({ 'complain': 'Complaint is added successfully' });
         })
         .catch(err => {
-            res.status(400).send("unable to save to database");
+            res.status(400).send("Unable to save to database");
         });
 });
 
