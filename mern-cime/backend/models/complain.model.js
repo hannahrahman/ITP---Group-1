@@ -3,26 +3,24 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const complainSchema = new Schema({
+let complainSchema = new Schema({
     refNo: { type: Number, required: true },
     complainType: { type: String, required: true },
     fname: { type: String, required: true },
     lname: { type: String, required: true },
     nic: { type: String, required: true },
     dateOfBirth: { type: Date, required: true },
-    religion: { type: String },
+    religion: { type: String, required: true },
     sex: { type: String, required: true },
     address: { type: String, require: true },
     phone: { type: Number, require: true },
     description: { type: String, required: true },
     weapon: { type: String },
     date: { type: Date, required: true },
-    officer_incharge: { type: String }
+    officer_incharge: { type: String, required: true }
 
 }, {
-    timestamps: true,
+    collection: 'complain',
 })
 
-const Complain = mongoose.model('Complain', complainSchema)
-
-module.exports = Complain
+module.exports = mongoose.model('Complain', complainSchema);

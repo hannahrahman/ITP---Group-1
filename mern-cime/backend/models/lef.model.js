@@ -18,12 +18,12 @@ let lefSchema = new Schema({
     nomineeName: { type: String, required: true },
     address: { type: String, required: true },
     rank: { type: String, required: true },
-    // natureOfBodilyHarm: { type: String },
-    // weapon: { type: String },
-    // categoryOfHurt: { type: String },
-    // consumptionOfAlcohol: { type: String },
-    //other: { type: String },
-    remarks: { type: String, required: true }
+    natureOfBodilyHarm: { type: String, required: true },
+    weapon: { type: String, required: true },
+    categoryOfHurt: { type: String, required: true },
+    consumptionOfAlcohol: { type: String, required: true },
+    other: { type: String, required: true },
+    remarks: { type: String, required: true, required: true }
 
 
 }, {

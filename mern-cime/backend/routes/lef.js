@@ -50,11 +50,11 @@ lefRoutes.route('/update/:id').post(function (req, res) {
             lef.nomineeName = req.body.nomineeName
             lef.address = req.body.address
             lef.rank = req.body.rank
-            //  lef.natureOfBodilyHarm = req.body.natureOfBodilyHarm
-            // lef.weapon = req.body.weapon
-            // lef.categoryOfHurt = req.body.categoryOfHurt
-            // lef.consumptionOfAlcohol = req.body.consumptionOfAlcohol
-            //  lef.other = req.body.other
+            lef.natureOfBodilyHarm = req.body.natureOfBodilyHarm
+            lef.weapon = req.body.weapon
+            lef.categoryOfHurt = req.body.categoryOfHurt
+            lef.consumptionOfAlcohol = req.body.consumptionOfAlcohol
+            lef.other = req.body.other
             lef.remarks = req.body.remarks
 
             lef.save().then(lef => {

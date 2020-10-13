@@ -1,64 +1,58 @@
-const router = require('express').Router()
+const express = require('express');
+const complainRoutes = express.Router();
 let Complain = require('../models/complain.model')
+const pdf = require('html-pdf')
+const pdfTemplate = require('../documents')
+//const app = express()
 
-router.route('/').get((req, res) => {
-    Complain.find()
-        .then(complains => res.json(complains))
-        .catch(err => res.status(400), json('error: ' + err))
-})
-
-router.route('/add').post((req, res) => {
-    const refNo = req.body.refNo
-    const complainType = req.body.complainType
-    const fname = req.body.fname
-    const lname = req.body.lname
-    const nic = Number(req.body.nic)
-    const dateOfBirth = Date.parse(req.body.dateOfBirth)
-    const religion = req.body.religion
-    const sex = req.body.sex
-    const address = req.body.address
-    const phone = Number(req.body.phone)
-    const description = req.body.description
-    const weapon = req.body.weapon
-    const date = Date.parse(req.body.date)
-    const officer_incharge = req.body.officer_incharge
-
-    const newComplain = new Complain({
-        refNo,
-        complainType,
-        fname,
-        lname,
-        nic,
-        dateOfBirth,
-        religion,
-        sex,
-        address,
-        phone,
-        description,
-        weapon,
-        date,
-        officer_incharge,
-    })
-
-    newComplain.save()
-        .then(() => res.json('Complain added!'))
-        .catch(err => res.status(400).json('Error :' + err))
-})
-
-router.route('/:id').get((req, res) => {
-    Complain.findById(req.params.id)
-        .then(complain => res.json(complain))
-        .catch(err => res.status(400).json('Error: ' + err))
-})
-router.route('/:id').delete((req, res) => {
-    Complain.findByIdAndDelete(req.params.id)
-        .then(() => res.json('complain deleted..'))
-        .catch(err => res.status(400).json('Error: ' + err))
-})
-router.route('/update/:id').post((req, res) => {
-    Complain.findById(req.params.id)
+complainRoutes.route('/add').post(function (req, res) {
+    let complain = new Complain(req.body);
+    complain.save()
         .then(complain => {
-            complain.refNo = req.body.refNo
+            res.status(200).json({ 'complain': 'complain is added successfully' });
+
+        })
+        .catch(err => {
+            res.status(400).send("unable to save to database");
+        });
+});
+
+/*complainRoutes.post('/pdf', (req, res) => {
+    pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
+        if (err) {
+            res.send(Promise.reject());
+        }
+        res.send(Promise.resolve());
+    })
+})*/
+complainRoutes.get('/fpdf', (req, res) => {
+    res.sendFile(`./${__dirname}/result.pdf`)
+})
+complainRoutes.route('/get').get(function (req, res) {
+    Complain.find(function (err, complain) {
+        if (err)
+            console.log(err);
+        else {
+            res.json(complain)
+            // res.sendFile(`${__dirname}/result.pdf`);
+        }
+    });
+});
+
+complainRoutes.route('/edit/:id').get(function (req, res) {
+    let id = req.params.id;
+    Complain.findById(id, function (err, complain) {
+        res.json(complain)
+
+    });
+});
+
+complainRoutes.route('/update/:id').post(function (req, res) {
+    Complain.findById(req.params.id, function (err, complain) {
+        if (!complain)
+            res.status(404).send("data is not found");
+        else {
+            complain.refNo = Number(req.body.refNo)
             complain.complainType = req.body.complainType
             complain.fname = req.body.fname
             complain.lname = req.body.lname
@@ -73,11 +67,27 @@ router.route('/update/:id').post((req, res) => {
             complain.date = Date.parse(req.body.date)
             complain.officer_incharge = req.body.officer_incharge
 
-            complain.save()
-                .then(() => res.json('Complain updated..'))
-                .catch(err => res.status(400).json('Error: ' + err))
-        })
-        .catch(err => res.status(400).json('Error: ' + err))
-})
+            complain.save().then(complain => {
+                res.json('Update Complete');
+            })
+                .catch(err => {
+                    res.status(400).send("unable to update database");
+                });
+            pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
+                if (err) {
+                    res.send(Promise.reject());
+                }
+                res.send(Promise.resolve());
+            })
+        }
+    });
+});
 
-module.exports = router;
+complainRoutes.route('/delete/:id').get(function (req, res) {
+    Complain.findByIdAndRemove({ _id: req.params.id }, function (err, complain) {
+        if (err) res.json(err);
+        else res.json('Successfully removed');
+    });
+});
+
+module.exports = complainRoutes;
