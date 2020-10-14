@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-//const { generatePath } = require('react-router-dom');
 
 const Schema = mongoose.Schema;
 
-const domesticAbuseComplainSchema = new Schema({
+const domesticAbuseComplainBackupSchema = new Schema({
     refNo: { type: String, required: true },
     complainType: { type: String, required: true },
     fname: { type: String, required: true },
@@ -22,8 +21,8 @@ const domesticAbuseComplainSchema = new Schema({
     relationType: { type: String, required: true }
 
 }, {
-    collection: 'domesticAbuseComplain',
+    collection: 'domesticAbuseComplainBackup',
 })
 
-module.exports = mongoose.model('DomesticAbuseComplain', domesticAbuseComplainSchema);
+module.exports = mongoose.model('DomesticAbuseComplainBackup', domesticAbuseComplainBackupSchema);
 

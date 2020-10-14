@@ -9,10 +9,10 @@ const port = process.env.PORT || 5000 // the port the server will be on
 
 const LefRoute = require('./routes/lef');
 const complainsRouter = require('./routes/complains')
-const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
+const domAbuseComplainsRouter = require('./routes/domestic_abuse_complains')
+const domAbuseComplainsBackupRouter = require('./routes/domestic_abuse_complains_backup')
 const ComplainRoute = require('./routes/complains');
 const missingRoute = require('./routes/missingPersonAffairs.route')
-
 const licenseComplainsRouter = require('./routes/license_nic/licenseComplain')
 const nicComplainsRouter = require('./routes/license_nic/nicComplain')
 
@@ -36,7 +36,8 @@ app.use(bodyParser.json());
 
 app.use('/complains', complainsRouter)
 app.use('/lef', LefRoute);
-app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
+app.use('/domestic_abuse_complains', domAbuseComplainsRouter)
+app.use('/domestic_abuse_complains_backup', domAbuseComplainsBackupRouter)
 app.use('/Addcomplain', ComplainRoute);
 app.use('/missingPersonAffairs', missingRoute);
 app.use('/license', licenseComplainsRouter)

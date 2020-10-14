@@ -41,14 +41,13 @@ domesticRoutes.route('/update/:id').post(function (req, res) {
             domesticAbuseComplain.fname =  req.body.fname
             domesticAbuseComplain.lname = req.body.lname  
             domesticAbuseComplain.nic = req.body.nic
-            domesticAbuseComplain.dateOfBirth = Date.parse(req.body.dateOfBirth)
+            domesticAbuseComplain.dateOfBirth = req.body.dateOfBirth
             domesticAbuseComplain.religion = req.body.religion
             domesticAbuseComplain.sex = req.body.sex   
             domesticAbuseComplain.address = req.body.address
-            domesticAbuseComplain.phone = Number(req.body.phone)
+            domesticAbuseComplain.phone = req.body.phone
             domesticAbuseComplain.description = req.body.description
-            domesticAbuseComplain.weapon = req.body.weapon   
-            domesticAbuseComplain.date = Date.parse(req.body.date)
+            domesticAbuseComplain.weapon = req.body.weapon
             domesticAbuseComplain.officer_incharge = req.body.officer_incharge
             domesticAbuseComplain.relationType = req.body.relationType
 
