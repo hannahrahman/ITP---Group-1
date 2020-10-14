@@ -18,6 +18,7 @@
     "html-pdf": "^2.2.0",
     "mongoose": "^5.9.27",
     "nodemailer": "^6.4.13",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "pdf-creator-node": "^1.4.1"
   }
 }

@@ -2,8 +2,6 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-//const pdf = require('html-pdf')
-//const pdfTemplate = require('./documents')
 
 const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
 const app = express()//creating express server
@@ -36,17 +34,6 @@ app.use(bodyParser.json());
     console.log('Connected to the Database server....')
 })*/
 
-/*app.post('/pdf', (req, res) => {
-  pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
-    if (err) {
-      res.send(Promise.reject());
-    }
-    res.send(Promise.resolve());
-  })
-})
-app.get('/fpdf', (req, res) => {
-  res.sendFile(`${__dirname}/result.pdf`)
-})*/
 app.use('/complains', complainsRouter)
 app.use('/lef', LefRoute);
 app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)

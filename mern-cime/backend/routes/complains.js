@@ -1,40 +1,26 @@
 const express = require('express');
 const complainRoutes = express.Router();
 let Complain = require('../models/complain.model')
-const pdf = require('html-pdf')
-const pdfTemplate = require('../documents')
-//const app = express()
 
 complainRoutes.route('/add').post(function (req, res) {
     let complain = new Complain(req.body);
     complain.save()
         .then(complain => {
             res.status(200).json({ 'complain': 'complain is added successfully' });
-
         })
         .catch(err => {
             res.status(400).send("unable to save to database");
         });
 });
 
-/*complainRoutes.post('/pdf', (req, res) => {
-    pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
-        if (err) {
-            res.send(Promise.reject());
-        }
-        res.send(Promise.resolve());
-    })
-})*/
-complainRoutes.get('/fpdf', (req, res) => {
-    res.sendFile(`./${__dirname}/result.pdf`)
-})
-complainRoutes.route('/get').get(function (req, res) {
+
+complainRoutes.route('/').get(function (req, res) {
     Complain.find(function (err, complain) {
         if (err)
             console.log(err);
         else {
             res.json(complain)
-            // res.sendFile(`${__dirname}/result.pdf`);
+           
         }
     });
 });
@@ -73,12 +59,6 @@ complainRoutes.route('/update/:id').post(function (req, res) {
                 .catch(err => {
                     res.status(400).send("unable to update database");
                 });
-            pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
-                if (err) {
-                    res.send(Promise.reject());
-                }
-                res.send(Promise.resolve());
-            })
         }
     });
 });

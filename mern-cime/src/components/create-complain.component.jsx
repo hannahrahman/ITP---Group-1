@@ -7,7 +7,7 @@ import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
 import '../App.css';
-import { saveAs } from 'file-saver'
+import PDF from './pdf.component.jsx'
 toast.success("Welcome Sir.", {
     position: toast.POSITION.TOP_CENTER,
     draggable: true,
@@ -66,6 +66,7 @@ export default class CreateComplain extends Component {
             dateError: '',
             officer_incharge: '',
             officer_inchargeError: '',
+            postSubmitted: false
         }
     }
 
@@ -173,11 +174,12 @@ export default class CreateComplain extends Component {
             dateError: '',
             officer_inchargeError: '',
         };
+
         if (this.state.refNo.length <= 0) {
             isError = true;
             errors.refNoError = "Reference Number can not be blank"
             this.state.error1 = true
-            toast.error("Ref No : Methana Error ekakk oiii penadda oiii magula", {
+            toast.error("Ref No : Reference Number can not be blank", {
                 transition: Flip
             });
         }
@@ -296,15 +298,7 @@ export default class CreateComplain extends Component {
         return isError;
     };
 
-    /*createPDF = () => {
-        axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data))
-            .then(() => axios.get('fpdf', { responseType: 'blob' }))
-            .then((res) => {
-                const pdfBlob = new Blob([res.data], { type: 'application/pdf' })
-                saveAs(pdfBlob, 'newPdf.pdf');
 
-            })
-    }*/
 
     handleReset = () => {
         Array.from(document.querySelectorAll('input'));
@@ -325,8 +319,8 @@ export default class CreateComplain extends Component {
             officer_incharge: '',
         });
     };
+
     handleDemo = () => {
-        Array.from(document.querySelectorAll('input'));
         this.setState({
             refNo: '123',
             complainType: 'Crime',
@@ -335,7 +329,7 @@ export default class CreateComplain extends Component {
             nic: '992413414V',
             dateOfBirth: '',
             religion: 'Christian',
-            sex: 'male',
+            sex: 'Male',
             address: 'Colombo',
             phone: new Number(778899568),
             description: 'Killing',
@@ -354,6 +348,9 @@ export default class CreateComplain extends Component {
                 }, (error) => {
                     console.log(error.text);
                 });
+            this.setState({
+                postSubmitted: true
+            })
             const complain = {
                 refNo: Number(this.state.refNo),
                 complainType: this.state.complainType,
@@ -371,13 +368,14 @@ export default class CreateComplain extends Component {
                 officer_incharge: this.state.officer_incharge,
             }
             console.log(complain);
-            window.location = '#';
-            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data).then(() => axios.get('http://localhost:5000/Addcomplain/fpdf', { responseType: 'blob' }))
-                .then((res) => {
-                    const pdfBlob = new Blob([res.data], { type: 'application/pdf' })
-                    saveAs(pdfBlob, 'newPdf.pdf');
-
-                }))
+            toast.success("DB is updated.", {
+                position: toast.POSITION.TOP_CENTER,
+                draggable: true,
+                transition: Flip,
+                autoClose: 5000
+            });
+            // window.location = '/Complain';
+            axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
 
             this.setState({
                 refNo: '',
@@ -412,267 +410,269 @@ export default class CreateComplain extends Component {
          toast.warn("you have been warned buhahahaha....");*/
 
         return (
+            <>
+                < div className="complain" >
+                    <>
 
-            <div className="complain">
-                <>
+                        <ToastContainer draggable={false} transition={Zoom} autoClose={8000} newestOnTop />
+                    </>
+                    <div className="card text-white  bg-light mb-3 " style={{ marginLeft: 8.5 + 'rem' }} >
+                        <div className="card-header bg-dark"><h3>Add Complain</h3></div>
+                        <div className="card-body " >
 
-                    <ToastContainer draggable={false} transition={Zoom} autoClose={8000} newestOnTop />
-                </>
-                <div className="card text-white  bg-light mb-3 " style={{ marginLeft: 8.5 + 'rem' }} >
-                    <div className="card-header bg-dark"><h3>Add Complain</h3></div>
-                    <div className="card-body " >
+                        </div >
 
-                    </div >
+                        <div className="container">
+                            <form onSubmit={this.onSubmit} method="POST" action="/Complain" style={{ margin: "auto" }} noValidate='true'>
+                                <div className="row">
+                                    <div className="contact">
 
-                    <div className="container">
-                        <form onSubmit={this.onSubmit} method="POST" action="/Complain" style={{ margin: "auto" }} noValidate='true'>
-                            <div className="row">
-                                <div className="contact">
+                                    </div>
+                                    <div className="col form-group" >
+                                        <TextField
+                                            label="Refno"
+                                            required
+                                            color="secondary"
+                                            type="number"
+                                            variant="outlined"
+                                            error={this.state.error1}
+                                            value={this.state.refNo}
+                                            name="refNo"
+                                            onChange={this.onchangeRefno}
+                                        />
 
+                                        <br></br>
+                                        <span className="text-danger">{this.state.refNoError}</span>
+                                    </div>
+
+
+                                    <div className="col" >
+                                        <div className="form-group">
+                                            <TextField
+                                                type="text"
+                                                label="Complain Type"
+                                                variant="outlined"
+                                                color="secondary"
+                                                required
+                                                name="complainType"
+                                                error={this.state.error2}
+                                                value={this.state.complainType}
+                                                onChange={this.onchangecomplainType} />
+                                            <br></br>
+                                            <span className="text-danger">{this.state.complainTypeError}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="col form-group" >
-                                    <TextField
-                                        label="Refno"
-                                        required
-                                        color="secondary"
-                                        type="number"
-                                        variant="outlined"
-                                        error={this.state.error1}
-                                        value={this.state.refNo}
-                                        name="refNo"
-                                        onChange={this.onchangeRefno}
-                                    />
 
-                                    <br></br>
-                                    <span className="text-danger">{this.state.refNoError}</span>
-                                </div>
-
-
-                                <div className="col" >
-                                    <div className="form-group">
+                                <div className="row first-Name">
+                                    <div className="col form-group" >
                                         <TextField
                                             type="text"
-                                            label="Complain Type"
+                                            variant="outlined"
+                                            required
+                                            fullWidth
+                                            name="fname"
+                                            color="secondary"
+                                            label="First Name"
+                                            value={this.state.fname}
+                                            onChange={this.onchangeFName}
+                                            error={this.state.error3} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.fnameError}</span>
+
+                                    </div>
+                                    <div className="col form-group">
+                                        <TextField
+                                            type="text"
+                                            required
+                                            fullWidth
+                                            name="lname"
                                             variant="outlined"
                                             color="secondary"
-                                            required
-                                            name="complainType"
-                                            error={this.state.error2}
-                                            value={this.state.complainType}
-                                            onChange={this.onchangecomplainType} />
+                                            label="Last Name"
+                                            value={this.state.lname}
+                                            error={this.state.error4}
+                                            onChange={this.onchangeLName} />
                                         <br></br>
-                                        <span className="text-danger">{this.state.complainTypeError}</span>
+                                        <span className="text-danger">{this.state.lnameError}</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div className="row first-Name">
-                                <div className="col form-group" >
-                                    <TextField
-                                        type="text"
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="fname"
-                                        color="secondary"
-                                        label="First Name"
-                                        value={this.state.fname}
-                                        onChange={this.onchangeFName}
-                                        error={this.state.error3} />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.fnameError}</span>
-
-                                </div>
-                                <div className="col form-group">
-                                    <TextField
-                                        type="text"
-                                        required
-                                        fullWidth
-                                        name="lname"
-                                        variant="outlined"
-                                        color="secondary"
-                                        label="Last Name"
-                                        value={this.state.lname}
-                                        error={this.state.error4}
-                                        onChange={this.onchangeLName} />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.lnameError}</span>
-                                </div>
-                            </div>
-                            <div className="row first-Name">
-                                <div className="col form-group">
-                                    <TextField
-                                        type="text"
-                                        required
-                                        fullWidth
-                                        name="nic"
-                                        variant="outlined"
-                                        color="secondary"
-                                        label="NIC Number"
-                                        value={this.state.nic}
-                                        error={this.state.error5}
-                                        onChange={this.onchangeNic} />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.nicError}</span>
-                                </div>
-
-                                <div className="col form-group">
-                                    <TextField
-                                        type="text"
-                                        required
-                                        fullWidth
-                                        name="religion"
-                                        variant="outlined"
-                                        style={{ margin: 'auto' }}
-                                        color="secondary"
-                                        label="Religion"
-                                        value={this.state.religion}
-                                        error={this.state.error6}
-                                        onChange={this.onchangeReligion} />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.religionError}</span>
-                                </div>
-                                <div className="col form-group">
-                                    <TextField
-                                        style={{ width: 10 + 'rem' }}
-                                        select
-                                        name="sex"
-                                        value={this.state.sex}
-                                        error={this.state.error7}
-                                        onChange={this.onchangeSex}
-                                        color="secondary"
-
-                                        label="Sex"
-                                        id="outlined-select"
-                                        variant="outlined">
-
-                                        <option value="Male">Male</option >
-                                        <option value="Female">Female</option  >
-                                    </TextField>
-
-                                    <br></br>
-                                    <span className="text-danger">{this.state.sexError}</span>
-                                </div>
-                            </div>
-                            <div className="row first-Name">
-                                <div className="col form-group" >
-                                    <label className="text-dark">Date Of Birth: </label>
-                                    <div>
-                                        <DatePicker
-                                            className="form-control"
-                                            selected={this.state.dateOfBirth}
-                                            onChange={this.onchangeDateOfBirth} />
+                                <div className="row first-Name">
+                                    <div className="col form-group">
+                                        <TextField
+                                            type="text"
+                                            required
+                                            fullWidth
+                                            name="nic"
+                                            variant="outlined"
+                                            color="secondary"
+                                            label="NIC Number"
+                                            value={this.state.nic}
+                                            error={this.state.error5}
+                                            onChange={this.onchangeNic} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.nicError}</span>
                                     </div>
 
+                                    <div className="col form-group">
+                                        <TextField
+                                            type="text"
+                                            required
+                                            fullWidth
+                                            name="religion"
+                                            variant="outlined"
+                                            style={{ margin: 'auto' }}
+                                            color="secondary"
+                                            label="Religion"
+                                            value={this.state.religion}
+                                            error={this.state.error6}
+                                            onChange={this.onchangeReligion} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.religionError}</span>
+                                    </div>
+                                    <div className="col form-group">
+                                        <TextField
+                                            style={{ width: 10 + 'rem' }}
+                                            select
+                                            name="sex"
+                                            value={this.state.sex}
+                                            error={this.state.error7}
+                                            onChange={this.onchangeSex}
+                                            color="secondary"
 
+                                            label="Sex"
+                                            id="outlined-select"
+                                            variant="outlined">
+
+                                            <option value="Male">Male</option >
+                                            <option value="Female">Female</option  >
+                                        </TextField>
+
+                                        <br></br>
+                                        <span className="text-danger">{this.state.sexError}</span>
+                                    </div>
                                 </div>
+                                <div className="row first-Name">
+                                    <div className="col form-group" >
+                                        <label className="text-dark">Date Of Birth: </label>
+                                        <div>
+                                            <DatePicker
+                                                className="form-control"
+                                                selected={this.state.dateOfBirth}
+                                                onChange={this.onchangeDateOfBirth} />
+                                        </div>
 
-                                <div className="col form-group" style={{ marginLeft: -9 + 'rem', marginTop: 2 + 'rem' }}>
 
-                                    <TextField
-                                        type="text"
-                                        required
-                                        fullWidth
-                                        label="Address"
-                                        variant="outlined"
-                                        color="secondary"
-                                        name="address"
-                                        error={this.state.error8}
-                                        value={this.state.address}
-                                        onChange={this.onchangeAddress} />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.addressError}</span>
+                                    </div>
+
+                                    <div className="col form-group" style={{ marginLeft: -9 + 'rem', marginTop: 2 + 'rem' }}>
+
+                                        <TextField
+                                            type="text"
+                                            required
+                                            fullWidth
+                                            label="Address"
+                                            variant="outlined"
+                                            color="secondary"
+                                            name="address"
+                                            error={this.state.error8}
+                                            value={this.state.address}
+                                            onChange={this.onchangeAddress} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.addressError}</span>
+                                    </div>
+
+                                    <div className="col form-group" style={{ marginTop: 2 + 'rem' }}>
+                                        <TextField
+                                            type="number"
+                                            required
+
+                                            label="Phone "
+                                            variant="outlined"
+                                            color="secondary"
+                                            name="phone"
+                                            error={this.state.error9}
+                                            value={this.state.phone}
+                                            onChange={this.onchangePhone} />
+
+                                    </div>
                                 </div>
+                                <div className="row first-Name" >
+                                    <div className="col form-group " style={{ marginTop: 2 + 'rem' }} >
+                                        <TextField
 
-                                <div className="col form-group" style={{ marginTop: 2 + 'rem' }}>
-                                    <TextField
-                                        type="number"
-                                        required
+                                            id="outlined-textarea"
+                                            label="Description"
+                                            multiline
+                                            name="description"
+                                            color="secondary"
+                                            value={this.state.description}
+                                            onChange={this.onchangeDescription}
+                                            error={this.state.error10}
+                                            variant="outlined"
+                                            fullWidth
+                                            required
+                                        />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.descriptionError}</span>
+                                    </div>
 
-                                        label="Phone "
-                                        variant="outlined"
-                                        color="secondary"
-                                        name="phone"
-                                        error={this.state.error9}
-                                        value={this.state.phone}
-                                        onChange={this.onchangePhone} />
+                                    <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
+                                        <TextField
+                                            required
 
-                                </div>
-                            </div>
-                            <div className="row first-Name" >
-                                <div className="col form-group " style={{ marginTop: 2 + 'rem' }} >
-                                    <TextField
+                                            type="text"
+                                            fullWidth
+                                            label="Weapon(Optionl)"
+                                            variant="outlined"
+                                            color="secondary"
+                                            name="weapon"
+                                            value={this.state.weapon}
+                                            onChange={this.onchangeWeapon} />
+                                    </div>
 
-                                        id="outlined-textarea"
-                                        label="Description"
-                                        multiline
-                                        name="description"
-                                        color="secondary"
-                                        value={this.state.description}
-                                        onChange={this.onchangeDescription}
-                                        error={this.state.error10}
-                                        variant="outlined"
-                                        fullWidth
-                                        required
-                                    />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.descriptionError}</span>
-                                </div>
-
-                                <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
-                                    <TextField
-                                        required
-
-                                        type="text"
-                                        fullWidth
-                                        label="Weapon(Optionl)"
-                                        variant="outlined"
-                                        color="secondary"
-                                        name="weapon"
-                                        value={this.state.weapon}
-                                        onChange={this.onchangeWeapon} />
-                                </div>
-
-                                <div className="col form-group " style={{ marginTop: 0.6 + 'rem' }}>
-                                    <label className="text-dark">Date:
+                                    <div className="col form-group " style={{ marginTop: 0.6 + 'rem' }}>
+                                        <label className="text-dark">Date:
                                     <DatePicker
-                                            className="form-control"
-                                            selected={this.state.date}
-                                            onChange={this.onchangeDate} />
-                                    </label>
+                                                className="form-control"
+                                                selected={this.state.date}
+                                                onChange={this.onchangeDate} />
+                                        </label>
+                                    </div>
+
+                                    <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
+                                        <TextField
+                                            label="Officer Incharge"
+
+                                            type="text"
+                                            fullWidth
+                                            variant="outlined"
+                                            required
+                                            color="secondary"
+                                            name="officer_incharge"
+                                            value={this.state.officer_incharge}
+                                            error={this.state.error11}
+                                            onChange={this.onchangeOfficerIncharge
+                                            } />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.officer_inchargeError}</span>
+
+                                    </div>
                                 </div>
-
-                                <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
-                                    <TextField
-                                        label="Officer Incharge"
-
-                                        type="text"
-                                        fullWidth
-                                        variant="outlined"
-                                        required
-                                        color="secondary"
-                                        name="officer_incharge"
-                                        value={this.state.officer_incharge}
-                                        error={this.state.error11}
-                                        onChange={this.onchangeOfficerIncharge
-                                        } />
-                                    <br></br>
-                                    <span className="text-danger">{this.state.officer_inchargeError}</span>
-
+                                <div className="form-group">
+                                    <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
+                                    <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
+                                    <button type="reset" style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.handleDemo}>Demo</button>
+                                    <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.createPDF}>Genertate PDF</button>
                                 </div>
-                            </div>
-                            <div className="form-group">
-                                <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
-                                <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
-                                <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.handleDemo}>Demo</button>
-                                <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.createPDF}>Genertate PDF</button>
-                            </div>
-                        </form>
+                            </form>
+                        </div >
+                        <br></br>
                     </div >
-                    <br></br>
                 </div >
-            </div >
 
+
+            </>
         )
     }
 }
