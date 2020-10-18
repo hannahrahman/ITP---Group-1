@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import EnvironmentalAffairsNavbar from "../NavBars/EnvironmentalAffairsNavbar.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ComplainsList from "./complains-list.component";
+/*import ComplainsList from "./complains-list.component";
 import EditComplain from "./edit-complain.component";
 import CreateComplain from "./create-complain.component";
 import CreateUser from "./create-user.component";
-import CreateAppeal from "./create-appeal.component";
+//import CreateAppeal from "./create-appeal.component";*/
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
@@ -22,11 +22,11 @@ export default class EnvironmentalAffairs extends Component {
           <div style={{ marginLeft: 18 + "rem" }}>
             <EnvironmentalAffairsNavbar />
           </div>
-          <Route exact path="/ComplainsList" exact component={ComplainsList} />
+          {/* <Route exact path="/ComplainsList" exact component={ComplainsList} />
           <Route path="/edit/:id" exact component={EditComplain} />
           <Route path="/Complain" exact component={CreateComplain} />
           <Route path="/user" exact component={CreateUser} />
-          <Route path="/Appeal" exact component={CreateAppeal} />
+          <Route path="/Appeal" exact component={CreateAppeal} />*/}
         </div>
       </Router>
     );

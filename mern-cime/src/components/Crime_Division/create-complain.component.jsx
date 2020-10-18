@@ -5,9 +5,8 @@ import { TextField } from '@material-ui/core'
 import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
-import '../App.css';
-import PDF from './pdf.component.jsx'
-import { storage } from '../firebase';
+import '../../App.css';
+import { storage } from '../../firebase';
 
 export default class CreateComplain extends Component {
 
@@ -190,10 +189,12 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.refNoError = "Reference number can not be blank!"
             this.state.error1 = true
+            toast.error("Reference number can not be blank!");
         } else if (!this.state.refNo.match("^$|^[a-zA-Z]+")) {
             isError = true;
             errors.refNoError = "Reference must be simple or capitalized!"
             this.state.error1 = true
+            toast.error("Reference must be simple or capitalized!");
         } else
             this.state.error1 = false;
 
@@ -267,29 +268,29 @@ export default class CreateComplain extends Component {
         } else
             this.state.error8 = false;
 
-        /* if (!this.state.phone) {
-             isError = true;
-             errors.phoneError = "Phone number can not be blank!"
-             this.state.error9 = true
-             toast.error("Phone number can not be blank!", {
-                 transition: Flip
-             })
-         } else if (!this.state.phone.match("^$|^[0-9]+")) {
-             isError = true;
-             errors.phoneError = "Invalid phone number!"
-             this.state.error9 = true
-             toast.error("Invalid phone number!", {
-                 transition: Flip
-             })
-         } else if (this.state.phone.length > 10) {
-             isError = true;
-             errors.phoneError = "Length can not be greater than 10!"
-             this.state.error9 = true
-             toast.error("Length can not be greater than 10!", {
-                 transition: Flip
-             })
-         } else
-             this.state.error9 = false;*/
+        if (!this.state.phone) {
+            isError = true;
+            errors.phoneError = "Phone number can not be blank!"
+            this.state.error9 = true
+            toast.error("Phone number can not be blank!", {
+                transition: Flip
+            })
+        } else if (!this.state.phone.match("^$|^[0-9]+")) {
+            isError = true;
+            errors.phoneError = "Invalid phone number!"
+            this.state.error9 = true
+            toast.error("Invalid phone number!", {
+                transition: Flip
+            })
+        } else if (this.state.phone.length > 10) {
+            isError = true;
+            errors.phoneError = "Length can not be greater than 10!"
+            this.state.error9 = true
+            toast.error("Length can not be greater than 10!", {
+                transition: Flip
+            })
+        } else
+            this.state.error9 = false;
 
         if (!this.state.description) {
             isError = true;
@@ -322,16 +323,16 @@ export default class CreateComplain extends Component {
         } else
             this.state.error12 = false;
 
-        /* if (!this.state.date) {
-             isError = true;
-             errors.dateError = "Date of Birth can not be blank!"
-             this.state.error13 = true
-         } else if (!this.state.date.match("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
-             isError = true;
-             errors.dateError = "Date must be YYYY-MM-DD!"
-             this.state.error13 = true
-         } else
-             this.state.error13 = false;*/
+        if (!this.state.date) {
+            isError = true;
+            errors.dateError = "Date of Birth can not be blank!"
+            this.state.error13 = true
+        } else if (!this.state.date.match("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
+            isError = true;
+            errors.dateError = "Date must be YYYY-MM-DD!"
+            this.state.error13 = true
+        } else
+            this.state.error13 = false;
 
         this.setState({
             ...this.state,
@@ -363,27 +364,29 @@ export default class CreateComplain extends Component {
     };
 
     handleDemo = () => {
+        Array.from(document.querySelectorAll('input'))
         this.setState({
-            refNo: '123',
+            refNo: 'COM123',
             complainType: 'Crime',
             fname: 'Julien',
             lname: 'Angelo',
             nic: '992413414V',
-            dateOfBirth: '1999/05/22',
+            dateOfBirth: '2020-12-31',
             religion: 'Christian',
             sex: 'Male',
             address: 'Colombo',
-            phone: 778899568,
+            phone: '778899568',
             description: 'Killing',
             weapon: 'Knife',
-            date: '2020-05-22',
+            date: '2020-12-31',
             officer_incharge: 'Danannjay',
         });
-    }
+    };
     onSubmit(e) {
         e.preventDefault();
         const err = this.validate();
         if (!err) {
+            //Sendind values through mail
             emailjs.sendForm('gmail', 'template_q0v9cyz', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
                 .then((result) => {
                     console.log(result.text);
@@ -471,7 +474,7 @@ export default class CreateComplain extends Component {
                         </div >
 
                         <div className="container">
-                            <form onSubmit={this.onSubmit} method="POST" action="/Complain" style={{ margin: "auto" }} noValidate='true'>
+                            <form onSubmit={this.onSubmit} action="/Complain" style={{ margin: "auto" }} noValidate='true'>
                                 <div className="row">
                                     <div className="contact">
 
@@ -481,7 +484,7 @@ export default class CreateComplain extends Component {
                                             label="Refno"
                                             required
                                             color="secondary"
-                                            type="number"
+                                            type="text"
                                             variant="outlined"
                                             error={this.state.error1}
                                             value={this.state.refNo}
@@ -604,6 +607,7 @@ export default class CreateComplain extends Component {
                                     <div className="col form-group" >
                                         <div>
                                             <TextField
+                                                type="text"
                                                 variant="outlined"
                                                 color="secondary"
                                                 name="dateOfBirth"
@@ -639,7 +643,7 @@ export default class CreateComplain extends Component {
 
                                     <div className="col form-group">
                                         <TextField
-                                            type="number"
+                                            type="text"
                                             required
                                             label="Phone "
                                             variant="outlined"
@@ -689,10 +693,11 @@ export default class CreateComplain extends Component {
                                     <div className="col form-group " >
 
                                         <TextField
+                                            required
+                                            type="text"
                                             variant="outlined"
                                             color="secondary"
-                                            name="Date"
-                                            required
+                                            name="date"
                                             label="Date"
                                             placeholder="YYYY-MM-DD"
                                             error={this.state.error13}
@@ -713,31 +718,32 @@ export default class CreateComplain extends Component {
                                             name="officer_incharge"
                                             value={this.state.officer_incharge}
                                             error={this.state.error11}
-                                            onChange={this.onchangeOfficerIncharge
-                                            } />
+                                            onChange={this.onchangeOfficerIncharge} />
                                         <br></br>
-                                        <div style={{ marginLeft: -50 + 'rem' }}>
-                                            <span className="text-danger">{this.state.officer_inchargeError}</span>
+                                        <span className="text-danger">{this.state.officer_inchargeError}</span>
+                                        <div style={{ marginLeft: -55 + 'rem' }}>
 
-                                            <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" />
-                                            <br />
-                                            <input type="file" variant="outlined" onChange={this.handleChange} />
+
+                                            <br /><br />
+                                            <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" style={{ width: 100 + '%' }} />
+
+                                            <input type="file" onChange={this.handleChange} />
                                             <br />
                                             <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" />
                                             <br />
-                                            <button onClick={this.handleUpload} className="btn btn-outline-warning btn btn-dark">Upload</button>
+                                            <input type="button" onClick={this.handleUpload} className="btn btn-outline-warning btn btn-dark" value="upload" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                                     <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
-                                    <button type="reset" style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.handleDemo}>Demo</button>
+                                    <input type="button" style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.handleDemo} value="Demo" />
                                     <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.createPDF}>Genertate PDF</button>
                                 </div>
                             </form>
                         </div >
-                        <br></br>
+
                     </div >
                 </div >
 

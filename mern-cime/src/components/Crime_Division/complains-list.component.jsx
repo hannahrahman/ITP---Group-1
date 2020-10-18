@@ -5,7 +5,7 @@ import { InputGroup, FormControl, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStepBackward, faFastBackward, faStepForward, faFastForward, faListAlt } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import '../App.css';
+import '../../App.css';
 
 export default class CrimeComplainList extends Component {
 
@@ -81,7 +81,7 @@ export default class CrimeComplainList extends Component {
                     var startElm, endElm, midElm;
                     let newRow = Object.assign({}, row);
                     if (newRow) {
-                        
+
                         var index = newRow.refNo.toUpperCase().search(item.toUpperCase())
                         if (index > -1) {
                             if (index == 0) {

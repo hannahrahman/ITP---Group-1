@@ -2,7 +2,6 @@ const express = require('express');
 const { count } = require('../models/complain.model');
 const complainRoutes = express.Router();
 let Complain = require('../models/complain.model')
-const mongo = require('mongo')
 
 complainRoutes.route('/add').post(function (req, res) {
     let complain = new Complain(req.body);

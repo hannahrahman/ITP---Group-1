@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import MiscellaneousComplaintsNavbar from "../NavBars/MiscellaneousNavbar.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import ComplainsList from "./complains-list.component";
+/*import ComplainsList from "./complains-list.component";
 import EditComplain from "./edit-complain.component";
 import CreateComplain from "./create-complain.component";
 import CreateUser from "./create-user.component";
-import CreateAppeal from "./create-appeal.component";
+//import CreateAppeal from "./create-appeal.component";*/
 
 export default class MiscellaneousComplaints extends Component {
   render() {
@@ -19,11 +19,11 @@ export default class MiscellaneousComplaints extends Component {
           <div style={{ marginLeft: 18 + "rem" }}>
             <MiscellaneousComplaintsNavbar />
           </div>
-          <Route exact path="/ComplainsList" exact component={ComplainsList} />
+          {/* <Route exact path="/ComplainsList" exact component={ComplainsList} />
           <Route path="/edit/:id" exact component={EditComplain} />
           <Route path="/Complain" exact component={CreateComplain} />
           <Route path="/user" exact component={CreateUser} />
-          <Route path="/Appeal" exact component={CreateAppeal} />
+          <Route path="/Appeal" exact component={CreateAppeal} />*/}
         </div>
       </Router>
     );

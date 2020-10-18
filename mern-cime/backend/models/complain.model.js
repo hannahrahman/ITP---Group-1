@@ -17,8 +17,8 @@ let complainSchema = new Schema({
     phone: { type: String, required: true },
     description: { type: String, required: true },
     weapon: { type: String },
-    date: { type: Date, default: Date.now },
-    date: { type: String, required: true },
+    date: { type: String, default: Date.now },
+    //date: { type: String, required: true },
     status: { type: String, default: "CREATED" },
     officer_incharge: { type: String, required: true }
 

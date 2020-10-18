@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap-grid.min.css"
 import "bootstrap/dist/css/bootstrap-reboot.min.css"
 import Sidenav from "./NavBars/navbar-vertical.component.jsx"
 import CivilDomesticAbuseAffairs from "./components/Civil_Domestic_Abuse_Affairs.component.jsx"
-import CrimeDivision from "./components/Crime_Division.component.jsx"
+import CrimeDivision from "./components/Crime_Division/Crime_Division.component"
 import CyberCrime from "./components/Cyber_Crime.component.jsx"
 import NarcoticssandDrugAffairs from "./components/Narcotics_and_Drug_Affairs.component.jsx"
 import OnlineDrivingNICRenewal from "./components/license_nic/Online_DrivingNIC_Renewal.jsx"
@@ -16,7 +16,6 @@ import MiscellaneousComplaints from "./components/Miscellaneous_Complaints.compo
 import { Helmet } from "react-helmet"
 import Police from './Images/police.png'
 import './App.css';
-import styled from "styled-components"
 
 import ViewLost from "./components/license_nic/viewLost"
 import EditLicense from "./components/license_nic/Edit_Driving_License"
@@ -34,13 +33,9 @@ function App() {
         <link rel="shortcut icon" href={Police} />
       </Helmet>
       <div>
-
         <Router>
-
           <Sidenav />
-
           <div >
-
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
             <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
             <Route exact path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
@@ -50,7 +45,6 @@ function App() {
             <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
             <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
             <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
-
           </div>
           <Route exact path="/ViewLost" exact component={ViewLost} />
           <Route path="/edit/:id" component={EditLicense} />
