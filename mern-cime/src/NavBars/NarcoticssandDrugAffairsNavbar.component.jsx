@@ -18,7 +18,7 @@ export default class NarcoticssandDrugAffairsNavbar extends Component {
                             <Link to="/" className="nav-link">Complains</Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Complain" className="nav-link">Add Complain</Link>
+                            <Link to="/Drug_Complain" className="nav-link">Add Complain</Link>
                         </li>
                         <li className="navbar-item mr-5">
                             <Link to="/Appeal" className="nav-link">Add Appeal</Link>

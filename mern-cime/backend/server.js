@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
+
 const bodyParser = require('body-parser')
 
 const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
@@ -32,6 +33,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 /*con.on('open', () => {
     console.log('Connected to the Database server....')
+})
+
+const complainsRouter = require('./routes/complains')
+const drugComplainRouter = require('./routes/Drug_Complains')
+
+app.use('/complains', complainsRouter)
+app.use('/Drug_Complains', drugComplainRouter)
+=======
 })*/
 
 app.use('/complains', complainsRouter)
@@ -42,6 +51,8 @@ app.use('/Addcomplain', ComplainRoute);
 app.use('/missingPersonAffairs', missingRoute);
 app.use('/license', licenseComplainsRouter)
 app.use('/nic', nicComplainsRouter)
+//app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
