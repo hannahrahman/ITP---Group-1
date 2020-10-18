@@ -8,18 +8,25 @@ import CivilDomesticAbuseAffairs from "./components/Civil_Domestic_Abuse_Affairs
 import CrimeDivision from "./components/Crime_Division.component.jsx"
 import CyberCrime from "./components/Cyber_Crime.component.jsx"
 import NarcoticssandDrugAffairs from "./components/Narcotics_and_Drug_Affairs.component.jsx"
-import OnlineDrivingNICRenewal from "./components/Online_DrivingNIC_Renewal.jsx"
+import OnlineDrivingNICRenewal from "./components/license_nic/Online_DrivingNIC_Renewal.jsx"
 import OnlineFinePayment from "./components/Online_Fine_Payment.component.jsx"
 import MissingPersonsAffairs from "./components/Missing_Persons_Affairs.component.jsx"
 import EnvironmentalAffairs from "./components/Environmental_Affairs.component.jsx"
 import MiscellaneousComplaints from "./components/Miscellaneous_Complaints.component.jsx"
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
 import Police from './Images/police.png'
+import './App.css';
+import styled from "styled-components"
+
+import ViewLost from "./components/license_nic/viewLost"
+import EditLicense from "./components/license_nic/Edit_Driving_License"
 
 
 function App() {
   return (
     <div>
+
+
       <Helmet>
         <meta charSet="UTF-8" />
         <title>Complaint Management System </title>
@@ -27,11 +34,14 @@ function App() {
         <meta name="viewport" content="width=device-width, maximum-scale=1" />
         <link rel="shortcut icon" href={Police} />
       </Helmet>
-      <div id="content">
-        <Router>
-          <div class="big-banner">
+      <div>
 
-            <Sidenav />
+        <Router>
+
+          <Sidenav />
+
+          <div >
+
             <Route exact path="/Crime Division" exact component={CrimeDivision} />
             <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
             <Route exact path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
@@ -46,12 +56,16 @@ function App() {
           
             
 
+          
+          <Route exact path="/ViewLost" exact component={ViewLost} />
+          <Route path="/edit/:id" component={EditLicense} />
         </Router>
       </div>
+
+
     </div>
 
     
   );
 }
-
 export default App;

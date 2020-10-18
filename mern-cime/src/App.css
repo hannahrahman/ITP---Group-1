@@ -1,7 +1,85 @@
-.App {
-  text-align: center;
+body{
+  background-image: url('./Images/back6.png');
+
+
 }
 
+.nv{
+  background-color: #2f373a;
+   position: absolute;
+   height:100%;
+   top:14rem;
+   bottom:0;
+   left:0;
+}
+.nv1{
+  position:fixed;
+  width: 100%;
+  right:0;
+  margin-left: 23%;
+  top:10;
+  overflow-x:auto;
+}
+.nav-link{
+  color: #FFFFFF;
+
+  /*text-align: left;*/
+  margin-left: 1rem;
+  font-weight: bold;
+  position: relative;
+  width: 100%;
+  padding-bottom: -1rem;
+  right:0;
+  bottom:10;
+  overflow-x:auto;
+}
+.nav-link1{
+  
+  color: #FFFFFF;
+  /*text-align: left;*/
+  margin-left: 1rem;
+  font-weight: bold;
+}
+.nav-link1:link{
+  text-decoration: none;
+}
+.nav-link:hover{
+  color: #5fb7ff;
+}
+.nav-link1:hover{
+  color: #5fb7ff;
+}
+.header{
+  background-image: url('./Images/swat7.png');
+  background-size: cover;
+      left:10;
+      padding: 60px;
+      text-align: center;
+      color: white;
+      font-size: 30px;
+}
+.complain{
+   position: sticky;
+   overflow-y:auto;
+   top:0;
+   padding-top: 1%;
+   margin-left: 10%;
+   padding-right: 20%;
+   padding-bottom: 0%;
+   width: 100rem;
+}
+.search{
+  margin-left: 10rem;
+}
+
+
+
+/*.App {
+  text-align: center;
+}
+.banner{
+  background-size:cover;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,7 +90,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+.first-Name{
+width:60px;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -37,3 +117,4 @@
   }
 }
 
+*/

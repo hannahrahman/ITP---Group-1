@@ -1,79 +1,65 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+import CrimeTableRow from './CrimeTableRow';
 
-const Complain = props => (
-  <tr>
-    <td>{props.complain.refno}</td>
-    <td>{props.complain.fullname}</td>
-    <td>{props.complain.phonenumber}</td>
-    <td>{props.complain.nic}</td>
-    <td>{props.exercise.date.substring(0,10)}</td>
-    <td>{props.complain.description}</td>
-    <td>{props.complain.dateofincident.substring(0,10)}</td>
-    <td>{props.complain.personsinvolved}</td>
-    <td>
-      <Link to={"/edit/"+props.complain._id}>edit</Link> | <a href="#" onClick={() => { props.deleteComplain(props.complain._id) }}>delete</a>
-    </td>
-  </tr>
-)
+export default class CrimeComplainList extends Component {
 
-export default class ComplainsList extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props)
+        this.state = {
 
-    this.deleteComplain = this.deleteComplain.bind(this)
+            crimeComplains: []
 
-    this.state = {complains: []};
-  }
+        };
+    }
 
-  componentDidMount() {
-    axios.get('http://localhost:5000/complains/')
-      .then(response => {
-        this.setState({ complains: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+    componentDidMount() {
+        axios.get('http://localhost:5000/Addcomplain/')
+            .then(res => {
+                this.setState({
+                    crimeComplains: res.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
-  deleteComplains(id) {
-    axios.delete('http://localhost:5000/complains/'+id)
-      .then(response => { console.log(response.data)});
+    DataTable() {
+        return this.state.crimeComplains.map((res, i) => {
+            return <CrimeTableRow obj={res} key={i} />
+        });
+    }
 
-    this.setState({
-      complains: this.state.complains.filter(el => el._id !== id)
-    })
-  }
+    render() {
+        return (
+            <div class="container" style={{ marginTop: 1.2 + 'rem' }}>
 
-  complainList() {
-    return this.state.complains.map(currentcomplain => {
-      return <Complain complain={currentcomplain} deleteComplain={this.deleteComplain} key={currentcomplain._id}/>;
-    })
-  }
+                <div class="card text-light  bg-dark  mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                    <div class="card-header"><h3>Complains List</h3></div>
+                    <div class="card-body" >
+                        <div className="table-wrapper ">
+                            <Table striped border hover>
+                                <thead className="text-light">
+                                    <tr>
+                                        <th>Ref No</th>
+                                        <th>Complain Type</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-light">
+                                    {this.DataTable()}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </div >
+                </div >
+            </div >
 
-  render() {
-    return (
-      <div>
-        <h3> All Miscellaneous Complains </h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Ref No</th>
-              <th>Full Name</th>
-              <th>Phone Number</th>
-              <th>NIC</th>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Date of Incident</th>
-              <th>Persons Involved</th>
-            </tr>
-          </thead>
-          <tbody>
-            { this.complainList() }
-          </tbody>
-        </table>
-      </div>
-    )
-  }
+
+        )
+
+    }
+
 }
