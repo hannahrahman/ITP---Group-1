@@ -251,10 +251,10 @@ export default class CreateDomesticAbuseComplain extends Component {
             errors.religionError = "Religion can not be blank!"
             this.state.error8 = true
         } else
-            this.state.error8 = false;    
+            this.state.error8 = false;
 
         //*****************end of validate religion*********************
-            
+
         //*****************validate sex*********************************    
 
         if (!this.state.sex) {
@@ -280,7 +280,7 @@ export default class CreateDomesticAbuseComplain extends Component {
             this.state.error10 = false;
 
         //*****************end of validate address**********************
-            
+
         //*****************validate phone*******************************    
 
         if (!this.state.phone) {
@@ -291,7 +291,7 @@ export default class CreateDomesticAbuseComplain extends Component {
             isError = true;
             errors.phoneError = "Invalid phone number!"
             this.state.error11 = true
-        } else if(this.state.phone.length > 10) {
+        } else if (this.state.phone.length > 10) {
             isError = true;
             errors.phoneError = "Length can not be greater than 10!"
             this.state.error11 = true
@@ -319,11 +319,11 @@ export default class CreateDomesticAbuseComplain extends Component {
             this.state.error13 = true
         } else
             this.state.error13 = false;
-        
+
         //*****************end of validate weapon************************    
 
         //*****************validate officer in charge********************    
-            
+
         if (this.state.officer_incharge.length > 50) {
             isError = true;
             errors.officerInchargeError = "Length can not be greater than 50!"
@@ -390,11 +390,11 @@ export default class CreateDomesticAbuseComplain extends Component {
                 officer_incharge: '',
                 relationType: ''
             })
-            alert("Record Successfully Saved!"); 
+            alert("Record Successfully Saved!");
             this.props.history.push('/DomesticAbuseComplainList')  //redirect to complains list page after submit
-        }    
+        }
     }
-    
+
     //***************reset button***********************
 
     handleReset = () => {
@@ -444,7 +444,7 @@ export default class CreateDomesticAbuseComplain extends Component {
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type : </b></label><br />
-                                <select 
+                                <select
                                     style={{ marginLeft: 0 + 'rem' }}
                                     id="dropdown-item-button"
                                     className="btn btn-outline-dark btn btn-secondary text-light"
@@ -452,7 +452,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     value={this.state.complainType}
                                     onChange={this.onchangeComplainType}
                                     error={this.state.error2}>
-                                        
+
                                     <option>Select Complain Type</option>
                                     <option value="Physical Abuse">Physical Abuse</option>
                                     <option value="Verbal Abuse">Verbal Abuse</option>
@@ -463,65 +463,65 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     <option value="Financial Abuse">Financial Abuse</option>
                                     <option value="Threatening">Threatening</option>
                                 </select>
-                                <br/>
+                                <br />
                                 <span className="text-danger">{this.state.complainTypeError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name : </b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Add First Name"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.fname}
-                                    onChange={this.onchangeFName} 
-                                    error={this.state.error3}/>
-                                <span className="text-danger">{this.state.fnameError}</span>   
+                                    onChange={this.onchangeFName}
+                                    error={this.state.error3} />
+                                <span className="text-danger">{this.state.fnameError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Add Last Name"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.lname}
-                                    onChange={this.onchangeLName} 
-                                    error={this.state.error4}/>
-                                <span className="text-danger">{this.state.lnameError}</span>    
+                                    onChange={this.onchangeLName}
+                                    error={this.state.error4} />
+                                <span className="text-danger">{this.state.lnameError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Add NIC Number"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.nic}
-                                    onChange={this.onchangeNic} 
-                                    error={this.state.error5}/>
-                                <span className="text-danger">{this.state.nicError}</span>    
+                                    onChange={this.onchangeNic}
+                                    error={this.state.error5} />
+                                <span className="text-danger">{this.state.nicError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth : </b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="YYYY-MM-DD"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.dateOfBirth}
-                                    onChange={this.onchangeDateOfBirth} 
-                                    error={this.state.error6}/>
+                                    onChange={this.onchangeDateOfBirth}
+                                    error={this.state.error6} />
                                 <span className="text-danger">{this.state.dateOfBirthError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Relation Type : </b></label><br />
-                                <select 
+                                <select
                                     style={{ marginLeft: 0 + 'rem' }}
                                     id="dropdown-item-button"
                                     className="btn btn-outline-dark btn btn-secondary text-light"
@@ -536,13 +536,13 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     <option value="Family">Family</option>
                                     <option value="Informal Care">Informal Care</option>
                                 </select>
-                                <br/>
+                                <br />
                                 <span className="text-danger">{this.state.relationTypeError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion : </b></label><br />
-                                <select 
+                                <select
                                     style={{ marginLeft: 0 + 'rem' }}
                                     id="dropdown-item-button"
                                     className="btn btn-outline-dark btn btn-secondary text-light"
@@ -550,7 +550,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     value={this.state.religion}
                                     onChange={this.onchangeReligion}
                                     error={this.state.error8}>
-                                        
+
                                     <option>Select Religion</option>
                                     <option value="Theravada Buddhist">Theravada Buddhist</option>
                                     <option value="Hindu">Hindu</option>
@@ -558,13 +558,13 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     <option value="Roman Catholic">Roman Catholic</option>
                                     <option value="Christian">Christian</option>
                                 </select>
-                                <br/>
+                                <br />
                                 <span className="text-danger">{this.state.religionError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Gender : </b></label><br />
-                                <select 
+                                <select
                                     style={{ marginLeft: 0 + 'rem' }}
                                     id="dropdown-item-button"
                                     className="btn btn-outline-dark btn btn-secondary text-light"
@@ -577,70 +577,70 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
-                                <br/>
+                                <br />
                                 <span className="text-danger">{this.state.sexError}</span>
-                            </div>    
+                            </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address :</b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Add Address"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.address}
-                                    onChange={this.onchangeAddress} 
-                                    error={this.state.error10}/>
-                                <span className="text-danger">{this.state.addressError}</span>    
+                                    onChange={this.onchangeAddress}
+                                    error={this.state.error10} />
+                                <span className="text-danger">{this.state.addressError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone : </b></label>
-                                <input 
+                                <input
                                     type="number"
                                     placeholder="Add Phone Number"
                                     required
                                     className="form-control is-invalid"
                                     value={this.state.phone}
-                                    onChange={this.onchangePhone} 
-                                    error={this.state.error11}/>
-                                <span className="text-danger">{this.state.phoneError}</span>    
+                                    onChange={this.onchangePhone}
+                                    error={this.state.error11} />
+                                <span className="text-danger">{this.state.phoneError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description : </b></label>
-                                <textarea 
+                                <textarea
                                     type="text"
                                     placeholder="Add Description"
                                     required
                                     className="form-control is-valid"
                                     value={this.state.description}
-                                    onChange={this.onchangeDescription} 
-                                    error={this.state.error12}/>
-                                <span className="text-danger">{this.state.descriptionError}</span>    
+                                    onChange={this.onchangeDescription}
+                                    error={this.state.error12} />
+                                <span className="text-danger">{this.state.descriptionError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Used Weapon(s) :</b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Add Weapon(s)"
                                     className="form-control is-valid"
                                     value={this.state.weapon}
-                                    onChange={this.onchangeWeapon} 
-                                    error={this.state.error13}/>
-                                <span className="text-danger">{this.state.weaponError}</span>    
+                                    onChange={this.onchangeWeapon}
+                                    error={this.state.error13} />
+                                <span className="text-danger">{this.state.weaponError}</span>
                             </div>
 
                             <div className="form-group">
                                 <label style={{ marginLeft: 0.5 + 'rem' }}><b>Officer Incharge :</b></label>
-                                <input 
+                                <input
                                     type="text"
                                     placeholder="Add Officer Incharge"
                                     className="form-control is-valid"
                                     value={this.state.officer_incharge}
-                                    onChange={this.onchangeOfficerIncharge} 
-                                    error={this.state.error15}/>
+                                    onChange={this.onchangeOfficerIncharge}
+                                    error={this.state.error15} />
                                 <span className="text-danger">{this.state.officerInchargeError}</span>
                             </div>
 

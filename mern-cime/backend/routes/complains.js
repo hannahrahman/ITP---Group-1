@@ -1,6 +1,8 @@
 const express = require('express');
+const { count } = require('../models/complain.model');
 const complainRoutes = express.Router();
 let Complain = require('../models/complain.model')
+const mongo = require('mongo')
 
 complainRoutes.route('/add').post(function (req, res) {
     let complain = new Complain(req.body);
@@ -20,7 +22,7 @@ complainRoutes.route('/').get(function (req, res) {
             console.log(err);
         else {
             res.json(complain)
-           
+
         }
     });
 });
@@ -38,19 +40,20 @@ complainRoutes.route('/update/:id').post(function (req, res) {
         if (!complain)
             res.status(404).send("data is not found");
         else {
-            complain.refNo = Number(req.body.refNo)
+
+            complain.refNo = req.body.refNo
             complain.complainType = req.body.complainType
             complain.fname = req.body.fname
             complain.lname = req.body.lname
-            complain.nic = Number(req.body.nic)
-            complain.dateOfBirth = Date.parse(req.body.dateOfBirth)
+            complain.nic = req.body.nic
+            complain.dateOfBirth = req.body.dateOfBirth
             complain.religion = req.body.religion
             complain.sex = req.body.sex
             complain.address = req.body.address
-            complain.phone = Number(req.body.phone)
+            complain.phone = req.body.phone
             complain.description = req.body.description
             complain.weapon = req.body.weapon
-            complain.date = Date.parse(req.body.date)
+            complain.date = req.body.date
             complain.officer_incharge = req.body.officer_incharge
 
             complain.save().then(complain => {

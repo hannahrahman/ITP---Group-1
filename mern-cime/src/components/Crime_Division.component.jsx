@@ -5,7 +5,8 @@ import CrimeComplainList from "./complains-list.component";
 import EditComplain from "./edit-complain.component";
 import CreateComplain from "./create-complain.component";
 import CreateLEF from "./add_lef_form.component";
-import CreateAppeal from "./create-appeal.component";
+import EditCrimeComplain from "./edit-complain.component"
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
@@ -21,10 +22,10 @@ export default class CrimeDivision extends Component {
 
             </div>
             <Route path="/Complains_List" exact component={CrimeComplainList} />
-            <Route path="/EditComplain" exact component={EditComplain} />
+            <Route path="/EditCrimeComplain/:id" exact component={EditCrimeComplain} />
             <Route path="/Complain" exact component={CreateComplain} />
             <div style={{ marginLeft: 18 + "rem" }}><Route path="/LEF" exact component={CreateLEF} /></div>
-            <Route path="/CreateAppeal" exact component={CreateAppeal} />
+
           </div>
         </Router>
       </div>

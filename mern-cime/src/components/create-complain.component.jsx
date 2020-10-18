@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import axios from 'axios'
 import { TextField } from '@material-ui/core'
@@ -8,12 +7,8 @@ import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
 import '../App.css';
 import PDF from './pdf.component.jsx'
-toast.success("Welcome Sir.", {
-    position: toast.POSITION.TOP_CENTER,
-    draggable: true,
-    transition: Flip,
-    autoClose: 5000
-});
+import { storage } from '../firebase';
+
 export default class CreateComplain extends Component {
 
 
@@ -35,39 +30,56 @@ export default class CreateComplain extends Component {
         this.onchangeDate = this.onchangeDate.bind(this)
         this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-
-
+        this.handleChange = this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
         this.state = {
             refNo: '',
-            refNoError: '',
             complainType: '',
-            complainTypeError: '',
             fname: '',
-            fnameError: '',
             lname: '',
-            lnameError: '',
             nic: '',
-            nicError: '',
             dateOfBirth: '',
-            dateOfBirthError: '',
             religion: '',
-            religionError: '',
             sex: '',
-            sexError: '',
             address: '',
-            addressError: '',
-            phone: new Number(),
-            phoneError: '',
+            phone: '',
             description: '',
-            descriptionError: '',
             weapon: '',
             date: '',
-            dateError: '',
             officer_incharge: '',
-            officer_inchargeError: '',
-            postSubmitted: false
+            image: null,
+            url: '',
+            progress: 0
         }
+    }
+
+    handleChange = e => {
+        if (e.target.files[0]) {
+            const image = e.target.files[0];
+            this.setState(() => ({ image }));
+        }
+    }
+    handleUpload = () => {
+        const { image } = this.state;
+        const uploadTask = storage.ref(`Complain/${image.name}`).put(image);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // progrss function ....
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ progress });
+            },
+            (error) => {
+                // error function ....
+                console.log(error);
+            },
+            () => {
+                // complete function ....
+                storage.ref('Complain').child(image.name).getDownloadURL().then(url => {
+                    console.log(url);
+                    this.setState({ url });
+                })
+            });
     }
 
     onchangeRefno(e) {
@@ -90,7 +102,7 @@ export default class CreateComplain extends Component {
 
     onchangeLName(e) {
         this.setState({
-            lname: e.target.value //target is the text box and the value is the value in the text box that is assigned to the name attribute
+            lname: e.target.value
         })
     }
 
@@ -100,9 +112,9 @@ export default class CreateComplain extends Component {
         })
     }
 
-    onchangeDateOfBirth(date) {
+    onchangeDateOfBirth(e) {
         this.setState({
-            dateOfBirth: date
+            dateOfBirth: e.target.value
 
         })
     }
@@ -143,9 +155,9 @@ export default class CreateComplain extends Component {
         })
     }
 
-    onchangeDate(date) {
+    onchangeDate(e) {
         this.setState({
-            date: date
+            date: e.target.value
         })
     }
 
@@ -154,7 +166,6 @@ export default class CreateComplain extends Component {
             officer_incharge: e.target.value
         })
     }
-
 
 
     validate = () => {
@@ -169,22 +180,22 @@ export default class CreateComplain extends Component {
             religionError: '',
             sexError: '',
             addressError: '',
-            phoneError: new Number(),
+            phoneError: '',
             descriptionError: '',
             dateError: '',
             officer_inchargeError: '',
         };
 
-        if (this.state.refNo.length <= 0) {
+        /*if (!this.state.refNo) {
             isError = true;
-            errors.refNoError = "Reference Number can not be blank"
+            errors.refNoError = "Reference number can not be blank!"
             this.state.error1 = true
-            toast.error("Ref No : Reference Number can not be blank", {
-                transition: Flip
-            });
-        }
-        else
-            this.state.error1 = false;
+        } else if (!this.state.refNo.match("^$|^[a-zA-Z]+")) {
+            isError = true;
+            errors.refNoError = "Reference must be simple or capitalized!"
+            this.state.error1 = true
+        } else
+            this.state.error1 = false;*/
 
         if (!this.state.complainType) {
             isError = true;
@@ -240,7 +251,7 @@ export default class CreateComplain extends Component {
             isError = true;
             errors.sexError = "This Field can not be blank"
             this.state.error7 = true
-            toast.error("Sex is not selected lajja nathi wada karanna epa oii", {
+            toast.error("Sex is not selected", {
                 transition: Flip
             });;
         } else
@@ -252,19 +263,33 @@ export default class CreateComplain extends Component {
             this.state.error8 = true
             toast.error("Address is empty", {
                 transition: Flip
-            });;
+            });
         } else
             this.state.error8 = false;
 
-        if (this.state.phone.length > 10) {
-            isError = true;
-            errors.phoneError = "Enter your Phone number"
-            this.state.error9 = true
-            toast.error("Phone is empty", {
-                transition: Flip
-            });;
-        } else
-            this.state.error9 = false;
+        /* if (!this.state.phone) {
+             isError = true;
+             errors.phoneError = "Phone number can not be blank!"
+             this.state.error9 = true
+             toast.error("Phone number can not be blank!", {
+                 transition: Flip
+             })
+         } else if (!this.state.phone.match("^$|^[0-9]+")) {
+             isError = true;
+             errors.phoneError = "Invalid phone number!"
+             this.state.error9 = true
+             toast.error("Invalid phone number!", {
+                 transition: Flip
+             })
+         } else if (this.state.phone.length > 10) {
+             isError = true;
+             errors.phoneError = "Length can not be greater than 10!"
+             this.state.error9 = true
+             toast.error("Length can not be greater than 10!", {
+                 transition: Flip
+             })
+         } else
+             this.state.error9 = false;*/
 
         if (!this.state.description) {
             isError = true;
@@ -286,15 +311,32 @@ export default class CreateComplain extends Component {
         } else
             this.state.error11 = false;
 
-        /* if (!this.state.dateOfBirth.indexOf("mm/dd/yyyy") === -1) {
+        if (!this.state.dateOfBirth) {
+            isError = true;
+            errors.dateOfBirthError = "Date of Birth can not be blank!"
+            this.state.error12 = true
+        } else if (!this.state.dateOfBirth.match("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
+            isError = true;
+            errors.dateOfBirthError = "Date must be YYYY-MM-DD!"
+            this.state.error12 = true
+        } else
+            this.state.error12 = false;
+
+        /* if (!this.state.date) {
              isError = true;
-             errors.dateOfBirthError = "Select a valid Date Of Birth"
-         }*/
+             errors.dateError = "Date of Birth can not be blank!"
+             this.state.error13 = true
+         } else if (!this.state.date.match("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
+             isError = true;
+             errors.dateError = "Date must be YYYY-MM-DD!"
+             this.state.error13 = true
+         } else
+             this.state.error13 = false;*/
+
         this.setState({
             ...this.state,
             ...errors
         });
-
         return isError;
     };
 
@@ -312,7 +354,7 @@ export default class CreateComplain extends Component {
             religion: '',
             sex: '',
             address: '',
-            phone: new Number(),
+            phone: '',
             description: '',
             weapon: '',
             date: '',
@@ -327,14 +369,14 @@ export default class CreateComplain extends Component {
             fname: 'Julien',
             lname: 'Angelo',
             nic: '992413414V',
-            dateOfBirth: '',
+            dateOfBirth: '1999/05/22',
             religion: 'Christian',
             sex: 'Male',
             address: 'Colombo',
-            phone: new Number(778899568),
+            phone: 778899568,
             description: 'Killing',
             weapon: 'Knife',
-            date: '',
+            date: '2020-05-22',
             officer_incharge: 'Danannjay',
         });
     }
@@ -348,11 +390,8 @@ export default class CreateComplain extends Component {
                 }, (error) => {
                     console.log(error.text);
                 });
-            this.setState({
-                postSubmitted: true
-            })
             const complain = {
-                refNo: Number(this.state.refNo),
+                refNo: this.state.refNo,
                 complainType: this.state.complainType,
                 fname: this.state.fname,
                 lname: this.state.lname,
@@ -361,7 +400,7 @@ export default class CreateComplain extends Component {
                 religion: this.state.religion,
                 sex: this.state.sex,
                 address: this.state.address,
-                phone: Number(this.state.phone),
+                phone: this.state.phone,
                 description: this.state.description,
                 weapon: this.state.weapon,
                 date: this.state.date,
@@ -390,20 +429,29 @@ export default class CreateComplain extends Component {
                 phone: '',
                 description: '',
                 weapon: '',
-                date: new Date(),
+                date: '',
                 officer_incharge: ''
             })
         }
     }
 
     render() {
+
         /*const successToast = () => {
             toast("success custom Toast", {
                 className: "custom-toast",
                 draggable: true,
                 position: toast.POSITION.TOP_CENTER
             })
-        }*/
+        }
+        
+        toast.success("Welcome Sir.", {
+            position: toast.POSITION.TOP_CENTER,
+            draggable: true,
+            transition: Flip,
+            autoClose: 5000
+        }); 
+        */
 
         /* toast.success("success");
          toast.info("you have been dannnnaaaaa");
@@ -554,18 +602,25 @@ export default class CreateComplain extends Component {
                                 </div>
                                 <div className="row first-Name">
                                     <div className="col form-group" >
-                                        <label className="text-dark">Date Of Birth: </label>
                                         <div>
-                                            <DatePicker
-                                                className="form-control"
+                                            <TextField
+                                                variant="outlined"
+                                                color="secondary"
+                                                name="dateOfBirth"
+                                                required
+                                                label="Date Of Birth"
+                                                placeholder="YYYY-MM-DD"
                                                 selected={this.state.dateOfBirth}
+                                                error={this.state.error12}
                                                 onChange={this.onchangeDateOfBirth} />
+                                            <br></br>
+                                            <span className="text-danger">{this.state.dateOfBirthError}</span>
                                         </div>
 
 
                                     </div>
 
-                                    <div className="col form-group" style={{ marginLeft: -9 + 'rem', marginTop: 2 + 'rem' }}>
+                                    <div className="col form-group" style={{ marginLeft: -9 + 'rem' }}>
 
                                         <TextField
                                             type="text"
@@ -582,11 +637,10 @@ export default class CreateComplain extends Component {
                                         <span className="text-danger">{this.state.addressError}</span>
                                     </div>
 
-                                    <div className="col form-group" style={{ marginTop: 2 + 'rem' }}>
+                                    <div className="col form-group">
                                         <TextField
                                             type="number"
                                             required
-
                                             label="Phone "
                                             variant="outlined"
                                             color="secondary"
@@ -594,16 +648,18 @@ export default class CreateComplain extends Component {
                                             error={this.state.error9}
                                             value={this.state.phone}
                                             onChange={this.onchangePhone} />
-
+                                        <br></br>
+                                        <span className="text-danger">{this.state.phoneError}</span>
                                     </div>
                                 </div>
                                 <div className="row first-Name" >
-                                    <div className="col form-group " style={{ marginTop: 2 + 'rem' }} >
+                                    <div className="col form-group ">
                                         <TextField
 
                                             id="outlined-textarea"
                                             label="Description"
                                             multiline
+                                            required
                                             name="description"
                                             color="secondary"
                                             value={this.state.description}
@@ -617,10 +673,9 @@ export default class CreateComplain extends Component {
                                         <span className="text-danger">{this.state.descriptionError}</span>
                                     </div>
 
-                                    <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
+                                    <div className="col form-group " >
                                         <TextField
                                             required
-
                                             type="text"
                                             fullWidth
                                             label="Weapon(Optionl)"
@@ -631,19 +686,25 @@ export default class CreateComplain extends Component {
                                             onChange={this.onchangeWeapon} />
                                     </div>
 
-                                    <div className="col form-group " style={{ marginTop: 0.6 + 'rem' }}>
-                                        <label className="text-dark">Date:
-                                    <DatePicker
-                                                className="form-control"
-                                                selected={this.state.date}
-                                                onChange={this.onchangeDate} />
-                                        </label>
+                                    <div className="col form-group " >
+
+                                        <TextField
+                                            variant="outlined"
+                                            color="secondary"
+                                            name="Date"
+                                            required
+                                            label="Date"
+                                            placeholder="YYYY-MM-DD"
+                                            error={this.state.error13}
+                                            selected={this.state.date}
+                                            onChange={this.onchangeDate} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.dateError}</span>
                                     </div>
 
-                                    <div className="col form-group " style={{ marginTop: 2 + 'rem' }}>
+                                    <div className="col form-group " >
                                         <TextField
                                             label="Officer Incharge"
-
                                             type="text"
                                             fullWidth
                                             variant="outlined"
@@ -655,8 +716,17 @@ export default class CreateComplain extends Component {
                                             onChange={this.onchangeOfficerIncharge
                                             } />
                                         <br></br>
-                                        <span className="text-danger">{this.state.officer_inchargeError}</span>
+                                        <div style={{ marginLeft: -50 + 'rem' }}>
+                                            <span className="text-danger">{this.state.officer_inchargeError}</span>
 
+                                            <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" />
+                                            <br />
+                                            <input type="file" variant="outlined" onChange={this.handleChange} />
+                                            <br />
+                                            <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" />
+                                            <br />
+                                            <button onClick={this.handleUpload} className="btn btn-outline-warning btn btn-dark">Upload</button>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="form-group">
