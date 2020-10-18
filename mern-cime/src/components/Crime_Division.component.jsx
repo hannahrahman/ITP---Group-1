@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import CrimeNavbar from "../NavBars/CrimeNavbar.component";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import ComplainsList from "./complains-list.component";
+import CrimeComplainList from "./complains-list.component";
 import EditComplain from "./edit-complain.component";
 import CreateComplain from "./create-complain.component";
 import CreateLEF from "./add_lef_form.component";
-import CreateAppeal from "./create-appeal.component";
+import EditCrimeComplain from "./edit-complain.component"
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
@@ -15,19 +16,21 @@ export default class CrimeDivision extends Component {
     return (
       <div>
         <Router>
-          <div style={{ marginTop: -55.5 + "rem" }}>
-            <div style={{ marginLeft: 18 + "rem" }}>
+          <div >
+            <div style={{ marginLeft: 17 + "rem" }}>
               <CrimeNavbar />
+
             </div>
-            {/*<CreateComplain />*/}
-            <Route path="/Complains_List" exact component={ComplainsList} />
-            <Route path="/EditComplain" exact component={EditComplain} />
+            <Route path="/Complains_List" exact component={CrimeComplainList} />
+            <Route path="/EditCrimeComplain/:id" exact component={EditCrimeComplain} />
             <Route path="/Complain" exact component={CreateComplain} />
-            <Route path="/LEF" exact component={CreateLEF} />
-            <Route path="/CreateAppeal" exact component={CreateAppeal} />
+            <div style={{ marginLeft: 18 + "rem" }}><Route path="/LEF" exact component={CreateLEF} /></div>
+
           </div>
         </Router>
       </div>
     );
+
   }
+
 }

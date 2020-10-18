@@ -1,343 +1,247 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css"
-
+import axios from 'axios';
+import Table from 'react-bootstrap/Table';
+import {InputGroup, FormControl, Button} from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faStepBackward, faFastBackward, faStepForward, faFastForward, faListAlt} from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import '../App.css';
 
 export default class DomesticAbuseComplainList extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props){
+        super(props)
+        this.state = {  
+            domAbuseComplains : [],
+            currentPage : 1,
+            recordsPerPage : 10,
+            searchResults : []
+        }
+        this.searchRecords = this.searchRecords.bind(this);
+    }
 
-        this.onchangeRefno = this.onchangeRefno.bind(this)
-        this.onchangecomplainType = this.onchangecomplainType.bind(this)
-        this.onchangeFName = this.onchangeFName.bind(this)
-        this.onchangeLName = this.onchangeLName.bind(this)
-        this.onchangeNic = this.onchangeNic.bind(this)
-        this.onchangeDateOfBirth = this.onchangeDateOfBirth.bind(this)
-        this.onchangeReligion = this.onchangeReligion.bind(this)
-        this.onchangeSex = this.onchangeSex.bind(this)
-        this.onchangeAddress = this.onchangeAddress.bind(this)
-        this.onchangePhone = this.onchangePhone.bind(this)
-        this.onchangeDescription = this.onchangeDescription.bind(this)
-        this.onchangeWeapon = this.onchangeWeapon.bind(this)
-        this.onchangeDate = this.onchangeDate.bind(this)
-        this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+    componentDidMount() {
+        this.findAllComplains();
+    }
 
-        this.state = {
-            refNo: '',
-            complainType: '',
-            fname: '',
-            lname: '',
-            nic: '',
-            dateOfBirth: new Date(),
-            religion: '',
-            sex: '',
-            address: '',
-            phone: '',
-            description: '',
-            weapon: '',
-            date: new Date(),
-            officer_incharge: ''
+    findAllComplains() {
+        axios.get('http://localhost:5000/domestic_abuse_complains/')
+            .then(response => response.data)
+            .then((data) => {
+                this.setState({domAbuseComplains: data});
+            });
+    };
+
+    changePage = event => {
+        this.setState({
+            [event.target.name]: parseInt(event.target.value)
+        });
+    };
+
+    firstPage = () => {
+        if(this.state.currentPage > 1) {
+            this.setState({
+                currentPage: 1
+            });
+        }
+    };
+
+    prevPage = () => {
+        if(this.state.currentPage > 1) {
+            this.setState({
+                currentPage: this.state.currentPage - 1
+            });
+        }
+    };
+
+    lastPage = () => {
+        if(this.state.currentPage < Math.ceil(this.state.domAbuseComplains.length / this.state.recordsPerPage)) {
+            this.setState({
+                currentPage: Math.ceil(this.state.domAbuseComplains.length / this.state.recordsPerPage)
+            });
+        }
+    };
+
+    nextPage = () => {
+        if(this.state.currentPage < Math.ceil(this.state.domAbuseComplains.length / this.state.recordsPerPage)) {
+            this.setState({
+                currentPage: this.state.currentPage + 1
+            });
+        }
+    };
+ 
+    searchRecords(e) {
+        let item = e.target.value;
+        var itemArray =[];
+        if(item.length >= 0){
+            axios.get('http://localhost:5000/domestic_abuse_complains/')
+            .then(response => response.data)
+            .then((data) => {
+                this.setState({searchResults: data});
+            });
+            if(this.state.searchResults){
+                this.state.searchResults.filter(function(row){
+                    var startElm, endElm, midElm;
+                    let newRow = Object.assign({},row);
+                    if(newRow){
+                        var index = newRow.refNo.toUpperCase().search(item.toUpperCase())
+                        if(index > -1){
+                            if(index == 0){
+                                startElm = "";
+                                midElm = newRow.refNo.slice(index, index+item.length);
+                                endElm = newRow.refNo.slice(index+item.length);
+                            } else {
+                                startElm = newRow.refNo.slice(0, index+item.length);
+                                midElm = newRow.refNo.slice(index, index+item.length);
+                                endElm = newRow.refNo.slice(index+item.length);
+                            }
+                            newRow.refNo = <p>{startElm}<span style={{backgroundColor:"#17A2B8"}}>{midElm}</span>{endElm}</p>
+                            itemArray.push(newRow);    
+                        }
+                    }
+                });
+                this.setState({domAbuseComplains:itemArray})
+            }
         }
     }
 
-    onchangeRefno(e) {
-        this.setState({
-            refNo: e.target.value
-        })
-    }
+    deleteComplain = (complainId) => {
+        let backupRecords ={};
 
-    onchangecomplainType(e) {
-        this.setState({
-            complainType: e.target.value
-        })
-    }
-
-    onchangeFName(e) {
-        this.setState({
-            fname: e.target.value
-        })
-    }
-
-    onchangeLName(e) {
-        this.setState({
-            lname: e.target.value //target is the text box and the value is the value in the text box that is assigned to the name attribute
-        })
-    }
-
-    onchangeNic(e) {
-        this.setState({
-            nic: e.target.value
-        })
-    }
-
-    onchangeDateOfBirth(date) {
-        this.setState({
-            dateOfBirth: date
-        })
-    }
-
-    onchangeReligion(e) {
-        this.setState({
-            religion: e.target.value
-        })
-    }
-
-    onchangeSex(e) {
-        this.setState({
-            sex: e.target.value
-        })
-    }
-
-    onchangeAddress(e) {
-        this.setState({
-            address: e.target.value
-        })
-    }
-
-    onchangePhone(e) {
-        this.setState({
-            phone: e.target.value
-        })
-    }
-
-    onchangeDescription(e) {
-        this.setState({
-            description: e.target.value
-        })
-    }
-
-    onchangeWeapon(e) {
-        this.setState({
-            weapon: e.target.value
-        })
-    }
-
-    onchangeDate(date) {
-        this.setState({
-            date: date
-        })
-    }
-
-    onchangeOfficerIncharge(e) {
-        this.setState({
-            officer_incharge: e.target.value
-        })
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-
-        const complain = {
-            refNo: this.state.refNo,
-            complainType: this.state.complainType,
-            fname: this.state.fname,
-            lname: this.state.lname,
-            nic: this.state.nic,
-            dateOfBirth: this.state.dateOfBirth,
-            religion: this.state.religion,
-            sex: this.state.sex,
-            address: this.state.address,
-            phone: this.state.phone,
-            description: this.state.description,
-            weapon: this.state.weapon,
-            date: this.state.date,
-            officer_incharge: this.state.officer_incharge,
+        if(window.confirm("Do you want to delete this record?")) {
+            axios.get('http://localhost:5000/domestic_abuse_complains/edit/'+complainId)
+            .then(function(res) {
+                backupRecords = res.data;
+                axios.post('http://localhost:5000/domestic_abuse_complains_backup/add', backupRecords)
+            });
+            axios.get('http://localhost:5000/domestic_abuse_complains/delete/'+complainId)
+            .then(response => {
+                if(response.data != null) {
+                    alert("Record deleted successfully.");
+                    this.setState({
+                    currentPage: 1
+                    });
+                }
+            });
+        } else {
+            alert("Delete cancelled.");
         }
-        console.log(complain);
-
-        window.location = '/';
-
-    }
+    };
 
     render() {
+
+        const {domAbuseComplains, currentPage, recordsPerPage} = this.state;
+        const lastIndex = currentPage * recordsPerPage;
+        const firstIndex = lastIndex - recordsPerPage;
+        const currentRecords = domAbuseComplains.slice(firstIndex, lastIndex);
+        const totalPages = domAbuseComplains.length / recordsPerPage;
+        const totalRecords = domAbuseComplains.length;
+
+        const selectedPageCss = {
+            width: "45px",
+            border: "1px solid #FFFFFF",
+            color: "#FFFFFF",
+            textAlign: "center",
+            fontWeight: "bold"
+        };
+
+        const pageCountLabelCss = {
+            float: "left",
+            width: "250px",
+            border: "1px solid #FFFFFF",
+            color: "#FFFFFF",
+            textAlign: "center",
+            fontWeight: "bold",
+            padding: "10px 10px",
+            background: "#17A2B8",
+            borderRadius: "7px"
+        };
+
+        const recordCountLabelCss = {
+            margin: "0 auto",
+            width: "200px",
+            border: "1px solid #FFFFFF",
+            color: "#FFFFFF",
+            textAlign: "center",
+            fontWeight: "bold",
+            padding: "10px 10px",
+            background: "#17A2B8",
+            borderRadius: "7px"
+        };
+
         return (
-            <div class="container" style={{ marginTop: 2 + 'rem' }}>
-
-                <div class="card text-danger  bg-dark  mb-3" style={{ marginLeft: 11 + 'rem' }} >
-                    <div class="card-header"><h3>Complains List</h3></div>
+            <div className="complain">
+                <div class="card text-white  bg-dark  mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
+                    <div class="card-header">
+                        <h3><FontAwesomeIcon icon={faListAlt} /> Complains List</h3>
+                        <div style={{"float":"right"}}>
+                            <input type="search" id="search" style={{"borderRadius": "7px", "borderColor": "#17A2B8", "borderWidth":"medium", "padding":"5px"}} name="" placeholder="Search...." onChange={this.searchRecords}/>
+                        </div>
+                    </div>
                     <div class="card-body" >
-                    </div >
-
-                    <div class="container">
-                        <form onsubmit={this.onsubmit} style={{ margin: "auto" }} class=" needs-validation" novalidate='true'>
-
-                            <div className="form-group" >
-
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Refference No:</b></label>
-                                <input
-                                    required
-                                    type="text"
-                                    required
-                                    className="form-control is-invalid"
-                                    value={this.state.refNo}
-                                    onChange={this.onchangeRefno} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Complain Type: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.complainType}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangecomplainType} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>First Name: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.fname}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeFName} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Last Name :</b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.lname}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeLName} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>NIC Number :</b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.nic}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeNic} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date Of Birth: </b></label>
-                                <div>
-                                    <DatePicker
-                                        className="form-control"
-                                        selected={this.state.dateOfBirth}
-                                        onChange={this.onchangeDateOfBirth} />
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Religion: </b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.religion}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeReligion} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>SEX: </b></label><br />
-                                <div class="input-group">
-
-                                    <div class="input-group-prepend">
-
-                                        <div style={{ marginLeft: 0.5 + 'rem' }}>
-
-                                            <input type="radio" id="male" name="gender" value={this.state.sex} onChange={this.onchangeSex} />
-                                            <label><b> Male </b></label>
-                                        </div>
-                                    </div>
-
-                                    <div style={{ marginLeft: 5 + 'rem' }}>
-                                        <input type="radio"
-                                            aria-label="Radio button for following text input"
-                                            name="gender"
-                                            id="Female"
-                                            value={this.state.sex}
-
-                                            onChange={this.onchangeSex} />
-                                        <label><b> Female </b></label>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Address:</b></label>
-                                <input type="text"
-                                    required
-                                    className="form-control"
-                                    value={this.state.address}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeAddress} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Phone: </b></label>
-                                <input type="number"
-                                    required
-                                    NumberFormat format="### ###-####"
-                                    mask="_"
-                                    className="form-control"
-                                    value={this.state.phone}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangePhone} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Description: </b></label>
-                                <textarea type="text"
-
-                                    required
-                                    className="form-control"
-                                    value={this.state.description}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeDescription} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Weapon(Optionl)</b></label>
-                                <input type="text"
-                                    className="form-control"
-                                    value={this.state.weapon}
-                                    onChange={this.onchangeWeapon} />
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Date: </b></label>
-                                <div></div>
-                                <DatePicker
-                                    className="form-control"
-                                    selected={this.state.date}
-                                    className="form-control is-invalid"
-                                    onChange={this.onchangeDate} />
-
-                            </div>
-
-                            <div className="form-group">
-                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Officer Incharge:</b></label>
-                                <input type="text"
-                                    name="offi"
-                                    id="offi"
-                                    required
-                                    className="form-control"
-                                    value={this.state.officer_incharge}
-                                    onChange={this.onchangeOfficerIncharge
-                                    } />
-
-                            </div>
-
-                            <div className="form-group">
-                                <input type="submit" id="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" class="needs-validationbtn" className="btn btn-outline-danger btn btn-dark" class='btndisabled' />
-                            </div>
-                        </form>
+                        <div className="table-wrapper">
+                            <Table striped border hover variant="dark">
+                                <thead>
+                                    <tr>
+                                        <th>Refference No</th>
+                                        <th>Complain Type</th>
+                                        <th>Created Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {domAbuseComplains.length === 0 ?
+                                        <tr align="center">
+                                            <td colSpan="6">No Complains Available</td>
+                                        </tr> :
+                                        currentRecords.map((complain, index) => (
+                                            <tr key={index}>
+                                                <td>{complain.refNo}</td>
+                                                <td>{complain.complainType}</td>
+                                                <td>{complain.date}</td>
+                                                <td>{complain.status}</td>
+                                                <td>
+                                                    <Link className="btn btn-primary" to={`/EditDomesticAbuseComplain/${complain._id}`}>View</Link>
+                                                </td>
+                                                <td>
+                                                    <Link className="btn btn-danger" onClick={this.deleteComplain.bind(this, complain._id)}>Delete</Link>
+                                                </td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </Table>
+                        </div>
+                        <div style={pageCountLabelCss}>
+                            Showing Page {currentPage} of {totalPages}
+                        </div>
+                        <div style={recordCountLabelCss}>
+                            Total Records : {totalRecords}
+                        </div>
+                        <div style={{"float":"right"}}>
+                            <InputGroup size="sm">
+                                <InputGroup.Prepend>
+                                    <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false} onClick={this.firstPage}>
+                                        <FontAwesomeIcon icon={faFastBackward} /> First
+                                    </Button>
+                                    <Button type="button" variant="outline-info" disabled={currentPage === 1 ? true : false} onClick={this.prevPage}>
+                                        <FontAwesomeIcon icon={faStepBackward} /> Prev
+                                    </Button>
+                                </InputGroup.Prepend>
+                                <FormControl style={selectedPageCss} className={"bg-primary"} name="currentPage" value={currentPage} onChange={this.changePage}/>
+                                <InputGroup.Append>
+                                    <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false} onClick={this.nextPage}>
+                                        <FontAwesomeIcon icon={faStepForward} /> Next
+                                    </Button>
+                                    <Button type="button" variant="outline-info" disabled={currentPage === totalPages ? true : false} onClick={this.lastPage}>
+                                        <FontAwesomeIcon icon={faFastForward} /> Last
+                                    </Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </div>
                     </div >
                 </div >
             </div >
-
-
         )
-
     }
-
 }
