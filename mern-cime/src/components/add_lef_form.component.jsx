@@ -4,7 +4,6 @@ import "react-datepicker/dist/react-datepicker.css"
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css'
 import axios from 'axios';
-import $ from 'jquery'
 
 export default class CreateLEF extends Component {
 
@@ -212,6 +211,7 @@ export default class CreateLEF extends Component {
             other: this.state.other,
             remarks: this.state.remarks,
         };
+        //window.location("/")
         console.log(obj)
         axios.post('http://localhost:5000/lef/add', obj).then(res => console.log(res.data));
 
@@ -247,7 +247,7 @@ export default class CreateLEF extends Component {
 
             <Tabs defaultIndex={0} onSelect={index => console.log(index)}>
                 <TabList >
-                    <div class="tab text-danger">
+                    <div className="tab text-danger">
                         <Tab style={{ marginLeft: 20 + 'rem' }}><b>Police Station Details</b></Tab>
                         <Tab ><b>Medical Officer Details</b></Tab>
                         <Tab ><b>Examinee Details</b></Tab>
@@ -444,9 +444,7 @@ export default class CreateLEF extends Component {
                                             <option value="None">None</option  >
                                         </select>
                                     </div>
-
                                 </TabPanel>
-
                                 <TabPanel>
                                     <div className="card-header bg-dark"><h3>Examinee Details part 2</h3></div>
                                     <div className="form-group">
@@ -549,9 +547,7 @@ export default class CreateLEF extends Component {
 
 
         )
-        $(document).ready(function () {
-            $('.mdb-select').materialSelect();
-        });
+
 
     }
 

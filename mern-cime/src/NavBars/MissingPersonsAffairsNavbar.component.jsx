@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class MissingPersonsAffairsNavbar extends Component {
 
@@ -15,21 +14,21 @@ export default class MissingPersonsAffairsNavbar extends Component {
                     <ul className="navbar-nav mr-auto ">
 
                         <li className="navbar-item mr-5">
-                            <Link to="/" className="nav-link">Complains</Link>
+                            <Link to="/" className="nav-link"></Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Complain" className="nav-link">Add Complain</Link>
+                            <Link to="/addComplaint" className="nav-link">File Complain</Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/Appeal" className="nav-link">Add Appeal</Link>
+                            <Link to="/" className="nav-link"></Link>
                         </li>
                         <li className="navbar-item mr-5">
-                            <Link to="/LEF" className="nav-link">Legal Examination Form</Link>
+                            <Link to="/viewComplaint" className="nav-link">View Complains</Link>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></form>
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></form>
 
                 </div>
 
