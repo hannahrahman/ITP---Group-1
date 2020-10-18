@@ -186,7 +186,7 @@ export default class CreateComplain extends Component {
             officer_inchargeError: '',
         };
 
-        /*if (!this.state.refNo) {
+        if (!this.state.refNo) {
             isError = true;
             errors.refNoError = "Reference number can not be blank!"
             this.state.error1 = true
@@ -195,7 +195,7 @@ export default class CreateComplain extends Component {
             errors.refNoError = "Reference must be simple or capitalized!"
             this.state.error1 = true
         } else
-            this.state.error1 = false;*/
+            this.state.error1 = false;
 
         if (!this.state.complainType) {
             isError = true;
