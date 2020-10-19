@@ -16,7 +16,7 @@ export default class MissingPersonsAffairs extends Component {
           name="viewpoint"
           content="width=device-width , initial-scale=1"
         ></meta>
-        <div style={{ marginTop: -101 + "rem" }}>
+        <div style={{ marginTop: -234 + "rem" }}>
           <div style={{ marginLeft: 15 + "rem" }}>
             <MissingPersonsAffairsNavbar />
           </div>

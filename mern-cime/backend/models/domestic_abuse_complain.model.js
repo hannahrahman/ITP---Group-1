@@ -9,15 +9,17 @@ const domesticAbuseComplainSchema = new Schema({
     fname: { type: String, required: true },
     lname: { type: String, required: true },
     nic: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
+    dateOfBirth: { type: String, required: true },
     religion: { type: String, required: true },
     sex: { type: String },
     address: { type: String, required: true },
-    phone: { type: Number, required: true },
+    phone: { type: String, required: true },
     description: { type: String },
     weapon: { type: String },
-    date: { type: Date, required: true },
-    officer_incharge: { type: String }
+    date: { type: Date, default: Date.now },
+    officer_incharge: { type: String },
+    status: { type: String, default: "CREATED" },
+    relationType: { type: String, required: true }
 
 }, {
     collection: 'domesticAbuseComplain',
