@@ -17,5 +17,5 @@ const complainSchema = new Schema({
     collection: 'complains',
 });
 
-module.exports = mongoose.model('Complain', complainSchema);
+module.exports = mongoose.model('miscComplain', complainSchema);
 

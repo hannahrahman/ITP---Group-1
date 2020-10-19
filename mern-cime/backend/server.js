@@ -2,18 +2,22 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
 
-//const JWT_SECRET = 'tG{cXZ45#Y^]}(H~5SZ3+?=HG)K)n2CmmD&C^M:n3G+z.Uu*<g'
+const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
 const app = express()//creating express server
 const port = process.env.PORT || 5000 // the port the server will be on
 
-//require("dotenv").config();
-
-
-
+//routes
 const cmpRoutes = require('./routes/miscComplains')
 const userRouter = require('./routes/userRouter')
+const LefRoute = require('./routes/lef');
+const complainsRouter = require('./routes/complains')
+const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
+const ComplainRoute = require('./routes/complains');
+const missingRoute = require('./routes/missingPersonAffairs.route')
+const licenseComplainsRouter = require('./routes/license_nic/licenseComplain')
+const nicComplainsRouter = require('./routes/license_nic/nicComplain')
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }).then(
@@ -28,44 +32,35 @@ app.use(bodyParser.json());
 //const pdf = require('html-pdf')
 //const pdfTemplate = require('./documents')
 
-const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
-const app = express()//creating express server
-const port = process.env.PORT || 5000 // the port the server will be on
-
-const LefRoute = require('./routes/lef');
-const complainsRouter = require('./routes/complains')
-const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
-const ComplainRoute = require('./routes/complains');
-const missingRoute = require('./routes/missingPersonAffairs.route')
-
-const licenseComplainsRouter = require('./routes/license_nic/licenseComplain')
-const nicComplainsRouter = require('./routes/license_nic/nicComplain')
+//const url = 'mongodb+srv://itp-user:AaBb1234@1234@itpcluster.wb6xf.mongodb.net/complainDBx?retryWrites=true&w=majority'
+//const app = express()//creating express server
+//const port = process.env.PORT || 5000 // the port the server will be on
 
 
-mongoose.Promise = global.Promise;
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
-  () => {
-    console.log("Connected to the Database server....");
-  },
-  (err) => {
-    console.log("cannot connect to the DataBase" + err);
-  }
-);
 
-app.use(cors()); // cors middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-/*con.on('open', () => {
-    console.log('Connected to the Database server....')
-})*/
+// mongoose.Promise = global.Promise;
+// mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }).then(
+//   () => {
+//     console.log("Connected to the Database server....");
+//   },
+//   (err) => {
+//     console.log("cannot connect to the DataBase" + err);
+//   }
+// );
 
-app.use('/miscComplains', cmpRoutes)
-app.use("/users", userRouter)
+// app.use(cors()); // cors middleware
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// /*con.on('open', () => {
+//     console.log('Connected to the Database server....')
+// })*/
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`)
 
-})
+
+// app.listen(port, () => {
+//     console.log(`Server is running on port: ${port}`)
+
+// })
 /*app.post('/pdf', (req, res) => {
   pdf.create(pdfTemplate(req.body), {}).toFile('result.pdf', (err) => {
     if (err) {
@@ -84,6 +79,10 @@ app.use('/Addcomplain', ComplainRoute);
 app.use('/missingPersonAffairs', missingRoute);
 app.use('/license', licenseComplainsRouter)
 app.use('/nic', nicComplainsRouter)
+app.use('/miscComplains', cmpRoutes)
+app.use("/users", userRouter)
+
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
