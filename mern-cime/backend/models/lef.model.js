@@ -23,7 +23,7 @@ let lefSchema = new Schema({
     categoryOfHurt: { type: String, required: true },
     consumptionOfAlcohol: { type: String, required: true },
     other: { type: String, required: true },
-    remarks: { type: String, required: true, required: true }
+    remarks: { type: String, required: true }
 
 
 }, {

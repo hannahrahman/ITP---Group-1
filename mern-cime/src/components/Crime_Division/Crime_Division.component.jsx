@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import CrimeComplainList from "./complains-list.component";
 import CreateComplain from "./create-complain.component";
 import CreateLEF from "../add_lef_form.component";
-import EditCrimeComplain from "../edit-complain.component"
+import EditCrimeComplain from "./edit-complain.component"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";

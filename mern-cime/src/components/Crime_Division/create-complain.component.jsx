@@ -233,8 +233,10 @@ export default class CreateComplain extends Component {
             errors.nicError = "NIC number can not be blank"
             toast.error("NIC is empty", {
                 transition: Flip
-            });;
-
+            });
+        } else if (this.state.nic.indexOf("V") === -1 || this.state.nic.length == 12 || this.state.nic.length == 10) {
+            this.state.error5 = true
+            errors.nicError = "NIC Must have V or must have 12 digits"
         } else
             this.state.error5 = false
 
@@ -409,6 +411,7 @@ export default class CreateComplain extends Component {
                 date: this.state.date,
                 officer_incharge: this.state.officer_incharge,
             }
+
             console.log(complain);
             toast.success("DB is updated.", {
                 position: toast.POSITION.TOP_CENTER,
@@ -470,21 +473,18 @@ export default class CreateComplain extends Component {
                     <div className="card text-white  bg-light mb-3 " style={{ marginLeft: 8.5 + 'rem' }} >
                         <div className="card-header bg-dark"><h3>Add Complain</h3></div>
                         <div className="card-body " >
-
                         </div >
-
                         <div className="container">
                             <form onSubmit={this.onSubmit} action="/Complain" style={{ margin: "auto" }} noValidate='true'>
                                 <div className="row">
-                                    <div className="contact">
-
-                                    </div>
                                     <div className="col form-group" >
+
                                         <TextField
                                             label="Refno"
                                             required
                                             color="secondary"
                                             type="text"
+                                            style={{ textDecorationStyle: "double" }}
                                             variant="outlined"
                                             error={this.state.error1}
                                             value={this.state.refNo}
@@ -499,6 +499,7 @@ export default class CreateComplain extends Component {
 
                                     <div className="col" >
                                         <div className="form-group">
+
                                             <TextField
                                                 type="text"
                                                 label="Complain Type"
@@ -509,6 +510,7 @@ export default class CreateComplain extends Component {
                                                 error={this.state.error2}
                                                 value={this.state.complainType}
                                                 onChange={this.onchangecomplainType} />
+
                                             <br></br>
                                             <span className="text-danger">{this.state.complainTypeError}</span>
                                         </div>
@@ -605,23 +607,20 @@ export default class CreateComplain extends Component {
                                 </div>
                                 <div className="row first-Name">
                                     <div className="col form-group" >
-                                        <div>
-                                            <TextField
-                                                type="text"
-                                                variant="outlined"
-                                                color="secondary"
-                                                name="dateOfBirth"
-                                                required
-                                                label="Date Of Birth"
-                                                placeholder="YYYY-MM-DD"
-                                                selected={this.state.dateOfBirth}
-                                                error={this.state.error12}
-                                                onChange={this.onchangeDateOfBirth} />
-                                            <br></br>
-                                            <span className="text-danger">{this.state.dateOfBirthError}</span>
-                                        </div>
 
-
+                                        <TextField
+                                            type="text"
+                                            variant="outlined"
+                                            color="secondary"
+                                            name="dateOfBirth"
+                                            required
+                                            label="Date Of Birth"
+                                            placeholder="YYYY-MM-DD"
+                                            selected={this.state.dateOfBirth}
+                                            error={this.state.error12}
+                                            onChange={this.onchangeDateOfBirth} />
+                                        <br></br>
+                                        <span className="text-danger">{this.state.dateOfBirthError}</span>
                                     </div>
 
                                     <div className="col form-group" style={{ marginLeft: -9 + 'rem' }}>
@@ -721,11 +720,10 @@ export default class CreateComplain extends Component {
                                             onChange={this.onchangeOfficerIncharge} />
                                         <br></br>
                                         <span className="text-danger">{this.state.officer_inchargeError}</span>
-                                        <div style={{ marginLeft: -55 + 'rem' }}>
-
+                                        <div style={{ marginLeft: -52 + 'rem' }}>
 
                                             <br /><br />
-                                            <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" style={{ width: 100 + '%' }} />
+                                            <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" />
 
                                             <input type="file" onChange={this.handleChange} />
                                             <br />
@@ -746,8 +744,6 @@ export default class CreateComplain extends Component {
 
                     </div >
                 </div >
-
-
             </>
         )
     }

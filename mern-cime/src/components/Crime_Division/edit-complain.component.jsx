@@ -5,7 +5,7 @@ import { TextField } from '@material-ui/core'
 import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
-import '../App.css';
+import '../../App.css';
 
 toast.success("Welcome Sir.", {
     position: toast.POSITION.TOP_CENTER,

@@ -4,7 +4,6 @@ import MissingPersonComplaintForm from "./missing_person_complaint_form";
 import VeiwMissingPersonsComplains from "./view_missing_person.component";
 import MissingPersonList from "./missingPersonAffairsList.component";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
