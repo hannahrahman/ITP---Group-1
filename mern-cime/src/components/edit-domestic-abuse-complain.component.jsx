@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import '../App.css';
+import { Link } from 'react-router-dom';
+import { saveAs } from 'file-saver';
 
 export default class EditDomesticAbuseComplain extends Component {
 
@@ -21,6 +23,7 @@ export default class EditDomesticAbuseComplain extends Component {
         this.onchangeWeapon = this.onchangeWeapon.bind(this);
         this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this);
         this.onchangeRelationType = this.onchangeRelationType.bind(this);
+        this.onchangeStatus = this.onchangeStatus.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -37,7 +40,8 @@ export default class EditDomesticAbuseComplain extends Component {
             description: '',
             weapon: '',
             officer_incharge: '',
-            relationType: ''
+            relationType: '',
+            status: ''
         }
     }
 
@@ -60,7 +64,8 @@ export default class EditDomesticAbuseComplain extends Component {
                 description: res.data.description,
                 weapon: res.data.weapon,
                 officer_incharge: res.data.officer_incharge,
-                relationType: res.data.relationType
+                relationType: res.data.relationType,
+                status: res.data.status
             });
         })
         .catch((error) => {
@@ -152,6 +157,12 @@ export default class EditDomesticAbuseComplain extends Component {
         });
     }
 
+    onchangeStatus(e) {
+        this.setState({
+            status: e.target.value
+        });
+    }
+
     //************validations*****************
 
     validate = () => {
@@ -171,6 +182,7 @@ export default class EditDomesticAbuseComplain extends Component {
             weaponError: '',
             officerInchargeError: '',
             relationTypeError: '',
+            statusError: ''
         };
 
         //*****************validate Refference Number******************
@@ -361,7 +373,18 @@ export default class EditDomesticAbuseComplain extends Component {
         } else
             this.state.error15 = false;
 
-        //*****************end of validate officer in charge*************    
+        //*****************end of validate officer in charge*************
+        
+        //*****************validate status*********************************    
+
+        if (!this.state.status) {
+            isError = true;
+            errors.statusError = "This Field can not be blank!"
+            this.state.error16 = true
+        } else
+            this.state.error16 = false;
+
+        //*****************end of validate sex**************************
 
         this.setState({
             ...this.state,
@@ -391,7 +414,8 @@ export default class EditDomesticAbuseComplain extends Component {
             description: this.state.description,
             weapon: this.state.weapon,
             officer_incharge: this.state.officer_incharge,
-            relationType: this.state.relationType
+            relationType: this.state.relationType,
+            status: this.state.status
         };
         console.log(complain)
         axios
@@ -419,9 +443,24 @@ export default class EditDomesticAbuseComplain extends Component {
             description: this.state.description,
             weapon: this.state.weapon,
             officer_incharge: this.state.officer_incharge,
-            relationType: this.state.relationType
+            relationType: this.state.relationType,
+            status: this.state.status
         });
     };
+
+
+    //*************************generate report***********************************
+
+    createAndDownloadPdf = () => {
+        axios.post('http://localhost:5000/domestic_abuse_complains/create-pdf', this.state)
+          .then(() => axios.get('http://localhost:5000/domestic_abuse_complains/fetch-pdf', { responseType: 'blob' }))
+          .then((res) => {
+            const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+            saveAs(pdfBlob, 'newPdf.pdf');
+        })
+        alert("Report Successfully Downloaded!");
+        this.props.history.push('/DomesticAbuseComplainList')  //redirect to complains list page after submit
+    }
 
     render() {
         return (
@@ -652,8 +691,34 @@ export default class EditDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Status : </b></label><br />
+                                <select 
+                                    style={{ marginLeft: 0 + 'rem' }}
+                                    id="dropdown-item-button"
+                                    className="btn btn-outline-dark btn btn-secondary text-light"
+                                    name="status"
+                                    value={this.state.status}
+                                    onChange={this.onchangeStatus}
+                                    error={this.state.error16}>
+
+                                    <option>Select Action</option>
+                                    <option value="APPROVED">APPROVED</option>
+                                    <option value="REJECTED">REJECTED</option>
+                                    <option value="CREATED">CREATED</option>
+                                </select>
+                                <br/>
+                                <span className="text-danger">{this.state.statusError}</span>
+                            </div>
+
+                            <div className="form-group">
                                 <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-success btn btn-dark" />
                                 <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
+                                
+                                <Link className="btn btn-primary" to={`/ReportDomesticAbuseComplain/${this.props.match.params.id}`}>Print2</Link>
+                            </div>
+                        </form>
+                        <form onSubmit={this.createAndDownloadPdf} style={{ margin: "auto" }} className=" needs-validation" noValidate="true">
+                            <div className="form-group">
                                 <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Print" className="btn btn-outline-info btn btn-dark" />
                             </div>
                         </form>

@@ -2,6 +2,8 @@
 const express = require('express');
 const domesticRoutes = express.Router();
 let DomesticAbuseComplain = require('../models/domestic_abuse_complain.model')
+const pdf = require('html-pdf');
+const pdfTemplate = require('../documents/dom-report-template');
 
 domesticRoutes.route('/add').post(function (req, res) {
     let domesticAbuseComplain = new DomesticAbuseComplain(req.body);
@@ -50,6 +52,7 @@ domesticRoutes.route('/update/:id').post(function (req, res) {
             domesticAbuseComplain.weapon = req.body.weapon
             domesticAbuseComplain.officer_incharge = req.body.officer_incharge
             domesticAbuseComplain.relationType = req.body.relationType
+            domesticAbuseComplain.status = req.body.status
 
             domesticAbuseComplain.save().then(domesticAbuseComplain => {
                 res.json('Successfully Updated.');
@@ -68,7 +71,32 @@ domesticRoutes.route('/delete/:id').get(function (req, res) {
     });
 });
 
+/*domesticRoutes.route('/create-pdf').post(function (req, res) {
+    pdf.create(pdfTemplate(req.body), {}).toFile('report2.pdf', (err) => {
+        if(err) {
+            res.send(Promise.reject());
+        }
+
+        res.send(Promise.resolve());
+    });
+});*/
+
+/*domesticRoutes.route('/fetch-pdf').get(function (req, res) {
+    res.sendFile(`${__dirname}/report2.pdf`)
+});*/
+
+domesticRoutes.route('/create-pdf').post(function (req, res) {
+    pdf.create(pdfTemplate(req.body), {}).toFile(`report-${req.body.refNo}.pdf`, (err) => {
+        if(err) {
+            res.send(Promise.reject());
+        }
+
+        res.send(Promise.resolve());
+    });
+});
+
+domesticRoutes.route('/fetch-pdf').get(function (req, res) {
+    res.sendFile(`${__dirname}/report-${req.body.refNo}.pdf`)
+});
+
 module.exports = domesticRoutes;
-
-
-

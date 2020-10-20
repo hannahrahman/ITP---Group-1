@@ -6,7 +6,7 @@ export default class CivilDomesticAbuseAffairsNavbar extends Component {
   render() {
     return (
         <nav className="navbar navbar-dark bg-dark nv" style={{ width: 17.5 + 'rem' }} >
-            <ul className="navbar-nav mr-auto" style={{ marginTop: -30 + 'rem' }} >
+            <ul className="navbar-nav mr-auto" style={{ marginTop: -70 + 'rem' }} >
                 <li className="navbar-item" >
                     <Link to="/DomesticAbuseComplainList" className="nav-link" >Complains List</Link>
                     <hr color="white" />
@@ -14,10 +14,6 @@ export default class CivilDomesticAbuseAffairsNavbar extends Component {
 
                 <li className="navbar-item">
                     <Link to="/DomesticAbuseComplain" className="nav-link" >Add Complain</Link>
-                    <hr width="225" color="white" />
-                </li>
-                <li className="navbar-item">
-                    <Link to="/DomesticAbuseApeal" className="nav-link" >Add Appeal</Link>
                     <hr width="225" color="white" />
                 </li>
                 <li className="navbar-item">
