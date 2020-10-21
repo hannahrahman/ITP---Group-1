@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import { saveAs } from 'file-saver';
+import { storage } from '../firebase';
 
 export default class EditDomesticAbuseComplain extends Component {
 
@@ -25,6 +26,8 @@ export default class EditDomesticAbuseComplain extends Component {
         this.onchangeRelationType = this.onchangeRelationType.bind(this);
         this.onchangeStatus = this.onchangeStatus.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
         this.state = {
             refNo: '',
@@ -41,7 +44,10 @@ export default class EditDomesticAbuseComplain extends Component {
             weapon: '',
             officer_incharge: '',
             relationType: '',
-            status: ''
+            status: '',
+            report: null,
+            url: '',
+            progress: 0
         }
     }
 
@@ -458,9 +464,42 @@ export default class EditDomesticAbuseComplain extends Component {
             const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
             saveAs(pdfBlob, 'newPdf.pdf');
         })
-        alert("Report Successfully Downloaded!");
+        alert("Report Successfully Generated, Please Upload!");
         this.props.history.push('/DomesticAbuseComplainList')  //redirect to complains list page after submit
     }
+    
+    //***********report upload******************************
+
+    handleChange = e => {
+        if (e.target.files[0]) {
+            const report = e.target.files[0];
+            this.setState(() => ({ report }));
+        }
+    }
+    handleUpload = () => {
+        const { report } = this.state;
+        const uploadTask = storage.ref(`DOMComplainReports/${report.name}`).put(report);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // progrss function ....
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ progress });
+            },
+            (error) => {
+                // error function ....
+                console.log(error);
+            },
+            () => {
+                // complete function ....
+                storage.ref('DOMComplainReports').child(report.name).getDownloadURL().then(url => {
+                    console.log(url);
+                    this.setState({ url });
+
+                    alert("Report Successfully Uploaded, Please Delete from PC!");
+                    this.props.history.push('/DomesticAbuseComplainList');
+                })
+            });
+    };
 
     render() {
         return (
@@ -708,6 +747,13 @@ export default class EditDomesticAbuseComplain extends Component {
                                 </select>
                                 <br/>
                                 <span className="text-danger">{this.state.statusError}</span>
+                            </div>
+
+                            <div className="form-group">
+                                <input type="file" className="btn btn-outline-light btn btn-dark" onChange={this.handleChange} />
+                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Upload" className="btn btn-outline-warning btn btn-dark" onClick={this.handleUpload} /><br /><br />
+                                <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" /><br />
+                                <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" /><br />
                             </div>
 
                             <div className="form-group">

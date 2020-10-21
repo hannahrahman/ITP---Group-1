@@ -71,22 +71,8 @@ domesticRoutes.route('/delete/:id').get(function (req, res) {
     });
 });
 
-/*domesticRoutes.route('/create-pdf').post(function (req, res) {
-    pdf.create(pdfTemplate(req.body), {}).toFile('report2.pdf', (err) => {
-        if(err) {
-            res.send(Promise.reject());
-        }
-
-        res.send(Promise.resolve());
-    });
-});*/
-
-/*domesticRoutes.route('/fetch-pdf').get(function (req, res) {
-    res.sendFile(`${__dirname}/report2.pdf`)
-});*/
-
 domesticRoutes.route('/create-pdf').post(function (req, res) {
-    pdf.create(pdfTemplate(req.body), {}).toFile(`report-${req.body.refNo}.pdf`, (err) => {
+    pdf.create(pdfTemplate(req.body), {}).toFile(`slpc-report-${req.body.refNo}.pdf`, (err) => {
         if(err) {
             res.send(Promise.reject());
         }
@@ -96,7 +82,7 @@ domesticRoutes.route('/create-pdf').post(function (req, res) {
 });
 
 domesticRoutes.route('/fetch-pdf').get(function (req, res) {
-    res.sendFile(`${__dirname}/report-${req.body.refNo}.pdf`)
+    res.sendFile(`${__dirname}/slpc-report-${req.body.refNo}.pdf`)
 });
 
 module.exports = domesticRoutes;
