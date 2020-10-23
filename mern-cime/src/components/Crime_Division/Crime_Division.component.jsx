@@ -27,7 +27,5 @@ export default class CrimeDivision extends Component {
         </Router>
       </div>
     );
-
   }
-
 }
