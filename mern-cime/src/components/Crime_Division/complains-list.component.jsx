@@ -16,7 +16,6 @@ export default class CrimeComplainList extends Component {
             currentPage: 1,
             recordsPerPage: 10,
             searchResults: [],
-
         };
         this.searchRecords = this.searchRecords.bind(this);
     }
@@ -189,8 +188,8 @@ export default class CrimeComplainList extends Component {
                                     </tr> :
                                         currentRecords.map((complain, index) => (
                                             <tr key={index}>
-
-                                                <td>COM{index}</td>
+                                                
+                                                <td>{complain.refNo}</td>
                                                 <td>{complain.complainType}</td>
                                                 <td>{complain.date}</td>
                                                 <td>{complain.status}</td>

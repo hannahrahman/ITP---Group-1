@@ -32,8 +32,11 @@ export default class CreateComplain extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleUpload = this.handleUpload.bind(this);
 
+
+
         this.state = {
-            refNo: '',
+            //refNo: 'COMP0' + Math.floor(Math.random(1) * 100 + 1),
+            refNo: 'COM0328661',
             complainType: '',
             fname: '',
             lname: '',
@@ -49,10 +52,23 @@ export default class CreateComplain extends Component {
             officer_incharge: '',
             image: null,
             url: '',
-            progress: 0
+            progress: 0,
+            searchResults: [],
         }
     }
 
+    componentDidMount() {
+        axios.get('http://localhost:5000/Addcomplain/refNo/' + this.state.refNo)
+            .then(res => {
+                /*  this.setState({
+                      refNo: res.data.refNo
+                  });*/
+                if (res.data != null) {
+                    alert("record already exsit");
+                    //console.log(error)
+                }
+            })
+    }
     handleChange = e => {
         if (e.target.files[0]) {
             const image = e.target.files[0];
@@ -234,7 +250,7 @@ export default class CreateComplain extends Component {
             toast.error("NIC is empty", {
                 transition: Flip
             });
-        } else if (this.state.nic.indexOf("V") === -1 || this.state.nic.length == 12 || this.state.nic.length == 10) {
+        } else if (this.state.nic.indexOf("V") === -1 || this.state.nic.length == 12 || this.state.nic.length == 9) {
             this.state.error5 = true
             errors.nicError = "NIC Must have V or must have 12 digits"
         } else
@@ -343,8 +359,6 @@ export default class CreateComplain extends Component {
         return isError;
     };
 
-
-
     handleReset = () => {
         Array.from(document.querySelectorAll('input'));
         this.setState({
@@ -365,25 +379,25 @@ export default class CreateComplain extends Component {
         });
     };
 
-    handleDemo = () => {
-        Array.from(document.querySelectorAll('input'))
-        this.setState({
-            refNo: 'COM123',
-            complainType: 'Crime',
-            fname: 'Julien',
-            lname: 'Angelo',
-            nic: '992413414V',
-            dateOfBirth: '2020-12-31',
-            religion: 'Christian',
-            sex: 'Male',
-            address: 'Colombo',
-            phone: '778899568',
-            description: 'Killing',
-            weapon: 'Knife',
-            date: '2020-12-31',
-            officer_incharge: 'Danannjay',
-        });
-    };
+    /* handleDemo = () => {
+         Array.from(document.querySelectorAll('input'))
+         this.setState({
+             refNo: 'COM123',
+             complainType: 'Crime',
+             fname: 'Julien',
+             lname: 'Angelo',
+             nic: '992413414V',
+             dateOfBirth: '2020-12-31',
+             religion: 'Christian',
+             sex: 'Male',
+             address: 'Colombo',
+             phone: '778899568',
+             description: 'Killing',
+             weapon: 'Knife',
+             date: '2020-12-31',
+             officer_incharge: 'Danannjay',
+         });
+     };*/
     onSubmit(e) {
         e.preventDefault();
         const err = this.validate();
@@ -475,7 +489,7 @@ export default class CreateComplain extends Component {
                         <div className="card-body " >
                         </div >
                         <div className="container">
-                            <form onSubmit={this.onSubmit} action="/Complain" style={{ margin: "auto" }} noValidate='true'>
+                            <form onSubmit={this.onSubmit} action="/Complain" noValidate='true'>
                                 <div className="row">
                                     <div className="col form-group" >
 
@@ -489,6 +503,7 @@ export default class CreateComplain extends Component {
                                             error={this.state.error1}
                                             value={this.state.refNo}
                                             name="refNo"
+                                            disabled="true"
                                             onChange={this.onchangeRefno}
                                         />
 
@@ -616,7 +631,7 @@ export default class CreateComplain extends Component {
                                             required
                                             label="Date Of Birth"
                                             placeholder="YYYY-MM-DD"
-                                            selected={this.state.dateOfBirth}
+                                            value={this.state.dateOfBirth}
                                             error={this.state.error12}
                                             onChange={this.onchangeDateOfBirth} />
                                         <br></br>
@@ -700,7 +715,7 @@ export default class CreateComplain extends Component {
                                             label="Date"
                                             placeholder="YYYY-MM-DD"
                                             error={this.state.error13}
-                                            selected={this.state.date}
+                                            value={this.state.date}
                                             onChange={this.onchangeDate} />
                                         <br></br>
                                         <span className="text-danger">{this.state.dateError}</span>
@@ -720,16 +735,18 @@ export default class CreateComplain extends Component {
                                             onChange={this.onchangeOfficerIncharge} />
                                         <br></br>
                                         <span className="text-danger">{this.state.officer_inchargeError}</span>
-                                        <div style={{ marginLeft: -52 + 'rem' }}>
 
-                                            <br /><br />
-                                            <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" />
+                                        <div className="row first-Name img">
+                                            <div className="col form-group " >
+                                                <br /><br />
+                                                <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" />
 
-                                            <input type="file" onChange={this.handleChange} />
-                                            <br />
-                                            <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" />
-                                            <br />
-                                            <input type="button" onClick={this.handleUpload} className="btn btn-outline-warning btn btn-dark" value="upload" />
+                                                <input type="file" onChange={this.handleChange} />
+                                                <br />
+                                                <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" />
+                                                <br />
+                                                <input type="button" onClick={this.handleUpload} className="btn btn-outline-warning btn btn-dark" value="upload" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

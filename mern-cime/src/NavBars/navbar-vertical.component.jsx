@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';//fontawesome
 import { faListAlt, faTree, faHouseDamage, faGlobeAmericas, faUserNinja, faUser, faCannabis, faCarAlt, faCreditCard, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 import Police from '../Images/police.png'
 import {
   MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
   MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
-} from "mdbreact";
+} from "mdbreact";//mdbreact
 import { BrowserRouter as Router } from 'react-router-dom';
 
 class Sidenav extends Component {
@@ -132,9 +132,6 @@ class Sidenav extends Component {
             <MDBNavbarNav right>
               <MDBNavItem>
                 <MDBFormInline waves>
-                  <div className="md-form my-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                  </div>
                 </MDBFormInline>
               </MDBNavItem>
             </MDBNavbarNav>

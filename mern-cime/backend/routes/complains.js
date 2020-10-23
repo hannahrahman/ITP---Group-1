@@ -72,4 +72,15 @@ complainRoutes.route('/delete/:id').get(function (req, res) {
     });
 });
 
+complainRoutes.route('/refNo/:refNo').get(function (req, res) {
+    //let refNo1 = req.params.refNo;
+    Complain.find({ refNo: req.params.refNo }, function (err, complain) {
+        if (err)
+            console.log(err);
+        else {
+            res.json(complain)
+        }
+
+    });
+});
 module.exports = complainRoutes;

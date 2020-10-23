@@ -1,7 +1,5 @@
 body{
   background-image: url('./Images/back6.png');
-
-
 }
 
 .nv{
@@ -15,7 +13,7 @@ body{
 .crimenv{
   background-color: #2f373a;
    position: absolute;
-   height:200%;
+   height:100%;
    top:14rem;
    bottom:0;
    left:0;
@@ -90,7 +88,10 @@ body{
   padding-bottom: 0%;
   width: 39.9rem;
 }
-
+.img{
+  position: sticky;
+  margin-left: -230%;
+}
 
 /*.App {
   text-align: center;

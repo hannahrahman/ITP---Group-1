@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/css/bootstrap-grid.min.css"
@@ -20,40 +20,45 @@ import './App.css';
 import ViewLost from "./components/license_nic/viewLost"
 import EditLicense from "./components/license_nic/Edit_Driving_License"
 
-function App() {
-  return (
-    <div>
+/*const routes = [
+  { path: "/", name: "Home", Component: Home },
+  { path: "/about", name: "About", Component: About }
+];*/
 
+export default class App extends Component {
+  render() {
 
-      <Helmet>
-        <meta charSet="UTF-8" />
-        <title>Police Station</title>
-        <meta name="description" content="Police Station" />
-        <meta name="viewport" content="width=device-width, maximum-scale=1" />
-        <link rel="shortcut icon" href={Police} />
-      </Helmet>
-      <div>
-        <Router>
-          <Sidenav />
-          <div >
-            <Route exact path="/Crime Division" exact component={CrimeDivision} />
-            <Route exact path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
-            <Route exact path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
-            <Route exact path="/Environmental Affairs" exact component={EnvironmentalAffairs} />
-            <Route exact path="/Missing Persons Affairs" exact component={MissingPersonsAffairs} />
-            <Route exact path="/Cyber Crime" exact component={CyberCrime} />
-            <Route exact path="/Online Fine Payment" exact component={OnlineFinePayment} />
-            <Route exact path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
-            <Route exact path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
+    return (
+      <>
+        <div>
+          <Helmet>
+            <meta charSet="UTF-8" />
+            <title>Police Station</title>
+            <meta name="description" content="Police Station" />
+            <meta name="viewport" content="width=device-width, maximum-scale=1" />
+            <link rel="shortcut icon" href={Police} />
+          </Helmet>
+
+          <div>
+            <Router>
+              <Sidenav />
+              <div >
+                <Route path="/Crime Division" exact component={CrimeDivision} />
+                <Route path="/Miscellaneous Complaints" exact component={MiscellaneousComplaints} />
+                <Route path="/Civil Domestic Abuse Affairs" exact component={CivilDomesticAbuseAffairs} />
+                <Route path="/Environmental Affairs" exact component={EnvironmentalAffairs} />
+                <Route path="/Missing Persons Affairs" exact component={MissingPersonsAffairs} />
+                <Route path="/Cyber Crime" exact component={CyberCrime} />
+                <Route path="/Online Fine Payment" exact component={OnlineFinePayment} />
+                <Route path="/Online Driving/NIC Renewal" exact component={OnlineDrivingNICRenewal} />
+                <Route path="/Narcotics and Drug Affairs" exact component={NarcoticssandDrugAffairs} />
+              </div>
+              <Route path="/ViewLost" exact component={ViewLost} />
+              <Route path="/edit/:id" component={EditLicense} />
+            </Router>
           </div>
-          <Route exact path="/ViewLost" exact component={ViewLost} />
-          <Route path="/edit/:id" component={EditLicense} />
-        </Router>
-      </div>
-
-
-    </div>
-
-  );
+        </div >
+      </>
+    );
+  }
 }
-export default App;

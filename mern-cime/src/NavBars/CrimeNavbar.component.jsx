@@ -8,7 +8,7 @@ export default class CrimeNavbar extends Component {
         return (
 
             <nav className="navbar navbar-dark bg-dark crimenv" style={{ width: 17.5 + 'rem' }} >
-                <ul className="navbar-nav mr-auto" style={{ marginTop: -70 + 'rem' }} >
+                <ul className="navbar-nav mr-auto" style={{ marginTop: -40 + 'rem' }} >
                     <li className="navbar-item1" >
                         <Link to="/Complains_List" className="nav-link" > Complains List</Link>
                         <hr color="white" />    
