@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
 import '../App.css';
+import { storage } from '../firebase';
 
 export default class CreateDomesticAbuseComplain extends Component {
 
@@ -22,7 +23,10 @@ export default class CreateDomesticAbuseComplain extends Component {
         this.onchangeWeapon = this.onchangeWeapon.bind(this)
         this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this)
         this.onchangeRelationType = this.onchangeRelationType.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+        this.onchangeStatus = this.onchangeStatus.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleUpload = this.handleUpload.bind(this);
 
         this.state = {
             refNo: '',
@@ -38,7 +42,11 @@ export default class CreateDomesticAbuseComplain extends Component {
             description: '',
             weapon: '',
             officer_incharge: '',
-            relationType: ''
+            relationType: '',
+            status: 'CREATED',
+            image: null,
+            url: '',
+            progress: 0
         }
     }
 
@@ -126,6 +134,12 @@ export default class CreateDomesticAbuseComplain extends Component {
         });
     }
 
+    onchangeStatus(e) {
+        this.setState({
+            status: e.target.value
+        });
+    }
+
     //************validations*****************
 
     validate = () => {
@@ -144,7 +158,7 @@ export default class CreateDomesticAbuseComplain extends Component {
             descriptionError: '',
             weaponError: '',
             officerInchargeError: '',
-            relationTypeError: '',
+            relationTypeError: ''
         };
 
         //*****************validate Refference Number******************
@@ -335,7 +349,7 @@ export default class CreateDomesticAbuseComplain extends Component {
         } else
             this.state.error15 = false;
 
-        //*****************end of validate officer in charge*************    
+        //*****************end of validate officer in charge*************
 
         this.setState({
             ...this.state,
@@ -367,7 +381,8 @@ export default class CreateDomesticAbuseComplain extends Component {
                 description: this.state.description,
                 weapon: this.state.weapon,
                 officer_incharge: this.state.officer_incharge,
-                relationType: this.state.relationType
+                relationType: this.state.relationType,
+                status: this.state.status
             };
             console.log(complain)
             axios
@@ -388,7 +403,8 @@ export default class CreateDomesticAbuseComplain extends Component {
                 description: '',
                 weapon: '',
                 officer_incharge: '',
-                relationType: ''
+                relationType: '',
+                status: ''
             })
             alert("Record Successfully Saved!");
             this.props.history.push('/DomesticAbuseComplainList')  //redirect to complains list page after submit
@@ -413,8 +429,39 @@ export default class CreateDomesticAbuseComplain extends Component {
             description: '',
             weapon: '',
             officer_incharge: '',
-            relationType: ''
+            relationType: '',
+            status: 'CREATED'
         });
+    };
+
+    //***********image upload******************************
+
+    handleChange = e => {
+        if (e.target.files[0]) {
+            const image = e.target.files[0];
+            this.setState(() => ({ image }));
+        }
+    }
+    handleUpload = () => {
+        const { image } = this.state;
+        const uploadTask = storage.ref(`DOMComplains/${image.name}`).put(image);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // progrss function ....
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                this.setState({ progress });
+            },
+            (error) => {
+                // error function ....
+                console.log(error);
+            },
+            () => {
+                // complete function ....
+                storage.ref('DOMComplains').child(image.name).getDownloadURL().then(url => {
+                    console.log(url);
+                    this.setState({ url });
+                })
+            });
     };
 
     render() {
@@ -642,6 +689,21 @@ export default class CreateDomesticAbuseComplain extends Component {
                                     onChange={this.onchangeOfficerIncharge}
                                     error={this.state.error15} />
                                 <span className="text-danger">{this.state.officerInchargeError}</span>
+                            </div>
+
+                            <div className="form-group">
+                                <input type="file" className="btn btn-outline-light btn btn-dark" onChange={this.handleChange} />
+                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Upload" className="btn btn-outline-warning btn btn-dark" onClick={this.handleUpload} /><br /><br />
+                                <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" /><br />
+                                <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" /><br />
+                                
+                            </div>
+                            
+                            <div className="form-group">
+                                <input 
+                                    type="hidden"
+                                    value={this.state.status}
+                                    onChange={this.onchangeStatus} />   
                             </div>
 
                             <div className="form-group">

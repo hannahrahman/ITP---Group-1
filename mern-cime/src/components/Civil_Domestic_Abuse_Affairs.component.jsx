@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
 import EditDomesticAbuseComplain from "./edit-domestic-abuse-complain.component";
+import ReportDomesticAbuseComplain from "./report-dom-abuse-complain.component";
 
 export default class CivilDomesticAbuseAffairs extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class CivilDomesticAbuseAffairs extends Component {
             <Route path="/DomesticAbuseApeal" exact component={CreateDomesticAbuseApeal} />
             <Route path="/DomesticAbuseLegal" exact component={CreateDomesticAbuseLegal} />
             <Route path="/EditDomesticAbuseComplain/:id" exact component={EditDomesticAbuseComplain} />
+            <Route path="/ReportDomesticAbuseComplain/:id" exact component={ReportDomesticAbuseComplain} />
           </div>
         </Router>
       </div>
