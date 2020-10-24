@@ -38,11 +38,11 @@ cmpRoutes.route('/update/:id').post(function (req, res) {
         else {
             complain.refNo = req.body.refNo
             complain.fullname = req.body.fullname
-            complain.phonenumber = Number(req.body.phonenumber)
+            complain.phonenumber = req.body.phonenumber
             complain.nic = req.body.nic
-            complain.date = Date.parse(req.body.date)
+            complain.date = req.body.date
             complain.description = req.body.description
-            complain.dateofincident = Date.parse(req.body.dateofincident)
+            complain.dateofincident = req.body.dateofincident
             complain.personsinvolved = req.body.personsinvolved
 
             complain.save().then(complain => {

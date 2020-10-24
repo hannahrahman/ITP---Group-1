@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 
 const complainSchema = new Schema({
  
-    refNo: { type: Number, required: true },
+    refNo: { type: String, required: true },
     fullname: { type: String, required: true },
-    phonenumber: { type: Number, required: true },
+    phonenumber: { type: String, required: true },
     nic: { type: String, required: true },
     date: { type: Date, required: true },
     description: { type: String, required: true },

@@ -1,7 +1,5 @@
 body{
   background-image: url('./Images/back6.png');
-
-
 }
 
 .nv{
@@ -75,8 +73,52 @@ body{
    width: 100rem;
 }
 
+.lef{
+  position: sticky;
+  top:0;
+  padding-bottom: 0%;
+  width: 40rem;
+}
+.txt{
+  padding-left:1.5rem;
+  padding-right: 1.5rem;
+}
+.lef_header{
+  position: sticky;
+  top:0;
+  padding-bottom: 0%;
+  width: 39.9rem;
+}
 
+/* error notice */
 
+.error-notice {
+  margin:1rem 0;
+  padding: 8px 30px 8px 30px;
+  border: 1px solid #b62020;
+  border-radius:1px;
+  display:flex;
+  background-color: #bd3434;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error-notice button {
+  width:25px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d16161;
+  color: #ffffff;
+}
+
+.login {
+  background-color: #87d0ec;
+  width:40%;
+  padding-bottom: 5%;
+  /* height: 50rem; */
+  position: sticky;
+  top: 0;
+}
 
 /*.App {
   text-align: center;
