@@ -36,7 +36,7 @@ export default class CreateComplain extends Component {
 
         this.state = {
             //refNo: 'COMP0' + Math.floor(Math.random(1) * 100 + 1),
-            refNo: 'COM0328661',
+            refNo: 'COM054486328661',
             complainType: '',
             fname: '',
             lname: '',
@@ -57,18 +57,18 @@ export default class CreateComplain extends Component {
         }
     }
 
-    componentDidMount() {
-        axios.get('http://localhost:5000/Addcomplain/refNo/' + this.state.refNo)
-            .then(res => {
-                /*  this.setState({
-                      refNo: res.data.refNo
-                  });*/
-                if (res.data != null) {
-                    alert("record already exsit");
-                    //console.log(error)
-                }
-            })
-    }
+    /* componentDidMount() {
+         axios.get('http://localhost:5000/Addcomplain/refNo/' + this.state.refNo)
+             .then(res => {
+                 /*  this.setState({
+                       refNo: res.data.refNo
+                   });
+                 if (res.data != null) {
+                     alert("record already exsit");
+                     //console.log(error)
+                 }
+             })
+     }*/
     handleChange = e => {
         if (e.target.files[0]) {
             const image = e.target.files[0];
@@ -379,36 +379,31 @@ export default class CreateComplain extends Component {
         });
     };
 
-    /* handleDemo = () => {
-         Array.from(document.querySelectorAll('input'))
-         this.setState({
-             refNo: 'COM123',
-             complainType: 'Crime',
-             fname: 'Julien',
-             lname: 'Angelo',
-             nic: '992413414V',
-             dateOfBirth: '2020-12-31',
-             religion: 'Christian',
-             sex: 'Male',
-             address: 'Colombo',
-             phone: '778899568',
-             description: 'Killing',
-             weapon: 'Knife',
-             date: '2020-12-31',
-             officer_incharge: 'Danannjay',
-         });
-     };*/
+    handleDemo = () => {
+        Array.from(document.querySelectorAll('input'))
+        this.setState({
+            refNo: 'COM123',
+            complainType: 'Crime',
+            fname: 'Julien',
+            lname: 'Angelo',
+            nic: '992413414V',
+            dateOfBirth: '2020-12-31',
+            religion: 'Christian',
+            sex: 'Male',
+            address: 'Colombo',
+            phone: '778899568',
+            description: 'Killing',
+            weapon: 'Knife',
+            date: '2020-12-31',
+            officer_incharge: 'Danannjay',
+        });
+    };
     onSubmit(e) {
         e.preventDefault();
         const err = this.validate();
         if (!err) {
             //Sendind values through mail
-            emailjs.sendForm('gmail', 'template_q0v9cyz', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
-                .then((result) => {
-                    console.log(result.text);
-                }, (error) => {
-                    console.log(error.text);
-                });
+
             const complain = {
                 refNo: this.state.refNo,
                 complainType: this.state.complainType,
@@ -433,6 +428,12 @@ export default class CreateComplain extends Component {
                 transition: Flip,
                 autoClose: 5000
             });
+            emailjs.sendForm('gmail', 'template_q0v9cyz', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                });
             // window.location = '/Complain';
             axios.post('http://localhost:5000/Addcomplain/add', complain).then(res => console.log(res.data));
 
@@ -498,7 +499,7 @@ export default class CreateComplain extends Component {
                                             required
                                             color="secondary"
                                             type="text"
-                                            style={{ textDecorationStyle: "double" }}
+                                            fullWidth
                                             variant="outlined"
                                             error={this.state.error1}
                                             value={this.state.refNo}
@@ -521,6 +522,7 @@ export default class CreateComplain extends Component {
                                                 variant="outlined"
                                                 color="secondary"
                                                 required
+                                                fullWidth
                                                 name="complainType"
                                                 error={this.state.error2}
                                                 value={this.state.complainType}
@@ -589,7 +591,6 @@ export default class CreateComplain extends Component {
                                             fullWidth
                                             name="religion"
                                             variant="outlined"
-                                            style={{ margin: 'auto' }}
                                             color="secondary"
                                             label="Religion"
                                             value={this.state.religion}
@@ -602,6 +603,7 @@ export default class CreateComplain extends Component {
                                         <TextField
                                             style={{ width: 10 + 'rem' }}
                                             select
+                                            fullWidth
                                             name="sex"
                                             value={this.state.sex}
                                             error={this.state.error7}
@@ -625,6 +627,7 @@ export default class CreateComplain extends Component {
 
                                         <TextField
                                             type="text"
+                                            fullWidth
                                             variant="outlined"
                                             color="secondary"
                                             name="dateOfBirth"
@@ -638,7 +641,7 @@ export default class CreateComplain extends Component {
                                         <span className="text-danger">{this.state.dateOfBirthError}</span>
                                     </div>
 
-                                    <div className="col form-group" style={{ marginLeft: -9 + 'rem' }}>
+                                    <div className="col form-group" >
 
                                         <TextField
                                             type="text"
@@ -659,6 +662,7 @@ export default class CreateComplain extends Component {
                                         <TextField
                                             type="text"
                                             required
+                                            fullWidth
                                             label="Phone "
                                             variant="outlined"
                                             color="secondary"
@@ -713,6 +717,7 @@ export default class CreateComplain extends Component {
                                             color="secondary"
                                             name="date"
                                             label="Date"
+                                            fullWidth
                                             placeholder="YYYY-MM-DD"
                                             error={this.state.error13}
                                             value={this.state.date}

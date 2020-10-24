@@ -727,9 +727,10 @@ export default class CreateLEF extends Component {
                                             fullWidth
                                             variant="outlined"
                                             color="secondary"
-                                            error={this.state.error3}
+
                                             label="Victim Full Name"
                                             name="victimFullName"
+                                            error={this.state.error3}
                                             value={this.state.victimFullName}
                                             onChange={this.onchangeVictimFullName}
                                         />
