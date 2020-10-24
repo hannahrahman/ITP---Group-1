@@ -9,9 +9,9 @@ const complainSchema = new Schema({
     fullname: { type: String, required: true },
     phonenumber: { type: String, required: true },
     nic: { type: String, required: true },
-    date: { type: Date, required: true },
+    date: { type: String, required: true },
     description: { type: String, required: true },
-    dateofincident: { type: Date },
+    dateofincident: { type: String, required: true },
     personsinvolved: { type: String, required: true },
 }, {
     collection: 'complains',
