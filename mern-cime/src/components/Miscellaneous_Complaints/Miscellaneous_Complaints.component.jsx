@@ -3,8 +3,6 @@ import React, { Component } from 'react'
 import MiscellaneousComplaintsNavbar from "../../NavBars/MiscellaneousNavbar.component"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MiscellaneousComplainList from "./MiscellaneousComplainList.component"
-import CreateComplain from "../create-complain.component"
-import CreateUser from "../create-user.component"
 import MiscellaneousComplaintForm from "./MiscellaneousComplaintForm.component"
 import EditMiscellaneousComplain from "./edit-miscellaneous-complain.component"
 
@@ -31,8 +29,6 @@ export default class MiscellaneousComplaints extends Component {
                     <Route path="/MiscellaneousComplainList" exact component={MiscellaneousComplainList} />
                     <Route path="/MiscellaneousComplaintForm" exact component={MiscellaneousComplaintForm} />
                     <Route path="/EditMiscellaneousComplain/:id" exact component={EditMiscellaneousComplain} />
-                    <Route path="/Complain" exact component={CreateComplain} />
-                    <Route path="/user" exact component={CreateUser} />
                     <div style={{ marginLeft: 18 + "rem" }}></div>
                 </div>  
                 

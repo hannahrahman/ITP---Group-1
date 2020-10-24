@@ -21,77 +21,7 @@ class Sidenav extends Component {
     };
 
   }
-  m1(e) {
-    this.setState({
-      m1: e.target.value,
-      m1: "Crime Division",
-      icon1: faListAlt
-    });
-    console.log(this);
-  }
-  m2() {
-    this.setState({
-      m1: "Crime Division",
-      icon1: faUserNinja
-    });
-    console.log(this);
-  }
-  m3() {
-    this.setState({
-      m1: "Domestic Abuse Affairs",
-      icon1: faHouseDamage
-    });
-    console.log(this);
-  }
-  m4() {
-    this.setState({
-      m1: "Environmental Affairs",
-      icon1: faTree
-    });
-    console.log(this);
-  }
-  m5() {
-    this.setState({
-      m1: "Cyber Crime",
-      icon1: faGlobeAmericas
-    });
-    console.log(this);
-  }
-  m6() {
-    this.setState({
-      m1: "Missing Persons Affairs",
-      icon1: faUser
-    });
-    console.log(this);
-  }
-  m7() {
-    this.setState({
-      m1: "Online Fine Payment",
-      icon1: faCannabis
-    });
-    console.log(this);
-  }
-  m8() {
-    this.setState({
-      m1: "Online Driving/NIC Renewal",
-      icon1: faMoneyBillAlt
-    });
-    console.log(this);
-  }
-  m9() {
-    this.setState({
-      m1: 'Narcotics and Drug Affairs',
-      icon1: faCarAlt
-    })
-    console.log(this)
-  }
-  m10() {
-    this.setState({
-      m1: 'Police Managment',
-      icon1: Police
-    })
-    console.log(this)
-  }
+
   state = {
     isOpen: false
   };
@@ -100,14 +30,14 @@ class Sidenav extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-//user login
+  //user login
 
 
 
 
   render() {
 
-   
+
     // function AuthOptions (){
 
     //     const {userData, setUserData} = useContext(userContext);
@@ -158,34 +88,20 @@ class Sidenav extends Component {
                 </MDBDropdown>
               </MDBNavItem>
               <MDBNavItem >
-                       <a href="/register Page" className="nav-link" >Register</a>
-                    </MDBNavItem>
+                <a href="/register Page" className="nav-link" >Register</a>
+              </MDBNavItem>
+              <MDBNavItem >
+                <a href="/login" className="nav-link" >Login</a>
+              </MDBNavItem>
 
-                    <MDBNavItem >
+
+              {/*<MDBNavItem >
                        <a to="/" className="nav-link" >Log Out</a>
-                    </MDBNavItem>
-            </MDBNavbarNav>
-            <MDBNavbarNav right>
-              {/* /* <MDBNavItem>
-                <MDBFormInline waves>
-<<<<<<< HEAD
-=======
-                  <div className="md-form my-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-
-                    
-                    
-                    <button>Logout</button>
- 
-                  </div>
->>>>>>> e642dc7c9b7ec0db65d502647135af09ab621f23
-                </MDBFormInline>
-              </MDBNavItem> */ }
-                    
+                    </MDBNavItem>*/}
             </MDBNavbarNav>
           </MDBCollapse>
         </MDBNavbar>
-      </Router>
+      </Router >
     );
   }
 }

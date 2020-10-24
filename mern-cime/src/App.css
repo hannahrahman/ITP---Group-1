@@ -75,10 +75,7 @@ body{
    padding-bottom: 0%;
    width: 100rem;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> e642dc7c9b7ec0db65d502647135af09ab621f23
 .lef{
   position: sticky;
   top:0;
@@ -95,14 +92,12 @@ body{
   padding-bottom: 0%;
   width: 39.9rem;
 }
-<<<<<<< HEAD
 .img{
   position: sticky;
   margin-left: -230%;
-=======
 
 /* error notice */
-
+}
 .error-notice {
   margin:1rem 0;
   padding: 8px 30px 8px 30px;
@@ -129,7 +124,6 @@ body{
   /* height: 50rem; */
   position: sticky;
   top: 0;
->>>>>>> e642dc7c9b7ec0db65d502647135af09ab621f23
 }
 
 /*.App {

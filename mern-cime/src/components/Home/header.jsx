@@ -9,7 +9,8 @@ import {
 } from "mdbreact";
 export default class Header extends Component {
     state = {
-        isOpen: false
+        isOpen: true,
+        Header: undefined
     };
 
     toggleCollapse = () => {
@@ -17,43 +18,30 @@ export default class Header extends Component {
     }
     render() {
         return (
-
-
-            <MDBNavbar color="bg-dark" dark expand="md">
-                <MDBNavbarBrand>
-                    <strong className="text-light" style={{ marginBlockStart: 5 + 'rem' }}><img src={Police} className="mr-1" style={{ height: 1.8 + 'rem', paddingRight: 1 + 'rem' }} />Police Station</strong>
-                </MDBNavbarBrand>
-                <MDBNavbarToggler onClick={this.toggleCollapse} />
-                <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                    <MDBNavbarNav left>
-                        <MDBNavItem >
-                            <Link to="/home" className="nav-link">Home</Link>
-                        </MDBNavItem>
-                        <MDBNavItem >
-                            <Link to="/App/" className="nav-link">Login</Link>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                        </MDBNavItem>
-                    </MDBNavbarNav>
-                    <MDBNavbarNav right>
-                        <MDBNavItem>
-                        </MDBNavItem>
-                    </MDBNavbarNav>
-                </MDBCollapse>
-            </MDBNavbar>
-            /*
-        <div className="header" >
-            <ul className="navbar-nav mr-auto ">
-
-                <li className="navbar-item mr-5">
-                    <Link to="/home" className="nav-link">Home</Link>
-                </li>
-                <li className="navbar-item mr-5">
-                    <Link to="/about" className="nav-link">About</Link>
-                </li>
-            </ul>
-        </div>
-    */
+            <>
+                <MDBNavbar color="bg-dark" dark expand="md" undefined>
+                    <MDBNavbarBrand>
+                        <strong className="text-light" style={{ marginBlockStart: 5 + 'rem' }}><img src={Police} className="mr-1" style={{ height: 1.8 + 'rem', paddingRight: 1 + 'rem' }} />Police Station</strong>
+                    </MDBNavbarBrand>
+                    <MDBNavbarToggler onClick={this.toggleCollapse} />
+                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+                        <MDBNavbarNav left>
+                            <MDBNavItem >
+                                <Link to="/home" className="nav-link">Home</Link>
+                            </MDBNavItem>
+                            <MDBNavItem >
+                                <Link to="/login" className="nav-link">Login</Link>
+                            </MDBNavItem>
+                            <MDBNavItem>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                        <MDBNavbarNav right>
+                            <MDBNavItem>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                    </MDBCollapse>
+                </MDBNavbar>
+            </>
         );
     };
 }
