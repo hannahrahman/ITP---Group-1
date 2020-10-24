@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';//fontawesome
 import { faListAlt, faTree, faHouseDamage, faGlobeAmericas, faUserNinja, faUser, faCannabis, faCarAlt, faCreditCard, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,9 @@ import {
   MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
 } from "mdbreact";//mdbreact
 import { BrowserRouter as Router } from 'react-router-dom';
+
+// import userContext from "../../context/userContext";
+// import {useHistory} from 'react-router-dom';
 
 class Sidenav extends Component {
   constructor(props) {
@@ -97,7 +100,33 @@ class Sidenav extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
+//user login
+
+
+
+
   render() {
+
+   
+    // function AuthOptions (){
+
+    //     const {userData, setUserData} = useContext(userContext);
+
+    //     const history = useHistory();
+
+    //     const register = () => history.push("register");
+    //     const login = () => history.push("/login");
+    //     const logout = () => {
+    //       setUserData ({
+    //         token: undefined,
+    //         user: undefined
+    //       });
+    //       localStorage.setItem("auth-token", "");
+    //     };
+    // }
+
+
+
     return (
       <Router>
         <MDBNavbar color="bg-dark" dark expand="md">
@@ -128,12 +157,31 @@ class Sidenav extends Component {
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>
+              <MDBNavItem >
+                       <a href="/register Page" className="nav-link" >Register</a>
+                    </MDBNavItem>
+
+                    <MDBNavItem >
+                       <a to="/" className="nav-link" >Log Out</a>
+                    </MDBNavItem>
             </MDBNavbarNav>
             <MDBNavbarNav right>
-              <MDBNavItem>
+              {/* /* <MDBNavItem>
                 <MDBFormInline waves>
+<<<<<<< HEAD
+=======
+                  <div className="md-form my-0">
+                    <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+
+                    
+                    
+                    <button>Logout</button>
+ 
+                  </div>
+>>>>>>> e642dc7c9b7ec0db65d502647135af09ab621f23
                 </MDBFormInline>
-              </MDBNavItem>
+              </MDBNavItem> */ }
+                    
             </MDBNavbarNav>
           </MDBCollapse>
         </MDBNavbar>
