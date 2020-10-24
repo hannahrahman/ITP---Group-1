@@ -1,6 +1,6 @@
 module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, dateOfBirth, religion, sex, address, phone, weapon, description, date }) => {
-    const today = new Date();
-    return `
+   const today = new Date();
+   return `
     <!doctype html>
     <html>
        <head>
@@ -86,6 +86,7 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
                    <td colspan="2">
                       <table>
                          <tr>
+                         <h1 class="justify-center">Report of Crime Division</h1>
                             <td class="title"><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Emblem_of_Sri_Lanka.svg/800px-Emblem_of_Sri_Lanka.svg.png"
                                style="width:100%; max-width:156px;"></td>
                             <td>
@@ -163,7 +164,6 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
                 </tr>
              </table>
              <br />
-             <h1 class="justify-center">Report of Crime Division</h1>
           </div>
        </body>
     </html>
