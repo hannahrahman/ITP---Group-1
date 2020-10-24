@@ -11,9 +11,12 @@ export default class CrimeNavbar extends Component {
                 <ul className="navbar-nav mr-auto" style={{ marginTop: -40 + 'rem' }} >
                     <li className="navbar-item1" >
                         <Link to="/Complains_List" className="nav-link" > Complains List</Link>
-                        <hr color="white" />    
+                        <hr color="white" />
                     </li>
-
+                    <li className="navbar-item1" >
+                        <Link to="/Completed_Complains_List" className="nav-link" >View Completed Complains List</Link>
+                        <hr color="white" />
+                    </li>
                     <li className="navbar-item1">
                         <Link to="/Complain" className="nav-link" >Add Complain</Link>
                         <hr width="225" color="white" />

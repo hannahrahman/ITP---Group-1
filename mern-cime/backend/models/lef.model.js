@@ -12,7 +12,7 @@ let lefSchema = new Schema({
     admission: { type: String, required: true },
     hospital: { type: String, required: true },
     wardNo: { type: String, required: true },
-    date: { type: String, require: true },
+    date: { type: String, default: Date.now },
     dateOfDischarge: { type: String, require: true },
     registrationNumber: { type: String, required: true },
     nomineeName: { type: String, required: true },

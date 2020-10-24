@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000 // the port the server will be on
 
 const LefRoute = require('./routes/lef');
 const complainsRouter = require('./routes/complains')
+const CompleteComplainsRouter = require('./routes/crime_complaint_completed')
 const domAbuseComplainsRouter = require('./routes/domestic_abuse_complains')
 const domAbuseComplainsBackupRouter = require('./routes/domestic_abuse_complains_backup')
 const ComplainRoute = require('./routes/complains');
@@ -39,6 +40,7 @@ app.use('/lef', LefRoute);
 app.use('/domestic_abuse_complains', domAbuseComplainsRouter)
 app.use('/domestic_abuse_complains_backup', domAbuseComplainsBackupRouter)
 app.use('/Addcomplain', ComplainRoute);
+app.use('/Completecomplain', CompleteComplainsRouter);
 app.use('/missingPersonAffairs', missingRoute);
 app.use('/license', licenseComplainsRouter)
 app.use('/nic', nicComplainsRouter)

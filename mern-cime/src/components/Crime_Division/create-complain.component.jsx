@@ -7,9 +7,16 @@ import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
 import '../../App.css';
 import { storage } from '../../firebase';
+import { saveAs } from 'file-saver';
+
+toast.success("Welcome Sir.", {
+    position: toast.POSITION.TOP_CENTER,
+    draggable: true,
+    transition: Flip,
+    autoClose: 5000
+});
 
 export default class CreateComplain extends Component {
-
 
     constructor(props) {
         super(props);
@@ -58,7 +65,8 @@ export default class CreateComplain extends Component {
     }
 
     /* componentDidMount() {
-         axios.get('http://localhost:5000/Addcomplain/refNo/' + this.state.refNo)
+         
+         /* axios.get('http://localhost:5000/Addcomplain/refNo/' + this.state.refNo)
              .then(res => {
                  /*  this.setState({
                        refNo: res.data.refNo
@@ -455,7 +463,6 @@ export default class CreateComplain extends Component {
             })
         }
     }
-
     render() {
 
         /*const successToast = () => {
@@ -465,21 +472,14 @@ export default class CreateComplain extends Component {
                 position: toast.POSITION.TOP_CENTER
             })
         }
-        
-        toast.success("Welcome Sir.", {
-            position: toast.POSITION.TOP_CENTER,
-            draggable: true,
-            transition: Flip,
-            autoClose: 5000
-        }); 
-        */
-
+ 
         /* toast.success("success");
          toast.info("you have been dannnnaaaaa");
          toast.warn("you have been warned buhahahaha....");*/
 
         return (
             <>
+
                 < div className="complain" >
                     <>
 
@@ -503,8 +503,7 @@ export default class CreateComplain extends Component {
                                             variant="outlined"
                                             error={this.state.error1}
                                             value={this.state.refNo}
-                                            name="refNo"
-                                            disabled="true"
+                                            name="refNo"                    
                                             onChange={this.onchangeRefno}
                                         />
 
@@ -759,7 +758,6 @@ export default class CreateComplain extends Component {
                                     <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                                     <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
                                     <input type="button" style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.handleDemo} value="Demo" />
-                                    <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.createPDF}>Genertate PDF</button>
                                 </div>
                             </form>
                         </div >

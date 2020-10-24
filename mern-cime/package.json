@@ -47,10 +47,7 @@
     "react-select": "^3.1.0",
     "react-tabs": "^3.1.1",
     "react-to-pdf": "0.0.13",
-<<<<<<< HEAD
-=======
     "react-to-print": "^2.10.3",
->>>>>>> 120f1987943a1b2c5a12451cf8cd8119ffee6415
     "react-toastify": "^6.0.9",
     "script": "^0.1.4",
     "semantic-ui-react": "^1.1.1",

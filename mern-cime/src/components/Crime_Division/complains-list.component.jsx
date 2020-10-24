@@ -108,7 +108,8 @@ export default class CrimeComplainList extends Component {
             axios.get('http://localhost:5000/Addcomplain/edit/' + complainId)
                 .then(function (res) {
                     backupRecords = res.data;
-                    axios.post('http://localhost:5000/Addcomplain_backup/add', backupRecords)
+                    backupRecords.status = "COMPLETED"
+                    axios.post('http://localhost:5000/Completecomplain/add', backupRecords)
                 });
             axios.get('http://localhost:5000/Addcomplain/delete/' + complainId)
                 .then(response => {
@@ -188,7 +189,7 @@ export default class CrimeComplainList extends Component {
                                     </tr> :
                                         currentRecords.map((complain, index) => (
                                             <tr key={index}>
-                                                
+
                                                 <td>{complain.refNo}</td>
                                                 <td>{complain.complainType}</td>
                                                 <td>{complain.date}</td>

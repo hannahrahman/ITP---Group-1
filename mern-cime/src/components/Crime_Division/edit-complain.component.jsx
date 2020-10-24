@@ -6,6 +6,7 @@ import { ToastContainer, toast, Zoom, Bounce, Flip } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import emailjs from 'emailjs-com'
 import '../../App.css';
+import { saveAs } from 'file-saver';
 
 toast.success("Welcome Sir.", {
     position: toast.POSITION.TOP_CENTER,
@@ -66,6 +67,7 @@ export default class EditCrimeComplain extends Component {
                     sex: res.data.sex,
                     address: res.data.address,
                     phone: res.data.phone,
+                    date: res.data.date,
                     description: res.data.description,
                     weapon: res.data.weapon,
                     officer_incharge: res.data.officer_incharge,
@@ -182,20 +184,19 @@ export default class EditCrimeComplain extends Component {
             officer_inchargeError: '',
         };
 
-        //***********************************validate Refference Number******************
         if (!this.state.refNo) {
             isError = true;
             errors.refNoError = "Reference number can not be blank!"
             this.state.error1 = true
+            toast.error("Reference number can not be blank!");
         } else if (!this.state.refNo.match("^$|^[a-zA-Z]+")) {
             isError = true;
             errors.refNoError = "Reference must be simple or capitalized!"
             this.state.error1 = true
+            toast.error("Reference must be simple or capitalized!");
         } else
             this.state.error1 = false;
-        //*****************end of validate Refference Number************    
 
-        //*****************validate Complain Type***********************
         if (!this.state.complainType) {
             isError = true;
             errors.complainTypeError = "Complain type can not be blank"
@@ -205,9 +206,7 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error2 = false;
-        //*****************end of validate Complain Type****************    
 
-        //*****************validate First name**************************    
         if (!this.state.fname) {
             isError = true;
             errors.fnameError = "First Name can not be blank"
@@ -217,9 +216,7 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error3 = false;
-        //*****************end of validate First name*******************    
 
-        //*****************validate Last name***************************    
         if (!this.state.lname) {
             isError = true;
             errors.lnameError = "Last Name can not be blank"
@@ -229,21 +226,19 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error4 = false;
-        //*****************end of validate Last name********************    
 
-        //*****************validate NIC*********************************    
         if (!this.state.nic) {
             this.state.error5 = true
             errors.nicError = "NIC number can not be blank"
             toast.error("NIC is empty", {
                 transition: Flip
-            });;
-
+            });
+        } else if (this.state.nic.indexOf("V") === -1 || this.state.nic.length == 12 || this.state.nic.length == 9) {
+            this.state.error5 = true
+            errors.nicError = "NIC Must have V or must have 12 digits"
         } else
             this.state.error5 = false
-        //*****************end of validate NIC**************************     
 
-        //*****************validate Religion*************************    
         if (!this.state.religion) {
             isError = true;
             errors.religionError = "Religion can not be blank"
@@ -253,9 +248,7 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error6 = false;
-        //*****************end of validate Religion type****************    
 
-        //*****************validate Sex****************************    
         if (!this.state.sex) {
             isError = true;
             errors.sexError = "This Field can not be blank"
@@ -265,9 +258,7 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error = false;
-        //*****************end of validate sex**************************    
 
-        //*****************validate address*****************************    
         if (!this.state.address) {
             isError = true;
             errors.addressError = "Address can not be blank"
@@ -277,9 +268,7 @@ export default class EditCrimeComplain extends Component {
             });
         } else
             this.state.error8 = false;
-        //*****************end of validate address**********************
 
-        //*****************validate phone*******************************    
         if (!this.state.phone) {
             isError = true;
             errors.phoneError = "Phone number can not be blank!"
@@ -303,9 +292,7 @@ export default class EditCrimeComplain extends Component {
             })
         } else
             this.state.error9 = false;
-        //*****************end of validate phone************************    
 
-        //*****************validate description*************************
         if (!this.state.description) {
             isError = true;
             errors.descriptionError = "Description can not be blank"
@@ -315,9 +302,7 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error10 = false;
-        //*****************end of validate description*******************    
 
-        //*****************validate Officer Incharge*******************************
         if (!this.state.officer_incharge) {
             isError = true;
             errors.officer_inchargeError = "Please enter the officer name"
@@ -327,9 +312,7 @@ export default class EditCrimeComplain extends Component {
             });;
         } else
             this.state.error11 = false;
-        //*****************end of validate Officer Incharge*******************    
 
-        //*****************validate Date Of Birth*******************    
         if (!this.state.dateOfBirth) {
             isError = true;
             errors.dateOfBirthError = "Date of Birth can not be blank!"
@@ -340,12 +323,10 @@ export default class EditCrimeComplain extends Component {
             this.state.error12 = true
         } else
             this.state.error12 = false;
-        //*****************end of validate Date Of Birth*******************    
 
-        //*****************validate Date *******************    
         if (!this.state.date) {
             isError = true;
-            errors.dateError = "Date can not be blank!"
+            errors.dateError = "Date of Birth can not be blank!"
             this.state.error13 = true
         } else if (!this.state.date.match("([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))")) {
             isError = true;
@@ -353,7 +334,7 @@ export default class EditCrimeComplain extends Component {
             this.state.error13 = true
         } else
             this.state.error13 = false;
-        //*****************end of validate Date *******************    
+
         this.setState({
             ...this.state,
             ...errors
@@ -422,6 +403,16 @@ export default class EditCrimeComplain extends Component {
                 .then(res => console.log(res.data));
         }
     }
+    createAndDownloadPdf = () => {
+        axios.post('http://localhost:5000/Addcomplain/create-pdf', this.state)
+            .then(() => axios.get('http://localhost:5000/Addcomplain/fetch-pdf', { responseType: 'blob' }))
+            .then((res) => {
+                const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+                saveAs(pdfBlob, 'newPdf.pdf');
+            })
+        alert("Report Successfully Generated, Please Upload!");
+        this.props.history.push('/EditCrimeComplain')  //redirect to complains list page after submit
+    }
 
     render() {
         /*const successToast = () => {
@@ -460,7 +451,7 @@ export default class EditCrimeComplain extends Component {
                                             label="Refno"
                                             required
                                             color="secondary"
-                                            type="number"
+                                            type="text"
                                             variant="outlined"
                                             error={this.state.error1}
                                             value={this.state.refNo}
@@ -471,7 +462,6 @@ export default class EditCrimeComplain extends Component {
                                         <br></br>
                                         <span className="text-danger">{this.state.refNoError}</span>
                                     </div>
-
 
                                     <div className="col" >
                                         <div className="form-group">
@@ -589,7 +579,7 @@ export default class EditCrimeComplain extends Component {
                                                 required
                                                 label="Date Of Birth"
                                                 placeholder="YYYY-MM-DD"
-                                                selected={this.state.dateOfBirth}
+                                                value={this.state.dateOfBirth}
                                                 error={this.state.error12}
                                                 onChange={this.onchangeDateOfBirth} />
                                             <br></br>
@@ -675,7 +665,7 @@ export default class EditCrimeComplain extends Component {
                                             label="Date"
                                             placeholder="YYYY-MM-DD"
                                             error={this.state.error13}
-                                            selected={this.state.date}
+                                            value={this.state.date}
                                             onChange={this.onchangeDate} />
                                         <br></br>
                                         <span className="text-danger">{this.state.dateError}</span>
@@ -702,7 +692,7 @@ export default class EditCrimeComplain extends Component {
                                 <div className="form-group">
                                     <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                                     <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
-                                    <button style={{ marginLeft: 0.5 + 'rem' }} className="btn btn-outline-success btn btn-dark" onClick={this.createPDF}>Genertate PDF</button>
+                                    <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Generate PDF" className="btn btn-outline-success btn btn-dark" onClick={this.createAndDownloadPdf}/>
                                 </div>
                             </form>
                         </div >

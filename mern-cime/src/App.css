@@ -1,9 +1,12 @@
 body{
   background-image: url('./Images/back6.png');
 }
-
+.text_edit{
+  flood-color: #000000;
+  font-weight: bold;
+}
 .nv{
-  background-color: #2f373a;
+   background-color: #2f373a;
    position: absolute;
    height:200%;
    top:14rem;

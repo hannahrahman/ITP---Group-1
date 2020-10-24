@@ -591,7 +591,7 @@ export default class CreateLEF extends Component {
 
         //************************************************* SENDING SUBMITTED VALUES BY VIA EMAIL **********************************************************//
 
-        emailjs.sendForm('gmail', 'template_36hh0c9', e.target, 'user_O5ZPxzWQAB8qNzjLnTeTz')
+        emailjs.sendForm('gmail', 'template_sjus06o',e.querySelectorAll , 'user_O5ZPxzWQAB8qNzjLnTeTz')
             .then((result) => {
                 console.log(result.text);
             }, (error) => {
@@ -676,7 +676,7 @@ export default class CreateLEF extends Component {
 
                     <div className="card text-white  bg-light lef"  >
 
-                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} className="needs-validation" noValidate={true}>
+                        <form onSubmit={this.onSubmit} style={{ margin: "auto" }} className="contact" noValidate={true}>
                             <TabPanel>
                                 <div className="card-header bg-dark lef_header"><h3>Police Station Details</h3></div>
                                 <br />
@@ -686,7 +686,7 @@ export default class CreateLEF extends Component {
                                         <TextField
                                             type="text"
                                             fullWidth
-                                            name="refNo"
+                                            name="RefNo"
                                             variant="outlined"
                                             color="secondary"
                                             label="Reference Number"
