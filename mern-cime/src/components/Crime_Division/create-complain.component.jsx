@@ -487,8 +487,6 @@ export default class CreateComplain extends Component {
                     </>
                     <div className="card text-white  bg-light mb-3 " style={{ marginLeft: 8.5 + 'rem' }} >
                         <div className="card-header bg-dark"><h3>Add Complain</h3></div>
-                        <div className="card-body " >
-                        </div >
                         <div className="container">
                             <form onSubmit={this.onSubmit} action="/Complain" noValidate='true'>
                                 <div className="row">
