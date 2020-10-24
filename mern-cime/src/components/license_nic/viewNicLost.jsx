@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {Container,Button, Table} from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import OnlineDrivingNICRenewalNavbar from "../../NavBars/OnlineDrivingNICRenewalNavbar.component";
-import { Button } from 'semantic-ui-react';
 
 const License = props => (
     <tr>
@@ -61,13 +61,15 @@ export default class viewLostLicense extends Component {
   
         <div>
 
-        <OnlineDrivingNICRenewalNavbar />
+<Container>
+
+        {/* <OnlineDrivingNICRenewalNavbar /> */}
 
             <h3>NIC Lost</h3>
                 
-            <Button className="primary" href="/Online Driving/NIC Renewal">Add New Complaint</Button>
-            
-            <table className="table">
+            <Button variant="primary" href="/Online Driving/NIC Renewal" > Add New Lost NIC  </Button>
+
+            <Table striped bordered hover variant="dark">
                     
                 <thead className="thead-light">
                         
@@ -85,8 +87,8 @@ export default class viewLostLicense extends Component {
                     { this.exerciseList() }
                 </tbody>
                     
-            </table>
-                
+            </Table>
+            </Container>
         </div>
 
         )

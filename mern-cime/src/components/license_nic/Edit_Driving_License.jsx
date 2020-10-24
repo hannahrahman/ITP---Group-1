@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {Container} from 'react-bootstrap';
 import OnlineDrivingNICRenewalNavbar from "../../NavBars/OnlineDrivingNICRenewalNavbar.component";
 
 import axios from 'axios';
@@ -127,9 +127,11 @@ export default class EditOnlineDriving extends Component {
     return (
 
         <div>
+      <Container>
 
       <div>
-		<OnlineDrivingNICRenewalNavbar />
+		{/* <OnlineDrivingNICRenewalNavbar /> */}
+
     </div>
 <br/>
           <div class="container">
@@ -259,6 +261,7 @@ export default class EditOnlineDriving extends Component {
               </div>
             </div>
           </div>
+          </Container>
 
         </div>
 

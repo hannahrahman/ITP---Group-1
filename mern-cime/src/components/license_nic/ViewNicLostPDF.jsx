@@ -67,7 +67,9 @@ class NicLostPDF extends Component {
 
       <div>
 
-<OnlineDrivingNICRenewalNavbar />
+<Container>
+
+{/* <OnlineDrivingNICRenewalNavbar /> */}
 
 
       <PDFViewer height="400" width="400">
@@ -92,6 +94,8 @@ class NicLostPDF extends Component {
   </Document>
 
   </PDFViewer>
+
+  </Container>
 
   </div>
 

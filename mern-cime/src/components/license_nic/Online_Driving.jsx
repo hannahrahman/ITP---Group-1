@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {Container} from 'react-bootstrap';
 import axios from 'axios';
 
 export default class OnlineDriving extends Component {
@@ -124,6 +124,7 @@ export default class OnlineDriving extends Component {
 
         <div>
 
+<Container>
           <div class="container">
             <div class="card text-danger  bg-dark">
               <div class="card-header">
@@ -263,7 +264,7 @@ export default class OnlineDriving extends Component {
               </div>
             </div>
           </div>
-
+          </Container>
         </div>
 
     );

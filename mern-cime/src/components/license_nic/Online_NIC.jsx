@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import {Container, Button} from 'react-bootstrap';
 // import DatePicker from "react-datepicker";
 
 import axios from 'axios';
@@ -9,6 +9,7 @@ export default class OnlineNic extends Component {
   constructor(props) {
     super(props);
 
+    this.onClickDemo = this.onClickDemo.bind(this);
     this.onchangeRefno = this.onchangeRefno.bind(this);
     this.onchangeName = this.onchangeName.bind(this);
     this.onchangeNic = this.onchangeNic.bind(this);
@@ -31,6 +32,19 @@ export default class OnlineNic extends Component {
       grama_niladhari: "",
     };
   }
+
+  onClickDemo(){
+    this.setState({
+        refNo: "R01",
+        name: "Parathan Thiyagalingam",
+        nic: "982578534V",
+        address: "Jaffna",
+        phone: "0212253586",
+        description: "The NIC was missed in the school play ground while he went for the cricket practices. He kept NIC inside his shirt pocket which he missed that too when comming back from grounds",
+        officer_incharge: "Perera Louis",
+        grama_niladhari: "J/171",
+      })
+  };
 
   onchangeRefno(e) {
     this.setState({
@@ -116,6 +130,7 @@ export default class OnlineNic extends Component {
     return (
 
         <div>
+<Container>
 
           <div class="container">
             <div class="card text-danger  bg-dark">
@@ -233,12 +248,16 @@ export default class OnlineNic extends Component {
                       className="btn btn-outline-danger btn btn-dark"
                     />
                   </div>
-             
+
+                  <Button variant="primary" onClick={this.onClickDemo}>Demo Button</Button>
+
                 </form> 
 
               </div>
             </div>
           </div>
+          
+          </Container>
 
         </div>
 
