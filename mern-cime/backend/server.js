@@ -12,7 +12,8 @@ const cmpRoutes = require('./routes/miscComplains')
 const userRouter = require('./routes/userRouter')
 const LefRoute = require('./routes/lef');
 const complainsRouter = require('./routes/complains')
-const domesticAbusecomplainsRouter = require('./routes/domestic_abuse_complains')
+const domAbuseComplainsRouter = require('./routes/domestic_abuse_complains')
+const domAbuseComplainsBackupRouter = require('./routes/domestic_abuse_complains_backup')
 const ComplainRoute = require('./routes/complains');
 const missingRoute = require('./routes/missingPersonAffairs.route')
 const licenseComplainsRouter = require('./routes/license_nic/licenseComplain')
@@ -74,7 +75,8 @@ app.get('/fpdf', (req, res) => {
 })*/
 app.use('/complains', complainsRouter)
 app.use('/lef', LefRoute);
-app.use('/domestic_abuse_complains', domesticAbusecomplainsRouter)
+app.use('/domestic_abuse_complains', domAbuseComplainsRouter)
+app.use('/domestic_abuse_complains_backup', domAbuseComplainsBackupRouter)
 app.use('/Addcomplain', ComplainRoute);
 app.use('/missingPersonAffairs', missingRoute);
 app.use('/license', licenseComplainsRouter)
