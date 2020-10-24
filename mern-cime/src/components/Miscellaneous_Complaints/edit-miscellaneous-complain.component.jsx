@@ -455,19 +455,7 @@ render(){
 
                        
                       </div>
-                      <div className="row first-Name" >
-                   
-
-                          <div className="col form-group " >
-                              
-                          <input type="file" onChange={this.handleChange} />
-                                                <br />
-                                                <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" />
-                                                <br />
-                         <input type="button" onClick={this.handleUpload} className="btn btn-outline-warning btn btn-dark" value="Upload" />
-                                 
-                          </div>
-                      </div>
+                     
                       <div className="form-group">
                           <input type="submit" name="submit" style={{ margin: 'auto', marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-danger btn btn-dark" />
                           <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
