@@ -17,7 +17,7 @@ export default class DomesticAbuseComplainList extends Component {
             recordsPerPage : 10,
             searchResults : []
         }
-        this.searchRecords = this.searchRecords.bind(this);
+       
     }
 
     componentDidMount() {

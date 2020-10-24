@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from "./navbar.component"
+
 export default class Sidenav extends Component {
 
     constructor(props) {

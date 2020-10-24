@@ -35,11 +35,11 @@ export default class VeiwMissingPersonsComplains extends Component {
 
     render() {
         return (
-            <div class="container" style={{ marginTop: 2 + 'rem' }}>
+            <div className="container" style={{ marginTop: 2 + 'rem' }}>
 
-                <div class="card text-dark  bg-white  mb-3" style={{ marginLeft: 11 + 'rem' }} >
-                    <div class="card-header"><h3>Complain List</h3></div>
-                    <div class="card-body" >
+                <div className="card text-dark  bg-white  mb-3" style={{ marginLeft: 11 + 'rem' }} >
+                    <div className="card-header"><h3>Complain List</h3></div>
+                    <div className="card-body" >
                         <div className="table-wrapper">
                             <Table striped border hover>
                                 <thead>
