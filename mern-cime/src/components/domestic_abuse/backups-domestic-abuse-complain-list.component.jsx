@@ -5,9 +5,9 @@ import {InputGroup, FormControl, Button} from 'react-bootstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStepBackward, faFastBackward, faStepForward, faFastForward, faListAlt} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import '../App.css';
+import '../../App.css';
 
-export default class DomesticAbuseComplainList extends Component {
+export default class DomesticAbuseComplainListBackups extends Component {
 
     constructor(props){
         super(props)
@@ -25,7 +25,7 @@ export default class DomesticAbuseComplainList extends Component {
     }
 
     findAllComplains() {
-        axios.get('http://localhost:5000/domestic_abuse_complains/')
+        axios.get('http://localhost:5000/domestic_abuse_complains_backup/')
             .then(response => response.data)
             .then((data) => {
                 this.setState({domAbuseComplains: data});
@@ -74,7 +74,7 @@ export default class DomesticAbuseComplainList extends Component {
         let item = e.target.value;
         var itemArray =[];
         if(item.length >= 0){
-            axios.get('http://localhost:5000/domestic_abuse_complains/')
+            axios.get('http://localhost:5000/domestic_abuse_complains_backup/')
             .then(response => response.data)
             .then((data) => {
                 this.setState({searchResults: data});
@@ -109,15 +109,10 @@ export default class DomesticAbuseComplainList extends Component {
         let backupRecords ={};
 
         if(window.confirm("Do you want to delete this record?")) {
-            axios.get('http://localhost:5000/domestic_abuse_complains/edit/'+complainId)
-            .then(function(res) {
-                backupRecords = res.data;
-                axios.post('http://localhost:5000/domestic_abuse_complains_backup/add', backupRecords)
-            });
-            axios.get('http://localhost:5000/domestic_abuse_complains/delete/'+complainId)
+            axios.get('http://localhost:5000/domestic_abuse_complains_backup/delete/'+complainId)
             .then(response => {
                 if(response.data != null) {
-                    alert("Record deleted successfully.");
+                    alert("Record deleted from database successfully.");
                     this.setState({
                     currentPage: 1
                     });
@@ -173,7 +168,7 @@ export default class DomesticAbuseComplainList extends Component {
             <div className="complain">
                 <div class="card text-white  bg-dark  mb-3" style={{ marginLeft: 8.5 + 'rem' }} >
                     <div class="card-header">
-                        <h3><FontAwesomeIcon icon={faListAlt} /> Complains List</h3>
+                        <h3><FontAwesomeIcon icon={faListAlt} /> Backup Complains List</h3>
                         <div style={{"float":"right"}}>
                             <input type="search" id="search" style={{"borderRadius": "7px", "borderColor": "#17A2B8", "borderWidth":"medium", "padding":"5px"}} name="" placeholder="Search...." onChange={this.searchRecords}/>
                         </div>
@@ -201,7 +196,7 @@ export default class DomesticAbuseComplainList extends Component {
                                                 <td>{complain.date}</td>
                                                 <td>{complain.status}</td>
                                                 <td>
-                                                    <Link className="btn btn-primary" to={`/EditDomesticAbuseComplain/${complain._id}`}>View</Link>
+                                                    <Link className="btn btn-primary" to={`/ViewDomesticAbuseComplainBackup/${complain._id}`}>View</Link>
                                                 </td>
                                                 <td>
                                                     <Link className="btn btn-danger" onClick={this.deleteComplain.bind(this, complain._id)}>Delete</Link>

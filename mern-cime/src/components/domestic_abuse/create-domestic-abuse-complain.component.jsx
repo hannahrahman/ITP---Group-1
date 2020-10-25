@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import "react-toastify/dist/ReactToastify.css";
-import '../App.css';
-import { storage } from '../firebase';
+import '../../App.css';
+import { storage } from '../../firebase';
 
 export default class CreateDomesticAbuseComplain extends Component {
 
@@ -171,7 +171,20 @@ export default class CreateDomesticAbuseComplain extends Component {
             isError = true;
             errors.refNoError = "Reference must be simple or capitalized!"
             this.state.error1 = true
-        } else
+        } /*else {
+            isError = true;
+            axios.get('http://localhost:5000/domestic_abuse_complains/refNo/' + this.state.refNo)
+            .then(res => {
+                if(res.data.length != 0) {
+                    alert("Reference Number already exists!");*/
+                    /*isError = true;
+                    errors.refNoError = "Reference Number already exists!"
+                    this.state.error1 = true*/
+               /* } else {
+                    this.state.error1 = false;
+                }             
+            });   
+        }*/ else
             this.state.error1 = false;
 
         //*****************end of validate Refference Number************    
@@ -464,6 +477,29 @@ export default class CreateDomesticAbuseComplain extends Component {
             });
     };
 
+    //***************demo button***********************
+
+    demoValuesSet = () => {
+        Array.from(document.querySelectorAll('input'));
+        this.setState({
+            refNo: 'COMP00',
+            complainType: 'Threatening',
+            fname: 'Kumari',
+            lname: 'Perera',
+            nic: '857162310V',
+            dateOfBirth: '1985-10-02',
+            religion: 'Christian',
+            sex: 'Female',
+            address: 'Kottawa',
+            phone: '0112729729',
+            description: 'Threatened by her husband',
+            weapon: 'Pistol',
+            officer_incharge: 'Mr.Ajith Kumara',
+            relationType: 'Spousal',
+            status: 'CREATED'
+        });
+    };
+
     render() {
         return (
             <div className="complain">
@@ -693,7 +729,7 @@ export default class CreateDomesticAbuseComplain extends Component {
 
                             <div className="form-group">
                                 <input type="file" className="btn btn-outline-light btn btn-dark" onChange={this.handleChange} />
-                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Upload" className="btn btn-outline-warning btn btn-dark" onClick={this.handleUpload} /><br /><br />
+                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Upload Images" className="btn btn-outline-warning btn btn-dark" onClick={this.handleUpload} /><br /><br />
                                 <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" /><br />
                                 <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" /><br />
                                 
@@ -709,6 +745,7 @@ export default class CreateDomesticAbuseComplain extends Component {
                             <div className="form-group">
                                 <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-success btn btn-dark" />
                                 <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
+                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Demo" className="btn btn-outline-info btn btn-dark" onClick={this.demoValuesSet} />
                             </div>
                         </form>
                     </div >

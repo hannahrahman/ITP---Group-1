@@ -4,7 +4,7 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
     <!doctype html>
     <html>
        <head>
-          <meta charset="utf-8">
+          <meta charset="UTF-8">
           <title>PDF Result Template</title>
           <style>
              .invoice-box {
@@ -23,6 +23,7 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
              }
              .justify-center {
              text-align: center;
+             font-family: 'Abhaya Libre',
              }
              .invoice-box table {
              width: 100%;
@@ -81,17 +82,27 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
        </head>
        <body>
           <div class="invoice-box">
+          <center>
+            <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Emblem_of_Sri_Lanka.svg/800px-Emblem_of_Sri_Lanka.svg.png" style="max-width:56px;">
+          </center>
+          <center>
+            <img src="https://firebasestorage.googleapis.com/v0/b/police-management.appspot.com/o/DOMComplains%2Fpolice_name.png?alt=media&token=c206252a-f9f3-4dd5-9948-aed6ab5cca34" style="max-width:96px;">
+          </center>
              <table cellpadding="0" cellspacing="0">
                 <tr class="top">
                    <td colspan="2">
                       <table>
-                         <tr>
-                            <td class="title"><img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Emblem_of_Sri_Lanka.svg/800px-Emblem_of_Sri_Lanka.svg.png"
-                               style="width:100%; max-width:156px;"></td>
-                            <td>
-                               Date: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}`}
-                            </td>
-                         </tr>
+                        <tr>
+                           <td>
+                              <h6>Police Station : Kirulapone<h6>
+                              <h6>High Level Rd, Colombo 00500</h6>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Date: ${`${today.getDate()}. ${today.getMonth() + 1}. ${today.getFullYear()}`}
+                           </td>
+                        </tr>
                       </table>
                    </td>
                 </tr>
@@ -103,15 +114,21 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
                                Reference Number: ${refNo}
                             </td>
                             <td>
-                               Complain Type: ${complainType}
+                               Division : Domestic Abuse Affairs
                             </td>
                          </tr>
                       </table>
                    </td>
                 </tr>
-                <tr class="heading">
-                   <td>Fields</td>
-                   <td>Data</td>
+                <tr class="heading">  
+                  <td colspan="2">Details of Complain</td>
+                </tr>
+                <tr>
+                  <td>&nbsp</td>
+                </tr>
+                <tr class="item">
+                   <td>Complain Type : </td>
+                   <td>${complainType}</td>
                 </tr>
                 <tr class="item">
                    <td>First Name : </td>
@@ -155,7 +172,6 @@ module.exports = ({ refNo, complainType, fname, lname, officer_incharge, nic, da
                 </tr>
              </table>
              <br />
-             <h1 class="justify-center">Report of Domestic Abuse Affairs</h1>
           </div>
        </body>
     </html>

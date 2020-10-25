@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import '../App.css';
+import '../../App.css';
 import { Link } from 'react-router-dom';
 import { saveAs } from 'file-saver';
-import { storage } from '../firebase';
+import { storage } from '../../firebase';
 
 export default class EditDomesticAbuseComplain extends Component {
 
@@ -751,7 +751,7 @@ export default class EditDomesticAbuseComplain extends Component {
 
                             <div className="form-group">
                                 <input type="file" className="btn btn-outline-light btn btn-dark" onChange={this.handleChange} />
-                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Upload" className="btn btn-outline-warning btn btn-dark" onClick={this.handleUpload} /><br /><br />
+                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Upload Report" className="btn btn-outline-warning btn btn-dark" onClick={this.handleUpload} /><br /><br />
                                 <img src={this.state.url || 'http://via.placeholder.com/300x200'} alt="Uploaded images" height="200" width="300" /><br />
                                 <progress className="progress-bar progress-bar-striped bg-danger" role="progressbar" value={this.state.progress} max="100" /><br />
                             </div>
@@ -759,13 +759,7 @@ export default class EditDomesticAbuseComplain extends Component {
                             <div className="form-group">
                                 <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Submit" className="btn btn-outline-success btn btn-dark" />
                                 <input type="reset" style={{ marginLeft: 0.5 + 'rem' }} value="Reset" className="btn btn-outline-warning btn btn-dark" onClick={this.handleReset} />
-                                
-                                <Link className="btn btn-primary" to={`/ReportDomesticAbuseComplain/${this.props.match.params.id}`}>Print2</Link>
-                            </div>
-                        </form>
-                        <form onSubmit={this.createAndDownloadPdf} style={{ margin: "auto" }} className=" needs-validation" noValidate="true">
-                            <div className="form-group">
-                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Print" className="btn btn-outline-info btn btn-dark" />
+                                <input type="button" style={{ marginLeft: 0.5 + 'rem' }} value="Print" className="btn btn-outline-info btn btn-dark" onClick={this.createAndDownloadPdf} />
                             </div>
                         </form>
                     </div >

@@ -128,16 +128,7 @@ class Sidenav extends Component {
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>
-            </MDBNavbarNav>
-            <MDBNavbarNav right>
-              <MDBNavItem>
-                <MDBFormInline waves>
-                  <div className="md-form my-0">
-                    <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-                  </div>
-                </MDBFormInline>
-              </MDBNavItem>
-            </MDBNavbarNav>
+            </MDBNavbarNav>    
           </MDBCollapse>
         </MDBNavbar>
       </Router>

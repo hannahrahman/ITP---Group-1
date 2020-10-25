@@ -1,25 +1,11 @@
 import React, { Component, userRef } from 'react';
 import axios from 'axios';
-import '../App.css';
+import '../../App.css';
 
-export default class ReportDomesticAbuseComplain extends Component {
+export default class ViewDomesticAbuseComplainBackup extends Component {
 
     constructor(props) {
         super(props);
-        this.onchangeRefno = this.onchangeRefno.bind(this);
-        this.onchangeComplainType = this.onchangeComplainType.bind(this);
-        this.onchangeFName = this.onchangeFName.bind(this);
-        this.onchangeLName = this.onchangeLName.bind(this);
-        this.onchangeNic = this.onchangeNic.bind(this);
-        this.onchangeDateOfBirth = this.onchangeDateOfBirth.bind(this);
-        this.onchangeReligion = this.onchangeReligion.bind(this);
-        this.onchangeSex = this.onchangeSex.bind(this);
-        this.onchangeAddress = this.onchangeAddress.bind(this);
-        this.onchangePhone = this.onchangePhone.bind(this);
-        this.onchangeDescription = this.onchangeDescription.bind(this);
-        this.onchangeWeapon = this.onchangeWeapon.bind(this);
-        this.onchangeOfficerIncharge = this.onchangeOfficerIncharge.bind(this);
-        this.onchangeRelationType = this.onchangeRelationType.bind(this);
 
         this.state = {
             refNo: '',
@@ -42,7 +28,7 @@ export default class ReportDomesticAbuseComplain extends Component {
     //**********get data by id****************************
 
     componentDidMount(){
-        axios.get('http://localhost:5000/domestic_abuse_complains/edit/'+this.props.match.params.id)
+        axios.get('http://localhost:5000/domestic_abuse_complains_backup/edit/'+this.props.match.params.id)
         .then(res => {
             this.setState({
                 refNo: res.data.refNo,
@@ -58,96 +44,13 @@ export default class ReportDomesticAbuseComplain extends Component {
                 description: res.data.description,
                 weapon: res.data.weapon,
                 officer_incharge: res.data.officer_incharge,
-                relationType: res.data.relationType
+                relationType: res.data.relationType,
+                status: res.data.status
             });
         })
         .catch((error) => {
             console.log(error);
         })
-    }
-
-    onchangeRefno(e) {
-        this.setState({
-            refNo: e.target.value
-        });
-    }
-
-    onchangeComplainType(e) {
-        this.setState({
-            complainType: e.target.value
-        });
-    }
-
-    onchangeFName(e) {
-        this.setState({
-            fname: e.target.value
-        });
-    }
-
-    onchangeLName(e) {
-        this.setState({
-            lname: e.target.value
-        });
-    }
-
-    onchangeNic(e) {
-        this.setState({
-            nic: e.target.value
-        });
-    }
-
-    onchangeDateOfBirth(e) {
-        this.setState({
-            dateOfBirth: e.target.value
-        });
-    }
-
-    onchangeReligion(e) {
-        this.setState({
-            religion: e.target.value
-        });
-    }
-
-    onchangeSex(e) {
-        this.setState({
-            sex: e.target.value
-        });
-    }
-
-    onchangeAddress(e) {
-        this.setState({
-            address: e.target.value
-        });
-    }
-
-    onchangePhone(e) {
-        this.setState({
-            phone: e.target.value
-        });
-    }
-
-    onchangeDescription(e) {
-        this.setState({
-            description: e.target.value
-        });
-    }
-
-    onchangeWeapon(e) {
-        this.setState({
-            weapon: e.target.value
-        });
-    }
-
-    onchangeOfficerIncharge(e) {
-        this.setState({
-            officer_incharge: e.target.value
-        });
-    }
-
-    onchangeRelationType(e) {
-        this.setState({
-            relationType: e.target.value
-        });
     }
     
     render() {
@@ -231,7 +134,8 @@ export default class ReportDomesticAbuseComplain extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input type="submit" style={{ marginLeft: 0.5 + 'rem' }} value="Print" className="btn btn-outline-info btn btn-dark" onClick={this.createAndDownloadPdf} />
+                                <label style={{ marginLeft: 0.5 + 'rem' }}><b>Status :</b></label>
+                                <label style={{ marginLeft: 0.5 + 'rem' }}>{this.state.status}</label>
                             </div>                        
                     </div >
                 </div >

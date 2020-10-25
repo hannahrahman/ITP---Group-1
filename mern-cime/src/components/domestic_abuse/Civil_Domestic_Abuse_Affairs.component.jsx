@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CivilDomesticAbuseAffairsNavbar from "../NavBars/CivilDomesticAbuseAffairsNavbar.jsx";
+import CivilDomesticAbuseAffairsNavbar from "../../NavBars/CivilDomesticAbuseAffairsNavbar.jsx";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import DomesticAbuseComplainList from "./domestic-abuse-complain-list.component";
 import CreateDomesticAbuseComplain from "./create-domestic-abuse-complain.component";
@@ -9,7 +9,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap-reboot.min.css";
 import EditDomesticAbuseComplain from "./edit-domestic-abuse-complain.component";
-import ReportDomesticAbuseComplain from "./report-dom-abuse-complain.component";
+import ViewDomesticAbuseComplainBackup from "./backup-view-dom-abuse-complain.component";
+import DomesticAbuseComplainListBackups from "./backups-domestic-abuse-complain-list.component";
 
 export default class CivilDomesticAbuseAffairs extends Component {
   render() {
@@ -26,7 +27,8 @@ export default class CivilDomesticAbuseAffairs extends Component {
             <Route path="/DomesticAbuseApeal" exact component={CreateDomesticAbuseApeal} />
             <Route path="/DomesticAbuseLegal" exact component={CreateDomesticAbuseLegal} />
             <Route path="/EditDomesticAbuseComplain/:id" exact component={EditDomesticAbuseComplain} />
-            <Route path="/ReportDomesticAbuseComplain/:id" exact component={ReportDomesticAbuseComplain} />
+            <Route path="/ViewDomesticAbuseComplainBackup/:id" exact component={ViewDomesticAbuseComplainBackup} />
+            <Route path="/DomesticAbuseComplainListBackups" exact component={DomesticAbuseComplainListBackups} />
           </div>
         </Router>
       </div>

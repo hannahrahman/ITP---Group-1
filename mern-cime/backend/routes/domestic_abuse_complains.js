@@ -85,4 +85,14 @@ domesticRoutes.route('/fetch-pdf').get(function (req, res) {
     res.sendFile(`${__dirname}/slpc-report-${req.body.refNo}.pdf`)
 });
 
+domesticRoutes.route('/refNo/:refNo').get(function (req, res) {
+    DomesticAbuseComplain.find({ refNo: req.params.refNo }, function (err, complain) {
+        if (err)
+            console.log(err);
+        else {
+            res.json(complain)
+        }
+    });
+});
+
 module.exports = domesticRoutes;
